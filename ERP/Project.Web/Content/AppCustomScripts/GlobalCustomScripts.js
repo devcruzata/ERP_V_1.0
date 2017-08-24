@@ -343,13 +343,15 @@ $('#GTRelateTo').change(function () {
          return false;
      }
      else if ($("#GendDate").val().trim() == '') {
+
          $('#error_div_GendDate').show();
          $('#error_div_GstartTime').hide();
          $('#error_div_GstartDate').hide();
          $('#error_div_GinputTitleEvent').hide();
          return false;
      }
-     else if ($("#endTime").val().trim() == '') {
+     else if ($("#GendTime").val() == '') {
+       
          $('#error_div_GendTime').show();
          $('#error_div_GendDate').hide();
          $('#error_div_GstartTime').hide();
@@ -398,7 +400,7 @@ $('#GTRelateTo').change(function () {
              success: function (data) {
                  if (data != "") {                    
 
-                     $("#GaddNewEvent").modal('hide');
+                     $("#GEventModal").modal('hide');
                      $("#GeForm")[0].reset();
                      $(".se-pre-con").hide();
                  }

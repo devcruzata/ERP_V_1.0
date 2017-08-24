@@ -11809,6 +11809,7 @@
     <Content Include="Views\Notes\AjaxOppoNotes.cshtml" />
     <Content Include="Views\Doc\AjaxClientDoc.cshtml" />
     <Content Include="Views\Doc\AjaxOppoDoc.cshtml" />
+    <Content Include="Views\User\AjaxAddUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
