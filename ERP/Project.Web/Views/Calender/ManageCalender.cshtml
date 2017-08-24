@@ -1,0 +1,677 @@
+﻿@{
+    ViewBag.Title = "test";
+}
+
+@using Project.Web.Common;
+@{
+    SessionHelper session = new SessionHelper();
+}
+
+@*<script>
+    $(document).ready(function () {
+        $("#ecolor").minicolors({ theme: "bootstrap" })
+    });
+</script>*@
+<script>
+    $(document).ready(function () {        
+        $('#CRelateTo').change(function () {          
+            $.post('/Common/GetRelateToListing', { RelatedTable: $('#CRelateTo').val() }, function (data) {
+                if (data != '') {
+                    $('#CRelateToName').empty();
+                    $.each(data, function (i, foo) {
+                        $('#CRelateToName').append('<option value="' + this.Value + '">' + this.Text + '</option');
+                    });
+                }
+            });
+
+        });
+
+        $('#UCRelateTo').change(function () {
+            $.post('/Common/GetRelateToListing', { RelatedTable: $('#UCRelateTo').val() }, function (data) {
+                if (data != '') {
+                    $('#UCRelateToName').empty();
+                    $.each(data, function (i, foo) {
+                        $('#UCRelateToName').append('<option value="' + this.Value + '">' + this.Text + '</option');
+                    });
+                }
+            });
+        });
+    });
+    function GetRelateToListing(RelationType,RelationID) {
+        $.post('/Common/GetRelateToListing', { RelatedTable: RelationType }, function (data) {
+            if (data != '') {
+                $('#UCRelateToName').empty();
+                $.each(data, function (i, foo) {
+                    $('#UCRelateToName').append('<option value="' + this.Value + '">' + this.Text + '</option');
+                });               
+                $('#UCRelateToName').val(RelationID);
+            }
+        });
+    }
+</script>
+<script>
+    $(document).ready(function () {
+        $(".date-control").daterangepicker({
+            singleDatePicker: true,
+            locale: {
+                format: 'MM/DD/YYYY'
+            },
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#startTime").datetimepicker({ locale: "en-gb", format: "LT" });
+        $("#endTime").datetimepicker({ locale: "en-gb", format: "LT" });
+        $("#ustartTime").datetimepicker({ locale: "en-gb", format: "LT" });
+        $("#uendTime").datetimepicker({ locale: "en-gb", format: "LT" });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#ecolor").minicolors({ theme: "bootstrap" });
+        $("#uColor").minicolors({ theme: "bootstrap" });
+    });
+</script>
+
+
+
+
+<!-- Page Content -->
+<div class="page-container">
+    <div class="page-header clearfix">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4 class="mt-0 mb-5">Calender</h4>
+                <ol class="breadcrumb mb-0">
+                    <li><a href="@Url.RouteUrl("AdminDashboard_V_2")">Home</a></li>
+                    <li><a href="@Url.RouteUrl("Calender")">Calendar</a></li>
+                    @*<li class="active">Genral Setings</li>*@
+                </ol>
+            </div>
+            <div class="col-sm-6">
+                @*<div class="btn-group mt-5">
+                        <button type="button" class="btn btn-default btn-outline"><i class="flag-icon flag-icon-us mr-5"></i> English</button>
+                        <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default btn-outline dropdown-toggle"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
+                        <ul class="dropdown-menu dropdown-menu-right animated fadeInDown">
+                            <li><a href="#"><i class="flag-icon flag-icon-de mr-5"></i> German</a></li>
+                            <li><a href="#"><i class="flag-icon flag-icon-fr mr-5"></i> French</a></li>
+                            <li><a href="#"><i class="flag-icon flag-icon-es mr-5"></i> Spanish</a></li>
+                            <li><a href="#"><i class="flag-icon flag-icon-it mr-5"></i> Italian</a></li>
+                            <li><a href="#"><i class="flag-icon flag-icon-jp mr-5"></i> Japanese</a></li>
+                        </ul>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+    <div class="page-content container-fluid">
+        <div class="widget">
+            <div class="widget-heading clearfix">
+                <h3 class="widget-title pull-left">Calendar</h3>
+
+            </div>
+            <div class="widget-body">
+                <div class="col-sm-12">
+                    <div id="fullcalendar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.container -->
+<div id="addNewEvent" tabindex="-1" role="dialog" aria-labelledby="ModalEventLabel" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-black">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 id="ModalEventLabel" class="modal-title">Add New Event</h4>
+            </div>
+            <div class="modal-body">
+                <form id="eForm">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <input id="inputTitleEvent" type="text" placeholder="Event Name" class="form-control">
+                            <div id="error_div_inputTitleEvent" style="display:none;">
+                                <p style="color:red;">Please Enter Title</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8" style="display:none;">
+                        <div class="form-group">
+                            <input id="start" type="text" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="" id="startTime" />
+                            <div id="error_div_startTime" style="display:none;">
+                                <p style="color:red;">Please Choose Start Time</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <input id="endTime" type="text" class="form-control">
+                            <div id="error_div_endTime" style="display:none;">
+                                <p style="color:red;">Please Choose End Time</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12" style="display:none;">
+                        <div class="form-group">
+                            <input id="end" type="text" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="CRelateTo">Relate To</label>
+                            <select id="CRelateTo" class="form-control">
+                                <option class="active" value="0">Choose a Option</option>
+                                <option class="active" value="LEAD">Lead</option>
+                                <option value="OPPORTUNITY">Opportunity</option>
+                                <option value="CLIENT">Client</option>
+                            </select>
+                            <div id="error_div_CRelateTo" style="display:none;">
+                                <p style="color:red;">Please Choose A Option</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="CRelateToName">Name</label>
+                            <select id="CRelateToName" class="form-control TRelateToName"></select>
+                            <div id="error_div_CRelateToName" style="display:none;">
+                                <p style="color:red;">Please Choose A Related Entity</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="ecolor">Color</label>
+                            <input id="ecolor" type="text" value="#9b59b6" class="form-control">
+                        </div>
+                    </div>
+                    @*<div class="col-sm-12">
+                        <div class="form-group">
+                            <input id="inputBackgroundEvent" type="text" value="#0667D6" class="form-control">
+                        </div>
+                    </div>*@
+                    @*<div class="col-sm-12">
+                        <div class="form-group">
+                            <textarea id="description" class="form-control" placeholder="Notes"></textarea>
+                        </div>
+                    </div>*@
+                    <input id="start" type="hidden">
+                    <input id="end" type="hidden">
+                    <input id="allDay" type="hidden">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default">Cancel</button>
+                <button id="btnAddNewEvent" type="submit" class="btn btn-raised btn-black">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="Event" tabindex="-1" role="dialog" aria-labelledby="ModalEventLabel" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-black">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 id="ModalEventLabel" class="modal-title">Event Info</h4>
+            </div>
+            <div class="modal-body">
+                <form id="eForm">
+                    <div class="col-sm-12">
+                        <div class="col-sm-4">
+                            <p><b>Related To :</b></p>
+                        </div>
+                        <div class="col-sm-8">
+                            <p id="relateTo"></p>
+                        </div>                        
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-4">
+                            <p><b>Contact :</b></p>
+                        </div>
+                        <div class="col-sm-8">
+                            <p id="contact"></p>
+                        </div>
+                    </div>                   
+
+                    <div class="col-sm-12">
+                        <div class="col-sm-4">
+                            <p><b>Business Email :</b></p>
+                        </div>
+                        <div class="col-sm-8">
+                            <p id="bemail"></p>
+                        </div>
+                    </div>
+
+                    
+                    <input type="hidden" id="reId" />
+                </form>
+                <form id="uForm">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <input id="uTitle" type="text" placeholder="Event Name" class="form-control ">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="UCRelateTo">Relate To</label>
+                            <select id="UCRelateTo" class="form-control">
+                                <option class="active" value="0">Choose a Option</option>
+                                <option class="active" value="LEAD">Lead</option>
+                                <option value="OPPORTUNITY">Opportunity</option>
+                                <option value="CLIENT">Client</option>
+                            </select>
+                            <div id="error_div_UCRelateTo" style="display:none;">
+                                <p style="color:red;">Please Choose A Related Person</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="CRelateToName">Name</label>
+                            <select id="UCRelateToName" class="form-control TRelateToName"></select>
+                            <div id="error_div_UCRelateToName" style="display:none;">
+                                <p style="color:red;">Please Choose A Related Entity</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <input id="uColor" type="text" value="" class="form-control">
+                        </div>
+                    </div>                    
+                    @*<div class="col-sm-12">
+                        <div class="form-group">
+                            <div class="checkbox-inline checkbox-custom">
+                                <input id="dateFlag" type="checkbox" value="" onclick="showDateDiv();">
+                                <label for="dateFlag" class="checkbox-muted text-muted">Change Time And Date</label>
+                            </div>
+                        </div>
+                    </div>*@
+                    <div id="dateDiv">
+                        <div class="col-sm-8">
+                            <div class="form-group">
+                                <input id="ustartDate" type="text" class="form-control date-control" placeholder="Start Date">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input id="ustartTime" type="text" placeholder="Start Time" class="form-control ">
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="form-group">
+                                <input id="uendDate" type="text" class="form-control date-control" placeholder="End Date">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input id="uendTime" type="text" placeholder="End Time" class="form-control ">
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="col-sm-12">
+                        <div class="form-group">
+                            <textarea id="uDesc" class="form-control" placeholder="Notes"></textarea>
+                        </div>
+                    </div>*@
+                    @*<div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="clr">Color</label>
+                            <input id="ecolor" type="text" value="#9b59b6" class="form-control">
+                        </div>
+                    </div>*@
+                    <input id="start" type="hidden">
+                    <input id="end" type="hidden">
+                    <input id="uId" type="hidden">
+                    <input id="dtFlag" type="hidden" value="0" />
+                    <input type="hidden" id="RID" />
+                    <input type="hidden" id="RTYPE" />
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default" id="update" onclick="updateEvent()">Update</button>
+                <button type="button" data-dismiss="modal" class="btn btn-raised btn-danger" id="remove" onclick="RemoveEvent();">Remove</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<input type="hidden" id="hov" />
+<input type="hidden" id="editPermission" value=""/>
+<script>
+
+    $(document).ready(function () {
+
+        function e() { $("#addNewEvent").modal("hide"), $("#fullcalendar").fullCalendar("renderEvent", { title: $("#inputTitleEvent").val(), start: new Date($("#start").val()), end: new Date($("#end").val()), color: $("#inputBackgroundEvent").val() }, !0) }
+
+        $("#fullcalendar").fullCalendar({
+            header: {
+                left: "prev,next",
+                center: "title",
+                right: "month,agendaWeek,agendaDay"
+            },
+            buttonIcons: {
+                prev: " ti-angle-left",
+                next: " ti-angle-right"
+            },
+            timeFormat: 'h(:mm)t',
+            timezone: 'local',
+            droppable: !0,
+            selectable: !0,
+            editable: !1,
+            //startEditable: !1,
+            //disableDragging : true,
+            select: function (e, t, a) {
+                $("#start").val(moment(e).format("YYYY/MM/DD")),
+                $("#end").val(moment(t).format("YYYY/MM/DD")),
+                $("#inputTitleEvent").val(""), $("#addNewEvent").modal("show")
+            },
+            allDay: !1,
+            displayEventTime : !0,
+            eventColor: "#0667D6",
+            eventLimit: !0,
+            events: '/Calender/GetEvents/',
+            eventClick: function (calEvent, jsEvent, view) {                               
+                ViewEvent(calEvent.id, calEvent.title, calEvent.start, calEvent.end, calEvent.color)                             
+            },
+            eventMouseover: function (calEvent, jsEvent) {
+                //ShowToolTip(data.title, data.start, data.end)
+                //var day = moment(calEvent.start);
+                // var sd =  day.format("dddd, MMMM Do YYYY, h:mm")
+
+                // var tooltip = '<div class="tooltipevent" style="width:30%;height:auto;background:#fff;position:absolute;z-index:10001;border-radius: 10px;box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3)"><p style="margin-top:15px;margin-left:15px;color:#2d97d1;font-size:16px;" id="tl">' + calEvent.title + '</p><p style="margin-top:15px;margin-left:15px;color:#grey;font-size:12px;" id="dt">Starts On: ' + sd + '</p><p style="margin-top:15px;margin-left:15px;color:#black;font-size:13px;" id="ds">' + " " + '</div>';
+                //   $("body").append(tooltip);
+                //   $(this).mouseover(function (e) {
+                //       $(this).css('z-index', 10000);
+                //       $('.tooltipevent').fadeIn('500');
+                //       $('.tooltipevent').fadeTo('10', 1.9);
+                //   }).mousemove(function (e) {
+                //       $('.tooltipevent').css('top', e.pageY + 10);
+                //       $('.tooltipevent').css('left', e.pageX + 20);
+                //    });
+                // eventHover(calEvent.id, calEvent.title, calEvent.start)
+            },
+            eventDrop: function (event, delta, revertFunc, jsEvent, ui, view) {
+                //alert(event.start.format());
+                //if (confirm("Are you sure to change Event Date?")) {
+                //    UpdateEventDate(event.id, event.start, event.end)
+                //}
+                //else {
+                //    revertFunc();
+                //}
+            },
+            drop: function () { $("#drop-remove").is(":checked") && $(this).remove() }
+        })
+    }),
+    $("#btnAddNewEvent").on("click", function (t) { t.preventDefault(), AddNewEvent() });
+   // $("#inputBackgroundEvent").minicolors({ theme: "bootstrap" });
+
+    function AddNewEvent() {
+        if ($("#inputTitleEvent").val().trim() == '') {
+            $("#error_div_inputTitleEvent").show();
+            return false();
+        }
+        else if ($("#startTime").val().trim() == '') {
+            $("#error_div_startTime").show();
+            $("#error_div_inputTitleEvent").hide();
+            return false();
+        }
+        else if ($("#endTime").val().trim() == '') {
+            $("#error_div_endTime").show();
+            $("#error_div_startTime").hide();
+            $("#error_div_inputTitleEvent").hide();
+            return false();
+        }
+        else if ($('#CRelateTo').val().trim() == '0') {
+            $("#error_div_RelateTo").show();
+            $("#error_div_endTime").hide();
+            $("#error_div_startTime").hide();
+            $("#error_div_inputTitleEvent").hide();
+            return false();
+        }
+        else if ($('#CRelateToName').val().trim() == '0') {
+            $("#error_div_CRelateToName").show();
+            $("#error_div_RelateTo").hide();
+            $("#error_div_endTime").hide();
+            $("#error_div_startTime").hide();
+            $("#error_div_inputTitleEvent").hide();
+            return false();
+        }
+        else {
+            $("#error_div_CRelateToName").hide();
+            $("#error_div_RelateTo").hide();
+            $("#error_div_endTime").hide();
+            $("#error_div_startTime").hide();
+            $("#error_div_inputTitleEvent").hide();
+           
+            $(".se-pre-con").show();
+            $.ajax({
+                url: '/Calender/SaveEvent',
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ Title: $("#inputTitleEvent").val(), StartDate: $("#start").val() + ' ' + $("#startTime").val(), EndDate: $("#end").val() + ' ' + $("#endTime").val(), RelatedTo: $("#CRelateToName").val(), RelatedTable: $("#CRelateTo").val(), eColor : $('#ecolor').val() }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data == '1') {
+                        $('#fullcalendar').fullCalendar('refetchEvents');
+                        $("#addNewEvent").modal('hide');
+                        $("#eForm")[0].reset();
+                        $(".se-pre-con").hide();
+                    }
+                    else {
+                        $("#addNewEvent").modal('hide');
+                        $("#eForm")[0].reset();
+                        $(".se-pre-con").hide();
+                    }
+                },
+                error: function (xhr) {
+                    $("#addNewEvent").modal('hide');
+                    $("#eForm")[0].reset();
+                    $(".se-pre-con").hide();
+                    $('#errorMessage').html("No connection");
+                }
+            });
+        }        
+    }
+
+    function ViewEvent(Event_ID, title, sDate, eDate,ecolor) {
+       // var day = moment(sDate);
+      //  var sd = day.format("dddd, MMMM Do YYYY, h:mm")
+        $.ajax({
+            url: '/Calender/GetEventInfo',
+            dataType: "json",
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ EventId: Event_ID }),
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (data) {               
+                $("#relateTo").html('');
+                $("#relateTo").html(data.RelatedToName);
+                $("#contact").html('');
+                $("#contact").html(data.RelatedToContact);
+                $("#bemail").html('');
+                $("#bemail").html(data.RelatedToEmail);
+                $("#ustartDate").val(data.EventStartDate);
+                $("#ustartTime").val(data.EventStartTime);
+                $("#uendDate").val(data.EventEndDate);
+                $("#uendTime").val(data.EventEndTime);
+               // $("#RID").val(data.Relation_ID_Fk);
+               // $("#RTYPE").val(data.RelationType);
+                $('#UCRelateTo').val(data.RelationType);
+                GetRelateToListing(data.RelationType, data.Relation_ID_Fk);
+                //$('#UCRelateToName').val(data.Relation_ID_Fk);
+                $("#uId").val(Event_ID);
+                $("#uTitle").val(title);              
+                $("#uColor").val(data.colour);
+                $("#Event").modal('show')
+                
+            },
+            error: function (xhr) {
+                $('#errorMessage').html("No connection");
+            }
+        });
+    }
+
+    function UpdateEventDate(id, newStart, newend){
+        $.ajax({
+            url: '/Calender/UpdateEvntDate',
+            dataType: "json",
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ EventID: id , StartDate : newStart , EndDate : newend }),
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                if (data == '1') {
+                    $('#fullcalendar').fullCalendar('refetchEvents');
+                }
+                else {
+                }
+            },
+            error: function (xhr) {
+                $('#errorMessage').html("No connection");
+            }
+        });
+    }   
+
+    function updateEvent() {
+        var sd;
+        var ed;
+        if ($("#ustartDate").val().indexOf('/') > -1) {           
+             sd = $("#ustartDate").val().replace(/\//g, "-");
+        }
+        else {
+             sd = $("#ustartDate").val();
+        }
+
+        if ($("#uendDate").val().indexOf('/') > -1) {          
+            ed = $("#uendDate").val().replace(/\//g, "-");
+        }
+        else {
+            ed = $("#uendDate").val();
+        }
+      
+        $.ajax({
+            url: '/Calender/UpdateEvent',
+            dataType: "json",
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ Title: $("#uTitle").val(), StartDate: sd + ' ' + $("#ustartTime").val(), EndDate: ed + ' ' + $("#uendTime").val(), DateFlag: $("#dtFlag").val(), EventId: $("#uId").val(), RelatedTo: $("#UCRelateToName").val(), RelatedTable: $("#UCRelateTo").val(), uColour: $("#uColor").val() }),
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                if (data == '1') {
+                    $('#fullcalendar').fullCalendar('refetchEvents');
+                    $("#Event").modal('hide');                  
+                    $("#uForm")[0].reset();            
+                }
+                else {
+                    $("#Event").modal('hide');
+                    $("#uForm")[0].reset();            
+                }
+            },
+            error: function (xhr) {
+                $("#Event").modal('hide');
+                $("#uForm")[0].reset();                
+                $('#errorMessage').html("No connection");
+            }
+        });
+    }
+
+    function RemoveEvent() {
+        $.ajax({
+            url: '/Calender/DeleteEvent',
+            dataType: "json",
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ EventId: $("#reId").val() }),
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                if (data == '1') {
+                    $('#fullcalendar').fullCalendar('refetchEvents');
+                    $("#Event").modal('hide');
+                }
+                else {
+                    $("#Event").modal('hide');
+                }
+            },
+            error: function (xhr) {
+                $("#Event").modal('hide');
+                $('#errorMessage').html("No connection");
+            }
+        });
+    }
+
+    function eventHover(Event_ID, title, dat) {
+        $.ajax({
+            url: '/Calender/GetEventInfo',
+            dataType: "json",
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ EventId: Event_ID }),
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                //var sd = new Date(Date.parse(dat));
+                //var sd = calEvent.start.format("ddd mmm dd yyyy HH:MM")
+
+
+            },
+            error: function (xhr) {
+                $('#errorMessage').html("No connection");
+            }
+        });
+
+    }
+
+
+  
+
+</script>
+
+@*<script type="text/javascript">
+        $(document).ready(function () {
+            $('.select2').select2();
+        });
+
+ </script>*@
+
+<script type="text/javascript">
+        $(document).ready(function () {
+            $.post('@Url.Action("GetLeads", "Calender")', {},
+                    function (fooList) {
+                        $('#Rlead').empty();
+                        $.each(fooList, function (i, foo) {
+                            //$('#MonthYear').append($("<option />").val(this.Value).text(this.Value));
+                            $('#Rlead').append('<option value="' + this.Value + '">' + this.Text + '</option');
+                        });
+                    });
+        });
+</script>
+
+
+
+
+

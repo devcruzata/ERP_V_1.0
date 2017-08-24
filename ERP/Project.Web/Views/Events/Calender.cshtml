@@ -1,0 +1,297 @@
+﻿@model Project.Web.Models.ClientModel
+@{
+    ViewBag.Title = "ClientHome";
+}
+
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery/dist/jquery.min.js")"></script>
+
+
+
+<div class="page-container">
+    <div class="page-header clearfix">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4 class="mt-0 mb-5">Manage Clients</h4>
+                <ol class="breadcrumb mb-0">
+                    <li><a href="@Url.RouteUrl("AdminHome")">Home</a></li>
+                    <li><a href="@Url.RouteUrl("ClientHome")">Clients</a></li>
+                    <li class="active">Manage Clients</li>
+                </ol>
+            </div>
+            <div class="col-sm-6">
+                <div class="btn-group mt-5">
+                    <button type="button" class="btn btn-default btn-outline"><i class="flag-icon flag-icon-us mr-5"></i> English</button>
+                    <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default btn-outline dropdown-toggle"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
+                    <ul class="dropdown-menu dropdown-menu-right animated fadeInDown">
+                        <li><a href="#"><i class="flag-icon flag-icon-de mr-5"></i> German</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-fr mr-5"></i> French</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-es mr-5"></i> Spanish</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-it mr-5"></i> Italian</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-jp mr-5"></i> Japanese</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-content container-fluid">
+        <div class="widget">
+            <div class="widget-heading clearfix">
+                <h3 class="widget-title pull-left">Manage Clients</h3>
+                <div class="pull-right">
+                    @*<button type="button" class="btn btn-primary"><i class="ti-save"></i></button>
+                        <button type="button" class="btn btn-default"><i class="ti-share-alt"></i></button>*@
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="col-md-12">
+                    <div id="fullcalendar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="addNewEvent" tabindex="-1" role="dialog" aria-labelledby="ModalEventLabel" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-black">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 id="ModalEventLabel" class="modal-title">Add New Event</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <input id="inputTitleEvent" type="text" placeholder="Event Name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input id="inputStartEvent" type="text" placeholder="Start Date" class="form-control date-added">
+                    </div>
+                    <div class="form-group">
+                        <input id="inputEndEvent" type="text" placeholder="End Date" class="form-control date-added">
+                    </div>
+                    <div class="form-group">
+                        <input id="inputBackgroundEvent" type="text" value="#E5343D" class="form-control">
+                    </div>
+                    <input id="start" type="hidden">
+                    <input id="end" type="hidden">
+                    <input id="allDay" type="hidden">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default">Cancel</button>
+                <button id="btnAddNewEvent" type="submit" class="btn btn-raised btn-black">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" >
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 id="myAnimationModalLabel" class="modal-title">Write Comments</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group col-sm-6">
+                            <label for="date-added">Date Added</label>
+                            <div class="input-group">
+                                <input id="date-added" type="text" class="form-control"><span class="input-group-addon"><span class="ti-calendar"></span></span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="selectBasic">Select basic</label>
+                            <select id="selectBasic" class="form-control">
+                                <option>Status</option>
+                                <option>Status2</option>
+                                <option>Status3</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label for="selectBasic">Comment</label>
+                            <textarea class="form-control" placeholder="Comment.."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default">Cancel</button>
+                <button type="button" class="btn btn-raised btn-danger">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $(".date-added").daterangepicker({
+            singleDatePicker: true,
+            locale: {
+                format: 'DD/MM/YYYY'
+            },
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#calendar').fullCalendar({
+            theme: true,
+            header: {
+                left: "prev,next",
+                center: "title",
+                right: "month,agendaWeek,agendaDay"
+            },
+            buttonIcons: {
+                prev: " ti-angle-left",
+                next: " ti-angle-right"
+            },
+            defaultView: 'agendaDay',
+            editable: false,
+            events: "/Events/GetEvents/"
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        function e() {
+            $("#addNewEvent").modal("hide"),
+            $("#fullcalendar").fullCalendar("renderEvent",
+                {
+                    title: $("#inputTitleEvent").val(),
+                    start: new Date($("#start").val()),
+                    end: new Date($("#end").val()),
+                    //color: $("#inputBackgroundEvent").val(),
+                    backgroundColor: '#fff',
+                    textColor: 'black',
+                    borderColor: $("#inputBackgroundEvent").val()
+                }, !0)
+        }
+
+        $("#fullcalendar").fullCalendar({
+            header: {
+                left: "prev,next",
+                center: "title",
+                right: "month,agendaWeek,agendaDay"
+            },
+            buttonIcons: {
+                prev: " ti-angle-left",
+                next: " ti-angle-right"
+            },
+            defaultDate: "2016-03-15",
+            editable: !0,
+            droppable: !0,
+            selectable: !0,
+            select: function (e, t, a) {
+                $("#start").val(moment(e).format("YYYY/MM/DD")),
+                $("#end").val(moment(t).format("YYYY/MM/DD")),
+                $("#inputTitleEvent").val(""),
+                $("#addNewEvent").modal("show")
+            },
+            eventColor: "#E5343D",
+            eventLimit: !0,
+            events: [{
+                title: "All Day Event",
+                start: "2016-03-18",
+                color: "#8E23E0"
+            },
+            {
+                title: "Long Event",
+                start: "2016-03-07",
+                end: "2016-03-10",
+                color: "#E5343D"
+            },
+            {
+                id: 999,
+                title: "Repeating Event",
+                start: "2016-03-28T16:00:00",
+                color: "#FFB61E"
+            },
+            {
+                id: 999,
+                title: "Repeating Event",
+                start: "2016-03-16T16:00:00",
+                color: "#FFB61E"
+            },
+            { title: "Conference", start: "2016-03-11", end: "2016-03-13", color: "#17A88B" },
+            { title: "Meeting", start: "2016-03-12T10:30:00", end: "2016-03-12T12:30:00", color: "#0667D6" },
+            { title: "Lunch", start: "2016-03-12T12:00:00", color: "#1F364F" },
+            { title: "Meeting", start: "2016-03-12T14:30:00", color: "#E5343D" },
+            { title: "Happy Hour", start: "2016-03-12T17:30:00", color: "#888888" },
+            { title: "Dinner", start: "2016-03-12T20:00:00", color: "#0667D6" },
+            { title: "Birthday Party", start: "2016-03-13T07:00:00", color: "#8E23E0" },
+            { title: "Click for Google", url: "http://google.com/", start: "2016-03-28", color: "#0667D6" }],
+            drop: function () { $("#drop-remove").is(":checked") && $(this).remove() }
+        }),
+
+$("#btnAddNewEvent").on("click", function (t) { t.preventDefault(), e() }),
+
+$("#inputBackgroundEvent").minicolors({ theme: "bootstrap" });
+    });
+</script>
+
+@*<script>
+    $(document).ready(function () {
+        var $calendar = $("#fullcalendar").fullCalendar({
+            // Start of calendar options
+            header: {
+                left: 'title',
+                right: 'today,month,agendaDay,agendaWeek prev,next'
+            },
+            // Make possible to respond to clicks and selections
+            selectable: true,
+            // This is the callback that will be triggered when a selection is made.
+            // It gets start and end date/time as part of its arguments
+            select: function (start, end, jsEvent, view) {
+
+                // Ask for a title. If empty it will default to "New event"
+                var title = prompt("Enter a title for this event", "New event");
+
+                // If did not pressed Cancel button
+                if (title != null) {
+                    // Create event
+                    var event = {
+                        title: title.trim() != "" ? title : "New event",
+                        start: start,
+                        end: end
+                    };
+
+                    // Push event into fullCalendar's array of events
+                    // and displays it. The last argument is the
+                    // "stick" value. If set to true the event
+                    // will "stick" even after you move to other
+                    // year, month, day or week.
+
+                    $calendar.fullCalendar("renderEvent", event, true);
+                };
+                // Whatever happens, unselect selection
+                $calendar.fullCalendar("unselect");
+
+            }, // End select callback
+
+            // Make events editable, globally
+            editable: true,
+
+            // Callback triggered when we click on an event
+
+            eventClick: function (event, jsEvent, view) {
+                // Ask for a title. If empty it will default to "New event"
+                var newTitle = prompt("Enter a new title for this event", event.title);
+
+                // If did not pressed Cancel button
+                if (newTitle != null) {
+                    // Update event
+                    event.title = newTitle.trim() != "" ? newTitle : event.title;
+
+                    // Call the "updateEvent" method
+                    $calendar.fullCalendar("updateEvent", event);
+
+                }
+            } // End callback eventClick
+            // }
+        });// End of calendar options
+    });
+</script>*@
+
+
+

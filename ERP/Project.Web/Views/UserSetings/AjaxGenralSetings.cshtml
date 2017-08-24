@@ -1,0 +1,47 @@
+﻿@model Project.Web.Models.GenralSetingModel
+@{
+    Layout = null;
+}
+
+<div class="tab-content">
+    <div id="general" role="tabpanel" class="tab-pane active">
+        <table class="table no-border" style="border:none;">
+            <tr>
+                <td width="25%" style="text-align: left; background-color: #fbfbfb;"><label>Company Name</label></td>
+                <td>@Model.Company</td>
+            </tr>
+            <tr>
+                <td width="25%" style="text-align: left; background-color: #fbfbfb;"><label>Address</label></td>
+                <td>@Model.Address</td>
+            </tr>
+            <tr>
+                <td width="25%" style="text-align: left; background-color: #fbfbfb;"><label>City</label></td>
+                <td>@Model.City</td>
+            </tr>
+            <tr>
+                <td width="25%" style="text-align: left; background-color: #fbfbfb;"><label>State</label></td>
+                <td>@Model.Stete</td>
+            </tr>
+            <tr>
+                <td width="25%" style="text-align: left; background-color: #fbfbfb;"><label>Country</label></td>
+                <td>@Model.Country</td>
+            </tr>
+            <tr>
+                <td width="25%" style="text-align: left; background-color: #fbfbfb;"><label>Zipcode</label></td>
+                <td>@Model.Zipcode</td>
+            </tr>
+            <tr>
+                <td width="25%" style="text-align: left; background-color: #fbfbfb;"><label>Phone</label></td>
+                <td>@Model.Phone</td>
+            </tr>
+            <tr>
+                <td width="25%" style="text-align: left; background-color: #fbfbfb;"><label>Website</label></td>
+                <td>@Model.Website</td>
+            </tr>
+            <tr>
+                <td width="25%" style="text-align: left; background-color: #fbfbfb;"><label>Currency</label></td>
+                <td>@Model.Currency</td>
+            </tr>
+        </table>
+    </div>
+</div>

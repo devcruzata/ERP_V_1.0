@@ -1,0 +1,14 @@
+D:\ABHISHEK\Work Space\ERP\Project.Entity\bin\Debug\Project.Entity.dll
+D:\ABHISHEK\Work Space\ERP\Project.Entity\bin\Debug\Project.Entity.pdb
+D:\ABHISHEK\Work Space\ERP\Project.Entity\bin\Debug\RestSharp.dll
+D:\ABHISHEK\Work Space\ERP\Project.Entity\bin\Debug\RestSharp.xml
+D:\ABHISHEK\Work Space\ERP\Project.Entity\obj\Debug\Project.Entity.dll
+D:\ABHISHEK\Work Space\ERP\Project.Entity\obj\Debug\Project.Entity.pdb
+D:\ABHISHEK\Work Space\ERP\Project.Entity\obj\Debug\Project.Entity.csprojResolveAssemblyReference.cache
+F:\Workspace\ERP\Project.Entity\bin\Debug\Project.Entity.dll
+F:\Workspace\ERP\Project.Entity\bin\Debug\Project.Entity.pdb
+F:\Workspace\ERP\Project.Entity\bin\Debug\RestSharp.dll
+F:\Workspace\ERP\Project.Entity\bin\Debug\RestSharp.xml
+F:\Workspace\ERP\Project.Entity\obj\Debug\Project.Entity.csprojResolveAssemblyReference.cache
+F:\Workspace\ERP\Project.Entity\obj\Debug\Project.Entity.dll
+F:\Workspace\ERP\Project.Entity\obj\Debug\Project.Entity.pdb

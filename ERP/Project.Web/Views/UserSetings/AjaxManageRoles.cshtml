@@ -1,0 +1,20 @@
+﻿@{
+    Layout = null;
+}
+
+<table class="table table-hover dt-responsive nowrap">
+    <tr>
+        <th>Roles</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var role in Model.roles)
+    {
+        <tr>
+            <td>@role.RoleName</td>
+            <td>
+                <button type="button" class="btn btn-outline btn-primary" onclick="GetUserRoleForUpdate(@role.Role_ID);" title="Edit User Role"><i class="ti-pencil"></i></button>
+            </td>
+        </tr>
+    }
+</table>
+

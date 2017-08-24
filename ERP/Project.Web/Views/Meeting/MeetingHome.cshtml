@@ -1,0 +1,297 @@
+﻿@model Project.Web.Models.MeetingModel
+@{
+    ViewBag.Title = "MeetingHome";
+}
+
+<style>
+    <style > .pop-header {
+        background: #f5f5f5;
+        padding: 15px;
+    }
+
+    .popover {
+        border-color: rgb(221,221,221);
+        min-width: 300px;
+        padding-bottom: 18px;
+    }
+
+    .popover-content {
+        padding: 1px;
+        border-radius: 4px;
+    }
+
+    .popheader-icon {
+        background: #00A1E0;
+        color: #fff;
+        font-size: 18px;
+        padding: 9px 12px;
+        border-radius: 3px;
+        float: left;
+        margin-right: 8px;
+    }
+
+    .popup-content {
+        padding: 10px;
+    }
+
+    .popheader-heading {
+        font-size: 20px;
+        padding-top: 9px;
+    }
+
+    .popcontent-row {
+        padding: 5px 0;
+    }
+
+    .popupinner-div {
+        padding: 0 8px;
+    }
+
+    .task-detailbody input, .task-detailbody select, .task-detailbody textarea {
+        border-top: 0;
+        background: #fff !important;
+        border-right: 0;
+        border-left: 0;
+        box-shadow: none;
+        border-radius: 0;
+        padding-left: 0;
+    }
+
+        .task-detailbody input:focus, .task-detailbody textarea:focus, .task-detailbody select:focus {
+            border-top: 0;
+            border-right: 0;
+            border-left: 0;
+            border-radius: 0;
+            box-shadow: none !important;
+        }
+
+    .task-detailbody .input-group-addon {
+        background: #fff;
+        border-width: 0 0 1px 0;
+        border-radius: 0;
+    }
+
+    .task-delheading {
+        font-size: 22px;
+        color: #d9534f;
+    }
+
+    .tasklist .media-heading {
+        font-size: 16px;
+        color: #337ab7;
+    }
+
+    .task-detailbody .form-group {
+        margin-bottom: 22px;
+    }
+
+    .mailbox .inbox {
+        max-height: 720px;
+        overflow-y: scroll;
+    }
+
+    </style >
+</style>
+
+<div class="page-container">
+    <div class="page-header clearfix page-header-viewleads">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4 class="mt-0 mb-5 ">Meetings</h4>
+                <ol class="breadcrumb mb-0">
+                    <li><a href="#">Home</a></li>
+                    <li class="active">My Meetings</li>
+                </ol>
+            </div>
+            <div class="col-sm-6">
+                <div class="btn-group mt-5">
+                    <button type="button" class="btn btn-default btn-outline"><i class="flag-icon flag-icon-us mr-5"></i> English</button>
+                    <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default btn-outline dropdown-toggle"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
+                    <ul class="dropdown-menu dropdown-menu-right animated fadeInDown">
+                        <li><a href="#"><i class="flag-icon flag-icon-de mr-5"></i> German</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-fr mr-5"></i> French</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-es mr-5"></i> Spanish</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-it mr-5"></i> Italian</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-jp mr-5"></i> Japanese</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-content container-fluid page-contant-viewleads">
+        <div class="row row-0 mailbox">
+            <div class="col-md-8">
+                <ul class="media-list inbox tasklist">
+                    @*<li class="media">
+                        <div class="text-left">
+                            <div role="group" aria-label="First group" class="btn-group">
+                                <button type="button" class="btn btn-danger btn-default">Show meetings past 30 days</button>
+                            </div>
+                        </div>
+                    </li>*@
+                    @foreach (var meet in Model.meetings)
+                    {
+                      <li class="media" onclick="ShowDetails('@meet.Title','@meet.Date','@meet.')">
+                        <div class="checkbox-custom pull-left">
+                            <input id="mailboxCheckbox_@meet.Meeting_ID_PK" type="checkbox" value="value1">
+                            <label for="mailboxCheckbox_@meet.Meeting_ID_PK"></label>
+                        </div><a href="javascript:;">
+
+                            <div class="media-body">
+                                <h6 class="media-heading">@meet.Title</h6>
+                                <h5 class="title">Meeting With @meet.RelateToName </h5>
+                            </div>
+                            <div class="media-right text-nowrap">
+                                <time datetime="2015-12-10T20:50:48+07:00" class="fs-14"> <i class="ti-time"></i> @meet.Date</time>
+                            </div>
+                        </a>
+                      </li>
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    @*<li class="media read">
+                        <div class="checkbox-custom pull-left">
+                            <input id="mailboxCheckbox3" type="checkbox" value="value3">
+                            <label for="mailboxCheckbox3"></label>
+                        </div><a href="javascript:;">
+
+                            <div class="media-body">
+                                <h6 class="media-heading">Third meeting</h6>
+                                <h5 class="title">Posuere convallis sociis nisi euismod</h5>
+                            </div>
+                            <div class="media-right text-nowrap">
+                                <time datetime="2015-12-10T20:35:35+07:00" class="fs-14"><i class="ti-time"></i> 22 mins</time>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="media active">
+                        <div class="checkbox-custom pull-left">
+                            <input id="mailboxCheckbox4" type="checkbox" value="value4">
+                            <label for="mailboxCheckbox4"></label>
+                        </div><a href="javascript:;">
+
+                            <div class="media-body">
+                                <h6 class="media-heading">Five meeting</h6>
+                                <h5 class="title">Posuere convallis sociis nisi euismod</h5>
+                            </div>
+                            <div class="media-right text-nowrap">
+                                <time datetime="2015-12-10T20:27:48+07:00" class="fs-14"> <i class="ti-time"></i> 30 mins</time>
+                            </div>
+                        </a>
+                    </li>*@
+                    
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <div class="single-mail">
+                    <div class="clearfix">
+                        <div class="pull-left">
+                            <div class="media">
+                                <div style="width:auto" class="media-body">
+                                    <h6 class="media-heading task-delheading">First Meeting</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pull-right">
+                            <div role="toolbar" aria-label="Toolbar with button groups" class="btn-toolbar">
+                                <div role="group" aria-label="First group" class="btn-group">
+                                    <button type="button" class="btn btn-outline btn-default"><i class="ti-pencil"></i> Edit</button>
+                                    <button type="button" class="btn btn-outline btn-default"><i class="ti-trash"></i> Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="drop-cap">
+
+                        <div class="modal-body task-detailbody">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group col-sm-6">
+                                        <label for="Title">Title</label>
+                                        <input type="text" id="Title" name="Title" class="form-control" value="First meeting">
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="date-added">Date</label>
+                                        <div class="input-group">
+                                            <input id="sheduleDate" type="text" class="form-control date-added" value="10/9/2016"><span class="input-group-addon"><span class="ti-calendar"></span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group col-sm-6">
+                                        <label for="RelateTo">Relate To</label>
+                                        <select id="RelateTo" class="form-control" disabled="disabled">
+                                            <option class="active" value="LEAD">Lead</option>
+                                            <option value="OPPORTUNITY">Opportunity</option>
+                                            <option value="CLIENT">Client</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="RelateToName">Name</label>
+                                        <div class="input-group">
+                                            <input id="RelateToName" type="text" class="form-control" value="Domnico" readonly><span class="input-group-addon"><span class="ti-search"></span></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-12">
+                                        <label for="selectBasic">Agenda</label>
+                                        <textarea class="form-control" placeholder="Agenda" id="Agenda"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group col-sm-12">
+                                        <div class="checkbox-inline checkbox-custom pull-left">
+                                            <input id="RemindMe" type="checkbox" onclick="SetReminder();">
+                                            <label for="RemindMe" class="checkbox-muted text-muted">&nbsp; Remind Me Before </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 form-group" id="h_div">
+                                        <input type="number" class="form-control" id="Houres" min="1" max="24" placeholder="Hours">
+                                    </div>
+                                    <div class="col-sm-6 form-group" id="m_div">
+                                        <input type="number" class="form-control" id="Minutes" min="1" max="60" placeholder="Minutes">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </p>
+                    <hr>
+
+
+                    <div class="text-right">
+                        <button type="button" class="btn btn-raised btn-black">Save</button>
+                        <button type="button" class="btn btn-raised btn-danger">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
+<script>
+    $(".pop").popover({ trigger: "manual", html: true, animation: false })
+        .on("mouseenter", function () {
+            var _this = this;
+            $(this).popover("show");
+            $(".popover").on("mouseleave", function () {
+                $(_this).popover('hide');
+            });
+        }).on("mouseleave", function () {
+            var _this = this;
+            setTimeout(function () {
+                if (!$(".popover:hover").length) {
+                    $(_this).popover("hide");
+                }
+            }, 400);
+        });
+</script>
+

@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C9CC4AB5-CD82-44C8-841A-42695A9B2BDB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BAL</RootNamespace>
+    <AssemblyName>BAL</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net4\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BulkEmail\MailGunManager.cs" />
+    <Compile Include="Calender\CalenderManager.cs" />
+    <Compile Include="Calender\CalenderUtility.cs" />
+    <Compile Include="Chat\ChatManager.cs" />
+    <Compile Include="Clients\ClientManager.cs" />
+    <Compile Include="Common\LogManager.cs" />
+    <Compile Include="Common\UtilityManager.cs" />
+    <Compile Include="DataSynch\DataSyncManager.cs" />
+    <Compile Include="Document\DocumentManager.cs" />
+    <Compile Include="Estimate\EstimateManager.cs" />
+    <Compile Include="Events\EventManager.cs" />
+    <Compile Include="Helper\AppConfigValue.cs" />
+    <Compile Include="Helper\Helper.cs" />
+    <Compile Include="Helper\MailBodyBuilder.cs" />
+    <Compile Include="Home\HomeManager.cs" />
+    <Compile Include="Import\ImportManager.cs" />
+    <Compile Include="Leads\LeadsManager.cs" />
+    <Compile Include="Mail\MailManager.cs" />
+    <Compile Include="Meeting\MeetingManager.cs" />
+    <Compile Include="Note\NoteManager.cs" />
+    <Compile Include="Notifications\NotificationManager.cs" />
+    <Compile Include="Opportunity\OpportunityManager.cs" />
+    <Compile Include="PaymentTracker\TrackingManager.cs" />
+    <Compile Include="Projects\ProjectManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Roles\RolesManager.cs" />
+    <Compile Include="Setings\SetingManager.cs" />
+    <Compile Include="SubscriptionHolder\SubscriptionHolderManager.cs" />
+    <Compile Include="Subscription\SubscriptionManager.cs" />
+    <Compile Include="Task\TaskManager.cs" />
+    <Compile Include="Ticket\TicketManager.cs" />
+    <Compile Include="Transaction\TransactionManager.cs" />
+    <Compile Include="User\UserManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{95d22ada-95a0-4137-ac95-86ec63985fb1}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Project.Entity\Project.Entity.csproj">
+      <Project>{101360f8-0375-4517-ad1b-48569090ebcd}</Project>
+      <Name>Project.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Project.ViewModel\Project.ViewModel.csproj">
+      <Project>{efc511d2-7721-4fdf-b31b-3486ef77b67b}</Project>
+      <Name>Project.ViewModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="job_scheduling_data_2_0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

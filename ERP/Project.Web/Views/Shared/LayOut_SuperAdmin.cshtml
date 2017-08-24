@@ -1,0 +1,488 @@
+﻿@{
+    Layout = null;
+}
+
+@using Project.Web.Common
+@{
+    SessionHelper session = new SessionHelper();
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cruzata ERP Dashboard</title>
+    <!-- PACE-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/PACE/themes/blue/pace-theme-flash.css")">
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/PACE/pace.min.js")"></script>
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/bootstrap/dist/css/bootstrap.min.css")">
+
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/select2/select2.min.css")">
+    <!-- Fonts-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/themify-icons/themify-icons.css")">
+    <!-- Malihu Scrollbar-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css")">
+    <!-- Animo.js-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/animo.js/animate-animo.min.css")">
+    <!-- Flag Icons-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/flag-icon-css/css/flag-icon.min.css")">
+    <!-- Bootstrap Progressbar-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css")">
+
+    <!-- Sweet Alert-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/bootstrap-sweetalert/lib/sweet-alert.css")">
+    <!-- Toastr-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/toastr/toastr.min.css")">
+    <!-- SpinKit-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/SpinKit/css/spinners/7-three-bounce.css")">
+
+
+    <!-- DataTables-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/datatables.net-bs/css/dataTables.bootstrap.min.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/datatables.net-buttons-bs/css/buttons.bootstrap.min.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/datatables.net-colreorder-bs/css/colReorder.bootstrap.min.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/datatables.net-responsive-bs/css/responsive.bootstrap.min.css")">
+
+    <!-- FullCalendar-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/fullcalendar/dist/fullcalendar.min.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/fullcalendar/dist/fullcalendar.print.css")" media="print">
+    <!-- jQuery MiniColors-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/jquery-minicolors/jquery.minicolors.css")">
+    <!-- Bootstrap Date Range Picker-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/bootstrap-daterangepicker/daterangepicker.css")">
+
+    <!-- Bootstrap DateTimePicker-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css")">
+
+    <!-- Bootstrap File Input-->
+    @*<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/bootstrap-fileinput/css/fileinput.min.css")">*@
+
+    <!-- Font Awesome-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/font-awesome/css/font-awesome.min.css")">
+    <!-- Bootstrap Markdown-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css")">
+
+    <!-- Summernote-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/summernote/dist/summernote.css")">
+
+    <!-- Primary Style-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/build/css/third-layout.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/build/css/skins/red-skin.css")">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file://-->
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script type="text/javascript" src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+
+    <style>
+                /* This only works with JavaScript,
+        if it's not present, don't show loader */
+                .no-js #loader {
+                    display: none;
+                }
+
+                .js #loader {
+                    display: block;
+                    position: absolute;
+                    left: 100px;
+                    top: 0;
+                }
+
+                .se-pre-con {
+                    position: fixed;
+                    left: 0px;
+                    top: 0px;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 9999;
+                    background: url(../Content/img/ajax-loader-white.gif) center no-repeat;
+                    /*background-color: transparent;*/
+                    background-color: black;
+                    opacity: 0.7;
+                    /*z-index: 999;*/
+                }
+
+                .se-pre-con1 {
+                    position: fixed;
+                    left: 0px;
+                    top: 0px;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 9999;
+                    background: url(../Content/img/Preloader_10.gif) center no-repeat #fff;
+                }
+    </style>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery/dist/jquery.min.js")"></script>
+    <script>
+        // Wait for window load
+        $(window).load(function () {
+            // Animate loader off screen
+            $(".se-pre-con1").fadeOut("slow");;
+        });
+
+    </script>
+
+    <script>
+        function updateClock() {
+            var currentTime = new Date();
+            var currentHours = currentTime.getHours();
+            var currentMinutes = currentTime.getMinutes();
+            var currentSeconds = currentTime.getSeconds();
+
+            // Pad the minutes and seconds with leading zeros, if required
+            currentMinutes = (currentMinutes < 10 ? "0" : "") + currentMinutes;
+            currentSeconds = (currentSeconds < 10 ? "0" : "") + currentSeconds;
+
+            // Choose either "AM" or "PM" as appropriate
+            var timeOfDay = (currentHours < 12) ? "AM" : "PM";
+
+            // Convert the hours component to 12-hour format if needed
+            currentHours = (currentHours > 12) ? currentHours - 12 : currentHours;
+
+            // Convert an hours component of "0" to "12"
+            currentHours = (currentHours == 0) ? 12 : currentHours;
+
+            // Compose the string for display
+            var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay;
+
+
+            $("#clock").html(currentTimeString);
+
+        }
+
+        $(document).ready(function () {
+            setInterval('updateClock()', 1000);
+
+        });
+        //$(window).load(function () {
+        //    GetUsersForChat();
+        //    setInterval('renderChat($("#sender_ID").val(),$("#reciever_ID").val())', 2000);
+        //});
+
+        $(document).ready(function () {
+
+            $(".conversation-toggle").on("click", function () {
+                $(".conversation").toggleClass("closed")
+            })
+        });
+
+        //$(document).ready(function () {
+        //    $('#Chat_Msg').keypress(function (e) {
+        //        var key = e.which;
+        //        if (key == 13)  // the enter key code
+        //        {
+        //            sendMsg();
+        //        }
+        //    });
+        //});
+
+
+    </script>
+</head>
+<body>
+    <div class="se-pre-con" style="display:none;"></div>
+    <div class="se-pre-con1"></div>
+    <!-- Header start-->
+    <header>
+        <div class="search-bar closed">
+            <form>
+                <div class="input-group input-group-lg">
+                    <input type="text" placeholder="Search for..." class="form-control"><span class="input-group-btn">
+                        <button type="button" class="btn btn-default search-bar-toggle"><i class="ti-close"></i></button>
+                    </span>
+                </div>
+            </form>
+        </div><a href="#" class="brand pull-left"><img src="@Url.Content("~/Content/build/images/logo/logo-light.png")" alt="" width="100" class="logo"><img src="@Url.Content("~/Content/img/Z-logo.png")" alt="" width="28" class="logo-iconic"></a><a href="javascript:;" role="button" class="hamburger-menu pull-left"><span></span></a>
+        @*<form class="mt-15 mb-15 pull-left hidden-xs">
+                <div class="form-group has-feedback mb-0">
+                    <input type="text" aria-describedby="inputSearchFor" placeholder="Search for..." style="width: 200px" class="form-control rounded"><span aria-hidden="true" class="ti-search form-control-feedback"></span><span id="inputSearchFor" class="sr-only">(default)</span>
+                </div>
+            </form>*@
+
+        @*<div id="clock" style="margin-top: 15px; font-size: 30px; color: #1f364f">
+            </div>*@
+
+
+
+        <ul class="notification-bar list-inline pull-right">
+            <li class="visible-xs"><a href="javascript:;" role="button" class="header-icon search-bar-toggle"><i class="ti-search"></i></a></li>           
+            <li class="dropdown hidden-xs">
+                <a id="dropdownMenu2" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle header-icon lh-1 pt-15 pb-15">
+                    <div class="media mt-0">
+                        <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/04.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                        <div class="media-right media-middle pl-0">
+                            <p class="fs-12 text-base mb-0">Hi, @session.UserSession.FullName</p>
+                        </div>
+                    </div>
+                </a>
+                <ul aria-labelledby="dropdownMenu2" class="dropdown-menu fs-12 animated fadeInDown">                    
+                    <li><a href="/Authentication/Logout"><i class="ti-power-off mr-5"></i> Logout</a></li>
+                </ul>
+            </li>
+            <li><a href="javascript:;" role="button" class="right-sidebar-toggle bubble header-icon"><i class="ti-layout-sidebar-right"></i><span class="dot bg-danger"></span></a></li>
+        </ul>
+    </header>
+    <!-- Header end-->
+    <div class="main-container">
+        <!-- Main Sidebar start-->
+        <aside class="main-sidebar">
+            <div class="user">
+                <div id="esp-user-profile" data-percent="65" style="height: 130px; width: 130px; line-height: 100px; padding: 15px;" class="easy-pie-chart"><img src="@Url.Content("~/Content/build/images/users/04.jpg")" alt="" class="avatar img-circle"><span class="status bg-success"></span></div>
+                <h4 class="fs-16 text-white mt-15 mb-5 fw-300">@session.UserSession.FullName</h4>
+                <p class="mb-0 text-muted">Super Admin</p>
+            </div>
+            <ul class="list-unstyled navigation mb-0">               
+                <li><a href="@Url.RouteUrl("SuperAdmin")" class="bubble"><i class="ti-home"></i><span class="sidebar-title">Dashboard</span></a></li>
+                <li><a href="@Url.RouteUrl("SubscriptionHolder")" class="bubble"><i class="ti-user"></i><span class="sidebar-title">Subscription Holder</span></a></li>               
+                <li><a href="@Url.RouteUrl("Plans")" class="bubble"><i class="ti-credit-card"></i><span class="sidebar-title">Subscription</span></a></li>    
+                <li><a href="@Url.RouteUrl("Tickets")" class="bubble"><i class="ti-ticket"></i><span class="sidebar-title">Tickets</span></a></li>                            
+            </ul>           
+        </aside>
+        <!-- Main Sidebar end-->
+        @RenderBody()
+        <!-- Right Sidebar start-->
+        <aside class="right-sidebar closed">
+            <ul role="tablist" class="nav nav-tabs nav-justified nav-sidebar">
+                <li role="presentation" class="active"><a href="#chat" aria-controls="chat" role="tab" data-toggle="tab"><i class="ti-comment-alt"></i></a></li>
+                <li role="presentation"><a href="#announcement" aria-controls="announcement" role="tab" data-toggle="tab"><i class="ti-announcement"></i></a></li>
+                <li role="presentation"><a href="#ticket" aria-controls="ticket" role="tab" data-toggle="tab"><i class="ti-bookmark-alt"></i></a></li>
+                @*<li role="presentation"><a href="#setting" aria-controls="setting" role="tab" data-toggle="tab"><i class="ti-settings"></i></a></li>*@
+            </ul>
+            <div data-mcs-theme="minimal-dark" class="tab-content nav-sidebar-content mCustomScrollbar">
+                <div id="chat" role="tabpanel" class="tab-pane fade in active">
+                    <form>
+                        <div class="form-group has-feedback">
+                            <input type="text" aria-describedby="inputChatSearch" placeholder="Chat with..." class="form-control rounded"><span aria-hidden="true" class="ti-search form-control-feedback"></span><span id="inputChatSearch" class="sr-only">(default)</span>
+                        </div>
+                    </form>
+                    <ul class="chat-list mb-0 fs-12 media-list" id="chatUserList">
+                        <li class="media">
+                            <a href="javascript:;" class="conversation-toggle">
+                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/20.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Jane Curtis</h6>
+                                    <p class="text-muted mb-0">Where are you from?</p>
+                                </div>
+                                <div class="media-right"><span class="badge bg-danger">2</span></div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>          
+                
+                
+            </div>
+        </aside>
+        <aside class="conversation closed">
+            <h5 class="text-center m-0 p-20" id="chatRecieverName">Edward Garcia<a href="#" class="conversation-toggle pull-left"><i class="ti-arrow-left text-muted"></i></a><a href="javascript:;" class="pull-right"><i class="ti-pencil text-muted"></i></a></h5>
+            <ul data-mcs-theme="minimal-dark" class="media-list chat-content fs-12 pl-20 pr-20 mCustomScrollbar" id="chatBox">
+                <li class="media">
+                    <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/01.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                    <div class="media-body">
+                        <p>Hello.</p>
+                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted">09:45 PM <i class="ti-check text-success"></i></time>
+                    </div>
+                </li>
+                <li class="media other">
+                    <div class="media-body">
+                        <p>Hi.</p>
+                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted pull-right">09:46 PM <i class="ti-check text-success"></i></time>
+                    </div>
+                    <div class="media-right avatar"><img src="@Url.Content("~/Content/build/images/users/02.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                </li>
+            </ul>
+            @*<form class="pl-20 pr-20">*@
+            <div class="form-group has-feedback mb-0">
+                <input type="text" id="Chat_Msg" aria-describedby="inputSendMessage" placeholder="Sent a message" class="form-control rounded"><span aria-hidden="true" class="ti-pencil-alt form-control-feedback"></span><span id="inputSendMessage" class="sr-only">(default)</span>
+            </div>
+            @*</form>*@
+        </aside>
+        <!-- Right Sidebar end-->
+    </div>
+
+    @* Hidden Values For Chat Engine**** *@
+    <input type="hidden" id="reciever_ID" />
+    <input type="hidden" id="sender_ID" value="@session.UserSession.UserId.ToString()" />
+
+    <div id="loader" style="position: fixed; top: 0; left: 0; height: 100%; width: 100%; display: none; background-color: black; opacity: 0.7; z-index: 999;">
+        <img src="@Url.Content("~/Content/img/loader.gif")" style="position: absolute; margin-left: 50%; height: 100px; margin-top: 320px;" />
+    </div>
+    <!-- jQuery-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery/dist/jquery.min.js")"></script>
+
+    <!-- Bootstrap JavaScript-->
+    @*<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>*@
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/bootstrap/dist/js/bootstrap.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/select2/select2.full.min.js")"></script>
+    <!-- Malihu Scrollbar-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js")"></script>
+    <!-- Animo.js-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/animo.js/animo.min.js")"></script>
+    <!-- Bootstrap Progressbar-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/bootstrap-progressbar/bootstrap-progressbar.min.js")"></script>
+
+    <!-- Toastr-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/toastr/toastr.min.js")"></script>
+    <!-- MomentJS-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/moment/min/moment.min.js")"></script>
+    <!-- jQuery BlockUI-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/blockUI/jquery.blockUI.js")"></script>
+    <!-- jQuery Counter Up-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery-waypoints/waypoints.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/Counter-Up/jquery.counterup.min.js")"></script>
+
+    <!-- Flot Charts-->
+    <!--[if lte IE 8]>
+    <script type="text/javascript" src="https://raw.githubusercontent.com/flot/flot/master/excanvas.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/flot/jquery.flot.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/flot/jquery.flot.resize.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/flot.curvedlines/curvedLines.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/flot.tooltip/js/jquery.flot.tooltip.min.js")"></script>
+
+    <!-- DataTables-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net/js/jquery.dataTables.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-bs/js/dataTables.bootstrap.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-buttons/js/dataTables.buttons.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-buttons-bs/js/buttons.bootstrap.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/jszip/dist/jszip.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/pdfmabuild/pdfmake.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/pdfmabuild/vfs_fonts.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-buttons/js/buttons.print.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-buttons/js/buttons.html5.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-colreorder/js/dataTables.colReorder.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-responsive/js/dataTables.responsive.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-responsive-bs/js/responsive.bootstrap.js")"></script>
+    <!-- jQuery UI-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery-ui/jquery-ui.min.js")"></script>
+    <!-- FullCalendar-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/fullcalendar/dist/fullcalendar.min.js")"></script>
+    <!-- jQuery MiniColors-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery-minicolors/jquery.minicolors.min.js")"></script>
+    <!-- Bootstrap Date Range Picker-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/bootstrap-daterangepicker/daterangepicker.js")"></script>
+
+    <!-- Bootstrap DateTimePicker-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js")"></script>
+
+    <!-- Bootstrap File Input-->
+    @*<script type="text/javascript" src="@Url.Content("~/Content/plugins/bootstrap-fileinput/js/plugins/canvas-to-blob.min.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/Content/plugins/bootstrap-fileinput/js/fileinput.min.js")"></script>*@
+    <script type="text/javascript" language="javascript" src="@Url.Content("~/Content/multifile-master/jquery.MultiFile.js")"></script>
+
+    <!-- Sweet Alert-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/bootstrap-sweetalert/lib/sweet-alert.min.js")"></script>
+
+    <!-- Bootstrap Markdown-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/bootstrap-markdown/js/bootstrap-markdown.js")"></script>
+
+    <!-- Summernote-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/summernote/dist/summernote.min.js")"></script>
+    <!-- Custom JS-->
+    <script type="text/javascript" src="@Url.Content("~/Content/build/js/third-layout/app.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/build/js/third-layout/demo.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/build/js/page-content/skins/red-dashboard.js")"></script>
+
+    <script type="text/javascript" src="@Url.Content("~/Content/CustomJs/cusJs.js")"></script>
+
+    <script type="text/javascript" src="@Url.Content("~/Content/BootstrapCountryPicker/bootstrap-formhelpers-countries.en_US.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/BootstrapCountryPicker/bootstrap-formhelpers-countries.js")"></script>
+
+
+    @* Script for chat engine************ *@
+
+    <script>
+
+
+
+        function GetUsersForChat() {
+            $.ajax({
+                url: '/Chat/GetUserForChat',
+                type: "POST",
+                async: true,
+                cache: false,
+                success: function (data) {
+                    if (data != '') {
+                        $("#chatUserList").html('');
+                        $("#chatUserList").html(data);
+                    }
+                    else {
+                        location.reload();
+                    }
+                },
+                error: function (xhr) {
+                    $('#errorMessage').html("No connection");
+                }
+            });
+        }
+
+        function setReciever(RecieverID, RecieverName) {
+            $("#reciever_ID").val(RecieverID);
+            //var htmlText = RecieverName + "<a href=\"#\" class=\"conversation-toggle pull-left\"><i class=\"ti-arrow-left text-muted\"></i></a><a href=\"javascript:;\" class=\"pull-right\"><i class=\"ti-pencil text-muted\"></i></a>";
+            // $("#chatRecieverName").html(htmlText);
+            $(".conversation").toggleClass("closed")
+
+        }
+
+        function renderChat(sender, reciever) {
+            $.ajax({
+                url: '/Chat/RenderChat',
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ SenderID: sender, RecieverID: reciever }),
+                async: true,
+                cache: false,
+                success: function (data) {
+                    if (data != '') {
+                        $("#chatBox").html('');
+                        $("#chatBox").html(data);
+                        // location.reload();
+                    }
+                    else {
+
+                        location.reload();
+                    }
+                },
+                error: function (xhr) {
+                    $('#errorMessage').html("No connection");
+                }
+            });
+        }
+
+        function sendMsg() {
+            $.ajax({
+                url: '/Chat/SendMsg',
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ SenderID: $("#sender_ID").val(), RecieverID: $("#reciever_ID").val(), Msg: $("#Chat_Msg").val() }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data == 'Success') {
+                        $("#Chat_Msg").val('');
+                        renderChat($("#sender_ID").val(), $("#reciever_ID").val());
+                    }
+                    else {
+                        renderChat($("#sender_ID").val(), $("#reciever_ID").val());
+                    }
+                },
+                error: function (xhr) {
+                    $('#errorMessage').html("No connection");
+                }
+            });
+        }
+
+    </script>
+
+    
+
+</body>
+
+</html>

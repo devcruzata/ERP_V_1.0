@@ -1,0 +1,177 @@
+﻿@{
+    Layout = null;
+}
+@{
+    SessionHelper session = new SessionHelper();
+  }
+
+@foreach (var act in Model.Activity)
+{
+    if (act.ActivityType == "TASK")
+    {
+        <li class="activity-primary">
+            <div class="media">
+                <div class="media-left">
+                    <time datetime="2015-12-10T20:50:48+07:00" class="fs-15 fw-500">@act.CreatedDate</time>
+                </div>
+                <div class="media-body timlinemedia-body">
+                    <h5 class="media-heading">New Task Added</h5>
+                    <p class="text-muted">@act.Title</p>
+                    <h6 class="text-right timeline-time"><i class="ti-time"></i> @act.CreatedTime</h6>
+                </div>
+            </div>
+        </li>
+    }
+
+    if (act.ActivityType == "MEETING")
+    {
+        <li class="activity-success">
+            <div class="media">
+                <div class="media-left">
+                    <time datetime="2015-12-10T20:50:48+07:00" class="fs-15 fw-500">@act.CreatedDate</time>
+                </div>
+                <div class="media-body timlinemedia-body">
+                    <h5 class="media-heading">New Meeting Added</h5>
+                    <p class="text-muted">@act.Title</p>
+                    <h6 class="text-right timeline-time"><i class="ti-time"></i> @act.CreatedTime</h6>
+                </div>
+            </div>
+        </li>
+    }
+
+    if (act.ActivityType == "NOTE")
+    {
+        <li class="activity-info">
+            <div class="media">
+                <div class="media-left">
+                    <time datetime="2015-12-10T20:50:48+07:00" class="fs-15 fw-500">@act.CreatedDate</time>
+                </div>
+                <div class="media-body timlinemedia-body">
+                    <h5 class="media-heading">New Notes Added</h5>
+                    <p class="text-muted">@act.Title</p>
+                    <h6 class="text-right timeline-time"><i class="ti-time"></i> @act.CreatedTime</h6>
+                </div>
+            </div>
+        </li>
+    }
+
+    if (act.ActivityType == "DEAL")
+    {
+        <li class="activity-success">
+            <div class="media">
+                <div class="media-left">
+                    <time datetime="2015-12-10T20:50:48+07:00" class="fs-15 fw-500">@act.CreatedDate</time>
+                </div>
+                <div class="media-body timlinemedia-body">
+                    <h5 class="media-heading">New Deal Added</h5>
+                    <p class="text-muted">@act.Title</p>
+                    <h6 class="text-right timeline-time"><i class="ti-time"></i> @act.CreatedTime</h6>
+                </div>
+            </div>
+        </li>
+    }
+
+    if (act.ActivityType == "EVENT")
+    {
+        <li class="activity-danger">
+            <div class="media">
+                <div class="media-left">
+                    <time datetime="2015-12-10T20:50:48+07:00" class="fs-15 fw-500">@act.CreatedDate</time>
+                </div>
+                <div class="media-body timlinemedia-body">
+                    <h5 class="media-heading">New Event Added</h5>
+                    <p class="text-muted">@act.Title</p>
+                    <h6 class="text-right timeline-time"><i class="ti-time"></i> @act.CreatedTime</h6>
+                </div>
+            </div>
+        </li>
+    }
+
+    if (act.ActivityType == "MAIL")
+    {
+        <li class="activity-warning">
+            <div class="media">
+                <div class="media-left">
+                    <time datetime="2015-12-10T20:50:48+07:00" class="fs-15 fw-500">@act.CreatedDate</time>
+                </div>
+                <div class="media-body timlinemedia-body">
+                    <h5 class="media-heading">New Mail</h5>
+                    <p class="text-muted">From: @act.FromAdd</p>
+                    <p class="text-muted">To: @act.ToAdd</p>
+                    <h6 class="text-right timeline-time"><i class="ti-time"></i> @act.CreatedTime</h6>
+                </div>
+            </div>
+        </li>
+    }
+
+    if (act.ActivityType == "DOCUMENT")
+    {
+        <li class="activity-info">
+            <div class="media">
+                <div class="media-left">
+                    <time datetime="2015-12-10T20:50:48+07:00" class="fs-15 fw-500">@act.CreatedDate</time>
+                </div>
+                <div class="media-body timlinemedia-body">
+                    <h5 class="media-heading">A New Document Added</h5>
+                    @if (act.CreatedBy.ToString() == session.UserSession.UserId.ToString())
+                    {
+                        <p class="text-muted">Added by you</p>
+                    }
+                    else
+                    {
+                        <p class="text-muted">Added by @act.CreatedByName</p>
+                    }
+                    <h6 class="text-right timeline-time"><i class="ti-time"></i> @act.CreatedTime</h6>
+                </div>
+            </div>
+        </li>
+    }
+
+    if (act.ActivityType == "CREATED")
+    {
+        <li class="activity-info">
+            <div class="media">
+                <div class="media-left">
+                    <time datetime="2015-12-10T20:50:48+07:00" class="fs-15 fw-500">@act.CreatedDate</time>
+                </div>
+                <div class="media-body timlinemedia-body">
+                    <h5 class="media-heading">Lead Created</h5>
+                    <p class="text-muted">@act.Title</p>
+                    <h6 class="text-right timeline-time"><i class="ti-time"></i> @act.CreatedTime</h6>
+                </div>
+            </div>
+        </li>
+    }
+
+    if (act.ActivityType == "UPDATED")
+    {
+        <li class="activity-info">
+            <div class="media">
+                <div class="media-left">
+                    <time datetime="2015-12-10T20:50:48+07:00" class="fs-15 fw-500">@act.CreatedDate</time>
+                </div>
+                <div class="media-body timlinemedia-body">
+                    <h5 class="media-heading">Lead Created</h5>
+                    <p class="text-muted">@act.Title</p>
+                    <h6 class="text-right timeline-time"><i class="ti-time"></i> @act.CreatedTime</h6>
+                </div>
+            </div>
+        </li>
+    }
+
+    if (act.ActivityType == "STATUS")
+    {
+        <li class="activity-success">
+            <div class="media">
+                <div class="media-left">
+                    <time datetime="2015-12-10T20:50:48+07:00" class="fs-15 fw-500">@act.CreatedDate</time>
+                </div>
+                <div class="media-body timlinemedia-body">
+                    <h5 class="media-heading">Lead Updated</h5>
+                    <p class="text-muted">@act.Title</p>
+                    <h6 class="text-right timeline-time"><i class="ti-time"></i> @act.CreatedTime</h6>
+                </div>
+            </div>
+        </li>
+    }
+}

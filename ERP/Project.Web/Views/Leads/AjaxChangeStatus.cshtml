@@ -1,0 +1,161 @@
+﻿@{
+    Layout = null;
+}
+
+<div id="new" role="tabpanel" class="tab-pane">
+    <table id="lead-list-1" style="width: 100%" class="table table-hover dt-responsive nowrap">
+        <thead>
+            <tr>
+                @if (HttpContext.Current.Session["User_Type"].ToString() == "ADM")
+                {
+                    <th class="text-center">
+                        <div class="checkbox-custom">
+                            <input id="selectAll" type="checkbox" value="option1">
+                            <label for="selectAll" class="pl-0">&nbsp;</label>
+                        </div>
+                    </th>
+                }
+
+                <th class="text-center">Name</th>
+                <th class="text-center">Email</th>
+                <th class="text-center">Skype No</th>
+                <th class="text-center">Date</th>
+                <th class="text-center">Status</th>
+                <th class="text-center">Assign To</th>
+                <th class="text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var lead in Model.leads)
+                {
+                    if (lead.Status == "NEW")
+                    {
+
+                        <tr>
+                            @if (HttpContext.Current.Session["User_Type"].ToString() == "ADM")
+                            {
+                                <td class="text-center">
+                                    <div class="checkbox-custom">
+                                        <input id="check_@lead.Lead_ID_Auto_PK" type="checkbox" class="lead_id_check" value="@lead.Lead_ID_Auto_PK" onclick="SelectLead(this);">
+                                        <label for="check_@lead.Lead_ID_Auto_PK" class="pl-0">&nbsp;</label>
+                                    </div>
+                                </td>
+                            }
+                            <td class="text-center">@lead.Name</td>
+                            <td class="text-center">@lead.Email</td>
+                            <td class="text-center">@lead.SkypeNo</td>
+                            <td class="text-center">@lead.Date.ToString("d MMM yyyy")</td>
+                            <td class="text-center"><span class="label label-success">@lead.Status</span></td>
+                            <td class="text-center">@lead.AssignToName</td>
+                            <td class="text-center">
+
+                                @*<button type="button" data-toggle="modal" data-target=".bs-example-modal-animation" class="btn btn-raised btn-primary">Launch modal</button>*@
+                                <button type="button" class="btn btn-outline btn-primary" onclick="ViewLeads('@lead.Lead_ID_Auto_PK');" title="View Lead"><i class="ti-eye"></i></button>
+                                <button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target="#Status_Modal" title="Change Status" onclick="setModalData('@lead.Lead_ID_Auto_PK', '@lead.Status')"><i class="ti-pencil"></i></button>
+                                <button type="button" class="btn btn-outline btn-danger" onclick="DeleteLead('@lead.Lead_ID_Auto_PK');"><i class="ti-trash"></i></button>
+
+                            </td>
+                        </tr>
+                    }
+
+                }
+            }
+
+        </tbody>
+    </table>
+</div>
+
+<div id="working" role="tabpanel" class="tab-pane active">
+    <table id="lead-list-2" style="width: 100%" class="table table-hover dt-responsive nowrap">
+        <thead>
+            <tr>
+                <th class="text-center">Name</th>
+                <th class="text-center">Email</th>
+                <th class="text-center">Skype No.</th>
+                <th class="text-center">Next Followup</th>
+                <th class="text-center">Status</th>
+                <th class="text-center">Assign To</th>
+                <th class="text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var lead in Model.leads)
+                {
+                    if (lead.Status == "Working")
+                    {
+                        <tr>
+                            <td class="text-center">@lead.Name</td>
+                            <td class="text-center">@lead.Email</td>
+                            <td class="text-center">@lead.SkypeNo</td>
+                            <td class="text-center">@lead.FollowUpDate.ToString("d MMM yyyy")</td>
+                            @if (lead.Status == "Working")
+                            {
+                                <td class="text-center"><span class="label label-warning">@lead.Status</span></td>
+                            }
+                            else if (lead.Status == "Future-Followup")
+                            {
+                                <td class="text-center"><span class="label label-warning">@lead.Status</span></td>
+                            }
+                            else
+                            {
+                                <td class="text-center"><span class="label label-danger">@lead.Status</span></td>
+                            }
+                            <td class="text-center">@lead.AssignToName</td>
+                            <td class="text-center">
+                                <button type="button" class="btn btn-outline btn-primary" onclick="ViewLeads('@lead.Lead_ID_Auto_PK');" title="View Lead"><i class="ti-eye"></i></button>
+                                <button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target="#Status_Modal" title="Change Status" onclick="setModalData('@lead.Lead_ID_Auto_PK', '@lead.Status')"><i class="ti-pencil"></i></button>
+                                <button type="button" class="btn btn-outline btn-danger" onclick="DeleteLead('@lead.Lead_ID_Auto_PK');"><i class="ti-trash"></i></button>
+                            </td>
+                        </tr>
+                    }
+
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<div id="not-replied" role="tabpanel" class="tab-pane">
+    <table id="lead-list-3" style="width: 100%" class="table table-hover dt-responsive nowrap">
+        <thead>
+            <tr>
+                <th width="10%" class="text-center">Name</th>
+                <th width="15%" class="text-center">Email</th>
+                <th width="12%" class="text-center">Skype No</th>
+                <th width="12%" class="text-center">Next Followup</th>
+                <th width="10%" class="text-center">Status</th>
+                <th width="10%" class="text-center">Assign To</th>
+                <th width="25%" class="text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+
+                foreach (var lead in Model.leads)
+                {
+                    if (lead.Status == "Not-replied" || lead.Status == "Not-Interested")
+                    {
+                        <tr>
+                            <td class="text-center">@lead.Name</td>
+                            <td class="text-center">@lead.Email</td>
+                            <td class="text-center">@lead.SkypeNo</td>
+                            <td class="text-center">@lead.FollowUpDate.ToString("d MMM yyyy")</td>
+                            <td class="text-center"><span class="label label-danger">@lead.Status</span></td>
+                            <td class="text-center">@lead.AssignToName</td>
+                            <td class="text-center">
+                                <button type="button" class="btn btn-outline btn-primary" onclick="ViewLeads('@lead.Lead_ID_Auto_PK');" title="View Lead"><i class="ti-eye"></i></button>
+                                <button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target="#Status_Modal" title="Change Status" onclick="setModalData('@lead.Lead_ID_Auto_PK', '@lead.Status')"><i class="ti-pencil"></i></button>
+                                <button type="button" class="btn btn-outline btn-danger" onclick="DeleteLead('@lead.Lead_ID_Auto_PK');"><i class="ti-trash"></i></button>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+
+        </tbody>
+
+    </table>
+</div>
+

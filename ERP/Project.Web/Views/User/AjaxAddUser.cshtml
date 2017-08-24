@@ -1,0 +1,46 @@
+﻿@model Project.Web.Models.UserModel
+@{
+    Layout = null;
+}
+
+@*<table id="user-list" style="width: 100%" class="table table-hover dt-responsive nowrap">*@
+    @*<thead>
+        <tr>
+            <th width="10%" class="text-center">Name</th>
+            <th width="15%" class="text-center">Email</th>
+            <th width="12%" class="text-center">Date</th>
+            <th width="10%" class="text-center">Status</th>
+            <th width="25%" class="text-center">Action</th>
+        </tr>
+    </thead>*@
+    @*<tbody>*@
+        @{
+            foreach (var user in Model.users)
+            {
+
+                <tr>
+                    <td class="text-center">@user.FullName</td>
+                    <td class="text-center">@user.Email</td>
+                    <td class="text-center">@user.Date.ToString("d MMM yyyy")</td>
+                    @if (user.Status == "Active")
+                    {
+                        <td class="text-center"><span class="label label-success" onclick="changeStatus('@user.User_ID_PK');" title="Change Status">@user.Status</span></td>
+                    }
+                    else
+                    {
+                        <td class="text-center"><span class="label label-danger" onclick="changeStatus('@user.User_ID_PK');" title="Change Status">@user.Status</span></td>
+                    }
+                    <td class="text-center">
+                        @*<button type="button" data-toggle="modal" data-target=".bs-example-modal-animation" class="btn btn-raised btn-primary">Launch modal</button>*@
+                        @*<button type="button" class="btn btn-outline btn-primary" onclick="ViewClient('@user.User_ID_PK');" title="View User"><i class="ti-eye"></i></button>*@
+                        @*<button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target=".bs-example-modal-animation" title="Change Status"><i class="ti-pencil"></i></button>*@
+                        <button type="button" class="btn btn-outline btn-danger" onclick="DeleteClient('@user.User_ID_PK');" title="Delete User"><i class="ti-trash"></i></button>
+                    </td>
+                </tr>
+
+            }
+        }
+
+    @*</tbody>
+</table>*@
+

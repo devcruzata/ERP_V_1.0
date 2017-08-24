@@ -1,0 +1,84 @@
+﻿@{
+    ViewBag.Title = "test";
+}
+
+<div class="page-container">
+    <div class="page-header clearfix">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4 class="mt-0 mb-5">Estimation</h4>
+                <ol class="breadcrumb mb-0">
+                    <li><a href="#">Umega</a></li>
+                    <li><a href="#">Estimation</a></li>
+                    <li class="active">Add Estimation</li>
+                </ol>
+            </div>
+            <div class="col-sm-6">
+                <div class="btn-group mt-5">
+                    <button type="button" class="btn btn-default btn-outline"><i class="flag-icon flag-icon-us mr-5"></i> English</button>
+                    <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default btn-outline dropdown-toggle"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
+                    <ul class="dropdown-menu dropdown-menu-right animated fadeInDown">
+                        <li><a href="#"><i class="flag-icon flag-icon-de mr-5"></i> German</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-fr mr-5"></i> French</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-es mr-5"></i> Spanish</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-it mr-5"></i> Italian</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-jp mr-5"></i> Japanese</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-content container-fluid">
+        <div class="widget">
+            <div class="widget-heading clearfix">
+                <h3 class="widget-title pull-left">Add Estimation</h3>
+                <div class="pull-right">
+                    <button type="button" class="btn btn-primary"><i class="ti-save"></i></button>
+                    <button type="button" class="btn btn-default"><i class="ti-share-alt"></i></button>
+                </div>
+            </div>
+            <div class="widget-body">
+                <form class="form-horizontal">
+
+                    <div class="tab-content">
+                        <div id="general" role="tabpanel" class="tab-pane active">
+                            <div class="form-group">
+                                <label for="txtProductName" class="col-sm-3 control-label">Product Name</label>
+                                <div class="col-sm-9">
+                                    <input id="txtProductName" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtMetaTagTitle" class="col-sm-3 control-label">Meta Tag Title</label>
+                                <div class="col-sm-9">
+                                    <input id="txtMetaTagTitle" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtMetaTagDescription" class="col-sm-3 control-label">Meta Tag Description</label>
+                                <div class="col-sm-9">
+                                    <textarea id="txtMetaTagDescription" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtMetaTagKeywords" class="col-sm-3 control-label">Meta Tag Keywords</label>
+                                <div class="col-sm-9">
+                                    <textarea id="txtMetaTagKeywords" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtDescription" class="col-sm-3 control-label">Description</label>
+                                <div class="col-sm-9">
+                                    <textarea id="txtDescription" class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

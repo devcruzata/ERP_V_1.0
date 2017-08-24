@@ -1,0 +1,54 @@
+D:\ABHISHEK\Work Space\ERP\DAL\bin\Release\DAL.dll
+D:\ABHISHEK\Work Space\ERP\DAL\bin\Release\DAL.pdb
+D:\ABHISHEK\Work Space\ERP\DAL\bin\Release\RestSharp.dll
+D:\ABHISHEK\Work Space\ERP\DAL\bin\Release\RestSharp.xml
+D:\ABHISHEK\Work Space\ERP\DAL\obj\Release\DAL.csprojResolveAssemblyReference.cache
+D:\ABHISHEK\Work Space\ERP\DAL\obj\Release\DAL.dll
+D:\ABHISHEK\Work Space\ERP\DAL\obj\Release\DAL.pdb
+I:\CRM 25 april\ERP\DAL\bin\Release\DAL.dll
+I:\CRM 25 april\ERP\DAL\bin\Release\DAL.pdb
+I:\CRM 25 april\ERP\DAL\bin\Release\RestSharp.dll
+I:\CRM 25 april\ERP\DAL\bin\Release\RestSharp.xml
+I:\CRM 25 april\ERP\DAL\obj\Release\DAL.dll
+I:\CRM 25 april\ERP\DAL\obj\Release\DAL.pdb
+F:\Workspace\ERP\DAL\bin\Release\DAL.dll
+F:\Workspace\ERP\DAL\bin\Release\DAL.pdb
+F:\Workspace\ERP\DAL\bin\Release\RestSharp.dll
+F:\Workspace\ERP\DAL\bin\Release\RestSharp.xml
+F:\Workspace\ERP\DAL\obj\Release\DAL.dll
+F:\Workspace\ERP\DAL\obj\Release\DAL.pdb
+D:\ABHISHEK\Work Space\erp_07_july\ERP\DAL\bin\Release\DAL.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\DAL\bin\Release\DAL.pdb
+D:\ABHISHEK\Work Space\erp_07_july\ERP\DAL\bin\Release\RestSharp.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\DAL\bin\Release\RestSharp.xml
+D:\ABHISHEK\Work Space\erp_07_july\ERP\DAL\obj\Release\DAL.csprojResolveAssemblyReference.cache
+D:\ABHISHEK\Work Space\erp_07_july\ERP\DAL\obj\Release\DAL.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\DAL\obj\Release\DAL.pdb
+I:\erp21july\ERP\DAL\bin\Release\DAL.dll
+I:\erp21july\ERP\DAL\bin\Release\DAL.pdb
+I:\erp21july\ERP\DAL\bin\Release\RestSharp.dll
+I:\erp21july\ERP\DAL\bin\Release\RestSharp.xml
+I:\erp21july\ERP\DAL\obj\Release\DAL.csprojResolveAssemblyReference.cache
+I:\erp21july\ERP\DAL\obj\Release\DAL.dll
+I:\erp21july\ERP\DAL\obj\Release\DAL.pdb
+F:\Workspace\ERP_V_1.1\erp21july\ERP\DAL\bin\Release\DAL.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\DAL\bin\Release\DAL.pdb
+F:\Workspace\ERP_V_1.1\erp21july\ERP\DAL\bin\Release\RestSharp.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\DAL\bin\Release\RestSharp.xml
+F:\Workspace\ERP_V_1.1\erp21july\ERP\DAL\obj\Release\DAL.csprojResolveAssemblyReference.cache
+F:\Workspace\ERP_V_1.1\erp21july\ERP\DAL\obj\Release\DAL.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\DAL\obj\Release\DAL.pdb
+G:\ERP_AUG\ERP\DAL\bin\Release\DAL.dll
+G:\ERP_AUG\ERP\DAL\bin\Release\DAL.pdb
+G:\ERP_AUG\ERP\DAL\bin\Release\RestSharp.dll
+G:\ERP_AUG\ERP\DAL\bin\Release\RestSharp.xml
+G:\ERP_AUG\ERP\DAL\obj\Release\DAL.csprojResolveAssemblyReference.cache
+G:\ERP_AUG\ERP\DAL\obj\Release\DAL.dll
+G:\ERP_AUG\ERP\DAL\obj\Release\DAL.pdb
+I:\ERP_AUG\ERP\DAL\bin\Release\DAL.dll
+I:\ERP_AUG\ERP\DAL\bin\Release\DAL.pdb
+I:\ERP_AUG\ERP\DAL\bin\Release\RestSharp.dll
+I:\ERP_AUG\ERP\DAL\bin\Release\RestSharp.xml
+I:\ERP_AUG\ERP\DAL\obj\Release\DAL.csprojResolveAssemblyReference.cache
+I:\ERP_AUG\ERP\DAL\obj\Release\DAL.dll
+I:\ERP_AUG\ERP\DAL\obj\Release\DAL.pdb

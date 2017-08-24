@@ -1,0 +1,33 @@
+﻿
+@{
+    Layout = null;
+}
+
+@foreach (var opp in Model.Opportunity)
+                            {
+
+<tr>
+    <td class="text-center">
+        <div class="checkbox-custom">
+            <input id="check_@opp.Opportunity_ID" type="checkbox" class="opp_id_check" value="@opp.Opportunity_ID" onclick="SelectOpportunity(this);">
+            <label for="check_@opp.Opportunity_ID" class="pl-0">&nbsp;</label>
+        </div>
+    </td>
+
+    <td class="text-center">@opp.Name</td>
+    <td class="text-center">@opp.Amount</td>
+    <td class="text-center">@opp.RelateTo_Name</td>
+    <td class="text-center"><span class="label label-success">@opp.Stage</span></td>
+    <td class="text-center">@opp.AssignTO_Name</td>
+    <td class="text-center">
+        @*<button type="button" data-toggle="modal" data-target=".bs-example-modal-animation" class="btn btn-raised btn-primary">Launch modal</button>*@
+        <button type="button" class="btn btn-outline btn-primary" onclick="ViewOpportunity('@opp.Opportunity_ID');" title="View Opportunity"><i class="ti-eye"></i></button>
+        <button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target="#statusModal" title="Change Status" onclick="setStatusModalData('@opp.Opportunity_ID','@opp.stageId');"><i class="ti-pencil"></i></button>
+        <button type="button" class="btn btn-outline btn-danger" onclick="DeleteOpportunity('@opp.Opportunity_ID');" title="Delete Opportunity"><i class="ti-trash"></i></button>
+    </td>
+</tr>
+
+                           
+
+
+}

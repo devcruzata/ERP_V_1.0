@@ -1,0 +1,27 @@
+﻿@{
+    Layout = null;
+}
+
+@{
+    foreach (var ticket in Model.ticket)
+    {
+
+        <tr>
+            <td class="text-center">@ticket.ticketNo</td>
+            <td class="text-center">@ticket.addedOn</td>
+            <td class="text-center">@ticket.subject</td>
+            @if (ticket.Status == "Open")
+            {
+                <td class="text-center"><span class="label label-success" onclick="changeStatus('@ticket.ticketID)">@ticket.Status</span></td>
+            }
+            else
+            {
+                <td class="text-center"><span class="label label-danger">@ticket.Status</span></td>
+            }
+            <td class="text-center">
+                <button type="button" class="btn btn-outline btn-danger" onclick="DeleteTicket('@ticket.ticketID');" title="Delete Ticket"><i class="ti-trash"></i></button>
+            </td>
+        </tr>
+
+    }
+}

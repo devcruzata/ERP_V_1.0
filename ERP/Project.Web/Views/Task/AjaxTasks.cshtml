@@ -1,0 +1,22 @@
+﻿@{
+    Layout = null;
+}
+
+@foreach (var task in Model.Task)
+{
+    <tr>
+        <td width="70%">
+            <div class="media">
+                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/to-do.jpg")" alt="" class="media-object img-circle"></div>
+                <div class="media-body">
+                    <h5 class="media-heading">@task.Title</h5>
+                    <p class="text-muted mb-0">@task.Description</p>
+                </div>
+            </div>
+        </td>
+        <td width="30%" class="text-right text-success">
+            @*<a href="#"><i class="ti-pencil-alt"></i></a>*@
+            <a href="#" onclick="showDeleteConfirmationMsg('@task.Task_ID')" title="Delete Task"><i class="ti-trash"></i></a>
+        </td>
+    </tr>
+}

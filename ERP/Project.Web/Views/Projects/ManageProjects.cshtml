@@ -1,0 +1,285 @@
+﻿@model Project.Web.Models.ProjectModel
+@{
+    ViewBag.Title = "Manage-Project";
+}
+
+<!-- jQuery-->
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery/dist/jquery.min.js")"></script>
+
+
+
+
+<!-- Page Content -->
+<div class="page-container">
+    <div class="page-header clearfix">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4 class="mt-0 mb-5">Add Project</h4>
+                <ol class="breadcrumb mb-0">
+                    <li><a href="@Url.RouteUrl("AdminHome")">Home</a></li>
+                    <li><a href="@Url.RouteUrl("ProjectHome")">Projects</a></li>
+                    <li class="active">Add Project</li>
+                </ol>
+            </div>
+            <div class="col-sm-6">
+                <div class="btn-group mt-5">
+                    <button type="button" class="btn btn-default btn-outline"><i class="flag-icon flag-icon-us mr-5"></i> English</button>
+                    <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default btn-outline dropdown-toggle"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
+                    <ul class="dropdown-menu dropdown-menu-right animated fadeInDown">
+                        <li><a href="#"><i class="flag-icon flag-icon-de mr-5"></i> German</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-fr mr-5"></i> French</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-es mr-5"></i> Spanish</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-it mr-5"></i> Italian</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-jp mr-5"></i> Japanese</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-content container-fluid">
+        <div class="widget">
+            <div class="widget-heading clearfix">
+                <h3 class="widget-title pull-left">Add Project</h3>
+                @if (ViewBag.Error_Msg != "")
+                {
+                    <div style="margin-left:200px;">
+                        <p style="color:red;">@ViewBag.Error_Msg</p>
+                    </div>
+                }
+                <div class="pull-right">
+                    <button type="button" class="btn btn-primary" title="Add Leads" onclick="SubmitForm()"><i class="ti-save"></i></button>
+                    <button type="button" class="btn btn-default" title="Cancel" onclick="Cancel();"><i class="ti-share-alt"></i></button>
+                </div>
+            </div>
+            <div class="widget-body">
+                <form class="form-horizontal" method="post" action="/Projects/ManageProjects" enctype="multipart/form-data" id="mainForm">
+
+                    <div class="tab-content">
+                        <div id="general" role="tabpanel" class="tab-pane active">
+                            <div class="col-sm-12 form-group form-row">
+                                <div class="col-sm-3">
+                                    <input placeholder="Project Title" class="form-control form-cutom" name="Title" id="Title">
+                                    <div id="error_Div_Title" style="display:none;color:red;">
+                                        <p style="color:red;">Please Enter A Title For Project</p>
+                                    </div>
+                                </div>                               
+                            </div> 
+                            <div class="col-sm-12 form-group form-row">
+                                <div class="col-sm-3">
+                                    <input placeholder="Date" class="form-control form-cutom date-added" name="Date" id="Date">
+                                    <div id="error_Div_Date" style="display:none;color:red;">
+                                        <p style="color:red;">Please Select A Date</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.DropDownListFor(m => m.Client_ID, (List<SelectListItem>)ViewBag.Clients, new { @class = "form-control form-cutom" })
+                                    <div id="error_Div_Client_ID" style="display:none;color:red;">
+                                        <p style="color:red;">Please Choose A client</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <select class="form-control form-cutom" id="Model" name="Model">
+                                        <option value="0">Choose A Model</option>
+                                        <option value="Fixed">Fixed</option>
+                                        <option value="Hourly">Hourly</option>
+                                        <option value="Dedicated">Dedicated</option>
+                                    </select>
+                                    <div id="error_Div_Model" style="display:none;color:red;">
+                                        <p style="color:red;">Please Choose A Model</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.DropDownListFor(m => m.Category_ID, (List<SelectListItem>)ViewBag.Category_List, new { @class = "form-control form-cutom" })
+                                    <div id="error_Div_Category_ID" style="display:none;color:red;">
+                                        <p style="color:red;">Please Choose A Category</p>
+                                    </div>
+                                </div>
+                            </div>                            
+                            <div class="col-sm-12 form-group form-row" style="margin-left:10%;">
+                               
+                            </div>                       
+                            <div class="clearfix"></div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="panel panel-info">
+                        <div class="panel-heading" style="background-color: #1f364f !important;">
+                            <h3 class="panel-title" style="color: white !important;">SOW</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-sm-12"  id="sow1">
+                                <div class="col-sm-2">
+                                    <input type="text" placeholder="Task/Module" class="form-control form-cutom" name="Task" id="Task">
+                                    <div id="error_Div_Task" style="display:none;color:red;">
+                                        <p style="color:red;">Please Select A Date</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <input type="text" placeholder="Description" class="form-control form-cutom" name="Description" id="Description">
+                                    <div id="error_Div_Description" style="display:none;color:red;">
+                                        <p style="color:red;">Please Select A Date</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="text" placeholder="Hours" class="form-control form-cutom" name="Hours" id="Hours">
+                                    <div id="error_Div_Hours" style="display:none;color:red;">
+                                        <p style="color:red;">Please Select A Hours</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="text" placeholder="Price" class="form-control form-cutom" name="Price" id="Price">
+                                    <div id="error_Div_Price" style="display:none;color:red;">
+                                        <p style="color:red;">Please Select A Hours</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <button type="button" class="btn btn-sm btn-outline btn-primary" id="plus_btn_1" onclick="AddRow(this);"><i class="ti-plus"></i></button>
+                                    <div id="error_Div_Price" style="display:none;color:red;">
+                                        <p style="color:red;">Please Select A Hours</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12" style="margin-top:20px;">
+                                <div class="col-sm-12 form-group form-row">
+                                    <div class="col-lg-12 pd-zero">
+                                        <textarea id="Note" name="Note" class="form-control" placeholder="Additional Notes"></textarea>
+                                        <input type="hidden" name="Requirment" id="Requirment" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="sow_hidden" style="display:none;">
+    <div class="col-sm-12" style=" margin-top:10px;">
+        <div class="col-sm-2">
+            <input type="text" placeholder="Task/Module" class="form-control form-cutom" name="Task" id="Task">
+            <div id="error_Div_Task" style="display:none;color:red;">
+                <p style="color:red;">Please Select A Date</p>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <input type="text" placeholder="Description" class="form-control form-cutom" name="Description" id="Description">
+            <div id="error_Div_Description" style="display:none;color:red;">
+                <p style="color:red;">Please Select A Date</p>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <input type="text" placeholder="Hours" class="form-control form-cutom" name="Hours" id="Hours">
+            <div id="error_Div_Hours" style="display:none;color:red;">
+                <p style="color:red;">Please Select A Hours</p>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <input type="text" placeholder="Price" class="form-control form-cutom" name="Price" id="Price">
+            <div id="error_Div_Price" style="display:none;color:red;">
+                <p style="color:red;">Please Select A Hours</p>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <button type="button" class="btn btn-sm btn-outline btn-primary" onclick="AddRow(this);"><i class="ti-plus"></i></button>
+            <button type="button" class="btn btn-sm btn-outline btn-danger" onclick="RemoveRow(this);"><i class="ti-minus"></i></button>            
+        </div>
+    </div>
+</div>
+<!-- /.container -->
+
+<script>
+    $(document).ready(function () {
+        $(".date-added").daterangepicker({
+            singleDatePicker: true,
+            locale: {
+                format: 'DD/MM/YYYY'
+            },
+        });
+    });
+</script>
+
+<script>
+    function AddRow(thi) {        
+        var id = $(thi).attr('id');        
+        var temp = id.split('_');
+        var newID = 'sow' + (parseInt(temp[2]) + 1).toString();
+        var newID1 = 'plus_btn_' + (parseInt(temp[2]) + 1).toString();
+        var newID2 = 'minus_btn_' + (parseInt(temp[2]) + 1).toString();
+        $('#sow_hidden').children().first().attr('id', newID)
+        $('#sow_hidden').children().first().children().last().children().first().attr('id', newID1)
+        $('#sow_hidden').children().first().children().last().children().last().attr('id', newID2)
+        var sowHidden = $("#sow_hidden").html();
+        $("#plus_btn_" + temp[2]).hide();
+        $("#minus_btn_" + temp[2]).hide();
+        $("#sow" + temp[2]).after(sowHidden);
+    }
+
+    function RemoveRow(thi) {
+        var id = $(thi).attr('id');
+        var temp = id.split('_');
+        var newID = 'sow' + temp[2];
+        $("#" + newID).html('');
+        $("#" + newID).hide();
+        $("#plus_btn_" + (parseInt(temp[2]) - 1).toString()).show();
+        $("#minus_btn_" + (parseInt(temp[2]) - 1).toString()).show();
+    }    
+</script>
+
+<script>
+    function validateForm() {
+        if ($("#Title").val().trim() == "") {
+            $("#error_Div_Title").show();
+            return false;
+        }
+        else if ($("#Date").val().trim() == "") {
+            $("#error_Div_Date").show();
+            $("#error_Div_Title").hide();
+            return false;
+        }
+        else if ($("#Client_ID").val().trim() == "0") {
+            $("#error_Div_Client_ID").show();
+            $("#error_Div_Date").hide();
+            $("#error_Div_Date").hide();
+            $("#error_Div_Title").hide();
+            return false;
+        }
+        else if ($("#Model").val().trim() == "0") {
+            $("#error_Div_Model").show();
+            $("#error_Div_Client_ID").hide();
+            $("#error_Div_Date").hide();
+            $("#error_Div_Date").hide();
+            $("#error_Div_Title").hide();
+            return false;
+        }
+        else if ($("#Category_ID").val().trim() == "0") {
+            $("#error_Div_Category_ID").show();
+            $("#error_Div_Model").hide();
+            $("#error_Div_Client_ID").hide();
+            $("#error_Div_Date").hide();
+            $("#error_Div_Date").hide();
+            $("#error_Div_Title").hide();
+            return false;
+        }         
+        else {
+            $("#error_Div_Category_ID").hide();
+            $("#error_Div_Model").hide();
+            $("#error_Div_Client_ID").hide();
+            $("#error_Div_Date").hide();
+            $("#error_Div_Date").hide();
+            $("#error_Div_Title").hide();
+            return true;
+        }
+    }
+
+    function SubmitForm() {
+        if (validateForm()) {          
+            $("#mainForm").submit();
+        }
+    }
+
+    function Cancel() {
+        window.location = '@Url.RouteUrl("ProjectHome")';
+    }
+</script>

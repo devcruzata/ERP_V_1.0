@@ -1,0 +1,44 @@
+﻿@model Project.Web.Models.ProjectModel
+@{
+    Layout = null;
+}
+
+<div class="col-sm-12" id="sow@i" style="margin-top:10px;">
+    <table class="table table-hover table-striped dt-responsive nowrap">
+        <thead>
+            <tr>
+                <th class="text-center" style="color: #1f364f !important;">Task</th>
+                <th class="text-center" style="color: #1f364f !important;">Description</th>
+                <th class="text-center" style="color: #1f364f !important;">Hours</th>
+                <th class="text-center" style="color: #1f364f !important;">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Task.Count; i++)
+            {
+                <tr>
+                    <td class="text-center">@Model.Task[i]</td>
+                    <td class="text-center">@Model.Description[i]</td>
+                    <td class="text-center">@Model.Hours[i]</td>
+                    <td class="text-center">@Model.Price[i]</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="col-sm-12" style="margin-top:20px;">
+    <div class="col-sm-12 form-group form-row">
+        <div class="col-lg-12 pd-zero">
+            <textarea id="Note" name="Note" class="form-control" placeholder="Additional Notes" readonly="readonly" ></textarea>
+            <input type="hidden" name="Requirment" id="Requirment" value="@Model.Note" />
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        alert();
+        $("#Note").val($("#Requirment").val());       
+    });
+</script>

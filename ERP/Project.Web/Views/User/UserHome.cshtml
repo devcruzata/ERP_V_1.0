@@ -1,0 +1,342 @@
+﻿@model Project.Web.Models.UserModel
+
+@*@{
+    Layout = "~/Views/Shared/_LayoutPage_Admin.cshtml";
+    ViewBag.Title = "UserHome";
+}*@
+
+@*<script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery/dist/jquery.min.js")"></script>*@
+
+
+
+<div class="page-container">
+    <div class="page-header clearfix">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4 class="mt-0 mb-5">Manage Users</h4>
+                <ol class="breadcrumb mb-0">
+                    <li><a href="@Url.RouteUrl("AdminDashboard_V_2")">Home</a></li>
+                    <li><a href="@Url.RouteUrl("UserHome")">Users</a></li>
+                    <li class="active">Manage Users</li>
+                </ol>
+            </div>
+            <div class="col-sm-6">
+                @*<div class="btn-group mt-5">
+                    <button type="button" class="btn btn-default btn-outline"><i class="flag-icon flag-icon-us mr-5"></i> English</button>
+                    <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default btn-outline dropdown-toggle"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
+                    <ul class="dropdown-menu dropdown-menu-right animated fadeInDown">
+                        <li><a href="#"><i class="flag-icon flag-icon-de mr-5"></i> German</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-fr mr-5"></i> French</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-es mr-5"></i> Spanish</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-it mr-5"></i> Italian</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-jp mr-5"></i> Japanese</a></li>
+                    </ul>
+                </div>*@
+            </div>
+        </div>
+    </div>
+    <div class="page-content container-fluid">
+        <div class="widget">
+            <div class="widget-heading clearfix">
+                <h3 class="widget-title pull-left">Manage Users</h3>
+                <div class="pull-right">
+                    <button type="button" class="btn btn-outline btn-primary" data-toggle="modal" data-target="#uModal" title="Add User"><i class="ti-plus"></i></button>
+                </div>
+            </div>
+            <div class="widget-body" >
+                <table id="user-list" style="width: 100%" class="table table-hover dt-responsive nowrap">
+                    <thead>
+                        <tr>
+                            <th width="10%" class="text-center">Name</th>
+                            <th width="15%" class="text-center">Email</th>                            
+                            <th width="12%" class="text-center">Date</th>
+                            <th width="10%" class="text-center">Status</th>
+                            <th width="25%" class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="UserData">
+                        @{
+                            foreach (var user in Model.users)
+                            {
+
+                                <tr>
+                                    <td class="text-center">@user.FullName</td>
+                                    <td class="text-center">@user.Email</td>
+                                    <td class="text-center">@user.Date.ToString("d MMM yyyy")</td>
+                                    @if (user.Status == "Active")
+                                    {
+                                    <td class="text-center"><span class="label label-success" onclick="changeStatus('@user.User_ID_PK');" title="Change Status">@user.Status</span></td>
+                                    }
+                                    else
+                                    {
+                                    <td class="text-center"><span class="label label-danger" onclick="changeStatus('@user.User_ID_PK');" title="Change Status">@user.Status</span></td>
+                                    }
+                                    <td class="text-center">
+                                        @*<button type="button" data-toggle="modal" data-target=".bs-example-modal-animation" class="btn btn-raised btn-primary">Launch modal</button>*@
+                                        @*<button type="button" class="btn btn-outline btn-primary" onclick="ViewClient('@user.User_ID_PK');" title="View User"><i class="ti-eye"></i></button>*@
+                                        @*<button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target=".bs-example-modal-animation" title="Change Status"><i class="ti-pencil"></i></button>*@
+                                        <button type="button" class="btn btn-outline btn-danger" onclick="DeleteUser('@user.User_ID_PK');" title="Delete User"><i class="ti-trash"></i></button>
+                                    </td>
+                                </tr>
+
+                            }
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="uModal">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 id="myAnimationModalLabel" class="modal-title">Add User</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row" id="error_div" style="display:none;">
+                    <div class="col-sm-12 text-center">
+                        <p id="error_txt" style="color:red"></p>
+                    </div>
+                </div>
+                <form action="#" id="userForm">
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-sm-12">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="FirstName" id="FirstName" placeholder="First Name" />
+                                <div id="error_div_FirstName" style="display:none;">
+                                    <p style="color:red;">Please Enter First Name</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="LastName" id="LastName" placeholder="Last Name" />
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-sm-12">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="Email" id="Email" placeholder="Email" />
+                                <div id="error_div_Email" style="display:none;">
+                                    <p style="color:red;">Please Enter Valid Email</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+                    </div>             
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-sm-12">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-8">
+                                <label for="">User Role</label>
+                                <select class="form-control" id="UserType">
+                                    @foreach (var type in Model.userTypes)
+                                    {
+                                        <option value="@type.Value">@type.Text</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+                    </div>
+                </form>                                
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default" onclick="resetUserForm();">Cancel</button>
+                <button type="button" class="btn btn-raised btn-danger" onclick="AddUser();">Add User</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#date-added").daterangepicker({
+            singleDatePicker: true,
+            locale: {
+                format: 'DD/MM/YYYY'
+            },
+        });
+    });
+</script>
+<script>
+    // Table Script*******
+
+    $(document).ready(function () {
+
+        var e1 = $("#user-list").DataTable({ pageLength: 10, colReorder: !0, buttons: ["copy", "excel", "pdf", "print"], searching: !0, aLengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]], order: [[4, "desc"]], columnDefs: [{ orderable: !1, targets: [0, 4] }] });
+        $("#user-list_wrapper .col-sm-6:eq(1)").addClass("text-right"), e1.buttons().container().appendTo("#user-list_wrapper .col-sm-6:eq(1)")
+
+    });
+</script>
+<script>
+    function ViewUser(User_ID_Auto_PK) {
+        window.location = '/Users/ViewUsers?UserId=' + User_ID_Auto_PK;
+    }
+       
+
+    function DeleteUser(User_ID_Auto_PK) {
+        swal({
+            title: "Are you sure?",
+            text: "Are you sure to delete this User!",
+            type: "warning",
+            showCancelButton: !0,
+            cancelButtonClass: "btn-raised btn-default",
+            cancelButtonText: "Cancel!",
+            confirmButtonClass: "btn-raised btn-danger",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: !0
+        },
+        function () {
+            $(".se-pre-con").show();
+            $.ajax({
+                url: '/User/AjaxDeleteUser',
+               // dataType: "html",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ User_ID_PK: User_ID_Auto_PK }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data != '0') {
+                        $("#UserData").html('');
+                        $("#UserData").html(data);
+                        $(".se-pre-con").hide();
+                    }
+                    else {
+                        $(".se-pre-con").hide();
+                    }
+                },
+                error: function (xhr) {
+                    $(".se-pre-con").hide();
+                    $('#errorMessage').html("No connection");
+                }
+            });
+        })
+    }
+</script>
+
+<script>
+    function changeStatus(User_ID_Auto_PK) {
+        $(".se-pre-con").show();
+        $.ajax({
+            url: '/User/AjaxChangeUserStatus',
+            //dataType: "html",
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ User_ID_PK: User_ID_Auto_PK }),
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                if (data != '0') {
+                    $("#UserData").html('');
+                    $("#UserData").html(data);
+                    $(".se-pre-con").hide();
+                }
+                else {
+                    $(".se-pre-con").hide();
+                }
+            },
+            error: function (xhr) {
+                $(".se-pre-con").hide();
+                $('#errorMessage').html("No connection");
+            }
+        });
+    }
+</script>
+
+<script>
+    function ValidateUserForm() {
+        var emailRegex = /^[A-Za-z0-9._]*\@@[A-Za-z]*\.[A-Za-z]{2,5}$/;
+        if ($('#FirstName').val().trim() == "") {
+            $("#error_div_FirstName").show();
+            return false;
+        }
+        else if ($('#Email').val().trim() == "") {
+            $("#error_div_Email").show();
+            $("#error_div_FirstName").hide();
+            return false;
+        }
+        else if (!emailRegex.test($("#Email").val().trim())) {
+            $("#error_div_Email").show();
+            $("#error_div_FirstName").hide();
+            return false;
+        }
+        else {
+            $("#error_div_Email").hide();
+            $("#error_div_FirstName").hide();
+            return true;
+        }
+    }
+    function SaveUser() {
+        $(".se-pre-con").show();
+        var UserTyp;
+        if ($("#IsAdmin").is(':checked')) {
+            UserTyp = "ADM";
+        }
+        else {
+            UserTyp = "USR";
+        }        
+        $.ajax({
+            url: '/User/AjaxAddUser',
+           // dataType: "html",
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ FirstName: $('#FirstName').val(), LastName: $('#LastName').val(), Email: $('#Email').val(), UserType: $("#UserType").val() }),
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                if (data != "2") {
+                    if (data == "1") {                     
+                        $("#error_txt").text("User With Same Email Already Exist");
+                        $("#error_div").show();
+                        $(".se-pre-con").hide();
+                    }
+                    else {                                   
+                        $("#UserData").html('');
+                        $("#UserData").html(data);
+                        $("#uModal").modal('hide');
+                        //$("#userForm")[0].reset();
+                        $(".se-pre-con").hide();
+                        $('#FirstName').val('');
+                        $('#LastName').val('');
+                        $('#Email').val('');
+                    }
+                }
+                else {
+                    $("#error_txt").text("Error Occured in adding new User, Please Try Again.");
+                    $("#error_div").show();
+                    $(".se-pre-con").hide();
+                }
+                
+            },
+            error: function (xhr) {
+                $(".se-pre-con").hide();
+                $('#errorMessage').html("No connection");
+            }
+        });
+    }
+
+    function AddUser() {
+        if (ValidateUserForm()) {
+            SaveUser();
+        }
+    }
+    function resetUserForm() {
+        $("#FirstName").val("");
+        $('#LastName').val('');
+        $('#Email').val('');
+        $('#error_div_FirstName').hide();
+        $("#error_div_Email").hide();
+    }
+</script>

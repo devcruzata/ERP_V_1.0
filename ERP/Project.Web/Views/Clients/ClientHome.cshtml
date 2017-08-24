@@ -1,0 +1,370 @@
+﻿@model Project.Web.Models.ClientModel
+@{
+    ViewBag.Title = "ClientHome";
+}
+
+@*<script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery/dist/jquery.min.js")"></script>*@
+
+
+
+<div class="page-container">
+    <div class="page-header clearfix">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4 class="mt-0 mb-5">Manage Clients</h4>
+                <ol class="breadcrumb mb-0">
+                    <li><a href="@Url.RouteUrl("AdminDashboard_V_2")">Home</a></li>
+                    <li><a href="@Url.RouteUrl("ClientHome")">Clients</a></li>
+                    <li class="active">Manage Clients</li>
+                </ol>
+            </div>
+            <div class="col-sm-6">
+                @*<div class="btn-group mt-5">
+                    <button type="button" class="btn btn-default btn-outline"><i class="flag-icon flag-icon-us mr-5"></i> English</button>
+                    <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default btn-outline dropdown-toggle"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
+                    <ul class="dropdown-menu dropdown-menu-right animated fadeInDown">
+                        <li><a href="#"><i class="flag-icon flag-icon-de mr-5"></i> German</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-fr mr-5"></i> French</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-es mr-5"></i> Spanish</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-it mr-5"></i> Italian</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-jp mr-5"></i> Japanese</a></li>
+                    </ul>
+                </div>*@
+            </div>
+        </div>
+    </div>
+    <div class="page-content container-fluid">
+        <div class="widget">
+            <div class="widget-heading clearfix">
+                <h3 class="widget-title pull-left">Manage Clients</h3>
+                <div class="pull-right">
+                    <button type="submit" class="btn btn-danger" id="syncClient" onclick="syncContact()"><i class="ti-google"></i>  Sync</button>
+                    <a href="@Url.RouteUrl("ManageClient", new { act = "add" })" type="button" class="btn btn-primary" title="Add Client"><i class="ti-plus"></i></a>
+                        @*<button type="button" class="btn btn-default"><i class="ti-share-alt"></i></button>*@                    
+                </div>
+            </div>
+            <div class="widget-body">
+                <table id="lead-list-1" style="width: 100%" class="table table-hover dt-responsive nowrap">
+                    <thead>
+                        <tr>
+                            <th width="10%" class="text-center">Name</th>
+                            <th width="15%" class="text-center">Email</th>
+                            <th width="12%" class="text-center">Skype No</th>
+                            <th width="12%" class="text-center">Date</th>
+                            <th width="10%" class="text-center">Status</th>
+                            <th width="25%" class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            foreach (var client in Model.clients)
+                            {
+
+                                <tr>
+                                    <td class="text-center">@client.Name</td>
+                                    <td class="text-center">@client.Email</td>
+                                    <td class="text-center">@client.SkypeNo</td>
+                                    <td class="text-center">@client.Date.ToString("d MMM yyyy")</td>
+                                    <td class="text-center"><span class="label label-success">@client.Status</span></td>
+                                    <td class="text-center">
+                                        @*<button type="button" data-toggle="modal" data-target=".bs-example-modal-animation" class="btn btn-raised btn-primary">Launch modal</button>*@
+                                        <button type="button" class="btn btn-outline btn-primary" onclick="ViewClient('@client.Client_ID_Auto_PK');" title="View Client"><i class="ti-eye"></i></button>
+                                        <button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target="#NoteModal" title="Add Note" onclick="setCommentModalData('@client.Client_ID_Auto_PK')"><i class="ti-pencil"></i></button>
+                                        <button type="button" class="btn btn-outline btn-danger" onclick="DeleteClient('@client.Client_ID_Auto_PK');" title="Delete Client"><i class="ti-trash"></i></button>
+                                    </td>
+                                </tr>
+
+                            }
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="NoteModal">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 id="myAnimationModalLabel" class="modal-title">Write Comments</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        @*<div class="form-group col-sm-6">
+                                <label for="date-added">Date Added</label>
+                                <div class="input-group">
+                                    <input id="date-added" type="text" class="form-control"><span class="input-group-addon"><span class="ti-calendar"></span></span>
+                                </div>
+                            </div>*@
+                        @*<div class="form-group col-sm-6">
+                                <label for="selectBasic">Select basic</label>
+                                <select id="selectBasic" class="form-control">
+                                    <option>Status</option>
+                                    <option>Status2</option>
+                                    <option>Status3</option>
+                                </select>
+                            </div>*@
+                        <div class="form-group col-sm-12">
+                            <label for="selectBasic">Comment</label>
+                            <textarea class="form-control" id="comment" placeholder="Comment.."></textarea>
+                            <div id="error_div_Notes" style="display:none;">
+                                <p style="color:red;">Please add Note </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default"onclick="CancelNote();">Cancel</button>
+                <button type="button" class="btn btn-raised btn-danger" onclick="submit();">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="ClientID" />
+
+@*<script>
+    $(document).ready(function () {
+        $("#date-added").daterangepicker({
+            singleDatePicker: true,
+            locale: {
+                format: 'DD/MM/YYYY'
+            },
+        });
+    });
+</script>*@
+<script>
+    // Table Script*******
+
+    $(document).ready(function () {
+        var e1 = $("#lead-list-1").DataTable({ pageLength: 10, colReorder: !0, buttons: ["copy", "excel", "pdf", "print"], searching: !0, aLengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]] });
+        $("#lead-list-1_wrapper .col-sm-6:eq(1)").addClass("text-right"), e1.buttons().container().appendTo("#lead-list-1_wrapper .col-sm-6:eq(1)")
+        
+    });
+</script>
+
+<script>
+
+    function guid() {
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+          s4() + '-' + s4() + s4() + s4();
+    }
+
+    function s4() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+          .toString(16)
+          .substring(1);
+    }
+    
+
+    function ViewClient(Client_ID_Auto_PK) {
+        
+        window.location = '/Clients/ViewClient?sessionid=' + guid() + '&Clientid=' + Client_ID_Auto_PK;
+    }    
+
+    //function DeleteClient(Client_ID_Auto_PK) {
+
+    //    var result = confirm("Are you sure to delete this Client ?");
+    //    if (result == true) {
+    //        // var divId = "div-" + Service_ID_Auto_PK;
+
+    //        var Ldata = Client_ID_Auto_PK;
+
+    //        var url = "/Clients/DeleteClient";
+    //        $.post(url, { Client_ID_PK: Ldata }, function (data) {
+    //            if (data == "1") {
+    //                location.reload();
+    //            }
+    //            if (data = "0") {
+    //                $("#error_msg_tbl").html("<p style=\"color:red;\">There is an error in processing your request. Please Try after some time.</p>");
+    //                $("#error_msg_tbl").show();
+    //            }
+    //        });
+    //    }
+    //}
+
+    function DeleteClient(Client_ID_Auto_PK) {
+        swal({
+            title: "Are you sure?",
+            text: "Are you sure to delete this Client!",
+            type: "warning",
+            showCancelButton: !0,
+            cancelButtonClass: "btn-raised btn-default",
+            cancelButtonText: "Cancel!",
+            confirmButtonClass: "btn-raised btn-danger",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: !0
+        },
+        function () {
+            $(".se-pre-con").show();
+            var Ldata = Client_ID_Auto_PK;
+            var url = "/Clients/DeleteClient";
+            $.post(url, { Client_ID_PK: Ldata }, function (data) {
+                if (data == "1") {
+                    location.reload();
+                }
+                if (data = "0") {
+                    $("#error_msg_tbl").html("<p style=\"color:red;\">There is an error in processing your request. Please Try after some time.</p>");
+                    $("#error_msg_tbl").show();
+                }
+            });
+        })
+    }
+
+    function syncContact() {
+        alert();
+       // var clientId = "995459998390-h5ea19firkf4q99mp44uic5qk8djtrnb.apps.googleusercontent.com";
+      //  var redirectUrl = "http://testerp.easysavemerchants.com/UserSetings/ContactPermissionCallback";
+      //  var uri = "https://accounts.google.com/o/oauth2/auth?redirect_uri=" + redirectUrl + "&response_type=code&client_id=" + clientId + "&scope=https://www.google.com/m8/feeds/&approval_prompt=force&access_type=offline";
+        //window.open(_url, "windowname1", 'width=800, height=600');
+        window.open("/Clients/DataSync", "Clouderac", "height=100%,width=50%,modal=yes,alwaysRaised=yes");
+    }
+
+   
+
+    function showLoader() {       
+        $("#syncClient").html('<img src="~/Content/img/fbloader.gif" />');
+    }
+    function hideLoader() {
+        $('#syncClient').html('Send')
+    }
+</script>
+<script>
+    var OAUTHURL = 'https://accounts.google.com/o/oauth2/auth?';
+    var VALIDURL = 'https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=';
+    var SCOPE = 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email';
+    var CLIENTID = '995459998390-h5ea19firkf4q99mp44uic5qk8djtrnb.apps.googleusercontent.com';
+    var REDIRECT = 'http://testerp.easysavemerchants.com/UserSetings/ContactPermissionCallback'
+    var LOGOUT = 'http://accounts.google.com/Logout';
+    var TYPE = 'token';
+    var _url = OAUTHURL + 'scope=' + SCOPE + '&client_id=' + CLIENTID + '&redirect_uri=' + REDIRECT + '&response_type=' + TYPE;
+    var acToken;
+    var tokenType;
+    var expiresIn;
+    var user;
+    var loggedIn = false;
+
+    function login() {
+        var win = window.open(_url, "windowname1", 'width=800, height=600');
+
+        var pollTimer = window.setInterval(function () {
+           
+            try {                
+                //console.log(win.document.URL);
+               // if (win.document.URL.indexOf(REDIRECT) != -1) {
+                   // alert();
+                   // window.clearInterval(pollTimer);
+                var url = win.document.URL;
+                    alert(window.Document.URL);
+                    acToken = gup(url, 'access_token');
+                    tokenType = gup(url, 'token_type');
+                    expiresIn = gup(url, 'expires_in');
+                    alert(acToken);
+                   // win.close();
+
+                    // validateToken(acToken);
+             //   }
+            } catch (e) {
+            }
+        }, 500);
+    }
+
+    function validateToken(token) {
+        $.ajax({
+            url: VALIDURL + token,
+            data: null,
+            success: function (responseText) {
+                getUserInfo();
+                loggedIn = true;
+                $('#loginText').hide();
+                $('#logoutText').show();
+            },
+            dataType: "jsonp"
+        });
+    }
+
+    function getUserInfo() {
+        $.ajax({
+            url: 'https://www.googleapis.com/oauth2/v1/userinfo?access_token=' + acToken,
+            data: null,
+            success: function (resp) {
+                user = resp;
+                console.log(user);
+                $('#uName').text('Welcome ' + user.name);
+                $('#imgHolder').attr('src', user.picture);
+            },
+            dataType: "jsonp"
+        });
+    }
+
+    //credits: http://www.netlobo.com/url_query_string_javascript.html
+    function gup(url, name) {
+        name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+        var regexS = "[\\#&]" + name + "=([^&#]*)";
+        var regex = new RegExp(regexS);
+        var results = regex.exec(url);
+        if (results == null)
+            return "";
+        else
+            return results[1];
+    }
+
+    function startLogoutPolling() {
+        $('#loginText').show();
+        $('#logoutText').hide();
+        loggedIn = false;
+        $('#uName').text('Welcome ');
+        $('#imgHolder').attr('src', 'none.jpg');
+    }
+
+</script>
+<script>
+    function setCommentModalData(ClientID) {
+
+        $('#ClientID').val(ClientID);
+
+    }
+    function validateNotesForm() {
+        
+        if ($("#comment").val().trim() == '') {
+            
+            $('#error_div_Notes').show();
+            return false;
+        }
+        else {
+            $('#error_div_Notes').hide();
+            return true;
+        }
+    }
+    function submit() {
+        if (validateNotesForm()) {
+            
+        var coment = $('#comment').val();
+        $.post('/Clients/addComment', { ClientID: $('#ClientID').val(), coment: coment }, function (data) {
+            
+            if (data == 'success') {
+               
+                $('#NoteModal').modal('hide');
+                //$("#docForm")[0].reset();
+                window.location = '/Clients/ClientHome';
+            }
+            else {
+                
+            }
+
+        });
+
+    }
+   
+    } 
+    function CancelNote()
+    {
+        $('#comment').val('');        
+        $("#error_div_Notes").hide();
+    }
+</script>

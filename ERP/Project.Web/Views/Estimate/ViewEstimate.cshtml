@@ -1,0 +1,1081 @@
+﻿@model Project.Web.Models.EstimateModel
+@{
+    ViewBag.Title = "ViewEstimate";
+}
+
+<!-- jQuery-->
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery/dist/jquery.min.js")"></script>
+
+
+<style>
+    .editOnHover {
+        background-color: #E8F3FF;
+    }
+
+    .editabBox {
+        width: 100%;
+        min-height: 20px;
+        padding: 10px 15px;
+        background-color: #fff;
+        border: 1px solid #1f364f;
+    }
+
+    formedit {
+        width: 100%;
+    }
+
+    #textb {
+        width: 100%;
+    }
+    /*.btnEditSave, .btnEditCancel {
+        padding: 6px 30px 6px 75px;
+    }*/
+    .btnEditSave {
+        margin-top: 10px;
+        margin-left: 160px;
+    }
+
+    .btnEditCancel {
+        margin-top: 10px;
+        margin-left: 5px;
+        float: right;
+    }
+
+    .showmoredetails {
+        display: none;
+    }
+
+    .hidebtn {
+        display: none;
+    }
+
+    .comment-userimg {
+        width: 45px;
+        height: 45px;
+        border-radius: 45px;
+    }
+
+    .comment-boxdiv {
+        margin-top: 15px;
+    }
+
+    .card-header {
+        background: #1f364f !important;
+        padding: 8px 15px;
+        font-size: 16px;
+        color: #fff;
+    }
+
+    .estimate-cards {
+        margin-bottom: 20px;
+    }
+
+    .view {
+        overflow: hidden;
+        position: relative;
+        cursor: default;
+    }
+
+        .view .content, .view .mask {
+            position: absolute;
+        }
+
+        .view img, .view video {
+            display: block;
+            position: relative;
+        }
+
+    .full-bg-img {
+        position: absolute;
+    }
+
+    .overlay:hover .mask {
+        opacity: 1;
+    }
+
+    .overlay img, .overlay video {
+        transition: all .2s linear;
+    }
+
+    .overlay .mask {
+        opacity: 0;
+        transition: all .4s ease-in-out;
+    }
+
+    .attechment-card {
+        margin: 8px 0;
+    }
+
+    .attechment-card-block {
+        padding: 10px 0;
+        display: inline-block;
+        width: 100%;
+    }
+
+    .attechment-card img {
+        width: 100%;
+    }
+
+    .attechment-hr {
+        margin: 5px 0;
+    }
+
+    .card .card-data, .card .comments-section .row, .card .hl-2-col, .card .horizontal-listing .row, .comments-section .card .row, .horizontal-listing .card .row {
+        background-color: #3E4551;
+        color: #fff;
+        text-align: center;
+        height: auto;
+        padding: 10px;
+    }
+
+    .attech-footer ul {
+        display: inline-block;
+        width: 100%;
+        margin-bottom: 0 !important;
+    }
+
+    .attech-footer-left {
+        width: 50%;
+        text-align: left;
+        float: left;
+        font-size: 10px;
+    }
+
+    .attech-footer-right {
+        width: 50%;
+        text-align: right;
+        float: right;
+        font-size: 10px;
+    }
+
+    .card-text a {
+        font-size: 12px;
+    }
+
+    .detailBox {
+    }
+
+    .titleBox {
+        background-color: #fdfdfd;
+        padding: 10px;
+    }
+
+        .titleBox label {
+            color: #444;
+            margin: 0;
+            display: inline-block;
+        }
+
+    .commentBox {
+        padding: 10px;
+        border-top: 1px dotted #bbb;
+    }
+
+        .commentBox .form-group:first-child, .actionBox .form-group:first-child {
+            width: 80%;
+        }
+
+        .commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
+            width: 18%;
+        }
+
+    .actionBox .form-group * {
+        width: 100%;
+    }
+
+    .taskDescription {
+        margin-top: 10px 0;
+    }
+
+    .commentList {
+        padding: 0;
+        list-style: none;
+        overflow: auto;
+    }
+
+    .comment-text {
+        font-size: 13px !important;
+    }
+
+    .commentList li {
+        margin: 0;
+        margin-top: 10px;
+    }
+
+        .commentList li > div {
+            display: table-cell;
+        }
+
+    .commenterImage {
+        width: 30px;
+        margin-right: 5px;
+        height: 100%;
+        float: left;
+    }
+
+        .commenterImage img {
+            width: 100%;
+            border-radius: 50%;
+        }
+
+    .commentText p {
+        margin: 0;
+    }
+
+    .commentText {
+        float: left;
+    }
+
+    .sub-text {
+        color: #aaa;
+        font-family: verdana;
+        font-size: 11px;
+        padding-left: 12px;
+    }
+
+    .actionBox {
+        border-top: 1px dotted #bbb;
+        padding: 10px;
+    }
+
+    .comment-edit a {
+        padding: 0 6px;
+        color: #333;
+    }
+
+    .commentList li {
+        display: inline-block;
+        width: 100%;
+    }
+</style>
+
+ 
+
+<div class="page-container">
+    <div class="page-content container-fluid">
+        <div class="page-header clearfix">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h4 class="mt-0 mb-5">View Estimate</h4>
+                    <ol class="breadcrumb mb-0">
+                        <li><a href="@Url.RouteUrl("AdminHome")">Home</a></li>
+                        <li><a href="@Url.RouteUrl("EstimateHome")">Estimate</a></li>
+                        <li class="active">View Estimates</li>
+                    </ol>
+                </div>
+                <div class="col-sm-6">
+                    &nbsp;
+                    <div class="btn-group mt-5">
+                        <button type="button" class="btn btn-default btn-outline"><i class="flag-icon flag-icon-us mr-5"></i> English</button>
+                        <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default btn-outline dropdown-toggle"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
+                        <ul class="dropdown-menu dropdown-menu-right animated fadeInDown">
+                            <li><a href="#"><i class="flag-icon flag-icon-de mr-5"></i> German</a></li>
+                            <li><a href="#"><i class="flag-icon flag-icon-fr mr-5"></i> French</a></li>
+                            <li><a href="#"><i class="flag-icon flag-icon-es mr-5"></i> Spanish</a></li>
+                            <li><a href="#"><i class="flag-icon flag-icon-it mr-5"></i> Italian</a></li>
+                            <li><a href="#"><i class="flag-icon flag-icon-jp mr-5"></i> Japanese</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="widget">
+            <div class="widget-heading clearfix">
+                <h3 class="widget-title pull-left">View Estimates</h3>
+                <div class="pull-right">
+                    @*<button type="button" class="btn btn-primary" title="Add Leads"><i class="ti-save"></i></button>*@
+                        <button type="button" class="btn btn-default" title="Cancel" onclick="Cancel();"><i class="ti-share-alt"></i></button>
+                </div>
+            </div>
+            <div class="widget-body">
+                <form class="form-horizontal">
+                    <div class="tab-content">
+                        <div id="general" role="tabpanel" class="tab-pane active">
+                            <div class="form-group ">
+                                <div class="col-sm-6" id="div_Date">
+                                    <div class="col-sm-3">Date: </div>
+                                    <div class="col-sm-6" id="Date">@Model.Date</div>
+                                    <div class="col-sm-1 editIconDate"><i class="ti-pencil"></i></div>
+                                </div>
+                                <div class="col-sm-6" id="edit_div_Date" style="display:none;">
+                                    <div class="col-sm-3">Date: </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control date-added" id="Date1" />
+                                        <div id="error_div_Date" style="display:none;">
+                                            <p style="color:red;">Please Enter Name</p>
+                                        </div>
+                                        <a href="#" class="btn btn-primary btn-small btnEditSave" id="btn_save_date"><i class="ti-check"></i></a>
+                                        <a href="#" class="btn btn-primary btn-small btnEditCancel" id="btn_cancel_date"><i class="ti-close"></i></a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6" id="div_AssignBy">
+                                    <div class="col-sm-3">Assign By: </div>
+                                    <div class="col-sm-6" id="Company">@Model.AssigBy</div>
+                                    @*<div class="col-sm-1 editIconAssignBy"><i class="ti-pencil"></i></div>*@
+                                </div>
+                                <div class="col-sm-6" id="edit_div_AssignBy" style="display:none;">
+                                    <div class="col-sm-3">Assign By: </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control " id="AssignBy1" />
+                                        <div id="error_div_AssignBy"  style="display:none;">
+                                            <p style="color:red;">Please Enter Company Name</p>
+                                        </div>
+                                        <a href="#" class="btn btn-primary btn-small btnEditSave" id="btn_save_company"><i class="ti-check"></i></a>
+                                        <a href="#" class="btn btn-primary btn-small btnEditCancel" id="btn_cancel_company"><i class="ti-close"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="col-sm-6" id="div_Category">
+                                    <div class="col-sm-3">Category: </div>
+                                    <div class="col-sm-6" id="Category">@Model.CategoryName</div>
+                                    <input type="hidden" id="cat" value="@Model.Category" />                                    
+                                </div>
+                                
+                                <div class="col-sm-6" id="div_AssignTo">
+                                    <div class="col-sm-3">Assign To: </div>
+                                    <div class="col-sm-6" id="AssignTo">@Model.Assigne</div>
+                                    <div class="col-sm-1 editIconAssignTo"><i class="ti-pencil"></i></div>
+                                </div>
+                                <div class="col-sm-6" id="edit_div_AssignTo" style="display:none;">
+                                    <div class="col-sm-3">Assign To: </div>
+                                    <div class="col-sm-6">                                       
+                                        <select class="form-control form-cutom" name="AssignTo1" id="AssignTo1">
+                                            <option value="0">Choose A Team</option>
+                                        </select>
+                                        <div id="error_div_AssignTo" style="display:none;">
+                                            <p style="color:red;">Please Choose A Team</p>
+                                        </div>
+                                        <a href="#" class="btn btn-primary btn-small btnEditSave" id="btn_save_assignTo"><i class="ti-check"></i></a>
+                                        <a href="#" class="btn btn-primary btn-small btnEditCancel" id="btn_cancel_assignTo"><i class="ti-close"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="col-sm-6" id="div_Language">
+                                    <div class="col-sm-3">Language: </div>
+                                    <div class="col-sm-6" id="Language">@Model.LanguageName</div>
+                                    <input type="hidden" id="lang" value="@Model.Language" />
+                                    <div class="col-sm-1 editIconLanguage"><i class="ti-pencil"></i></div>
+                                </div>
+                                <div class="col-sm-6" id="edit_div_Language" style="display:none;">
+                                    <div class="col-sm-3">Language: </div>
+                                    <div class="col-sm-6">
+                                        @*<input type="text" class="form-control" id="Language1" />*@
+                                        <select class="form-control form-cutom" name="Language1" id="Language1">
+                                            <option value="0">Choose A Language</option>
+                                        </select>
+                                            <div id="error_div_Language" style="display:none;">
+                                                <p style="color:red;">Please Choose A Language</p>
+                                            </div>
+                                            <a href="#" class="btn btn-primary btn-small btnEditSave" id="btn_save_language"><i class="ti-check"></i></a>
+                                            <a href="#" class="btn btn-primary btn-small btnEditCancel" id="btn_cancel_language"><i class="ti-close"></i></a>
+                                </div>
+                                </div>
+                                <div class="col-sm-6" id="div_Priority">
+                                    <div class="col-sm-3">Priority: </div>
+                                    <div class="col-sm-6" id="Priority">@Model.Priority</div>
+                                    <div class="col-sm-1 editIconPriority"><i class="ti-pencil"></i></div>
+                                </div>
+                                <div class="col-sm-6" id="edit_div_Priority" style="display:none;">
+                                    <div class="col-sm-3">Priority: </div>
+                                    <div class="col-sm-6">
+                                        @*<input type="text" class="form-control" id="Company1" />*@
+                                        <select class="form-control form-cutom" name="Priority1" id="Priority1">
+                                            <option value="0">Choose A Priority</option>
+                                            <option value="Low">Low</option>
+                                            <option value="Medium">Medium</option>
+                                            <option value="High">High</option>
+                                        </select>
+                                        <div id="error_div_Priority" style="display:none;">
+                                            <p style="color:red;">Please Choose a Priority</p>
+                                        </div>
+                                        <a href="#" class="btn btn-primary btn-small btnEditSave" id="btn_save_priority"><i class="ti-check"></i></a>
+                                        <a href="#" class="btn btn-primary btn-small btnEditCancel" id="btn_cancel_priority"><i class="ti-close"></i></a>
+                                    </div>
+                                </div>
+                            </div>                     
+                        </div>
+                    </div>
+                    <div class="panel panel-info">
+                        <div class="panel-heading" style="background-color: #1f364f !important;">
+                            <h3 class="panel-title card-header" style="color: white !important;">Requirement <i class="ti-pencil editIconRequirment"></i></h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="div_Requirment">
+                                <div  id="Requirment">@Model.Requirment</div>
+                                @*<div class="col-sm-1 editIconRequirment"><i class="ti-pencil"></i></div>*@
+                            </div>
+                            <div class="col-sm-6" id="edit_div_Requirment" style="display:none;">
+                                <div>
+                                    <textarea class="form-control" width="100%" id="Requirment1" rows="4" style="max-width:100%;"></textarea>
+                                    <div id="error_div_Requirment" style="display:none;">
+                                        <p style="color:red;">Please Enter Requirment</p>
+                                    </div>
+                                    @*<input type="text" class="form-control" id="Requirment1" />*@
+                                    <a href="#" class="btn btn-primary btn-small" id="btn_save_requirment" style="margin-left:440px;margin-top:10px;"><i class="ti-check"></i></a>
+                                    <a href="#" class="btn btn-primary btn-small btnEditCancel" id="btn_cancel_requirment"><i class="ti-close"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="card estimate-cards">
+                            <div class="card-header">
+                                Attachments
+                            </div>
+                            <div class="card-block attechment-card-block">
+                                <div class="col-sm-12">
+                                    @foreach (var upload in Model.Uploads)
+                                    {
+                                        <div class="col-sm-3">
+                                            <div class="card attechment-card" onclick="DownloadRequirment('@upload.FileName');">
+                                                <div class="view overlay hm-white-slight">
+                                                    <img src="@Url.Content("~/Content/img/no_attechment.png")" class="img-fluid" alt="">
+                                                    <a>
+                                                        <div class="mask"></div>
+                                                    </a>
+                                                </div>
+                                                <div class="card-block">
+                                                    <hr class="attechment-hr">
+                                                    <!--Text-->
+                                                    <p class="card-text"><a href="#">@upload.FileName</a></p>
+                                                </div>
+                                                <div class="card-data attech-footer">
+                                                    <ul style="list-style: none;">
+                                                        <li class="attech-footer-left"><i class="ti-time"></i> @upload.UploadedDate</li>
+                                                        <li class="attech-footer-right">@upload.FileSize</li>
+                                                    </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    }
+                                                                        
+                                </div>                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="card estimate-cards">
+                            <div class="card-header">
+                                Activity Log
+                            </div>
+                            <div class="card-block">
+                                <div class="col-sm-12">
+                                    <div class="detailBox">
+                                        <div class="actionBox">
+                                            <ul class="commentList">
+                                                @foreach (var comment in Model.Comments)
+                                                {
+                                                    <li>
+                                                        <div class="commenterImage">
+                                                            <img src="@Url.Content("~/Content/build/images/users/02.jpg")" />
+                                                        </div>
+                                                        <div class="commentText">
+                                                            <p class="">@comment.CommentBy</p> <span class="date sub-text">on @comment.CommentDate</span>
+                                                            <p class="comment-text">@comment.Comment</p>
+                                                            @if (comment.CommUploads.Count > 0)
+                                                            {
+                                                                <p style="color: #1f364f;"><b><i class="ti-link" style="color: #1f364f !important;"></i>Open Attachments</b></p>
+                                                                foreach (var upload in comment.CommUploads)
+                                                                {
+                                                                    if (comment.CommentID == upload.CommentID)
+                                                                    {
+                                                                        <p class="commentText"><a href="#" class="commentText" onclick="Download('@upload.UploadFileName')">@upload.UploadFileName</a></p>
+                                                                    }
+                                                                }
+                                                            }
+                                                            
+                                                        </div>
+                                                        <div class="comment-edit pull-right">
+                                                            @*<a href="javascript:void(0)"><i class="ti-pencil-alt"></i></a>*@
+                                                            <a href="javascript:void(0)" onclick="DeleteComment('@comment.CommentID')"><i class="ti-trash"></i></a>
+                                                        </div>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <a href="#" class="btn btn-info" id="comment" onclick="ShowCommentDiv();" style="background-color: #1f364f !important; border-color: #1f364f !important; color:white;"><i class="ti-comment fa fa-comment-o"></i> Comment</a>
+                    <div class="form-group">
+
+                        <div class="col-sm-12 comment-boxdiv" id="commentDiv" style="display:none;">
+                            <textarea id="txtDescription" class="form-control"></textarea>
+                            <div class="clearfix"></div>
+                            <div class="clearfix"></div>
+                            <div class="col-sm-12 form-group form-row" style="margin-top:10px;">
+                                <div class="col-sm-12 text-right">                                   
+                                    <input type="file" accept="" name="UploadedDoc" id="UploadedDoc" value="Upload file" />
+                                    <div id="error_Div_UploadedDoc1" style="display:none;color:red; float:left;">
+                                        <p style="color:red;">Only .doc , .pdf extensions are allowed</p>
+                                    </div>
+                                    <div id="error_Div_UploadedDoc2" style="display: none; color: red; float: left;">
+                                        <p style="color:red;">File Size must be less than 10MB.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-sm-12 pd-zero" style="margin-top:10px;">
+                                <a class="btn btn-danger waves-effect waves-light mr-le-zero" onclick="CommentWithFile();" style="background-color: #1f364f !important; border-color: #1f364f !important; color:white;">Save</a>
+                                <a class="btn btn-danger waves-effect waves-light" onclick="HideCommentDiv();">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+<input type="hidden" id="Estimate_ID" value="@Model.Estimate_ID" />
+
+<script>
+    $(document).ready(function () {
+        $(".date-added").daterangepicker({
+            singleDatePicker: !0,
+            locale: {
+                format: 'DD/MM/YYYY'
+            },
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        var oldname
+        var newname;
+        $(".editIconDate").click(function () {            
+            oldname = $("#Date").html();
+            $("#div_Date").hide();
+            $("#edit_div_Date").show();
+            $("#Date1").val(oldname);
+        });
+
+        $("#btn_save_date").click(function () {
+            newname = $("#Date1").val();
+            if (ValidateName()) {
+                SaveDate(newname);
+            }
+        });
+
+        $("#btn_cancel_date").click(function () {
+            $("#edit_div_Date").hide();
+            $("#div_Date").show();
+            $("#Date").html(oldname);
+        });
+
+        function ValidateName() {
+            if (newname == "") {
+                $("#error_div_Date").show();
+                return false;
+            }
+            else {
+                $("#error_div_Date").hide();
+                return true;
+            }
+        }
+
+        function SaveDate(name) {           
+            $.ajax({
+                url: '/Estimate/AjaxUpdate',
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ Estimate_ID: $('#Estimate_ID').val(), Date: name, TextField: 'Date' }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data == 'Success') {
+                        $("#edit_div_Date").hide();
+                        $("#div_Date").show();
+                        $("#Date").html(newname);
+                    }
+                    else {
+                        $("#edit_div_Date").hide();
+                        $("#div_Date").show();
+                        $("#Date").html(oldname);
+                    }
+                },
+                error: function (xhr) {
+                    $('#errorMessage').html("No connection");
+                }
+            });
+        }
+    });   
+
+    $(document).ready(function () {
+        var oldname
+        var newname;
+        var newname1;
+        $(".editIconLanguage").click(function () {
+
+            oldname = $("#Language").html();
+            $("#div_Language").hide();
+            $("#edit_div_Language").show();
+            // $("#Category1").val(oldname);
+            $("#Language1 option:contains(" + oldname + ")").attr('selected', 'selected');
+        });
+
+        $("#btn_save_language").click(function () {
+            //$("#Category1 option:selected").index()
+            newname = $('#Language1 :selected').text();
+            newname1 = $('#Language1 :selected').val();
+            if (ValidateLanguage()) {
+                SaveLanguage(newname1)
+            }
+        });
+
+        $("#btn_cancel_language").click(function () {
+            $("#edit_div_Language").hide();
+            $("#div_Language").show();
+            $("#Language").html(oldname);
+            $("#lang").html(oldname);
+
+        });
+
+        function ValidateLanguage() {
+            if (newname1 == "0") {
+                $("#error_div_Language").show();
+                return false;
+            }
+            else {
+                $("#error_div_Language").hide();
+                return true;
+            }
+        }
+
+        function SaveLanguage(name) {
+            $.ajax({
+                url: '/Estimate/AjaxUpdate',
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ Estimate_ID: $('#Estimate_ID').val(), Language: name, TextField: 'Language' }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data == 'Success') {
+                        $("#edit_div_Language").hide();
+                        $("#div_Language").show();
+                        $("#Language").html(newname);
+                        $("#cat").html(newname);
+                    }
+                    else {
+                        $("#edit_div_Language").hide();
+                        $("#div_Language").show();
+                        $("#Language").html(oldname);
+                        $("#lang").html(oldname);
+                    }
+                },
+                error: function (xhr) {
+                    $('#errorMessage').html("No connection");
+                }
+            });
+        }
+    });
+
+    $(document).ready(function () {
+        var oldname
+        var newname;
+        var newname1;
+        $(".editIconAssignTo").click(function () {
+
+            oldname = $("#AssignTo").html();
+            $("#div_AssignTo").hide();
+            $("#edit_div_AssignTo").show();
+            // $("#Category1").val(oldname);
+            $("#AssignTo1 option:contains(" + oldname + ")").attr('selected', 'selected');
+        });
+
+        $("#btn_save_assignTo").click(function () {
+            //$("#Category1 option:selected").index()
+            newname = $('#AssignTo1 :selected').text();
+            newname1 = $('#AssignTo1 :selected').val();
+            if (ValidateAssignTo()) {
+                SaveAssignTo(newname1)
+            }
+        });
+
+        $("#btn_cancel_assignTo").click(function () {
+            $("#edit_div_AssignTo").hide();
+            $("#div_AssignTo").show();
+            $("#AssignTo").html(oldname);           
+
+        });
+
+        function ValidateAssignTo() {
+            if (newname1 == "0") {
+                $("#error_div_AssignTo").show();
+                return false;
+            }
+            else {
+                $("#error_div_AssignTo").hide();
+                return true;
+            }
+        }
+
+        function SaveAssignTo(name) {
+            $.ajax({
+                url: '/Estimate/AjaxUpdate',
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ Estimate_ID: $('#Estimate_ID').val(), AssignTo: name, TextField: 'AssignTo' }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data == 'Success') {
+                        $("#edit_div_AssignTo").hide();
+                        $("#div_AssignTo").show();
+                        $("#AssignTo").html(newname);
+                        $("#cat").html(newname);
+                    }
+                    else {
+                        $("#edit_div_AssignTo").hide();
+                        $("#div_AssignTo").show();
+                        $("#AssignTo").html(oldname);                        
+                    }
+                },
+                error: function (xhr) {
+                    $('#errorMessage').html("No connection");
+                }
+            });
+        }
+    });
+
+    $(document).ready(function () {
+        var oldname
+        var newname;
+        var newname1;
+        $(".editIconPriority").click(function () {
+
+            oldname = $("#Priority").html();
+            $("#div_Priority").hide();
+            $("#edit_div_Priority").show();
+            // $("#Category1").val(oldname);
+            $("#Priority1 option:contains(" + oldname + ")").attr('selected', 'selected');
+        });
+
+        $("#btn_save_priority").click(function () {
+            //$("#Category1 option:selected").index()
+            newname = $('#Priority1 :selected').text();
+            newname1 = $('#Priority1 :selected').val();
+            if (ValidatePriority()) {
+                SavePriority(newname1)
+            }
+        });
+
+        $("#btn_cancel_priority").click(function () {
+            $("#edit_div_Priority").hide();
+            $("#div_Priority").show();
+            $("#Priority").html(oldname);
+
+        });
+
+        function ValidatePriority() {
+            if (newname1 == "0") {
+                $("#error_div_Priority").show();
+                return false;
+            }
+            else {
+                $("#error_div_Priority").hide();
+                return true;
+            }
+        }
+
+        function SavePriority(name) {
+            $.ajax({
+                url: '/Estimate/AjaxUpdate',
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ Estimate_ID: $('#Estimate_ID').val(), Priority: name, TextField: 'Priority' }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data == 'Success') {
+                        $("#edit_div_Priority").hide();
+                        $("#div_Priority").show();
+                        $("#Priority").html(newname);                       
+                    }
+                    else {
+                        $("#edit_div_Priority").hide();
+                        $("#div_Priority").show();
+                        $("#Priority").html(oldname);
+                    }
+                },
+                error: function (xhr) {
+                    $('#errorMessage').html("No connection");
+                }
+            });
+        }
+    });
+
+    $(document).ready(function () {
+        var oldname
+        var newname;
+        $(".editIconRequirment").click(function () {            
+            oldname = $("#Requirment").html();
+            $("#div_Requirment").hide();
+            $("#edit_div_Requirment").show();
+            $("#Requirment1").val(oldname);
+        });
+
+        $("#btn_save_requirment").click(function () {
+            newname = $("#Requirment1").val();
+            if (ValidateRequirment()) {
+                SaveRequirment(newname);
+            }
+        });
+
+        $("#btn_cancel_requirment").click(function () {
+            $("#edit_div_Requirment").hide();
+            $("#div_Requirment").show();
+            $("#Requirment").html(oldname);
+        });
+
+        function ValidateRequirment() {
+            if (newname == "") {
+                $("#error_div_Requirment").show();
+                return false;
+            }
+            else {
+                $("#error_div_Requirment").hide();
+                return true;
+            }
+        }
+
+        function SaveRequirment(name) {            
+            $.ajax({
+                url: '/Estimate/AjaxUpdate',
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ Estimate_ID: $('#Estimate_ID').val(), Requirment: name, TextField: 'Requirment' }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data == 'Success') {
+                        $("#edit_div_Requirment").hide();
+                        $("#div_Requirment").show();
+                        $("#Requirment").html(newname);
+                    }
+                    else {
+                        $("#edit_div_Requirment").hide();
+                        $("#div_Requirment").show();
+                        $("#Requirment").html(oldname);
+                    }
+                },
+                error: function (xhr) {
+                    $('#errorMessage').html("No connection");
+                }
+            });
+        }
+    });
+
+    
+</script>
+
+<script>
+    $(document).ready(function () {
+        $.post('@Url.Action("GetTeamByLanguage", "Estimate")', { Language_ID: $("#lang").val() },
+                 function (fooList) {
+                     $('#AssignTo1').empty();
+                     $.each(fooList, function (i, foo) {
+                         //$('#MonthYear').append($("<option />").val(this.Value).text(this.Value));
+                         $('#AssignTo1').append('<option value="' + this.Value + '">' + this.Text + '</option');
+                     });
+                 });
+      })
+</script>
+
+<script>
+    $(document).ready(function () {
+       
+              
+            $.post('@Url.Action("GetLanguageByCategory", "Estimate")', { Category_ID: $("#cat").val() },
+                function (fooList) {
+                    $('#Language1').empty();
+                    $.each(fooList, function (i, foo) {
+                        //$('#MonthYear').append($("<option />").val(this.Value).text(this.Value));
+                        $('#Language1').append('<option value="' + this.Value + '">' + this.Text + '</option');
+                    });
+                });
+        
+
+        $("#Language1").change(function () {           
+            $.post('@Url.Action("GetTeamByLanguage", "Estimate")', { Language_ID: $("#Language1").val() },
+                function (fooList) {
+                    $('#AssignTo1').empty();
+                    $.each(fooList, function (i, foo) {
+                        //$('#MonthYear').append($("<option />").val(this.Value).text(this.Value));
+                        $('#AssignTo1').append('<option value="' + this.Value + '">' + this.Text + '</option');
+                    });
+                });
+        });
+
+    });
+</script>
+
+<script>
+
+    //function AddComment() {
+    //    var tex = $(".CommentArea").val();
+    //    var Estimation_ID_Auto_PK = $("#Estimate_ID").val()
+    //    alert($("#UploadedDoc").val());
+    //    $.post("/Estimate/AddComment", { Estimate_ID: $("#Estimate_ID").val(), Comment: $("#txtDescription").val(), UploadedDoc: $("#UploadedDoc").val() }, function (data) {
+    //        if (data == "success") {
+    //            window.location = '/Estimate/ViewEstimate?Estimate_ID_PK=' + Estimation_ID_Auto_PK
+    //        }
+    //        else {
+
+    //        }
+    //    });
+    //}
+
+    function Comment() {
+        var Estimation_ID_Auto_PK = $("#Estimate_ID_PK").val()
+        // alert(Estimation_ID_Auto_PK);
+       // $("#loader").show();
+        $.ajax({
+            url: '/Estimate/AddComment',
+            dataType: "json",
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ Estimate_ID: $("#Estimate_ID_PK").val(), Comment: $("#txtEditor").Editor("getText") }),
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                if (data == 'success') {                   
+                    window.location = '/Estimate/ViewEstimate?Estimate_ID_PK=' + Estimation_ID_Auto_PK
+             //       $("#loader").hide();
+                }
+                else {
+            //        $("#loader").hide();
+                    // $('#errorMessage').html(data.errorMessage);
+                }
+            },
+            error: function (xhr) {
+                $("#loader").hide();
+                $('#errorMessage').html("No connection");
+            }
+        });
+    }
+
+    function CommentWithFile() {
+        // Checking whether FormData is available in browser 
+        var Estimation_ID_Auto_PK = $("#Estimate_ID").val();
+        if (window.FormData !== undefined) {  
+  
+            var fileUpload = $("#UploadedDoc").get(0);
+            var files = fileUpload.files;  
+              
+            // Create FormData object  
+            var fileData = new FormData();  
+  
+            // Looping over all files and add it to FormData object  
+            for (var i = 0; i < files.length; i++) {  
+                fileData.append(files[i].name, files[i]);  
+            }  
+              
+            // Adding one more key to FormData object  
+            fileData.append('Comment', $("#txtDescription").val());
+            fileData.append('Estimate_ID', $("#Estimate_ID").val());
+           // $("#loader").show();
+            $.ajax({  
+                url: '/Estimate/AddCommentWithFile',
+                type: "POST",  
+                contentType: false, // Not to set any content header  
+                processData: false, // Not to process data  
+                data: fileData,  
+                success: function (data) {
+                    if (data == 'success') {
+                        window.location = '/Estimate/ViewEstimate?Estimate_ID_PK=' + Estimation_ID_Auto_PK
+                     //   $("#loader").hide();
+                    }
+                    else {
+                       // $("#loader").hide();
+                        // $('#errorMessage').html(data.errorMessage);
+                    }
+                },  
+                error: function (err) {  
+                    alert(err.statusText);  
+                }  
+            });  
+        } else {  
+            alert("FormData is not supported.");  
+        }  
+    }
+</script>
+
+<script>
+    function Download(fileName) {
+        //var fileName = $("#UploadedDoc").val();
+        var filePath = 'ESTCOMM0' + $("#Estimate_ID").val() + '_' + fileName;
+        window.location = '/Estimate/DownLoad?file_path=' + filePath + '&file_Name=' + fileName;
+    }
+
+    function DownloadRequirment(fileName) {        
+        var filePath = 'EST0' + $("#Estimate_ID").val() + '_' + fileName;
+        window.location = '/Estimate/DownLoad?file_path=' + filePath + '&file_Name=' + fileName;      
+    }
+
+    function DeleteComment(CommentID) {
+        var Estimation_ID_Auto_PK = $("#Estimate_ID").val();
+        $.ajax({
+            url: '/Estimate/DeleteComment',
+            dataType: "json",
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ Comment_ID: CommentID }),
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                if (data == '1') {                   
+                    window.location = '/Estimate/ViewEstimate?Estimate_ID_PK=' + Estimation_ID_Auto_PK
+                    //       $("#loader").hide();
+                }
+                else {
+                    //        $("#loader").hide();
+                    // $('#errorMessage').html(data.errorMessage);
+                }
+            },
+            error: function (xhr) {
+                $("#loader").hide();
+                $('#errorMessage').html("No connection");
+            }
+        });
+    }
+</script>
+
+<script>
+    function ShowCommentDiv() {
+        $("#commentDiv").show();
+        $("#comment").hide();
+    }
+
+    function HideCommentDiv() {
+        $("#commentDiv").hide();
+        $("#comment").show();
+    }
+</script>
+
+<script>
+    function Cancel() {
+        window.location = '@Url.RouteUrl("EstimateHome")';
+    }
+</script>

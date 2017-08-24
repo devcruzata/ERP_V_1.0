@@ -1,0 +1,332 @@
+﻿@model Project.Web.Models.ClientModel
+@{
+    ViewBag.Title = "Manage Client";
+}
+
+<!-- jQuery-->
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery/dist/jquery.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/BootstrapCountryPicker/bootstrap-formhelpers-countries.en_US.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/BootstrapCountryPicker/bootstrap-formhelpers-countries.js")"></script>
+
+<!-- Page Content -->
+<div class="page-container">
+    <div class="page-header clearfix">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4 class="mt-0 mb-5">Add Client</h4>
+                <ol class="breadcrumb mb-0">
+                    <li><a href="@Url.RouteUrl("AdminDashboard_V_2")">Home</a></li>
+                    <li><a href="@Url.RouteUrl("ClientHome")">Clients</a></li>
+                    <li class="active">Add Client</li>
+                </ol>
+            </div>
+            <div class="col-sm-6">
+                @*<div class="btn-group mt-5">
+                    <button type="button" class="btn btn-default btn-outline"><i class="flag-icon flag-icon-us mr-5"></i> English</button>
+                    <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default btn-outline dropdown-toggle"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
+                    <ul class="dropdown-menu dropdown-menu-right animated fadeInDown">
+                        <li><a href="#"><i class="flag-icon flag-icon-de mr-5"></i> German</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-fr mr-5"></i> French</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-es mr-5"></i> Spanish</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-it mr-5"></i> Italian</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-jp mr-5"></i> Japanese</a></li>
+                    </ul>
+                </div>*@
+            </div>
+        </div>
+    </div>
+    <div class="page-content container-fluid">
+        <div class="widget">
+            <div class="widget-heading clearfix">
+                <h3 class="widget-title pull-left">Add Client</h3>
+                @if (ViewBag.Error_Msg != "")
+                {
+                    <div style="margin-left:200px;">
+                        <p style="color:red;">@ViewBag.Error_Msg</p>
+                    </div>
+                }
+                <div class="pull-right">
+                    <button type="button" class="btn btn-primary" title="Add Client" onclick="SubmitForm()"><i class="ti-save"></i></button>
+                    <button type="button" class="btn btn-default" title="Cancel" onclick="Cancel();"><i class="ti-share-alt"></i></button>
+                </div>
+            </div>
+            <div class="widget-body">
+                <form class="form-horizontal" method="post" action="/Clients/ManageClient" enctype="multipart/form-data" id="mainForm">
+
+                    <div class="tab-content">
+                        <div id="general" role="tabpanel" class="tab-pane active">
+                          
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" placeholder="Name" name="Name" id="Name">
+                                    <div id="error_Div_Name" style="display:none;color:red;">
+                                        <p style="color:red;">Please Enter Name</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" placeholder="Company Name" name="CompanyName" id="CompanyName">
+                                    <div id="error_Div_CompanyName" style="display:none;color:red;">
+                                        <p style="color:red;">Please Enter Company Name</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <input id="Email" type="email" class="form-control" placeholder="Email" name="Email">
+                                    <div id="error_Div_Email1" style="display:none;color:red;">
+                                        <p style="color:red;">Please Enter Valid Email</p>
+                                    </div>
+                                    <div id="error_Div_Email2" style="display:none;color:red;">
+                                        <p style="color:red;">Please Enter Valid Email</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input id="Alternate_Email" type="email" class="form-control" placeholder="Alternate Email" name="Alternate_Email">
+                                    <div id="error_Div_Alternate_Email" style="display:none;color:red;">
+                                        <p style="color:red;">Please Enter Valid Email</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-sm-6">
+                                    <input id="ContactNo" type="text" class="form-control" placeholder="Contact" name="ContactNo" onkeypress="return isNumberKey(event)" maxlength="13">
+                                    <div id="error_Div_ContactNo1" style="display:none;color:red;">
+                                        <p style="color:red;">Please Enter Your Contact No</p>
+                                    </div>
+                                    <div id="error_Div_ContactNo2" style="display:none;color:red;">
+                                        <p style="color:red;">Contact No Should be minimum 10 Characters</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input id="SkypeNo" type="text" class="form-control" placeholder="Skype" name="SkypeNo" maxlength="20">
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-sm-6">
+                                    <input id="AddressLine1" type="text" class="form-control" placeholder="AddressLine1" name="AddressLine1">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input id="AddressLine2" type="text" class="form-control" placeholder="AddressLine2" name="AddressLine2">
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-sm-6">
+                                    <input id="City" type="text" class="form-control" placeholder="City" name="City">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input id="State" type="text" class="form-control" placeholder="State" name="State">
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-sm-6">
+                                    <select class="input-medium bfh-countries form-control form-cutom" data-country="US" id="Country" name="Country"></select>
+                                    <div id="error_Div_Country" style="display:none;color:red;">
+                                        <p style="color:red;">Please Enter Your Contact No</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input id="ZipCode" type="text" class="form-control" placeholder="ZipCode" name="ZipCode" onkeypress="return isNumberKey(event)" maxlength="6">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <input id="JobDescription" type="text" class="form-control" placeholder="Work Description" name="JobDescription">
+                                    <div id="error_Div_JobDescription" style="display:none;color:red;">
+                                        <p style="color:red;">Please Enter Job Description</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    @Html.DropDownListFor(m => m.Source, (List<SelectListItem>)ViewBag.Source_List, new { @class = "form-control form-cutom" })
+                                    <div id="error_Div_Source" style="display:none;color:red;">
+                                        <p style="color:red;">Please Enter Source</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            @*<div class="form-group">
+
+                        <div class="col-sm-12">
+                            <textarea class="form-control" placeholder="Requirement" name="Requirement" id="Requirement"></textarea>
+                            <div id="error_Div_Requirement" style="display:none;color:red;">
+                                <p style="color:red;">Please Enter Requiremnts</p>
+                            </div>
+                        </div>
+
+                    </div>*@
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@{
+    string myDateString = DateTime.Now.ToString("dd/MM/yyyy").Replace("-", "/");
+    <input type="hidden" id="curDat" value="@myDateString" />
+}
+<!-- /.container -->
+<script>
+    $(document).ready(function () {
+        var dat = $("#curDat").val().toString();
+        $(".date-added").daterangepicker({
+            singleDatePicker: !0,
+            maxDate: dat,
+            locale: {
+                format: 'DD/MM/YYYY'
+            },
+        });
+    });
+</script>
+
+
+<script type="text/javascript">
+        $(document).ready(function () {
+
+        });
+
+        function validateForm() {
+            // var ext = $('#UploadedDoc').val().split('.').pop().toLowerCase();
+            var emailRegex = /^[A-Za-z0-9._]*\@@[A-Za-z]*\.[A-Za-z]{2,5}$/;
+           
+             if ($("#Name").val().trim() == "") {
+
+                $("#error_Div_Name").show();
+               
+                return false;
+            }
+            else if ($("#CompanyName").val().trim() == "") {
+
+                $("#error_Div_CompanyName").show();
+                $("#error_Div_Name").hide();
+               
+                return false;
+            }
+            else if ($("#Email").val().trim() == "") {
+
+                $("#error_Div_Email1").show();
+                $("#error_Div_CompanyName").hide();
+                $("#error_Div_Name").hide();
+               
+                return false;
+            }
+            else if (!emailRegex.test($("#Email").val().trim())) {
+
+                $("#error_Div_Email2").show();
+                $("#error_Div_Email1").hide();
+                $("#error_Div_CompanyName").hide();
+                $("#error_Div_Name").hide();
+               
+                return false;
+            }
+            //else if ($("#ContactNo").val().trim() == "") {
+
+            //    $("#error_Div_ContactNo1").show();
+            //    $("#error_Div_Email2").hide();
+            //    $("#error_Div_Email1").hide();
+            //    $("#error_Div_CompanyName").hide();
+            //    $("#error_Div_Name").hide();
+            //    $("#error_Div_JobDescription").hide();
+            //    return false;
+            //}
+            //else if ($("#ContactNo").val().trim().length < 10) {
+
+            //    $("#error_Div_ContactNo2").show();
+            //    $("#error_Div_ContactNo1").hide();
+            //    $("#error_Div_Email2").hide();
+            //    $("#error_Div_Email1").hide();
+            //    $("#error_Div_CompanyName").hide();
+            //    $("#error_Div_Name").hide();
+            //    $("#error_Div_JobDescription").hide();
+            //    return false;
+            //}
+
+
+            else if ($("#Alternate_Email").val().trim() != "" && !emailRegex.test($("#Alternate_Email").val().trim())) {
+
+                $("#error_Div_Alternate_Email").show();
+                //$("#error_Div_ContactNo2").hide();
+                //$("#error_Div_ContactNo1").hide();
+                $("#error_Div_Email2").hide();
+                $("#error_Div_Email1").hide();
+                $("#error_Div_CompanyName").hide();
+                $("#error_Div_Name").hide();
+              
+                return false;
+
+            }
+            else if ($("#JobDescription").val().trim() == "") {
+
+                $("#error_Div_JobDescription").show();
+                $("#error_Div_Alternate_Email").hide();
+                //$("#error_Div_ContactNo2").hide();
+                //$("#error_Div_ContactNo1").hide();
+                $("#error_Div_Email2").hide();
+                $("#error_Div_Email1").hide();
+                $("#error_Div_CompanyName").hide();
+                $("#error_Div_Name").hide();
+                 return false();
+             }
+            else {
+                $("#error_Div_JobDescription").hide();
+                $("#error_Div_Alternate_Email").hide();
+                //$("#error_Div_ContactNo2").hide();
+                //$("#error_Div_ContactNo1").hide();
+                $("#error_Div_Email2").hide();
+                $("#error_Div_Email1").hide();
+                $("#error_Div_CompanyName").hide();
+                $("#error_Div_Name").hide();
+                return true;
+            }
+        }
+
+        //function FileSize() {
+        //    var file_size = $('#UploadedDoc')[0].files[0].size;
+        //    if (file_size > 2097152) {
+        //        alert(file_size);
+        //    }
+        //}
+        function SubmitForm() {
+
+            if (validateForm()) {
+
+                $("#mainForm").submit();
+            }
+        }
+
+        function Cancel() {
+            window.location = '@Url.RouteUrl("ClientHome")';
+        }
+
+</script>
+
+<script>
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+
+    function zipCheck(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+
+</script>
+
+<script>
+
+
+</script>

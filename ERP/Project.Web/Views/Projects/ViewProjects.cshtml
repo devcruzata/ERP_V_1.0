@@ -1,0 +1,1022 @@
+﻿@model Project.Web.Models.ProjectModel
+@{
+    ViewBag.Title = "View-Projects";
+}
+
+<!-- jQuery-->
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery/dist/jquery.min.js")"></script>
+
+
+<style>
+    .editOnHover {
+        background-color: #E8F3FF;
+    }
+
+    .editabBox {
+        width: 100%;
+        min-height: 20px;
+        padding: 10px 15px;
+        background-color: #fff;
+        border: 1px solid #1f364f;
+    }
+
+    formedit {
+        width: 100%;
+    }
+
+    #textb {
+        width: 100%;
+    }
+    /*.btnEditSave, .btnEditCancel {
+        padding: 6px 30px 6px 75px;
+    }*/
+    .btnEditSave {
+        margin-top: 10px;
+        margin-left: 160px;
+    }
+
+    .btnEditCancel {
+        margin-top: 10px;
+        margin-left: 5px;
+        float: right;
+    }
+
+    .showmoredetails {
+        display: none;
+    }
+
+    .hidebtn {
+        display: none;
+    }
+
+    .comment-userimg {
+        width: 45px;
+        height: 45px;
+        border-radius: 45px;
+    }
+
+    .comment-boxdiv {
+        margin-top: 15px;
+    }
+
+    .card-header {
+        background: #1f364f !important;
+        padding: 8px 15px;
+        font-size: 16px;
+        color: #fff;
+    }
+
+    .estimate-cards {
+        margin-bottom: 20px;
+    }
+
+    .view {
+        overflow: hidden;
+        position: relative;
+        cursor: default;
+    }
+
+        .view .content, .view .mask {
+            position: absolute;
+        }
+
+        .view img, .view video {
+            display: block;
+            position: relative;
+        }
+
+    .full-bg-img {
+        position: absolute;
+    }
+
+    .overlay:hover .mask {
+        opacity: 1;
+    }
+
+    .overlay img, .overlay video {
+        transition: all .2s linear;
+    }
+
+    .overlay .mask {
+        opacity: 0;
+        transition: all .4s ease-in-out;
+    }
+
+    .attechment-card {
+        margin: 8px 0;
+    }
+
+    .attechment-card-block {
+        padding: 10px 0;
+        display: inline-block;
+        width: 100%;
+    }
+
+    .attechment-card img {
+        width: 100%;
+    }
+
+    .attechment-hr {
+        margin: 5px 0;
+    }
+
+    .card .card-data, .card .comments-section .row, .card .hl-2-col, .card .horizontal-listing .row, .comments-section .card .row, .horizontal-listing .card .row {
+        background-color: #3E4551;
+        color: #fff;
+        text-align: center;
+        height: auto;
+        padding: 10px;
+    }
+
+    .attech-footer ul {
+        display: inline-block;
+        width: 100%;
+        margin-bottom: 0 !important;
+    }
+
+    .attech-footer-left {
+        width: 50%;
+        text-align: left;
+        float: left;
+        font-size: 10px;
+    }
+
+    .attech-footer-right {
+        width: 50%;
+        text-align: right;
+        float: right;
+        font-size: 10px;
+    }
+
+    .card-text a {
+        font-size: 12px;
+    }
+
+    .detailBox {
+    }
+
+    .titleBox {
+        background-color: #fdfdfd;
+        padding: 10px;
+    }
+
+        .titleBox label {
+            color: #444;
+            margin: 0;
+            display: inline-block;
+        }
+
+    .commentBox {
+        padding: 10px;
+        border-top: 1px dotted #bbb;
+    }
+
+        .commentBox .form-group:first-child, .actionBox .form-group:first-child {
+            width: 80%;
+        }
+
+        .commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
+            width: 18%;
+        }
+
+    .actionBox .form-group * {
+        width: 100%;
+    }
+
+    .taskDescription {
+        margin-top: 10px 0;
+    }
+
+    .commentList {
+        padding: 0;
+        list-style: none;
+        overflow: auto;
+    }
+
+    .comment-text {
+        font-size: 13px !important;
+    }
+
+    .commentList li {
+        margin: 0;
+        margin-top: 10px;
+    }
+
+        .commentList li > div {
+            display: table-cell;
+        }
+
+    .commenterImage {
+        width: 30px;
+        margin-right: 5px;
+        height: 100%;
+        float: left;
+    }
+
+        .commenterImage img {
+            width: 100%;
+            border-radius: 50%;
+        }
+
+    .commentText p {
+        margin: 0;
+    }
+
+    .commentText {
+        float: left;
+    }
+
+    .sub-text {
+        color: #aaa;
+        font-family: verdana;
+        font-size: 11px;
+        padding-left: 12px;
+    }
+
+    .actionBox {
+        border-top: 1px dotted #bbb;
+        padding: 10px;
+    }
+
+    .comment-edit a {
+        padding: 0 6px;
+        color: #333;
+    }
+
+    .commentList li {
+        display: inline-block;
+        width: 100%;
+    }
+</style>
+
+
+
+<div class="page-container">
+    <div class="page-content container-fluid">
+        <div class="page-header clearfix">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h4 class="mt-0 mb-5">View Projects</h4>
+                    <ol class="breadcrumb mb-0">
+                        <li><a href="@Url.RouteUrl("AdminHome")">Home</a></li>
+                        <li><a href="@Url.RouteUrl("ProjectHome")">Projects</a></li>
+                        <li class="active">View Projects</li>
+                    </ol>
+                </div>
+                <div class="col-sm-6">
+                    &nbsp;
+                    <div class="btn-group mt-5">
+                        <button type="button" class="btn btn-default btn-outline"><i class="flag-icon flag-icon-us mr-5"></i> English</button>
+                        <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default btn-outline dropdown-toggle"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
+                        <ul class="dropdown-menu dropdown-menu-right animated fadeInDown">
+                            <li><a href="#"><i class="flag-icon flag-icon-de mr-5"></i> German</a></li>
+                            <li><a href="#"><i class="flag-icon flag-icon-fr mr-5"></i> French</a></li>
+                            <li><a href="#"><i class="flag-icon flag-icon-es mr-5"></i> Spanish</a></li>
+                            <li><a href="#"><i class="flag-icon flag-icon-it mr-5"></i> Italian</a></li>
+                            <li><a href="#"><i class="flag-icon flag-icon-jp mr-5"></i> Japanese</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="widget">
+            <div class="widget-heading clearfix">
+                <h3 class="widget-title pull-left">View Projects</h3>
+                <div class="pull-right">
+                    @*<button type="button" class="btn btn-primary" title="Add Leads"><i class="ti-save"></i></button>*@
+                        <button type="button" class="btn btn-default" title="Cancel" onclick="Cancel();"><i class="ti-share-alt"></i></button>
+                </div>
+            </div>
+            <div class="widget-body">               
+                    <div class="tab-content">
+                        <div id="general" role="tabpanel" class="tab-pane active">
+                            <div class="form-group ">
+                                <div class="col-sm-6" id="div_Title">
+                                    <div class="col-sm-3">Title: </div>
+                                    <div class="col-sm-6" id="Title">@Model.Title</div>
+                                    @if (Model.isSigned == false)
+                                    {
+                                        <div class="col-sm-1 editIconTitle"><i class="ti-pencil"></i></div>
+                                    }                                    
+                                </div>
+                                <div class="col-sm-6" id="edit_div_Title" style="display:none;">
+                                    <div class="col-sm-3">Title: </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control " id="Title1" />
+                                        <div id="error_div_Title" style="display:none;">
+                                            <p style="color:red;">Please Enter Project Title</p>
+                                        </div>
+                                        <a href="#" class="btn btn-primary btn-small btnEditSave" id="btn_save_title"><i class="ti-check"></i></a>
+                                        <a href="#" class="btn btn-primary btn-small btnEditCancel" id="btn_cancel_title"><i class="ti-close"></i></a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6" id="div_Date">
+                                    <div class="col-sm-3">Date: </div>
+                                    <div class="col-sm-6" id="Date">@Model.Date</div>
+                                    @if (Model.isSigned == false)
+                                    {
+                                        <div class="col-sm-1 editIconDate"><i class="ti-pencil"></i></div>
+                                    }                                     
+                                </div>
+                                <div class="col-sm-6" id="edit_div_Date" style="display:none;">
+                                    <div class="col-sm-3">Date: </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control date-added" id="Date1" />
+                                        <div id="error_div_Date" style="display:none;">
+                                            <p style="color:red;">Please Enter Name</p>
+                                        </div>
+                                        <a href="#" class="btn btn-primary btn-small btnEditSave" id="btn_save_date"><i class="ti-check"></i></a>
+                                        <a href="#" class="btn btn-primary btn-small btnEditCancel" id="btn_cancel_date"><i class="ti-close"></i></a>
+                                    </div>
+                                </div>                                
+                            </div>
+                            <div class="form-group ">
+                                <div class="col-sm-6" id="div_Client">
+                                    <div class="col-sm-3">Client: </div>
+                                    <div class="col-sm-6" id="Client">@Model.Client_Name</div>
+                                    <input type="hidden" id="cli" value="@Model.Client_ID" />
+                                    @if (Model.isSigned == false)
+                                    {
+                                        <div class="col-sm-1 editIconClient"><i class="ti-pencil"></i></div>
+                                    }                                     
+                                </div>
+                                <div class="col-sm-6" id="edit_div_Client" style="display:none;">
+                                    <div class="col-sm-3">Client: </div>
+                                    <div class="col-sm-6">
+                                        @Html.DropDownListFor(m => m.Client_ID, (List<SelectListItem>)ViewBag.Clients, new { @class = "form-control form-cutom Client1", id = "Client1" })
+                                        <div id="error_div_Client_ID" style="display:none;">
+                                            <p style="color:red;">Please Choose A Client</p>
+                                        </div>
+                                        <a href="#" class="btn btn-primary btn-small btnEditSave" id="btn_save_client"><i class="ti-check"></i></a>
+                                        <a href="#" class="btn btn-primary btn-small btnEditCancel" id="btn_cancel_client"><i class="ti-close"></i></a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6" id="div_Model">
+                                    <div class="col-sm-3">Model: </div>
+                                    <div class="col-sm-6" id="Model">@Model.Model</div>
+                                    @if (Model.isSigned == false)
+                                    {
+                                        <div class="col-sm-1 editIconModel"><i class="ti-pencil"></i></div>
+                                    }                                     
+                                </div>
+                                <div class="col-sm-6" id="edit_div_Model" style="display:none;">
+                                    <div class="col-sm-3">Model: </div>
+                                    <div class="col-sm-6">                                        
+                                        <select class="form-control form-cutom" name="Model1" id="Model1">
+                                            <option value="0">Choose A Model</option>
+                                            <option value="Hourly">Hourly</option>
+                                            <option value="Fixed">Fixed</option>
+                                        </select>
+                                        <div id="error_div_Model" style="display:none;">
+                                            <p style="color:red;">Please Choose A Model</p>
+                                        </div>
+                                        <a href="#" class="btn btn-primary btn-small btnEditSave" id="btn_save_model"><i class="ti-check"></i></a>
+                                        <a href="#" class="btn btn-primary btn-small btnEditCancel" id="btn_cancel_model"><i class="ti-close"></i></a>
+                                    </div>
+                                </div>                                
+                            </div>
+                            <div class="form-group ">
+                                <div class="col-sm-6" id="div_Category">
+                                    <div class="col-sm-3">Category: </div>
+                                    <div class="col-sm-6" id="Category">@Model.CategoryName</div>
+                                    @if (Model.isSigned == false)
+                                    {
+                                        <div class="col-sm-1 editIconCategory"><i class="ti-pencil"></i></div>
+                                    }                                    
+                                </div>
+                                <div class="col-sm-6" id="edit_div_Category" style="display:none;">
+                                    <div class="col-sm-3">Category: </div>
+                                    <div class="col-sm-6">                                        
+                                        @Html.DropDownListFor(m => m.Category_ID, (List<SelectListItem>)ViewBag.Category_List, new { @class = "form-control form-cutom Category1", id = "Category1" })
+                                        <div id="error_div_Category" style="display:none;">
+                                            <p style="color:red;">Please Choose A Category</p>
+                                        </div>
+                                        <a href="#" class="btn btn-primary btn-small btnEditSave" id="btn_save_category"><i class="ti-check"></i></a>
+                                        <a href="#" class="btn btn-primary btn-small btnEditCancel" id="btn_cancel_category"><i class="ti-close"></i></a>
+                                    </div>
+                                </div>                        
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div> 
+                    <div class="panel panel-info">
+                        <div class="panel-heading" style="background-color: #1f364f !important;">
+                            @if (Model.isSigned == false)
+                            {
+                                <h3 class="panel-title" style="color: white !important;">SOW <i class="ti-pencil editIconSOW"></i></h3>
+                            }
+                            else
+                            {
+                                <h3 class="panel-title" style="color: white !important;">SOW </h3>
+                            }                            
+                        </div>
+                        <div class="panel-body" id="editable_sow" style="display:none;" >
+                            <form action="/Projects/Temp_Sow" method="post" id="sow_From" class="form-horizontal">
+                                <input type="hidden" id="Project_ID_PK" name="Project_ID_PK" value="@Model.Project_ID_PK" />
+                                @{
+                                    int j = 0;
+                                    for (int i = 0; i < Model.Task.Count; i++)
+                                    {
+                                        j++;
+                                        <div class="col-sm-12" id="sow_@j" style="margin-top:10px;">
+                                            <div class="col-sm-2">
+                                                <input type="text" placeholder="Task/Module" class="form-control form-cutom" name="Task" id="Task" value="@Model.Task[i]">
+                                                <div id="error_Div_Task" style="display:none;color:red;">
+                                                    <p style="color:red;">Please Select A Date</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <input type="text" placeholder="Description" class="form-control form-cutom" name="Description" id="Description" value="@Model.Description[i]">
+                                                <div id="error_Div_Description" style="display:none;color:red;">
+                                                    <p style="color:red;">Please Select A Date</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <input type="text" placeholder="Hours" class="form-control form-cutom" name="Hours" id="Hours" value="@Model.Hours[i]">
+                                                <div id="error_Div_Hours" style="display:none;color:red;">
+                                                    <p style="color:red;">Please Select A Hours</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <input type="text" placeholder="Price" class="form-control form-cutom" name="Price" id="Price" value="@Model.Price[i]">
+                                                <div id="error_Div_Price" style="display:none;color:red;">
+                                                    <p style="color:red;">Please Select A Hours</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                @if (i == (Model.Task.Count - 1))
+                                                {
+                                                    <button type="button" class="btn btn-sm btn-outline btn-primary" id="plus_btn_@j" onclick="AddRow(this);"><i class="ti-plus"></i></button>
+                                                }
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                                <div class="col-sm-12" style="margin-top:20px;">
+                                    <div class="col-sm-12 form-group form-row">
+                                        <div class="col-lg-12 pd-zero">
+                                            <textarea id="editable_note" name="Note" class="form-control" placeholder="Additional Notes"></textarea>
+                                            <input type="hidden"  id="editable_note_hidden" value="@Model.Note" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div style="float:right;">
+                                        <a href="#" class="btn btn-primary btn-small " id="btn_save_sow"><i class="ti-check"></i></a>
+                                        <a href="#" class="btn btn-primary btn-small " id="btn_cancel_sow"><i class="ti-close"></i></a>
+                                    </div>                                    
+                                </div>
+                            </form>                         
+                        </div>
+
+                        <div class="panel-body" id="readable_sow" >          
+
+                                    <div class="col-sm-12" id="sow@i" >
+                                        <table class="table table-hover table-striped dt-responsive nowrap">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" style="color: #1f364f !important;">Task</th>
+                                                    <th class="text-center" style="color: #1f364f !important;">Description</th>
+                                                    <th class="text-center" style="color: #1f364f !important;">Hours</th>
+                                                    <th class="text-center" style="color: #1f364f !important;">Price</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @for (int i = 0; i < Model.Task.Count; i++)
+                                                {
+                                                <tr>
+                                                    <td class="text-center">@Model.Task[i]</td>
+                                                    <td class="text-center">@Model.Description[i]</td>
+                                                    <td class="text-center">@Model.Hours[i]</td>
+                                                    <td class="text-center">@Model.Price[i]</td>
+                                                </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>                            
+                            
+
+                            <div class="col-sm-12" style="margin-top:20px;">
+                                <div class="col-sm-12 form-group form-row">
+                                    <div class="col-lg-12 pd-zero">
+                                        <textarea id="Note" name="Note" class="form-control" placeholder="Additional Notes" readonly="readonly"></textarea>
+                                        <input type="hidden" name="Requirment" id="Requirment" value="@Model.Note" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>          
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="sow_hidden" style="display:none;">
+    <div class="col-sm-12" style=" margin-top:10px;">
+        <div class="col-sm-2">
+            <input type="text" placeholder="Task/Module" class="form-control form-cutom" name="Task" id="Task">
+            <div id="error_Div_Task" style="display:none;color:red;">
+                <p style="color:red;">Please Select A Date</p>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <input type="text" placeholder="Description" class="form-control form-cutom" name="Description" id="Description">
+            <div id="error_Div_Description" style="display:none;color:red;">
+                <p style="color:red;">Please Select A Date</p>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <input type="text" placeholder="Hours" class="form-control form-cutom" name="Hours" id="Hours">
+            <div id="error_Div_Hours" style="display:none;color:red;">
+                <p style="color:red;">Please Select A Hours</p>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <input type="text" placeholder="Price" class="form-control form-cutom" name="Price" id="Price">
+            <div id="error_Div_Price" style="display:none;color:red;">
+                <p style="color:red;">Please Select A Hours</p>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <button type="button" class="btn btn-sm btn-outline btn-primary" onclick="AddRow(this);"><i class="ti-plus"></i></button>
+            <button type="button" class="btn btn-sm btn-outline btn-danger" onclick="RemoveRow(this);"><i class="ti-minus"></i></button>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="Project_ID" value="@Model.Project_ID_PK" />
+
+<script>
+    $(document).ready(function () {
+        $(".date-added").daterangepicker({
+            singleDatePicker: !0,
+            locale: {
+                format: 'DD/MM/YYYY'
+            },
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#Note").val($("#Requirment").val());
+        $("#editable_note").val($("#editable_note_hidden").val());
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        var oldname
+        var newname;
+        $(".editIconTitle").click(function () {
+            oldname = $("#Title").html();
+            $("#div_Title").hide();
+            $("#edit_div_Title").show();
+            $("#Title1").val(oldname);
+        });
+
+        $("#btn_save_title").click(function () {
+            newname = $("#Title1").val();
+            if (ValidateTitle()) {
+                SaveTitle(newname);
+            }
+        });
+
+        $("#btn_cancel_title").click(function () {
+            $("#edit_div_Title").hide();
+            $("#div_Title").show();
+            $("#Title").html(oldname);
+        });
+
+        function ValidateTitle() {
+            if (newname == "") {
+                $("#error_div_Title").show();
+                return false;
+            }
+            else {
+                $("#error_div_Title").hide();
+                return true;
+            }
+        }
+
+        function SaveTitle(name) {
+            $.ajax({
+                url: '/Projects/AjaxUpdate',
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ Project_ID_PK: $('#Project_ID').val(), Title: name, TextField: 'Title' }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data == 'Success') {
+                        $("#edit_div_Title").hide();
+                        $("#div_Title").show();
+                        $("#Title").html(newname);
+                    }
+                    else {
+                        $("#edit_div_Title").hide();
+                        $("#div_Title").show();
+                        $("#Title").html(oldname);
+                    }
+                },
+                error: function (xhr) {
+                    $('#errorMessage').html("No connection");
+                }
+            });
+        }
+    });
+
+    $(document).ready(function () {
+        var oldname
+        var newname;
+        $(".editIconDate").click(function () {
+            oldname = $("#Date").html();
+            $("#div_Date").hide();
+            $("#edit_div_Date").show();
+            $("#Date1").val(oldname);
+        });
+
+        $("#btn_save_date").click(function () {
+            newname = $("#Date1").val();
+            if (ValidateDate()) {
+                SaveDate(newname);
+            }
+        });
+
+        $("#btn_cancel_date").click(function () {
+            $("#edit_div_Date").hide();
+            $("#div_Date").show();
+            $("#Date").html(oldname);
+        });
+
+        function ValidateDate() {
+            if (newname == "") {
+                $("#error_div_Date").show();
+                return false;
+            }
+            else {
+                $("#error_div_Date").hide();
+                return true;
+            }
+        }
+
+        function SaveDate(name) {
+            $.ajax({
+                url: '/Projects/AjaxUpdate',
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ Project_ID_PK: $('#Project_ID').val(), Date: name, TextField: 'Date' }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data == 'Success') {
+                        $("#edit_div_Date").hide();
+                        $("#div_Date").show();
+                        $("#Date").html(newname);
+                    }
+                    else {
+                        $("#edit_div_Date").hide();
+                        $("#div_Date").show();
+                        $("#Date").html(oldname);
+                    }
+                },
+                error: function (xhr) {
+                    $('#errorMessage').html("No connection");
+                }
+            });
+        }
+    });
+
+    $(document).ready(function () {
+        var oldname
+        var newname;
+        $(".editIconClient").click(function () {
+
+            oldname = $("#Client").html();
+            $("#div_Client").hide();
+            $("#edit_div_Client").show();
+            // $("#Category1").val(oldname);
+            $("#Client1 option:contains(" + oldname + ")").attr('selected', 'selected');
+        });
+
+        $("#btn_save_client").click(function () {
+            //$("#Category1 option:selected").index()
+            newname = $('#Client1 :selected').text();
+            newname1 = $('#Client1 :selected').val();
+            if (ValidateClient()) {
+                SaveClient(newname1)
+            }
+        });
+
+        $("#btn_cancel_client").click(function () {
+            $("#edit_div_Client").hide();
+            $("#div_Client").show();
+            $("#Client").html(oldname);
+        });
+
+        function ValidateClient() {
+            if (newname == "") {
+                $("#error_div_Client").show();
+                return false;
+            }
+            else {
+                $("#error_div_Client").hide();
+                return true;
+            }
+        }
+
+        function SaveClient(name) {
+            $.ajax({
+                url: '/Projects/AjaxUpdate',
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ Project_ID_PK: $('#Project_ID').val(), Client_ID: name, TextField: 'Client_ID' }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data == 'Success') {
+                        $("#edit_div_Client").hide();
+                        $("#div_Client").show();
+                        $("#Client").html(newname);
+                    }
+                    else {
+                        $("#edit_div_Client").hide();
+                        $("#div_Client").show();
+                        $("#Client").html(oldname);
+                    }
+                },
+                error: function (xhr) {
+                    $('#errorMessage').html("No connection");
+                }
+            });
+        }
+    });
+
+    $(document).ready(function () {
+        var oldname
+        var newname;
+        $(".editIconCategory").click(function () {
+
+            oldname = $("#Category").html();
+            $("#div_Category").hide();
+            $("#edit_div_Category").show();
+            // $("#Category1").val(oldname);
+            $(".Category1 option:contains(" + oldname + ")").attr('selected', 'selected');
+        });
+
+        $("#btn_save_category").click(function () {
+            //$("#Category1 option:selected").index()
+            newname = $('.Category1 :selected').text();
+            newname1 = $('.Category1 :selected').val();
+            if (ValidateCategory()) {                
+                SaveCategory(newname1)
+            }
+        });
+
+        $("#btn_cancel_category").click(function () {
+            $("#edit_div_Category").hide();
+            $("#div_Category").show();
+            $("#Category").html(oldname);
+        });
+
+        function ValidateCategory() {
+            if (newname == "") {
+                $("#error_div_Category").show();
+                return false;
+            }
+            else {
+                $("#error_div_Category").hide();
+                return true;
+            }
+        }
+
+        function SaveCategory(name) {
+            $.ajax({
+                url: '/Projects/AjaxUpdate',
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ Project_ID_PK: $('#Project_ID').val(), Category_ID: name, TextField: 'Category_ID' }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data == 'Success') {
+                        $("#edit_div_Category").hide();
+                        $("#div_Category").show();
+                        $("#Category").html(newname);
+                    }
+                    else {
+                        $("#edit_div_Category").hide();
+                        $("#div_Category").show();
+                        $("#Category").html(oldname);
+                    }
+                },
+                error: function (xhr) {
+                    $('#errorMessage').html("No connection");
+                }
+            });
+        }
+    });
+
+    $(document).ready(function () {
+        var oldname
+        var newname;
+        $(".editIconModel").click(function () {
+            oldname = $("#Model").html();
+            $("#div_Model").hide();
+            $("#edit_div_Model").show();
+            $("#Model1").val(oldname);
+        });
+
+        $("#btn_save_model").click(function () {
+            newname = $("#Model1").val();
+            if (ValidateModel()) {
+                SaveModel(newname);
+            }
+        });
+
+        $("#btn_cancel_model").click(function () {
+            $("#edit_div_Model").hide();
+            $("#div_Model").show();
+            $("#Model").html(oldname);
+        });
+
+        function ValidateModel() {
+            if (newname == "0") {
+                $("#error_div_Model").show();
+                return false;
+            }
+            else {
+                $("#error_div_Model").hide();
+                return true;
+            }
+        }
+
+        function SaveModel(name) {
+            $.ajax({
+                url: '/Projects/AjaxUpdate',
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ Project_ID_PK: $('#Project_ID').val(), Model: name, TextField: 'Model' }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data == 'Success') {
+                        $("#edit_div_Model").hide();
+                        $("#div_Model").show();
+                        $("#Model").html(newname);
+                    }
+                    else {
+                        $("#edit_div_Model").hide();
+                        $("#div_Model").show();
+                        $("#Model").html(oldname);
+                    }
+                },
+                error: function (xhr) {
+                    $('#errorMessage').html("No connection");
+                }
+            });
+        }
+    });   
+
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        var oldhtml
+        var newname;
+        $(".editIconSOW").click(function () {
+            oldhtml = $("#readable_sow").html();
+            $("#readable_sow").hide();
+            $(".editIconSOW").hide();
+            $("#editable_sow").show();           
+        });
+
+        $("#btn_save_sow").click(function () {
+            //newname = $("#Requirment1").val();
+          //  if (ValidateRequirment()) {
+              SaveSow();
+          //  }
+        });
+
+        $("#btn_cancel_sow").click(function () {
+            $("#editable_sow").hide();
+            $("#readable_sow").show();
+            $(".editIconSOW").show();
+            $("#readable_sow").html(oldhtml);
+        });
+
+        //function ValidateRequirment() {
+        //    if (newname == "") {
+        //        $("#error_div_Requirment").show();
+        //        return false;
+        //    }
+        //    else {
+        //        $("#error_div_Requirment").hide();
+        //        return true;
+        //    }
+        //}
+
+        function SaveSow() {            
+            var formSow = $('#sow_From');           
+            $.ajax({
+                url: formSow.attr('action'),                
+                type: "POST",               
+                data: formSow.serialize(),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data != '') {
+                        $("#editable_sow").hide();
+                        $("#readable_sow").show();
+                        $(".editIconSOW").show();
+                        $("#readable_sow").html(data);
+                        $("#Note").val($("#Requirment").val());
+                    }
+                    else {
+                        $("#editable_sow").hide();
+                        $("#readable_sow").show();
+                        $(".editIconSOW").show();
+                        $("#readable_sow").html(oldhtml);
+                    }
+                },
+                error: function (xhr) {
+                    $('#errorMessage').html("No connection");
+                }
+            });
+        }
+    });
+</script>
+
+<script>
+    function AddRow(thi) {
+        var id = $(thi).attr('id');
+        var temp = id.split('_');
+        var newID = 'sow_' + (parseInt(temp[2]) + 1).toString();
+        var newID1 = 'plus_btn_' + (parseInt(temp[2]) + 1).toString();
+        var newID2 = 'minus_btn_' + (parseInt(temp[2]) + 1).toString();
+        $('#sow_hidden').children().first().attr('id', newID)
+        $('#sow_hidden').children().first().children().last().children().first().attr('id', newID1)
+        $('#sow_hidden').children().first().children().last().children().last().attr('id', newID2)
+        var sowHidden = $("#sow_hidden").html();
+        $("#plus_btn_" + temp[2]).hide();
+        $("#minus_btn_" + temp[2]).hide();
+        $("#sow_" + temp[2]).after(sowHidden);
+    }
+
+    function RemoveRow(thi) {
+        var id = $(thi).attr('id');
+        var temp = id.split('_');
+        var newID = 'sow_' + temp[2];
+        $("#" + newID).html('');
+        $("#" + newID).hide();
+        $("#plus_btn_" + (parseInt(temp[2]) - 1).toString()).show();
+        $("#minus_btn_" + (parseInt(temp[2]) - 1).toString()).show();
+    }
+</script>
+
+<script>
+    function Cancel() {
+        window.location = '@Url.RouteUrl("ProjectHome")';
+    }
+</script>
+
+@*<script>
+    $(document).ready(function () {
+        alert();
+        $("#Note").val($("#Requirment").val());
+    });
+</script>*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

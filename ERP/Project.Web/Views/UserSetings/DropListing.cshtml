@@ -1,0 +1,20 @@
+﻿@{
+    Layout = null;
+}
+
+<div>
+    <table class="table table-hover" id="opTable">
+        @foreach(var drop in ViewBag.Drop){
+            <tr style="border-bottom:1px;">
+                <td style="text-align:left;">
+                    <label>@drop.Text</label>
+                </td>
+                <td style="text-align:right;">
+                    <button type="button" class="btn btn-small" data-toggle="modal" data-target="#SourceModal" title="Edit Source" onclick="EditListing('@drop.Text','@drop.Value')"><i class="ti-pencil"></i></button>
+                    <button type="button" class="btn btn-small" title="Delete Source" onclick="DeleteListing('@drop.Value')"><i class="ti-trash"></i></button>
+                </td>
+            </tr>
+        }
+        
+    </table>
+</div>

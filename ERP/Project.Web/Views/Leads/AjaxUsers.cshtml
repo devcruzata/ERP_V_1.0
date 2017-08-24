@@ -1,0 +1,22 @@
+﻿@{
+    Layout = null;
+}
+
+<table id="user-data-list-1" class="table table-hover table-striped dt-responsive nowrap">
+    <thead>
+        <tr>
+            <th class="text-center" style="color: #1f364f !important;">Name</th>
+            <th class="text-center" style="color: #1f364f !important;">Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var users in ViewBag.Users)
+        {
+            <tr>
+                <td class="text-center">@users.FullName</td>
+                <td class="text-center">@users.Email</td>
+            </tr>
+        }
+
+    </tbody>
+</table>

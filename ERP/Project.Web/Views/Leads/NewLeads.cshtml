@@ -1,0 +1,56 @@
+﻿@{
+    Layout = null;
+}
+
+    @*@{
+        var session = HttpContext.Current.Session; 
+    }*@
+
+    
+    
+        @{
+            if (Model.leads.Count > 0)
+            {
+                  foreach (var lead in Model.leads)
+            {
+                if (lead.Status == "NEW")
+                {
+
+                    <tr>
+                        @*@if (HttpContext.Current.Session["User_Type"].ToString() == "ADM")*@
+
+                     
+                              
+                        {
+                            <td class="text-center">
+                                <div class="checkbox-custom">
+                                    <input id="check_@lead.Lead_ID_Auto_PK" type="checkbox" class="lead_id_check" value="@lead.Lead_ID_Auto_PK" onclick="SelectLead(this);">
+                                    <label for="check_@lead.Lead_ID_Auto_PK" class="pl-0">&nbsp;</label>
+                                </div>
+                            </td>
+                        }
+                        <td class="text-center">@lead.Name</td>
+                        <td class="text-center">@lead.Email</td>
+                        <td class="text-center">@lead.SkypeNo</td>
+                        <td class="text-center">@lead.Date.ToString("d MMM yyyy")</td>
+                        <td class="text-center"><span class="label label-success">@lead.Status</span></td>
+                        <td class="text-center">@lead.AssignToName</td>
+                        <td class="text-center">
+
+                            @*<button type="button" data-toggle="modal" data-target=".bs-example-modal-animation" class="btn btn-raised btn-primary">Launch modal</button>*@
+                            <button type="button" class="btn btn-outline btn-primary" onclick="ViewLeads('@lead.Lead_ID_Auto_PK');" title="View Lead"><i class="ti-eye"></i></button>
+                            <button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target="#Status_Modal" title="Change Status" onclick="setModalData('@lead.Lead_ID_Auto_PK', '@lead.Status')"><i class="ti-pencil"></i></button>
+                            <button type="button" class="btn btn-outline btn-danger" onclick="DeleteLead('@lead.Lead_ID_Auto_PK');"><i class="ti-trash"></i></button>
+
+                        </td>
+                    </tr>
+                }
+
+            }
+            }
+            
+        }
+
+
+
+

@@ -1,0 +1,31 @@
+﻿@model Project.Web.Models.ChatModel
+@{
+    Layout = null;
+}
+
+@foreach (var chat in Model.chats)
+{
+    if (chat.RecieverID.ToString() == @HttpContext.Current.Session["UserID"].ToString())
+    {
+        <li class="media other">
+            <div class="media-body">
+               <p>@chat.Msg</p>
+               <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted pull-right">@chat.Date<i class="ti-check text-success"></i></time>
+            </div>
+            <div class="media-right avatar"><img src="@Url.Content("~/Content/build/images/users/02.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+        </li>
+    }
+    else
+    {
+        <li class="media">
+            <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/01.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                <div class="media-body">
+                    <p>@chat.Msg</p>
+                    <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted">@chat.Date<i class="ti-check text-success"></i></time>
+                </div>
+        </li>
+    }
+    
+    
+    
+}

@@ -1,0 +1,14 @@
+D:\ABHISHEK\Work Space\ERP\Project.ViewModel\bin\Debug\Project.ViewModel.dll
+D:\ABHISHEK\Work Space\ERP\Project.ViewModel\bin\Debug\Project.ViewModel.pdb
+D:\ABHISHEK\Work Space\ERP\Project.ViewModel\bin\Debug\RestSharp.dll
+D:\ABHISHEK\Work Space\ERP\Project.ViewModel\bin\Debug\RestSharp.xml
+D:\ABHISHEK\Work Space\ERP\Project.ViewModel\obj\Debug\Project.ViewModel.csprojResolveAssemblyReference.cache
+D:\ABHISHEK\Work Space\ERP\Project.ViewModel\obj\Debug\Project.ViewModel.dll
+D:\ABHISHEK\Work Space\ERP\Project.ViewModel\obj\Debug\Project.ViewModel.pdb
+F:\Workspace\ERP\Project.ViewModel\bin\Debug\Project.ViewModel.dll
+F:\Workspace\ERP\Project.ViewModel\bin\Debug\Project.ViewModel.pdb
+F:\Workspace\ERP\Project.ViewModel\bin\Debug\RestSharp.dll
+F:\Workspace\ERP\Project.ViewModel\bin\Debug\RestSharp.xml
+F:\Workspace\ERP\Project.ViewModel\obj\Debug\Project.ViewModel.csprojResolveAssemblyReference.cache
+F:\Workspace\ERP\Project.ViewModel\obj\Debug\Project.ViewModel.dll
+F:\Workspace\ERP\Project.ViewModel\obj\Debug\Project.ViewModel.pdb

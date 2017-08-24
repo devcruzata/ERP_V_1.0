@@ -1,0 +1,26 @@
+D:\ABHISHEK\Work Space\ERP\BAL\bin\Debug\BAL.dll
+D:\ABHISHEK\Work Space\ERP\BAL\bin\Debug\BAL.pdb
+D:\ABHISHEK\Work Space\ERP\BAL\bin\Debug\DAL.dll
+D:\ABHISHEK\Work Space\ERP\BAL\bin\Debug\Project.Entity.dll
+D:\ABHISHEK\Work Space\ERP\BAL\bin\Debug\Project.ViewModel.dll
+D:\ABHISHEK\Work Space\ERP\BAL\bin\Debug\RestSharp.dll
+D:\ABHISHEK\Work Space\ERP\BAL\bin\Debug\DAL.pdb
+D:\ABHISHEK\Work Space\ERP\BAL\bin\Debug\Project.Entity.pdb
+D:\ABHISHEK\Work Space\ERP\BAL\bin\Debug\Project.ViewModel.pdb
+D:\ABHISHEK\Work Space\ERP\BAL\bin\Debug\RestSharp.xml
+D:\ABHISHEK\Work Space\ERP\BAL\obj\Debug\BAL.csprojResolveAssemblyReference.cache
+D:\ABHISHEK\Work Space\ERP\BAL\obj\Debug\BAL.dll
+D:\ABHISHEK\Work Space\ERP\BAL\obj\Debug\BAL.pdb
+F:\Workspace\ERP\BAL\bin\Debug\BAL.dll
+F:\Workspace\ERP\BAL\bin\Debug\BAL.pdb
+F:\Workspace\ERP\BAL\bin\Debug\DAL.dll
+F:\Workspace\ERP\BAL\bin\Debug\Project.Entity.dll
+F:\Workspace\ERP\BAL\bin\Debug\Project.ViewModel.dll
+F:\Workspace\ERP\BAL\bin\Debug\RestSharp.dll
+F:\Workspace\ERP\BAL\bin\Debug\DAL.pdb
+F:\Workspace\ERP\BAL\bin\Debug\Project.Entity.pdb
+F:\Workspace\ERP\BAL\bin\Debug\Project.ViewModel.pdb
+F:\Workspace\ERP\BAL\bin\Debug\RestSharp.xml
+F:\Workspace\ERP\BAL\obj\Debug\BAL.csprojResolveAssemblyReference.cache
+F:\Workspace\ERP\BAL\obj\Debug\BAL.dll
+F:\Workspace\ERP\BAL\obj\Debug\BAL.pdb

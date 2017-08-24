@@ -1,0 +1,265 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutPage_Admin.cshtml";
+}
+
+<!-- jQuery-->
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery/dist/jquery.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/BootstrapCountryPicker/bootstrap-formhelpers-countries.en_US.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/BootstrapCountryPicker/bootstrap-formhelpers-countries.js")"></script>
+
+<!-- Page Content -->
+<div class="page-container">
+    <div class="page-header clearfix">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4 class="mt-0 mb-5">Add Leads</h4>
+                <ol class="breadcrumb mb-0">
+                    <li><a href="@Url.RouteUrl("MyAccount")">Home</a></li>
+                    <li><a href="@Url.RouteUrl("UserSetings")">User Setings</a></li>
+                    <li class="active">Genral Setings</li>
+                </ol>
+            </div>
+            <div class="col-sm-6">
+                <div class="btn-group mt-5">
+                    <button type="button" class="btn btn-default btn-outline"><i class="flag-icon flag-icon-us mr-5"></i> English</button>
+                    <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default btn-outline dropdown-toggle"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
+                    <ul class="dropdown-menu dropdown-menu-right animated fadeInDown">
+                        <li><a href="#"><i class="flag-icon flag-icon-de mr-5"></i> German</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-fr mr-5"></i> French</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-es mr-5"></i> Spanish</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-it mr-5"></i> Italian</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-jp mr-5"></i> Japanese</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-content container-fluid">
+        <div class="widget">
+            <div class="widget-heading clearfix">
+                <h3 class="widget-title pull-left">Genral Setings</h3>
+                @if (ViewBag.Error_Msg != "")
+                {
+                    <div style="margin-left:200px;">
+                        <p style="color:red;">@ViewBag.Error_Msg</p>
+                    </div>
+                }
+                <div class="pull-right">
+                    <button type="button" class="btn btn-primary" title="Edit" id="edit_btn"><i class="ti-pencil"></i></button>
+                    <button type="button" class="btn btn-primary" title="Add Leads" onclick="SubmitForm()" id="save_btn" style="display:none;"><i class="ti-save"></i></button>
+                    <button type="button" class="btn btn-default" title="Cancel" onclick="Cancel();" id="cancel_btn" style="display:none;"><i class="ti-share-alt"></i></button>
+                </div>
+            </div>
+            <div class="widget-body">
+                <form class="form-horizontal" id="viewForm">
+                    <div class="tab-content">
+                        <div id="general" role="tabpanel" class="tab-pane active">
+                            <div class="row">
+                                <div class="col-sm-12 text-center">
+                                    <div class="col-sm-3"></div>                                   
+                                    <div class="col-sm-3 text-center" style="margin-left:100px;">                                        
+                                        <select class="form-control form-cutom" id="module">
+                                            <option value="0">Select Module</option>
+                                            <option value="Leads">Leads</option>
+                                            <option value="Opportunity">Oppurtunity</option>
+                                            <option value="Client">Client</option>
+                                        </select>
+                                    </div>                                    
+                                    <div class="col-sm-3"></div>                                      
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top:20px;display:none;" id="dropList">
+                                <div class="col-sm-12 text-center">
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-3 text-center" style="margin-left:100px;">
+                                        <select class="form-control form-cutom" id="droplistSelect">
+                                            <option value="0">Select DropList In Leads</option>
+                                            <option value="Source">Source</option>                                            
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <hr />
+                                </div>
+                            </div>
+                            <div class="row" id="sourceOptions" style="display:none;">
+                                <div class="col-sm-12">
+                                    <div class="co-sm-3"></div>
+                                    <div class="col-sm-6" style="margin-left:280px;" >
+                                        <div class="panel panel-info">
+                                            <div class="panel-heading" style="background-color: #1f364f !important;">
+                                                <h3 class="panel-title card-header" style="color: white !important;">Droplist Options</h3>
+                                                @*<button class="btn btn_small" style="background-color: #fff; color: #1f364f !important;border-color:#fff;float:right;"><i class="ti-plus"></i></button>*@
+                                                <button type="button" class="btn btn-small" data-toggle="modal" data-target="#SourceModal" title="Add Source" style="background-color: #fff; color: #1f364f !important;border-color:#fff;float:right;"><i class="ti-plus"></i></button>
+                                            </div>
+                                            <div class="panel-body" id="pbody">
+                                                <div id="div_Source">
+                                                    <table class="table table-hover">
+                                                        @foreach (var source in Model.sources)
+                                                        {
+                                                            <tr style="border-bottom:1px;">
+                                                               <td style="text-align:left;">
+                                                                   <label>@source.Text</label>
+                                                               </td>
+                                                               <td style="text-align:right;">
+                                                                   <button type="button" class="btn btn-small" data-toggle="modal" data-target="#SourceModal" title="Edit Source" onclick="EditSource('@source.Value','@source.Text')"><i class="ti-pencil"></i></button>
+                                                                   <button type="button" class="btn btn-small" title="Delete Source" onclick="DeleteSource('@source.Value')"><i class="ti-trash"></i></button>
+                                                                   @*<i class="ti-pencil" onclick="EditSource('@source.Value','@source.Text')"></i><i class="ti-trash" onclick="DeleteSource('@source.Value')"></i>*@
+                                                               </td>                                                            
+                                                            </tr>
+                                                        }                                      
+                                                       
+                                                    </table>                                                    
+                                                </div>                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="SourceModal">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 id="myAnimationModalLabel" class="modal-title">Manage Source</h4>
+            </div>
+            <div class="modal-body">
+                <form action="/UserSetings/AjaxManageSource" method="post" id="mainForm">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group col-sm-3">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <input type="text" id="source" name="Option" class="form-control form-cutom" placeholder="Source" />
+                            </div>
+                            <div class="form-group col-sm-3">
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="SourceID" id="sourceID" />
+                </form>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default" id="cancel">Cancel</button>
+                <button type="button" class="btn btn-raised btn-danger" id="save" onclick="SubmitForm();">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="deleteFlag" value="0" />
+<!-- /.container -->
+@* Source Section Script********** *@
+<script>
+    function EditSource(SourceID, SourceText) {
+        alert(SourceText);
+        $("#source").val(SourceText);
+        $("#sourceID").val(SourceID);      
+    }
+
+    function DeleteSource(Source_ID) {       
+        $.post('/UserSetings/DeleteSource', { SourceID: Source_ID }, function (data) {
+            if (data != "") {
+                $("#pbody").html('');
+                $("#pbody").html(data);
+                $("#SourceModal").modal('hide');
+            }
+            else {
+                location.reload();
+            }
+        });
+    }
+   
+</script>
+<script>
+    $(document).ready(function () {
+        $("#module").change(function () {
+            if ($("#module").val() == "Leads") {
+                $("#dropList").show();
+            }
+            else if ($("#module").val() == "Opportunity") {
+                $("#dropList").hide();
+            }
+            else {
+                $("#dropList").hide();
+            }
+        });
+
+        $("#droplistSelect").change(function () {
+            if ($("#droplistSelect").val() == "Source") {
+                $("#sourceOptions").show();
+            }
+            else {
+                $("#sourceOptions").hide();
+            }
+
+        });
+    });
+
+    
+</script>
+<script>
+    function SubmitForm() {
+        var formPayment = $('#mainForm');
+        $.ajax({
+            url: formPayment.attr('action'),
+            type: "POST",
+            data: formPayment.serialize(),
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                if (data != '') {
+                    $("#pbody").html('');
+                    $("#pbody").html(data);
+                    $("#SourceModal").modal('hide');
+                }
+                else {
+                    location.reload();
+                }
+            },
+            error: function (xhr) {
+                $('#errorMessage').html("No connection");
+            }
+        });
+
+    }
+</script>
+
+<script>
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+
+    function zipCheck(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+
+</script>
+
+

@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" style="height: 100%">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cruzata ERP Login</title>
+    <!-- PACE-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/PACE/themes/blue/pace-theme-flash.css")">
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/PACE/pace.min.js")"></script>
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/bootstrap/dist/css/bootstrap.min.css")">
+    <!-- Fonts-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/themify-icons/themify-icons.css")">
+    <!-- Primary Style-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/build/css/third-layout.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/build/css/skins/red-skin.css")">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file://-->
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script type="text/javascript" src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body style="background-image: url(../Content/build/images/backgrounds/16.jpg)" class="body-bg-full">
+   
+        @RenderBody()
+    
+
+    <!-- Demo Settings start-->
+    <div class="setting closed">
+        <a href="javascript:;" class="setting-toggle fs-16"><i class="ti-palette text-white"></i></a>
+        <h5 class="fs-16 mt-0 mb-20 text-white">Background Images</h5>
+        <ul class="list-inline">
+            <li><a href="javascript:;" data-bg="14.jpg" class="inline-block body-bg"><img src="@Url.Content("~/Content/build/images/thumbnails/14.jpg")" width="60" alt="" class="img-rounded"></a></li>
+            <li><a href="javascript:;" data-bg="15.jpg" class="inline-block body-bg"><img src="@Url.Content("~/Content/build/images/thumbnails/15.jpg")" width="60" alt="" class="img-rounded"></a></li>
+            <li><a href="javascript:;" data-bg="16.jpg" class="inline-block body-bg"><img src="@Url.Content("~/Content/build/images/thumbnails/16.jpg")" width="60" alt="" class="img-rounded"></a></li>
+        </ul>
+        <ul class="list-inline mb-0">
+            <li><a href="javascript:;" data-bg="17.jpg" class="inline-block body-bg"><img src="@Url.Content("~/Content/build/images/thumbnails/17.jpg")" width="60" alt="" class="img-rounded"></a></li>
+            <li><a href="javascript:;" data-bg="18.jpg" class="inline-block body-bg"><img src="@Url.Content("~/Content/build/images/thumbnails/18.jpg")" width="60" alt="" class="img-rounded"></a></li>
+            <li><a href="javascript:;" data-bg="19.jpg" class="inline-block body-bg"><img src="@Url.Content("~/Content/build/images/thumbnails/19.jpg")" width="60" alt="" class="img-rounded"></a></li>
+        </ul>
+    </div>
+    <!-- Demo Settings end-->
+    <!-- jQuery-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery/dist/jquery.min.js")"></script>
+    <!-- Bootstrap JavaScript-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/bootstrap/dist/js/bootstrap.min.js")"></script>
+     @*Custom JS
+    <script type="text/javascript" src="Content/build/js/first-layout/extra-demo.js"></script>*@
+
+    <script>
+        "use strict";
+        $(document).ready(function () {
+            $(".setting-toggle").on("click", function () {
+                $(".setting").toggleClass("closed")
+            }),
+            $(".body-bg").on("click", function () {
+                var t = "../Content/build/images/backgrounds/" + $(this).attr("data-bg");               
+                $("body").css("background-image", "url(" + t + ")")
+            })
+        });
+    </script>
+</body>
+</html>

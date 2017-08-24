@@ -1,0 +1,14 @@
+D:\ABHISHEK\Work Space\ERP\DAL\bin\Debug\DAL.dll
+D:\ABHISHEK\Work Space\ERP\DAL\bin\Debug\DAL.pdb
+D:\ABHISHEK\Work Space\ERP\DAL\bin\Debug\RestSharp.dll
+D:\ABHISHEK\Work Space\ERP\DAL\bin\Debug\RestSharp.xml
+D:\ABHISHEK\Work Space\ERP\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+D:\ABHISHEK\Work Space\ERP\DAL\obj\Debug\DAL.dll
+D:\ABHISHEK\Work Space\ERP\DAL\obj\Debug\DAL.pdb
+F:\Workspace\ERP\DAL\bin\Debug\DAL.dll
+F:\Workspace\ERP\DAL\bin\Debug\DAL.pdb
+F:\Workspace\ERP\DAL\bin\Debug\RestSharp.dll
+F:\Workspace\ERP\DAL\bin\Debug\RestSharp.xml
+F:\Workspace\ERP\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+F:\Workspace\ERP\DAL\obj\Debug\DAL.dll
+F:\Workspace\ERP\DAL\obj\Debug\DAL.pdb

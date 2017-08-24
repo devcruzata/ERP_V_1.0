@@ -1,0 +1,32 @@
+﻿@{
+    Layout = null;
+}
+@{
+    SessionHelper session = new SessionHelper();
+}
+
+@foreach (var notes in Model.Notes)
+{
+    <tr>
+        <td width="70%">
+            <div class="media">
+                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/notes.png")" alt="" class="media-object img-circle"></div>
+                <div class="media-body">
+                    <h5 class="media-heading">@notes.Description</h5>
+                    @if (notes.Note_Owner_ID.ToString() == @session.UserSession.UserId.ToString())
+                    {
+                        <p class="text-muted mb-0">Added By you at @notes.DateTaken</p>
+                    }
+                    else
+                    {
+                        <p class="text-muted mb-0">Added By @notes.Note_Owner_Name at @notes.DateTaken</p>
+                    }
+                </div>
+            </div>
+        </td>
+        <td width="30%" class="text-right text-success">
+            @*<a href="#"><i class="ti-pencil-alt"></i></a>*@
+            <a href="#" onclick="deleteNotes('@notes.Note_ID')" title="Delete Note"><i class="ti-trash"></i></a>
+        </td>
+    </tr>
+}

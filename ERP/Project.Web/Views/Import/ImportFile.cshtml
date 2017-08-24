@@ -1,0 +1,233 @@
+﻿@model Project.Web.Models.ClientModel
+@{
+    ViewBag.Title = "Manage Client";
+}
+
+<!-- jQuery-->
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery/dist/jquery.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/BootstrapCountryPicker/bootstrap-formhelpers-countries.en_US.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/BootstrapCountryPicker/bootstrap-formhelpers-countries.js")"></script>
+
+<!-- Page Content -->
+<div class="page-container">
+    <div class="page-header clearfix">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4 class="mt-0 mb-5">Import File</h4>
+                <ol class="breadcrumb mb-0">
+                    <li><a href="@Url.RouteUrl("AdminHome")">Home</a></li>
+                    <li><a href="@Url.RouteUrl("ClientHome")">Import</a></li>
+                    <li class="active">Import File</li>
+                </ol>
+            </div>
+            <div class="col-sm-6">
+                <div class="btn-group mt-5">
+                    <button type="button" class="btn btn-default btn-outline"><i class="flag-icon flag-icon-us mr-5"></i> English</button>
+                    <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default btn-outline dropdown-toggle"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
+                    <ul class="dropdown-menu dropdown-menu-right animated fadeInDown">
+                        <li><a href="#"><i class="flag-icon flag-icon-de mr-5"></i> German</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-fr mr-5"></i> French</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-es mr-5"></i> Spanish</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-it mr-5"></i> Italian</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-jp mr-5"></i> Japanese</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-content container-fluid">
+        <div class="widget">
+            <div class="widget-heading clearfix">
+                <h3 class="widget-title pull-left">Import Files</h3>               
+                <div class="pull-right">
+                    @*<button type="button" class="btn btn-primary" title="Add Leads" onclick="SubmitForm()"><i class="ti-save"></i></button>
+                    <button type="button" class="btn btn-default" title="Cancel" onclick="Cancel();"><i class="ti-share-alt"></i></button>*@
+                </div>
+            </div>
+            <div class="widget-body">
+                <ul role="tablist" class="nav nav-tabs mb-15">
+                    <li role="presentation" class="active"><a href="#Excel" aria-controls="Excel" role="tab" data-toggle="tab">Excel Import</a></li>
+                    <li role="presentation"><a href="#Csv" aria-controls="Csv" role="tab" data-toggle="tab">CSV Import</a></li>                   
+                </ul>
+                <div class="tab-content">
+                    <div id="Excel" role="tabpanel" class="tab-pane active">
+                        <div class="row">
+                            <div class="col-sm-9">
+                                <div class="col-sm-12">
+                                    <div class="col-sm-6">
+                                        <div class="panel panel-info" style="border-color: #1f364f !important;">
+                                            <div class="panel-heading text-center" style="background-color: #1f364f !important;">
+                                                <h3 class="panel-title card-header" style="color: white !important;">Excel Lead Import</h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="text-center">
+                                                    <button class="btn btn-danger" onclick="OpenExcelLeadImportDialog();"><i class="ti-upload"></i>&nbsp;Excel File</button>
+                                                </div>
+                                                <div>
+                                                    <ul style="margin-top:10px;">
+                                                        <li>
+                                                            <p>Order , Name of Headers of Excel file should be same as given in <b>sample Excel</b> File</p>
+                                                        </li>
+                                                        <li>
+                                                            <button style="color: #1f364f; background-color: #fff !important; border-color: #1f364f !important;" onclick="Download('Lead_Excel_Sample.xlsx');"><i class="ti-download"></i>&nbsp;Sample</button>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="panel panel-info" style="border-color: #1f364f !important;">
+                                            <div class="panel-heading text-center" style="background-color: #1f364f !important;">
+                                                <h3 class="panel-title card-header" style="color: white !important; font-family: Poppins,sans-serif !important;">Excel Contact Import</h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="text-center">
+                                                    <button class="btn btn-danger" onclick="OpenExcelContactImportDialog();"><i class="ti-upload"></i>&nbsp;Excel File</button>
+                                                </div>
+                                                <div>
+                                                    <ul style="margin-top:10px;">
+                                                        <li>
+                                                            <p>Oreder , Name of Headers of Excel file should be same as given in <b>sample Excel</b> File</p>
+                                                        </li>
+                                                        <li>
+                                                            <button style="color: #1f364f; background-color: #fff !important; border-color: #1f364f !important;" onclick="Download('Contact_Excel_Sample.xlsx');"><i class="ti-download"></i>&nbsp;Sample</button>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3" style="border-left: 1px solid #9a9a9a;">
+                                <h4 class="widget-title"> Import Help</h4>
+                                <ul style="margin-top:10px;">
+                                    <li>
+                                        <p>It is mandatory that your Excel file have headers , for successfull file import.</p>
+                                    </li>
+                                    <li>
+                                        <p>Name , Email is mandatory for all Leads. If some of your leads don't have name and email, please add a name and dummy email (distinct for each lead) before importing.</p>
+                                    </li>
+                                    <li>
+                                        <p>Email should be unique for every Lead and Contact in file , for successfull import.</p>
+                                    </li>
+                                    <li>
+                                        <p>Acceptable date format are 'dd/MM/yyyy' , please check before importing.</p>
+                                    </li>
+                                    <li>
+                                        <p>For more details download <b>SAMPLE Excel</b> file given in specific import section.</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="Csv" role="tabpanel" class="tab-pane">
+                        <div class="row">
+                            <div class="col-sm-9">
+                                <div class="col-sm-12">
+                                    <div class="col-sm-6">
+                                        <div class="panel panel-info" style="border-color: #1f364f !important;">
+                                            <div class="panel-heading text-center" style="background-color: #1f364f !important;">
+                                                <h3 class="panel-title card-header" style="color: white !important;">CSV Lead Import</h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="text-center">
+                                                    <button class="btn btn-danger" onclick="OpenCsvLeadImportDialog();"><i class="ti-upload"></i>&nbsp;CSV File</button>
+                                                </div>
+                                                <div>
+                                                    <ul style="margin-top:10px;">
+                                                        <li>
+                                                            <p>Order , Name of Headers of Excel file should be same as given in <b>sample CSV</b> File</p>
+                                                        </li>
+                                                        <li>
+                                                            <button style="color: #1f364f; background-color: #fff !important; border-color: #1f364f !important;" onclick="Download('Lead_Csv_Sample.csv');"><i class="ti-download"></i>&nbsp;Sample</button>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="panel panel-info" style="border-color: #1f364f !important;">
+                                            <div class="panel-heading text-center" style="background-color: #1f364f !important;">
+                                                <h3 class="panel-title card-header" style="color: white !important; font-family: Poppins,sans-serif !important;">CSV Contact Import</h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="text-center">
+                                                    <button class="btn btn-danger" onclick="OpenCsvContactImportDialog();"><i class="ti-upload"></i>&nbsp;CSV File</button>
+                                                </div>
+                                                <div>
+                                                    <ul style="margin-top:10px;">
+                                                        <li>
+                                                            <p>Oreder , Name of Headers of Excel file should be same as given in <b>sample CSV</b> File</p>
+                                                        </li>
+                                                        <li>
+                                                            <button style="color: #1f364f; background-color: #fff !important; border-color: #1f364f !important;" onclick="Download('Contact_Csv_Sample.csv');"><i class="ti-download"></i>&nbsp;Sample</button>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3" style="border-left: 1px solid #9a9a9a;">
+                                <h4 class="widget-title"> Import Help</h4>
+                                <ul style="margin-top:10px;">
+                                    <li>
+                                        <p>It is mandatory that your CSV file have headers , for successfull file import.</p>
+                                    </li>
+                                    <li>
+                                        <p>Name , Email is mandatory for all Leads. If some of your leads don't have name and email, please add a name and dummy email (distinct for each lead) before importing.</p>
+                                    </li>
+                                    <li>
+                                        <p>Email should be unique for every Lead and Contact in file , for successfull import.</p>
+                                    </li>
+                                    <li>
+                                        <p>Acceptable date format are 'dd/MM/yyyy' , please check before importing.</p>
+                                    </li>
+                                    <li>
+                                        <p>For more details download <b>SAMPLE CSV</b> file given in specific import section.</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>                    
+           </div>
+        </div>
+    </div>
+</div>
+
+<!-- /.container -->
+
+
+
+<script>
+    function OpenExcelLeadImportDialog() {
+        window.open("/Import/UploadExcelFile", "Import File", "height=300,width=400,modal=yes,alwaysRaised=yes");
+    }
+
+    function OpenCsvLeadImportDialog() {
+        window.open("/Import/UploadCsvFile", "Import File", "height=300,width=400,modal=yes,alwaysRaised=yes");
+    }
+
+    function OpenExcelContactImportDialog() {
+        window.open("/Import/UploadContactExcelFile", "Import File", "height=300,width=400,modal=yes,alwaysRaised=yes");
+    }
+
+    function OpenCsvContactImportDialog() {
+        window.open("/Import/UploadContactCsvFile", "Import File", "height=300,width=400,modal=yes,alwaysRaised=yes");
+    }
+
+    function Download(filePath) {
+        //var fileName = $("#UploadedDoc").val();
+        //var filePath = Module+'_'+Type+'_Sample';
+        window.location = '/Import/DownLoadSample?file_path=' + filePath;
+    }
+</script>
+
+
+
+

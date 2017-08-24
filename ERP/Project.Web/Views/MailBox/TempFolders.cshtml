@@ -1,0 +1,22 @@
+﻿@{
+    Layout = null;
+}
+
+@foreach (var folder in ViewBag.folders)
+{
+    if (folder.Value == "true")
+    { 
+        <li>
+           <a role="button" data-toggle="collapse" data-parent=".navigation" href="#collapse4" aria-expanded="false" aria-controls="collapse4" class="bubble collapsed"><span class="sidebar-title">@folder.Text</span><span class="badge bg-danger">2</span></a>
+           <ul id="collapse4" class="list-unstyled collapse">
+             <li><a href="#">Dashboard v1</a></li>
+             <li><a href="#">Dashboard v2</a></li>
+          </ul>
+       </li>
+    }
+    else
+    {
+        
+    }
+}
+

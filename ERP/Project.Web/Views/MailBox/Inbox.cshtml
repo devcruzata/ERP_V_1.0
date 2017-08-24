@@ -1,0 +1,275 @@
+﻿
+@{
+    ViewBag.Title = "Inbox";
+}
+
+<div class="page-container">
+    <div class="page-header clearfix">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4 class="mt-0 mb-5">Mailbox</h4>
+                <ol class="breadcrumb mb-0">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Mails</a></li>
+                    <li class="active">Inbox</li>
+                </ol>
+            </div>
+            <div class="col-sm-6">
+                @*<div class="btn-group mt-5">
+                    <button type="button" class="btn btn-default btn-outline"><i class="flag-icon flag-icon-us mr-5"></i> English</button>
+                    <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default btn-outline dropdown-toggle"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
+                    <ul class="dropdown-menu dropdown-menu-right animated fadeInDown">
+                        <li><a href="#"><i class="flag-icon flag-icon-de mr-5"></i> German</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-fr mr-5"></i> French</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-es mr-5"></i> Spanish</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-it mr-5"></i> Italian</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-jp mr-5"></i> Japanese</a></li>
+                    </ul>
+                </div>*@
+            </div>
+        </div>
+    </div>
+    <div class="page-content container-fluid p-0">
+        <div class="row row-0 mailbox">
+            <div class="col-md-5">
+                <ul class="media-list inbox">
+                    <li class="media">
+                        <div class="pull-left">
+                            <div class="form-group has-feedback mb-0">
+                                <input type="text" aria-describedby="inputSearchInbox" placeholder="Search inbox..." class="form-control rounded"><span aria-hidden="true" class="ti-search form-control-feedback"></span><span id="inputSearchInbox" class="sr-only">(default)</span>
+                            </div>
+                        </div>
+                        <div class="pull-right">
+                            <div role="toolbar" aria-label="Toolbar with button groups" class="btn-toolbar">
+                                <div role="group" aria-label="First group" class="btn-group">
+                                    <button type="button" class="btn btn-outline btn-default"><i class="ti-archive"></i></button>
+                                    <button type="button" class="btn btn-outline btn-default"><i class="ti-heart"></i></button>
+                                    <button type="button" class="btn btn-outline btn-default"><i class="ti-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    @*@foreach (var mail in Model.Mails)
+                    {
+                        <li class="media" onclick="ReadMail(@mail.MailNo);">
+                        <div class="checkbox-custom pull-left">
+                            <input id="mailboxCheckbox1" type="checkbox" value="value1">
+                            <label for="mailboxCheckbox1"></label>
+                        </div><a href="javascript:;">
+                            <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/02.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">@mail.From</h6>
+                                <h5 class="title">@mail.Subject</h5>
+                                <p class="summary">Arcu sed in tortor non convallis laoreet commodo ullamcorper ultrices...</p>
+                            </div>
+                            <div class="media-right text-nowrap">
+                                <time datetime="2015-12-10T20:50:48+07:00" class="fs-11">@mail.Date</time>
+                            </div>
+                        </a>
+                    </li>
+                    }*@
+                    
+                    @*<li class="media">
+                        <div class="checkbox-custom pull-left">
+                            <input id="mailboxCheckbox2" type="checkbox" value="value2">
+                            <label for="mailboxCheckbox2"></label>
+                        </div><a href="javascript:;">
+                            <div class="media-left avatar"><img src="../build/images/users/11.jpg" alt="" class="media-object img-circle"><span class="status bg-danger"></span></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">Alexander Gilbert</h6>
+                                <h5 class="title">Posuere convallis sociis nisi euismod</h5>
+                                <p class="summary">Arcu sed in tortor non convallis laoreet commodo ullamcorper ultrices...</p>
+                            </div>
+                            <div class="media-right text-nowrap">
+                                <i class="ti-clip"></i>
+                                <time datetime="2015-12-10T20:42:40+07:00" class="fs-11">15 mins</time>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="media read">
+                        <div class="checkbox-custom pull-left">
+                            <input id="mailboxCheckbox3" type="checkbox" value="value3">
+                            <label for="mailboxCheckbox3"></label>
+                        </div><a href="javascript:;">
+                            <div class="media-left avatar"><img src="../build/images/users/12.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">Amanda Collins</h6>
+                                <h5 class="title">Posuere convallis sociis nisi euismod</h5>
+                                <p class="summary">Arcu sed in tortor non convallis laoreet commodo ullamcorper ultrices...</p>
+                            </div>
+                            <div class="media-right text-nowrap">
+                                <time datetime="2015-12-10T20:35:35+07:00" class="fs-11">22 mins</time>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="media active">
+                        <div class="checkbox-custom pull-left">
+                            <input id="mailboxCheckbox4" type="checkbox" value="value4">
+                            <label for="mailboxCheckbox4"></label>
+                        </div><a href="javascript:;">
+                            <div class="media-left avatar"><img src="../build/images/users/13.jpg" alt="" class="media-object img-circle"><span class="status bg-warning"></span></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">Christian Lane</h6>
+                                <h5 class="title">Posuere convallis sociis nisi euismod</h5>
+                                <p class="summary">Arcu sed in tortor non convallis laoreet commodo ullamcorper ultrices...</p>
+                            </div>
+                            <div class="media-right text-nowrap">
+                                <i class="ti-clip"></i>
+                                <time datetime="2015-12-10T20:27:48+07:00" class="fs-11">30 mins</time>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="media read">
+                        <div class="checkbox-custom pull-left">
+                            <input id="mailboxCheckbox5" type="checkbox" value="value5">
+                            <label for="mailboxCheckbox5"></label>
+                        </div><a href="javascript:;">
+                            <div class="media-left avatar"><img src="../build/images/users/01.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">Edward Garcia</h6>
+                                <h5 class="title">Posuere convallis sociis nisi euismod</h5>
+                                <p class="summary">Arcu sed in tortor non convallis laoreet commodo ullamcorper ultrices...</p>
+                            </div>
+                            <div class="media-right text-nowrap">
+                                <time datetime="2015-12-10T20:35:35+07:00" class="fs-11">Yesterday</time>
+                            </div>
+                        </a>
+                    </li>*@
+                </ul>
+            </div>
+            <div class="col-md-7" id="mailBody">
+                <div class="single-mail">
+                    <div class="clearfix">
+                        <div class="pull-left">
+                            <div class="media">
+                                <div class="media-left avatar"><img src="../build/images/users/13.jpg" alt="" class="media-object img-circle"><span class="status bg-warning"></span></div>
+                                <div style="width:auto" class="media-body">
+                                    <h6 class="media-heading">Christian Lane</h6>
+                                    <p class="text-muted mb-0"><a href="#">christian.lane@gmail.com</a> to me</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pull-right">
+                            <div role="toolbar" aria-label="Toolbar with button groups" class="btn-toolbar">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-outline btn-default">Reply</button>
+                                    <button type="button" data-toggle="dropdown" aria-expanded="false" class="btn btn-outline btn-default dropdown-toggle"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
+                                    <ul role="menu" class="dropdown-menu pull-right animated fadeInDown">
+                                        <li><a href="#">Reply</a></li>
+                                        <li><a href="#">Reply To All</a></li>
+                                        <li><a href="#">Forward</a></li>
+                                        <li><a href="#">Something else here</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Print</a></li>
+                                        <li><a href="#">Mark as spam</a></li>
+                                        <li><a href="#">Mark as unread</a></li>
+                                        <li><a href="#">Delete this message</a></li>
+                                    </ul>
+                                </div>
+                                <div role="group" aria-label="Second group" class="btn-group">
+                                    <button type="button" class="btn btn-outline btn-default"><i class="ti-angle-left"></i></button>
+                                    <button type="button" class="btn btn-outline btn-default"><i class="ti-angle-right"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="fw-300">Lorem ipsum dolor sit amet, consectetur adipisicing.</h3>
+                    <p class="drop-cap">
+                        Morem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p><img src="../build/images/backgrounds/01.jpg" alt="" class="img-responsive mb-10">
+                    <p>
+                        Prey dick shrike abattoir huntress thomas collector; red amanda lillian superman. Mask amanda scorn batmobile creeper.
+                        Tally, deadshot flash bullock catwoman hatter society society bullock dent hammer. Kyle martha zucco kobra moth the
+                        hood drake rumor aiko hammer. Katana deathstroke society of al catwoman tumbler thorne harvey quinn lazarus, spoiler
+                        drake. Bane firefly strange toymaker kane amanda rhino chimera. Abbott thorne league nocturna flash. Cypher lazarus
+                        wayne mugsy gleeson black wayne clayface lantern society gleeson cluemaster. Society vicki society shiva sinestro.
+                    </p>
+                    <hr>
+                    <ul class="media-list">
+                        <li class="media">
+                            <a href="#">
+                                <div class="media-left"><i class="fa fa-file-text-o"></i></div>
+                                <div class="media-body">template-text-file.txt</div>
+                                <div class="media-right">2.5MB</div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="#">
+                                <div class="media-left"><i class="fa fa-file-pdf-o"></i></div>
+                                <div class="media-body">template-pdf-file.pdf</div>
+                                <div class="media-right">4.0MB</div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="#">
+                                <div class="media-left"><i class="fa fa-file-word-o"></i></div>
+                                <div class="media-body">template-word-file.pdf</div>
+                                <div class="media-right">462KB</div>
+                            </a>
+                        </li>
+                    </ul>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="thumbnail">
+                                <img src="../build/images/backgrounds/07.jpg" alt="">
+                                <div class="text-right caption pb-0">
+                                    <ul class="list-inline mb-0">
+                                        <li><a href="#"><i class="ti-save text-info"></i></a></li>
+                                        <li><a href="#"><i class="ti-shield text-danger"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="thumbnail">
+                                <img src="../build/images/backgrounds/08.jpg" alt="">
+                                <div class="text-right caption pb-0">
+                                    <ul class="list-inline mb-0">
+                                        <li><a href="#"><i class="ti-save text-info"></i></a></li>
+                                        <li><a href="#"><i class="ti-shield text-danger"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="thumbnail">
+                                <img src="../build/images/backgrounds/09.jpg" alt="">
+                                <div class="text-right caption pb-0">
+                                    <ul class="list-inline mb-0">
+                                        <li><a href="#"><i class="ti-save text-info"></i></a></li>
+                                        <li><a href="#"><i class="ti-shield text-danger"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <textarea id="email-editor"></textarea>
+                    <div class="text-right">
+                        <button type="button" class="btn btn-raised btn-success">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function ReadMail(Message_No) {
+        $.post('/MailBox/ReadMessage', { MessageNo: Message_No }, function (data) {
+            if (data != "") {
+                $("#mailBody").html('');
+                $("#mailBody").html(data);                
+            }
+            else {
+                location.reload();
+            }
+        });
+    }
+</script>

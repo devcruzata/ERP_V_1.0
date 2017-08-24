@@ -1,0 +1,735 @@
+﻿@model Project.Web.Models.LeadsModel
+
+@using Project.Web.Common
+@{
+    SessionHelper session = new SessionHelper();
+}
+
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery/dist/jquery.min.js")"></script>
+
+
+
+<div class="page-container">
+    <div class="page-header clearfix">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4 class="mt-0 mb-5">Manage Leads</h4>
+                <ol class="breadcrumb mb-0">
+                    <li><a href="@Url.RouteUrl("AdminDashboard_V_2")">Home</a></li>
+                    <li><a href="@Url.RouteUrl("LeadHome")">Leads</a></li>
+                    <li class="active">Manage Leads</li>
+                </ol>
+            </div>
+            <div class="col-sm-6">
+                @*<div class="btn-group mt-5">
+                    <button type="button" class="btn btn-default btn-outline"><i class="flag-icon flag-icon-us mr-5"></i> English</button>
+                    <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default btn-outline dropdown-toggle"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
+                    <ul class="dropdown-menu dropdown-menu-right animated fadeInDown">
+                        <li><a href="#"><i class="flag-icon flag-icon-de mr-5"></i> German</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-fr mr-5"></i> French</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-es mr-5"></i> Spanish</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-it mr-5"></i> Italian</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-jp mr-5"></i> Japanese</a></li>
+                    </ul>
+                </div>*@
+            </div>
+        </div>
+    </div>
+    <div class="page-content container-fluid">
+        <div class="widget">
+            <div class="widget-heading clearfix">
+                <h3 class="widget-title pull-left">Manage Leads</h3>
+                <div class="pull-right">
+                 
+                       @*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AssignLeadsModal">Assign Leads</button>*@
+                      <div class="btn-group mt-5">
+                       <button type="button" class="btn btn-default btn-outline"><i class="mr-5"></i>Lead</button>
+                       <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default btn-outline dropdown-toggle"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
+                        <ul class="dropdown-menu dropdown-menu-right animated fadeInDown">
+                          <li><a href="@Url.RouteUrl("ManageLeads", new { act = "add" })"><i class="mr-5"></i>New Lead</a></li>
+                          @*@if (@session.UserSession.UserType == "ADM")
+                          {*@
+                              <li><a href="#" data-toggle="modal" data-target="#AssignLeadsModal"><i class="mr-5"></i>Assign Lead</a></li>   
+                          @*}*@                         
+                       </ul>
+                      </div>
+                                                                         
+                </div>
+            </div>
+            <div class="widget-body">
+                <form class="form-horizontal">
+                    <ul role="tablist" class="nav nav-tabs mb-15">
+                        <li role="presentation" id="nw"><a href="#new" aria-controls="new" role="tab" data-toggle="tab" onclick="GetNewLeads();">New</a></li>
+                        <li role="presentation" class="active" id="wrk"><a href="#working" aria-controls="working" role="tab" data-toggle="tab" onclick="GetWorkingLeads();">In Progress</a></li>                        
+                        <li role="presentation" id="nr"><a href="#not-replied" aria-controls="not-replied" role="tab" data-toggle="tab" onclick="GetNotRepliedLeads();">Not-Qualified</a></li>
+                    </ul>
+                    <div class="tab-content" id="leadTabs">
+                        <div id="new" role="tabpanel" class="tab-pane" >
+                            <table id="lead-list-1" style="width: 100%" class="table table-hover dt-responsive ">
+                                <thead>
+                                    <tr>
+                                        @*@if (session.UserSession.UserType == "ADM")
+                                        {*@
+                                            <th class="text-center">
+                                               <div class="checkbox-custom">
+                                                  <input id="selectAll" type="checkbox" value="option1">
+                                                  <label for="selectAll" class="pl-0">&nbsp;</label>
+                                               </div>
+                                           </th>
+                                        @*}*@
+                                                                               
+                                        <th  class="text-center">Name</th>
+                                        <th  class="text-center">Email</th>
+                                        <th  class="text-center">Skype No</th>
+                                        <th  class="text-center">Date</th>
+                                        <th  class="text-center">Status</th>
+                                        <th class="text-center">Assign To</th>
+                                        <th  class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ntBody">
+                                   
+                                            @foreach (var lead in Model.leads)
+                                            {                                               
+                                                    if (lead.Status == "NEW")
+                                                    {
+                                                   
+                                                        <tr>
+                                                            @*@if (HttpContext.Current.Session["User_Type"].ToString() == "ADM")*@
+                                                                @if(session.UserSession.UserType.ToString() == "ADM")
+                                                            {
+                                                                <td class="text-center"> 
+                                                                    <div class="checkbox-custom">
+                                                                       <input id="check_@lead.Lead_ID_Auto_PK" type="checkbox" class="lead_id_check" value="@lead.Lead_ID_Auto_PK" onclick="SelectLead(this);">
+                                                                       <label for="check_@lead.Lead_ID_Auto_PK" class="pl-0">&nbsp;</label>
+                                                                    </div>
+                                                                 </td>
+                                                            }                                                                                                                
+                                                            <td class="text-center" onclick="UpdateLeads('@lead.Lead_ID_Auto_PK')">@lead.Name</td>
+                                                        <td class="text-center">@lead.Email</td>
+                                                        <td class="text-center">@lead.SkypeNo</td>                                                        
+                                                        <td class="text-center">@lead.Date.ToString("d MMM yyyy")</td>                                                        
+                                                        <td class="text-center"><span class="label label-success">@lead.Status</span></td>
+                                                        <td class="text-center">@lead.AssignToName</td>
+                                                        <td class="text-center">
+                                                           
+                                                               
+                                                                <button type="button" class="btn btn-outline btn-primary" onclick="ViewLeads('@lead.Lead_ID_Auto_PK');" title="View Lead"><i class="ti-eye"></i></button>
+                                                                 <button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target="#Status_Modal" title="Change Status" onclick="setModalData('@lead.Lead_ID_Auto_PK', '@lead.Status')"><i class="ti-pencil"></i></button>
+                                                                <button type="button" class="btn btn-outline btn-danger" onclick="DeleteLead('@lead.Lead_ID_Auto_PK');"><i class="ti-trash"></i></button>
+                                                            
+                                                        </td>
+                                                      </tr>
+                                                    }               
+                                                                                                
+                                            }
+                                                             
+                                   
+                                </tbody>
+                            </table>
+                            <div class="row" style="display:none;" id="error_msg_ntbl">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-danger">
+                                        <div class="panel-heading">
+                                            <h4></h4>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="text-center">
+                                                <p>Woops, Something went wrong.</p>
+                                                <button class="btn btn-primary" onclick="GetNewLeads();">Try Again</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="working" role="tabpanel" class="tab-pane active">
+                            <table id="lead-list-2" style="width: 100%" class="table table-hover dt-responsive ">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Name</th>
+                                        <th class="text-center">Email</th>
+                                        <th class="text-center">Skype No.</th>
+                                        <th class="text-center">Next Followup</th>
+                                        <th class="text-center">Status</th>
+                                        <th class="text-center">Assign To</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="wtBody">
+                                    @{                                      
+                                       
+                                          
+                                            foreach (var lead in Model.leads)
+                                            {                                            
+                                                   if (lead.Status == "Working")
+                                                   {
+                                                        <tr>
+                                                            <td class="text-center" onclick="UpdateLeads('@lead.Lead_ID_Auto_PK')">@lead.Name</td>
+                                                                <td class="text-center">@lead.Email</td>
+                                                                <td class="text-center">@lead.SkypeNo</td>
+                                                                <td class="text-center">@lead.FollowUpDate.ToString("d MMM yyyy")</td>
+                                                                @if (lead.Status == "Working")
+                                                                {
+                                                                    <td class="text-center"><span class="label label-warning">@lead.Status</span></td>
+                                                                }
+                                                                else if (lead.Status == "Future-Followup")
+                                                                {
+                                                                    <td class="text-center"><span class="label label-warning">@lead.Status</span></td>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <td class="text-center"><span class="label label-danger">@lead.Status</span></td>
+                                                                }
+                                                                <td class="text-center">@lead.AssignToName</td>
+                                                                <td class="text-center">
+                                                                    <button type="button" class="btn btn-outline btn-primary" onclick="ViewLeads('@lead.Lead_ID_Auto_PK');" title="View Lead"><i class="ti-eye"></i></button>
+                                                                    <button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target="#Status_Modal" title="Change Status" onclick="setModalData('@lead.Lead_ID_Auto_PK', '@lead.Status')"><i class="ti-pencil"></i></button>
+                                                                    <button type="button" class="btn btn-outline btn-danger" onclick="DeleteLead('@lead.Lead_ID_Auto_PK');"><i class="ti-trash"></i></button>
+                                                                </td>
+                                                         </tr>
+                                                   }                                                                                    
+                                             
+                                           
+                                             }                                       
+                                         
+                                         }                                 
+                                </tbody>
+                            </table>
+                            <div class="row" style="display:none;" id="error_msg_wtbl">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-danger">
+                                        <div class="panel-heading">
+                                            <h4></h4>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="text-center">
+                                                <p>Woops, Something went wrong.</p>
+                                                <button class="btn btn-primary" onclick="GetWorkingLeads();">Try Again</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                                              
+                        <div id="not-replied" role="tabpanel" class="tab-pane">
+                            <table id="lead-list-3" style="width: 100%" class="table table-hover dt-responsive">
+                                <thead>
+                                    <tr>
+                                        <th width="10%" class="text-center">Name</th>
+                                        <th width="15%" class="text-center">Email</th>
+                                        <th width="12%" class="text-center">Skype No</th>
+                                        <th width="12%" class="text-center">Next Followup</th>
+                                        <th width="10%" class="text-center">Status</th>
+                                        <th width="10%" class="text-center">Assign To</th>
+                                        <th width="25%" class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="nrtBody">
+                                   
+
+                                        @foreach (var leads in Model.leads)
+                                        {
+                                            if (leads.Status == "Not-Qualified")
+                                                  {
+                                                       <tr>
+                                                           <td class="text-center" onclick="UpdateLeads('@leads.Lead_ID_Auto_PK')">@leads.Name</td>
+                                                    <td class="text-center">@leads.Email</td>
+                                                    <td class="text-center">@leads.SkypeNo</td>
+                                                    <td class="text-center">@leads.FollowUpDate.ToString("d MMM yyyy")</td>
+                                                    <td class="text-center"><span class="label label-danger">@leads.Status</span></td>
+                                                    <td class="text-center">@leads.AssignToName</td>
+                                                    <td class="text-center">
+                                                        <button type="button" class="btn btn-outline btn-primary" onclick="ViewLeads('@leads.Lead_ID_Auto_PK');" title="View Lead"><i class="ti-eye"></i></button>
+                                                        <button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target="#Status_Modal" title="Change Status" onclick="setModalData('@leads.Lead_ID_Auto_PK', '@leads.Status')"><i class="ti-pencil"></i></button>
+                                                        <button type="button" class="btn btn-outline btn-danger" onclick="DeleteLead('@leads.Lead_ID_Auto_PK');"><i class="ti-trash"></i></button>
+                                                    </td>
+                                                </tr>
+                                                  }
+                                        }
+                                   
+
+                                </tbody>
+
+                            </table>
+                            <div class="row" style="display:none;" id="error_msg_nrtbl">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-danger">
+                                        <div class="panel-heading">
+                                            <h4></h4>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="text-center">
+                                                <p>Woops, Something went wrong.</p>
+                                                <button class="btn btn-primary" onclick="GetNotRepliedLeads();">Try Again</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="Status_Modal">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 id="myAnimationModalLabel" class="modal-title">Change Status</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group col-sm-6">
+                            <label for="date-added">Date Added</label>
+                            <div class="input-group">
+                                <input id="date-added" type="text" class="form-control "><span class="input-group-addon"><span class="ti-calendar"></span></span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="Status">Select Status</label>
+                            <select id="Status" class="form-control">
+                                <option value="0">Please Choose A Status</option>
+                                <option value="NEW">New</option>
+                                <option value="Working">Working</option>
+                                <option value="Not-Qualified">Not-Qualified</option>
+                                @*<option value="Not-Interested">Not-Interested</option>*@
+                                <option value="Converted">Converted</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label for="selectBasic">Comment</label>
+                            <textarea class="form-control" placeholder="Comment.." id="Notes"></textarea>
+                            <div id="error_div_Notes" style="display:none;">
+                                <p style="color:red;">Please add Note For Changing Status</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default" id="cancel" onclick="CancelStatus();">Cancel</button>
+                <button type="button" class="btn btn-raised btn-danger" id="save" onclick="ChangeStatus();">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="AssignLeadsModal">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 id="myAnimationModalLabel" class="modal-title">Assign Leads</h4>
+            </div>
+            <div class="modal-body">                
+                <div class="row">
+                    <div class="col-sm-12" id="userList">
+                        <div class="form-group">
+                            <div class="col-sm-3">                              
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="AssignTo">Assign Lead</label>
+                                @*<select class="input-medium  form-control  select2" id="UserSelect" style="width:100%;">
+                                    @foreach (var user in ViewBag.Users)
+                                    {
+                                        <option value="@user.User_ID_PK">@user.FullName</option>
+                                    }
+                                </select>*@
+                                @Html.DropDownListFor(m => m.AssignTo, (List<SelectListItem>)ViewBag.Users, new { @class = "form-control select2", id = "UserSelect" })
+                                <div id="error_Div_AssignTo" style="display:none;color:red;">
+                                    <p style="color:red;">Please Choose A User</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default" id="cancel" onclick="CancelAssign();">Cancel</button>
+                <button type="button" class="btn btn-raised btn-danger" id="save" onclick="AssignLead();">Assign</button>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="LeadId" />
+<input type="hidden" id="Stat" />
+<input type="hidden" id="Leads" />
+<input  type="hidden" id="UserType" value="@session.UserSession.UserType"/>
+
+@*<script type="text/javascript">
+    $(document).ready(function () {
+        $('.select2').select2();
+    });    
+</script>*@
+
+
+
+    
+ 
+<script>
+    $(document).ready(function () {
+        $("#date-added").daterangepicker({
+            singleDatePicker: true,
+            locale: {
+                format: 'DD/MM/YYYY'
+            },
+        });
+    });
+</script>
+<script>
+    // Table Script*******
+
+    $(document).ready(function () {      
+        if ($("#UserType").val() == "ADM") {
+            var e1 = $("#lead-list-1").DataTable({ pageLength: 10, colReorder: !0, buttons: ["copy", "excel", "pdf", "print"], searching: !0, aLengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]], order: [[5, "desc"]], columnDefs: [{ orderable: !1, targets: [0, 5] }] });
+            $("#lead-list-1_wrapper .col-sm-6:eq(1)").addClass("text-right"), e1.buttons().container().appendTo("#lead-list-1_wrapper .col-sm-6:eq(1)")
+        }
+        else {
+            var e1 = $("#lead-list-1").DataTable({ pageLength: 10, colReorder: !0, buttons: ["copy", "excel", "pdf", "print"], searching: !0, aLengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]], order: [[5, "desc"]], columnDefs: [{ orderable: !1, targets: [0, 5] }] });
+            $("#lead-list-1_wrapper .col-sm-6:eq(1)").addClass("text-right"), e1.buttons().container().appendTo("#lead-list-1_wrapper .col-sm-6:eq(1)")
+        }
+       
+       var e2 = $("#lead-list-2").DataTable({ pageLength: 10, colReorder: !0, buttons: ["copy", "excel", "pdf", "print"], searching: !0, aLengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]], order: [[5, "desc"]], columnDefs: [{ orderable: !1, targets: [0, 5] }] });
+        $("#lead-list-2_wrapper .col-sm-6:eq(1)").addClass("text-right"), e2.buttons().container().appendTo("#lead-list-2_wrapper .col-sm-6:eq(1)")
+        
+       // var e3 = $("#lead-list-3").DataTable({ pageLength: 10, colReorder: !0, buttons: ["copy", "excel", "pdf", "print"], searching: !0, aLengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]], order: [[5, "desc"]], columnDefs: [{ orderable: !1, targets: [0, 5] }] });
+      //  $("#lead-list-3_wrapper .col-sm-6:eq(1)").addClass("text-right"), e3.buttons().container().appendTo("#lead-list-3_wrapper .col-sm-6:eq(1)")
+
+        var e3 = $("#lead-list-3").DataTable({ pageLength: 10, colReorder: !0, buttons: ["copy", "excel", "pdf", "print"], searching: !0, aLengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]], order: [[5, "desc"]], columnDefs: [{ orderable: !1, targets: [0, 5] }] });
+        $("#lead-list-3_wrapper .col-sm-6:eq(1)").addClass("text-right"), e3.buttons().container().appendTo("#lead-list-3_wrapper .col-sm-6:eq(1)")
+    });
+</script>
+<script>
+
+    function guid() {
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+          s4() + '-' + s4() + s4() + s4();
+    }
+
+    function s4() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+          .toString(16)
+          .substring(1);
+    }
+
+    function ViewLeads(Lead_ID_PK) {
+       
+        window.location = '/Leads/ViewLead?sessionid='+guid()+ '&Leadid='+Lead_ID_PK;
+    }
+
+    function UpdateLeads(Lead_ID_PK) {
+        window.location = '/Leads/UpdateLeads?Lead_ID_Pk=' + Lead_ID_PK;
+    }
+
+    //function DeleteLead(Lead_ID_Auto_PK) {
+
+    //    var result = confirm("Are you sure to delete this Lead ?");
+    //    if (result == true) {
+    //        // var divId = "div-" + Service_ID_Auto_PK;
+
+    //        var Ldata = Lead_ID_Auto_PK;
+
+    //        var url = "/Leads/DeleteLead";
+    //        $.post(url, { Lead_ID_PK: Ldata }, function (data) {
+    //            if (data == "1") {
+    //                location.reload();
+    //            }
+    //            if (data = "0") {
+    //                $("#error_msg_tbl").html("<p style=\"color:red;\">There is an error in processing your request. Please Try after some time.</p>");
+    //                $("#error_msg_tbl").show();
+    //            }
+    //        });
+    //    }
+    //}
+
+    function DeleteLead(Lead_ID_Auto_PK) {
+   
+        swal({
+            title: "Are you sure?",
+            text: "Are you sure to delete this Lead!",
+            type: "warning",
+            showCancelButton: !0,
+            cancelButtonClass: "btn-raised btn-default",
+            cancelButtonText: "Cancel!",
+            confirmButtonClass: "btn-raised btn-danger",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: !0
+        },
+        function () {
+            $(".se-pre-con").show();
+            var Ldata = Lead_ID_Auto_PK;
+            var url = "/Leads/DeleteLead";
+            $.post(url, { Lead_ID_PK: Ldata }, function (data) {
+                if (data == "1") {
+                    location.reload();
+                }
+                if (data = "0") {
+                    $("#error_msg_tbl").html("<p style=\"color:red;\">There is an error in processing your request. Please Try after some time.</p>");
+                    $("#error_msg_tbl").show();
+                }
+            });
+        })
+    }
+</script>
+
+<script>
+    function setModalData(lead,status) {
+        $("#LeadId").val(lead); 
+        $("#Stat").val(status);
+        $("#Status").val(status);
+    }
+    function ChangeStatus() {
+        
+        var dat = $("#date-added").val();
+        var note = $("#Notes").val();
+        var status = $("#Status").val();
+
+        if (note != "")
+        {
+            $("#error_div_Notes").hide();
+            $.post('/Leads/UpdateLeadDetails', { LeadID: $('#LeadId').val(), status: status, Note: note, Followupdate: dat }, function (data) {
+                if (data == 'success') {
+                    $('#Status_Modal').modal('hide');
+                   // $("#leadTabs").html('');
+                   // $("#leadTabs").html(data);
+
+                    //if (status == 'NEW') {
+                    //    $("#new").html('');
+                    //    $("#new").html(data);
+
+                    //    $("#nw").addClass('active');
+                    //    $("#wrk").removeClass('active');
+                    //    $("#nr").removeClass('active');
+
+                    //    $("#new").addClass('active');
+                    //    $("#working").removeClass('active');
+                    //    $("#not-replied").removeClass('active');
+                    //}
+                    //if (status == 'Working') {
+                    //    $("#working").html('');
+                    //    $("#working").html(data);
+
+                    //    $("#nw").removeClass('active');
+                    //    $("#wrk").addClass('active');
+                    //    $("#nr").removeClass('active');
+
+                    //    $("#new").removeClass('active');
+                    //    $("#working").addClass('active');
+                    //    $("#not-replied").removeClass('active');
+                    //}
+                    //if (status == 'Not-replied' || status == 'Not-Interested') {
+                    //    $("#nw").removeClass('active');
+                    //    $("#wrk").removeClass('active');
+                    //    $("#nr").addClass('active');
+
+                    //    $("#new").removeClass('active');
+                    //    $("#working").removeClass('active');
+                    //    $("#not-replied").removeClass('active');
+                    //}
+                    window.location = '/Leads/LeadHome';
+                }
+                else {
+                }
+            });
+            //$.ajax({
+            //    url: '/Leads/UpdateLeadDetails',
+            //    dataType: "json",
+            //    type: "POST",
+            //    contentType: 'application/json; charset=utf-8',
+            //    data: JSON.stringify({ LeadID: $('#LeadId').val(), status: status, Note: note, Followupdate: dat }),
+            //    async: true,
+            //    processData: false,
+            //    cache: false,
+            //    success: function (data) {
+            //        if (data != '') {
+
+            //            $("#leadTabs").html('');
+            //            $("#leadTabs").html(data);
+            //            //window.location = '/Leads/LeadHome';
+            //        }
+            //        else {
+            //        }
+            //    },
+            //    error: function (xhr) {
+                    
+            //        $('#errorMessage').html("No connection");
+            //    }
+            //});
+        }
+        else {
+            $("#error_div_Notes").show();
+        }        
+    }
+    function CancelStatus()
+    {
+        $("#Notes").val('');
+        $("#Status").val('');
+        $("#error_div_Notes").hide();
+    }
+</script>
+
+
+
+<script>
+    $(document).ready(function () {       
+
+        $("#selectAll").click(function () {          
+            var leadid = $("#Leads").val();
+            if (!$("#selectAll").is(':checked')) {
+                $(".lead_id_check").prop('checked', $(this).prop("checked"));
+                $("#Leads").val('');
+            }
+            else {
+                $(".lead_id_check").prop('checked', $(this).prop("checked"));
+                $(".lead_id_check").each(function () {
+                    var $this = $(this);
+                    var id = $this.attr('id');
+                    var temp = id.split('_');
+                    if ($("#selectAll").is(":checked")) {
+                        leadid = leadid + "," + temp[1];
+                        $("#Leads").val(leadid);
+                    }
+                });
+            }
+        });
+    });
+    function SelectLead(thi) {        
+        var lead_ids = $("#Leads").val();
+        var id = $(thi).attr('id');
+        var temp = id.split('_');
+
+        if ($(thi).is(":checked")) {
+            lead_ids = lead_ids + "," + temp[1];
+            $("#Leads").val(lead_ids);
+        } else {
+            lead_ids = lead_ids.replace(temp[1], "");
+            $("#Leads").val(lead_ids);
+        }       
+    }
+
+    function AssignLead() {
+        var aFlag = false;
+        var leads = $("#Leads").val().split(',');
+        for (var i = 0; i < leads.length; ++i) {
+            if (leads[i] != "") {
+                aFlag = true;
+            }
+        }
+
+        if (aFlag == true) {
+            if ($("#UserSelect").val() != '0') {
+                $('#error_Div_AssignTo').hide();
+                $(".se-pre-con").show();
+                $.post('/Leads/AjaxAssignLead', { Lead_ID: $("#Leads").val(), User_ID: $("#UserSelect").val() }, function (data) {
+                    if (data != "") {
+                        $('#ntBody').html('');
+                        $('#ntBody').html(data);
+                        $("#selectAll").attr('checked', false);
+                        $('#AssignLeadsModal').modal('hide');
+                        $("#Leads").val('');
+                        $(".se-pre-con").hide();
+                    }
+                });
+            }
+            else {
+                $('#error_Div_AssignTo').show();
+            }
+        }
+        else {         
+            showAlert();
+        }               
+    }
+    function CancelAssign()
+    {
+        $("#Leads").val('');
+        $("#UserSelect").val('0');
+        $('#error_Div_AssignTo').hide();
+    }
+
+    function showAlert() {      
+        swal({
+            title: "Warning!",
+            text: "Please Choose A lead first!",
+            type: "warning",
+            confirmButtonClass: "btn-raised btn-warning",
+            confirmButtonText: "OK"
+        },
+        function () {
+            $('#AssignLeadsModal').modal('hide');
+        });
+       
+    }
+</script>
+
+<script>
+   
+    //$(document).ready(function () {
+       
+    //    GetWorkingLeads();
+    //});
+    
+    //function GetNewLeads() {
+      
+    //    $(".se-pre-con").show();        
+    //    $.post('/Leads/NewLeads', {}, function (data) {
+    //        if (data != "") {
+                
+    //            $('#ntBody').html('');
+    //            $('#ntBody').html(data);
+    //            $(".se-pre-con").hide();   
+    //        }
+    //        //if (data = "0") {
+    //        //    $("#lead-list-1").hide();
+    //        //    $("#error_msg_ntbl").show();
+    //        //}
+    //    });
+    //}
+
+    //function GetWorkingLeads() {
+       
+    //    $(".se-pre-con").show();        
+    //    $.post('/Leads/WorkingLeads', {}, function (data) {
+            
+    //        if (data != "") {
+              
+    //            $('#wtBody').html('');
+    //            $('#wtBody').html(data);
+    //            $(".se-pre-con").hide();   
+    //        }
+    //        //if (data = "0") {
+    //        //    //alert("fail");
+    //        //    //$("#lead-list-2").hide();
+    //        //    //$("#error_msg_wtbl").show();
+    //        //}
+    //    });
+    //}
+
+    //function GetNotRepliedLeads() {
+       
+    //    $(".se-pre-con").show();
+    //    $.post('/Leads/NotRepliedLeads', {}, function (data) {
+    //        if (data != "") {
+                
+    //            $('#nrtBody').html('');
+    //            $('#nrtBody').html(data);
+    //            $(".se-pre-con").hide();
+    //        }
+    //        //if (data = "0") {
+    //        //    $("#lead-list-3").hide();
+    //        //    $("#error_msg_nrtbl").show();
+    //        //}
+    //    });
+    //}
+</script>
+

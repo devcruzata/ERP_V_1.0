@@ -1,0 +1,224 @@
+﻿@model Project.Web.Models.DocModel
+@{
+    
+}
+
+<div class="page-container">
+    <div class="page-header clearfix">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4 class="mt-0 mb-5">Manage Documents</h4>
+                <ol class="breadcrumb mb-0">
+                    <li><a href="@Url.RouteUrl("AdminHome")">Home</a></li>
+                    <li><a href="@Url.RouteUrl("DocumentHome")">Documents</a></li>
+                    <li class="active">Manage Documents</li>
+                </ol>
+            </div>
+            <div class="col-sm-6">
+                <div class="btn-group mt-5">
+                    <button type="button" class="btn btn-default btn-outline"><i class="flag-icon flag-icon-us mr-5"></i> English</button>
+                    <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default btn-outline dropdown-toggle"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
+                    <ul class="dropdown-menu dropdown-menu-right animated fadeInDown">
+                        <li><a href="#"><i class="flag-icon flag-icon-de mr-5"></i> German</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-fr mr-5"></i> French</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-es mr-5"></i> Spanish</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-it mr-5"></i> Italian</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-jp mr-5"></i> Japanese</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-content container-fluid">
+        <div class="widget">
+            <div class="widget-heading clearfix">
+                <h3 class="widget-title pull-left">Manage Documents</h3>
+                <div class="pull-right">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#DocModal" title="Add Document"><i class="ti-plus"></i></button>
+                    @*<button type="button" class="btn btn-default"><i class="ti-share-alt"></i></button>*@
+                </div>
+            </div>
+            <div class="widget-body">
+                <table id="Doc-list" style="width: 100%" class="table table-hover dt-responsive nowrap">
+                    <thead>
+                        <tr>
+                            <th width="10%" class="text-center">Title</th>
+                            <th width="15%" class="text-center">Related Contact</th>
+                            <th width="15%" class="text-center">Related Opportunity</th>
+                            <th width="12%" class="text-center">Uploaded Date</th>
+                            <th width="12%" class="text-center">Owner</th>                            
+                            <th width="25%" class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            foreach (var document in Model.doc)
+                            {
+                                <tr>
+                                    <td class="text-center">@document.Title</td>
+                                    <td class="text-center">@document.RelateToContact_Name</td>
+                                    <td class="text-center">@document.RelateToOpportunity_Name</td>
+                                    <td class="text-center">@document.UploadedDate.ToString("d MMM yyyy")</td>
+                                    <td class="text-center">@document.DocOwner_Name</td>                                                                        
+                                    <td class="text-center">                                       
+                                        <button type="button" class="btn btn-outline btn-primary" onclick="DownloadDoc('@document.FileName','@document.FileID');" title="Download"><i class="ti-download"></i></button>                                     
+                                        <button type="button" class="btn btn-outline btn-danger" onclick="DeleteDoc('@document.Doc_ID_Auto_PK','@document.FileName','@document.FileID');" title="Delete Document"><i class="ti-trash"></i></button>
+                                    </td>
+                                </tr>
+
+                            }
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="DocModal">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 id="myAnimationModalLabel" class="modal-title">New Document</h4>
+            </div>
+            <div class="modal-body">
+                <form action="/Doc/AddNewDoc" method="post" enctype="multipart/form-data" id="docForm">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <label for="Title">Title</label>
+                            <input id="Title" type="text" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-sm-12">
+                            <label for="Title">Choose Document</label>
+                            <div class="input-group">
+                                <input id="Document" type="file" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-sm-12">
+                            <label for="Contact">Related Contact</label>
+                            <input id="Contact" type="text" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-sm-12">
+                            <label for="Opportunity">Related Opportunity</label>
+                            <input id="Opportunity" type="text" class="form-control">
+                        </div>
+                    </div>
+                </form>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default">Cancel</button>
+                <button type="button" class="btn btn-raised btn-danger" onclick="AddDoc();">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#date-added").daterangepicker({
+            singleDatePicker: true,
+            locale: {
+                format: 'DD/MM/YYYY'
+            },
+        });
+    });
+</script>
+<script>
+    // Table Script*******
+
+    $(document).ready(function () {
+
+        var e1 = $("#Doc-list").DataTable({ pageLength: 10, colReorder: !0, buttons: ["copy", "excel", "pdf", "print"], searching: !0, aLengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]], order: [[5, "desc"]], columnDefs: [{ orderable: !1, targets: [0, 6] }] });
+        $("#Doc-list_wrapper .col-sm-6:eq(1)").addClass("text-right"), e1.buttons().container().appendTo("#Doc-list_wrapper .col-sm-6:eq(1)")
+
+    });
+</script>
+
+<script>
+    function DeleteDoc(Doc_ID_Auto_PK,file,fileID) {
+
+        var result = confirm("Are you sure to delete this Document ?");
+        if (result == true) {
+            // var divId = "div-" + Service_ID_Auto_PK;
+
+            var Ddata = Doc_ID_Auto_PK;
+
+            var url = "/Doc/DeleteDoc";
+            $.post(url, { Doc_ID_PK: Ddata, FileName: file, FileID: fileID }, function (data) {
+                if (data == "1") {
+                    location.reload();
+                }
+                if (data = "0") {
+                    $("#error_msg_tbl").html("<p style=\"color:red;\">There is an error in processing your request. Please Try after some time.</p>");
+                    $("#error_msg_tbl").show();
+                }
+            });
+        }
+    }
+</script>
+
+<script>
+    function AddDoc() {
+        // Checking whether FormData is available in browser 
+       
+        if (window.FormData !== undefined) {  
+  
+            var fileUpload = $("#Document").get(0);
+            var files = fileUpload.files;  
+              
+            // Create FormData object  
+            var fileData = new FormData();  
+  
+            // Looping over all files and add it to FormData object  
+            for (var i = 0; i < files.length; i++) {  
+                fileData.append(files[i].name, files[i]);  
+            }  
+              
+            // Adding one more key to FormData object  
+            fileData.append('Title', $("#Title").val());
+            fileData.append('ContactID', $("#Contact").val());
+            fileData.append('OpportunityID', $("#Opportunity").val());
+            // $("#loader").show();
+            $.ajax({  
+                url: '/Doc/AddNewDoc',
+                type: "POST",  
+                contentType: false, // Not to set any content header  
+                processData: false, // Not to process data  
+                data: fileData,  
+                success: function (data) {
+                    if (data == 'success') {
+                        location.reload();
+                        //   $("#loader").hide();
+                    }
+                    else {
+                        // $("#loader").hide();
+                        // $('#errorMessage').html(data.errorMessage);
+                    }
+                },  
+                error: function (err) {  
+                    alert(err.statusText);  
+                }  
+            });  
+        } else {  
+            alert("FormData is not supported.");  
+        }  
+    }
+
+    function DownloadDoc(fileName,fileID) {        
+       
+        window.location = '/Doc/DownLoad?FileName=' + fileName + '&FileID=' + fileID;      
+    }
+</script>

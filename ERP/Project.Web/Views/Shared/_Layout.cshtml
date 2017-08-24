@@ -1,0 +1,1106 @@
+﻿@{
+    Layout = null;
+}
+@using Project.Web.Common
+@{
+    SessionHelper session = new SessionHelper();
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Clouderac</title>
+    <!-- PACE-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/PACE/themes/blue/pace-theme-flash.css")">
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/PACE/pace.min.js")"></script>
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/bootstrap/dist/css/bootstrap.min.css")">
+
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/select2/select2.min.css")">
+    <!-- Fonts-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/themify-icons/themify-icons.css")">
+    <!-- Malihu Scrollbar-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css")">
+    <!-- Animo.js-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/animo.js/animate-animo.min.css")">
+    <!-- Flag Icons-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/flag-icon-css/css/flag-icon.min.css")">
+    <!-- Bootstrap Progressbar-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css")">
+
+    <!-- jQuery MiniColors-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/jquery-minicolors/jquery.minicolors.css")">
+
+    <!-- Sweet Alert-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/bootstrap-sweetalert/lib/sweet-alert.css")">
+    <!-- Toastr-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/toastr/toastr.min.css")">
+    <!-- SpinKit-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/SpinKit/css/spinners/7-three-bounce.css")">
+
+
+    <!-- DataTables-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/datatables.net-bs/css/dataTables.bootstrap.min.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/datatables.net-buttons-bs/css/buttons.bootstrap.min.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/datatables.net-colreorder-bs/css/colReorder.bootstrap.min.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/datatables.net-responsive-bs/css/responsive.bootstrap.min.css")">
+
+    <!-- FullCalendar-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/fullcalendar/dist/fullcalendar.min.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/fullcalendar/dist/fullcalendar.print.css")" media="print">
+    <!-- jQuery MiniColors-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/jquery-minicolors/jquery.minicolors.css")">
+    <!-- Bootstrap Date Range Picker-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/bootstrap-daterangepicker/daterangepicker.css")">
+
+    <!-- Bootstrap DateTimePicker-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css")">
+
+    <!-- Bootstrap File Input-->
+    @*<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/bootstrap-fileinput/css/fileinput.min.css")">*@
+
+    <!-- Font Awesome-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/font-awesome/css/font-awesome.min.css")">
+    <!-- Bootstrap Markdown-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css")">
+
+    <!-- jQuery Steps-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/jquery.steps/demo/css/jquery.steps.css")">
+    <!-- Summernote-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/summernote/dist/summernote.css")">
+
+    <!-- Primary Style-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/build/css/third-layout.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/build/css/skins/red-skin.css")">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file://-->
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script type="text/javascript" src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+    <!-- CKEditor-->
+
+   <style>
+       /* This only works with JavaScript,
+if it's not present, don't show loader */
+       .no-js #loader {
+           display: none;
+       }
+
+       .js #loader {
+           display: block;
+           position: absolute;
+           left: 100px;
+           top: 0;
+       }
+
+       .se-pre-con {
+           position: fixed;
+           left: 0px;
+           top: 0px;
+           width: 100%;
+           height: 100%;
+           z-index: 9999;
+           background: url(../Content/img/ajax-loader-white.gif) center no-repeat;
+           /*background-color: transparent;*/
+           background-color: black;
+           opacity: 0.7;
+           /*z-index: 999;*/
+       }
+       .loaderNf {
+           position: fixed;
+           left: 0px;
+           top: 0px;
+           width: 100%;
+           height: 100%;
+           z-index: 9999;
+           background: url(../Content/img/ajax-loader-white.gif) center no-repeat;
+           /*background-color: transparent;*/
+           background-color: black;
+           opacity: 0.7;
+           /*z-index: 999;*/
+       }
+       .se-pre-con1 {
+           position: fixed;
+           left: 0px;
+           top: 0px;
+           width: 100%;
+           height: 100%;
+           z-index: 9999;
+           background: url(../Content/img/Preloader_10.gif) center no-repeat #fff;
+       }
+   </style>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery/dist/jquery.min.js")"></script>
+    <script>
+        // Wait for window load
+        $(window).load(function () {
+            // Animate loader off screen
+            $(".se-pre-con1").fadeOut("slow");;
+        });
+
+    </script>
+    <script src="@Url.Content("~/Content/CustomNotificationScripts/cusnotification.js")"></script>
+    <script>
+        function updateClock() {
+            var currentTime = new Date();
+            var currentHours = currentTime.getHours();
+            var currentMinutes = currentTime.getMinutes();
+            var currentSeconds = currentTime.getSeconds();
+
+            // Pad the minutes and seconds with leading zeros, if required
+            currentMinutes = (currentMinutes < 10 ? "0" : "") + currentMinutes;
+            currentSeconds = (currentSeconds < 10 ? "0" : "") + currentSeconds;
+
+            // Choose either "AM" or "PM" as appropriate
+            var timeOfDay = (currentHours < 12) ? "AM" : "PM";
+
+            // Convert the hours component to 12-hour format if needed
+            currentHours = (currentHours > 12) ? currentHours - 12 : currentHours;
+
+            // Convert an hours component of "0" to "12"
+            currentHours = (currentHours == 0) ? 12 : currentHours;
+
+            // Compose the string for display
+            var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay;
+
+
+            $("#clock").html(currentTimeString);
+
+        }
+
+        $(document).ready(function () {
+            setInterval('updateClock()', 1000);
+
+        });
+        //$(window).load(function () {
+        //    GetUsersForChat();
+        //    setInterval('renderChat($("#sender_ID").val(),$("#reciever_ID").val())', 2000);
+        //});
+
+        $(document).ready(function () {
+
+            $(".conversation-toggle").on("click", function () {
+                $(".conversation").toggleClass("closed")
+            })
+        });
+
+        //$(document).ready(function () {
+        //    $('#Chat_Msg').keypress(function (e) {
+        //        var key = e.which;
+        //        if (key == 13)  // the enter key code
+        //        {
+        //            sendMsg();
+        //        }
+        //    });
+        //});
+
+
+    </script>
+</head>
+<body>
+    <div class="se-pre-con" style="display:none;"></div>
+    <div class="se-pre-con1"></div>
+    <!-- Header start-->
+    <header>
+        <div class="search-bar closed">
+            <form>
+                <div class="input-group input-group-lg">
+                    <input type="text" placeholder="Search for..." class="form-control"><span class="input-group-btn">
+                        <button type="button" class="btn btn-default search-bar-toggle"><i class="ti-close"></i></button>
+                    </span>
+                </div>
+            </form>
+        </div><a href="#" class="brand pull-left"><img src="@Url.Content("~/Content/build/images/logo/logo-light.png")" alt="" width="100" class="logo"><img src="@Url.Content("~/Content/img/Z-logo.png")" alt="" width="28" class="logo-iconic"></a><a href="javascript:;" role="button" class="hamburger-menu pull-left"><span></span></a>
+        @*<form class="mt-15 mb-15 pull-left hidden-xs">
+            <div class="form-group has-feedback mb-0">
+                <input type="text" aria-describedby="inputSearchFor" placeholder="Search for..." style="width: 200px" class="form-control rounded"><span aria-hidden="true" class="ti-search form-control-feedback"></span><span id="inputSearchFor" class="sr-only">(default)</span>
+            </div>
+        </form>*@
+
+        @*<div id="clock" style="margin-top: 15px; font-size: 30px; color: #1f364f">
+        </div>*@
+
+
+
+        <ul class="notification-bar list-inline pull-right">
+            <li class="visible-xs"><a href="javascript:;" role="button" class="header-icon search-bar-toggle"><i class="ti-search"></i></a></li>
+            <li class="dropdown">
+                <a id="dropdownMenu1" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle bubble header-icon"><span class="btn btn-danger"><i class="ti-plus"></i></span></a>
+                <div aria-labelledby="dropdownMenu1" class="dropdown-menu dropdown-menu-right dm-medium fs-12 animated fadeInDown">
+                    <h5 class="dropdown-header">CREATE</h5>
+                    <ul data-mcs-theme="minimal-dark" class="media-list mCustomScrollbar">
+                        <li class="media">
+                            <a href="@Url.RouteUrl("ManageLeads", new { act = "add" })">
+                                <div class="media-left avatar"><span type="button" class="btn btn-success btn-sm add-btn-header"><i class="ti-user"></i></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading top-btn-label">Add Lead</h6>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="@Url.RouteUrl("ManageClient", new { act = "add" })">
+                                <div class="media-left avatar"><span type="button" class="btn btn-warning btn-sm add-btn-header"><i class="ti-id-badge"></i></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading top-btn-label">Add Client</h6>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="@Url.RouteUrl("ManageOpportunity", new { act = "add" })">
+                                <div class="media-left avatar"><span type="button" class="btn btn-primary btn-sm add-btn-header"><i class="ti-write"></i></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading top-btn-label">Add Opportunity</h6>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="#" data-toggle="modal" data-target="#GEventModal">
+                                <div class="media-left avatar"><span type="button" class="btn btn-danger btn-sm add-btn-header"><i class="ti-calendar"></i></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading top-btn-label">Add Event</h6>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="#" data-toggle="modal" data-target="#GTask_Modal" onclick="GetUserListing();">
+                                <div class="media-left avatar"><span type="button" class="btn btn-primary btn-sm add-btn-header"><i class="ti-list"></i></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading top-btn-label">Add Task</h6>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="#" data-toggle="modal" data-target="#GNotesModal">
+                                <div class="media-left avatar"><span type="button" class="btn btn-success btn-sm add-btn-header"><i class="ti-notepad"></i></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading top-btn-label">Add Notes</h6>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="#" data-toggle="modal" data-target="#GDocModal">
+                                <div class="media-left avatar"><span type="button" class="btn btn-warning btn-sm add-btn-header"><i class="ti-dropbox"></i></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading top-btn-label">Add Document</h6>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </li>
+            <li class="dropdown">
+                <a id="dropdownMenu1" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle bubble header-icon" onclick="showNotification();"><i class="ti-world"></i><span class="badge bg-danger" id="nfBadge" style="display:none"></span></a>
+                <div aria-labelledby="dropdownMenu1" class="dropdown-menu dropdown-menu-right dm-medium fs-12 animated fadeInDown">
+                    @*<h5 class="dropdown-header">You have 6 notifications</h5>*@
+                    <ul data-mcs-theme="minimal-dark" class="media-list mCustomScrollbar" id="ntbar">
+                        <li class="media" id="nonfMessage">
+                            <h5 class="dropdown-header">You don't have any notification</h5>
+                        </li>
+                    </ul>
+                    <div class="dropdown-footer text-center p-10"><a href="javascript:;" class="fw-500 text-muted" onclick="clearAllNotifications();">Clear all notifications</a></div>
+                    <div class="loaderNf" style="display:none;"></div>
+                </div>
+            </li>
+            <li class="dropdown hidden-xs">
+                <a id="dropdownMenu2" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle header-icon lh-1 pt-15 pb-15">
+                    <div class="media mt-0">
+                        <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/04.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                        <div class="media-right media-middle pl-0">
+                            <p class="fs-12 text-base mb-0">Hi, @session.UserSession.FirstName</p>
+                        </div>
+                    </div>
+                </a>
+                <ul aria-labelledby="dropdownMenu2" class="dropdown-menu fs-12 animated fadeInDown">
+                    <li><a href="#"><i class="ti-user mr-5"></i> My Profile</a></li>
+                    <li><a href="#"><i class="ti-settings mr-5"></i> Account Settings</a></li>
+                    <li><a href="/Authentication/LockScreen"><i class="ti-settings mr-5"></i> Lock</a></li>
+                    <li><a href="/Authentication/Logout"><i class="ti-power-off mr-5"></i> Logout</a></li>
+                </ul>
+            </li>
+            <li><a href="javascript:;" role="button" class="right-sidebar-toggle bubble header-icon"><i class="ti-layout-sidebar-right"></i><span class="dot bg-danger"></span></a></li>
+        </ul>
+    </header>
+    <!-- Header end-->
+    <div class="main-container">
+        <!-- Main Sidebar start-->
+        <aside class="main-sidebar">
+            <div class="user">
+                <div id="esp-user-profile" data-percent="65" style="height: 130px; width: 130px; line-height: 100px; padding: 15px;" class="easy-pie-chart"><img src="@Url.Content("~/Content/build/images/users/04.jpg")" alt="" class="avatar img-circle"><span class="status bg-success"></span></div>
+                <h4 class="fs-16 text-white mt-15 mb-5 fw-300">@session.UserSession.FirstName</h4>
+                <p class="mb-0 text-muted">Admin</p>
+            </div>
+            <ul class="list-unstyled navigation mb-0">
+                @if (@session.UserSession.UserType == "ADM")
+                {
+                    <li><a href="@Url.RouteUrl("AdminDashboard_V_2")" class="bubble"><i class="ti-home"></i><span class="sidebar-title">Dashboard</span></a></li>
+                }
+                else
+                {
+                    <li><a href="@Url.RouteUrl("CrmUserHome")" class="bubble"><i class="ti-home"></i><span class="sidebar-title"><b>Dashboard</b></span></a></li>
+                }
+                <li><a href="@Url.RouteUrl("LeadHome")" class="bubble"><i class="ti-user"></i><span class="sidebar-title">Leads</span></a></li>
+                <li><a href="@Url.RouteUrl("ClientHome")" class="bubble"><i class="ti-id-badge"></i><span class="sidebar-title">Clients</span></a></li>
+                <li><a href="@Url.RouteUrl("OpportunityHome")" class="bubble"><i class="ti-write"></i><span class="sidebar-title">Opportunities</span></a></li>
+                @*<li><a href="@Url.RouteUrl("Calender")" class="bubble"><i class="ti-id-badge"></i><span class="sidebar-title">Calender</span></a></li>*@
+                <li><a href="@Url.RouteUrl("Calender")" class="bubble"><i class="ti-id-badge"></i><span class="sidebar-title">Calendar</span></a></li>
+
+
+
+                @*<li class="panel">
+                    <a role="button" data-toggle="collapse" data-parent=".navigation" href="#collapse4" aria-expanded="false" aria-controls="collapse4" class="collapsed"><i class="ti-write"></i><span class="sidebar-title">Opportunities</span></a>
+                    <ul id="collapse4" class="list-unstyled collapse">
+                        <li><a href="@Url.RouteUrl("OpportunityHome")">Manage Opportunity</a></li>
+                        <li><a href="@Url.RouteUrl("ManageOpportunity", new { act = "add" })">Add Opportunity</a></li>
+                    </ul>
+                </li>*@
+               @*<li class="panel">
+                    <a role="button" data-toggle="collapse" data-parent=".navigation" href="#collapse3" aria-expanded="false" aria-controls="collapse3" class="collapsed"><i class="ti-id-badge"></i><span class="sidebar-title">Clients</span></a>
+                    <ul id="collapse3" class="list-unstyled collapse">
+                        <li><a href="@Url.RouteUrl("ClientHome")">Manage Clients</a></li>
+                        <li><a href="@Url.RouteUrl("ManageClient", new { act = "add" })">Add Client</a></li>
+                    </ul>
+                </li>*@
+
+                <li><a href="@Url.RouteUrl("UserHome")" class="bubble"><i class="ti-user"></i><span class="sidebar-title">User Management</span></a></li>
+                <li><a href="@Url.RouteUrl("UserSetings")" class="bubble"><i class="ti-settings"></i><span class="sidebar-title">Setings</span></a></li>
+                <li><a href="@Url.RouteUrl("Subscriptions")" class="bubble"><i class="ti-credit-card"></i><span class="sidebar-title">Subscription</span></a></li>
+                <li><a href="@Url.RouteUrl("MarketingCampaign")" class="bubble"><i class="ti-bar-chart"></i><span class="sidebar-title">Campaign</span><span class="label label-outline label-danger">Coming-Soon</span></a></li>
+                <li><a href="#" class="bubble"><i class="ti-email"></i><span class="sidebar-title">E-Marketing</span><span class="label label-outline label-danger">Coming-Soon</span></a></li>
+                @*<li class="panel">
+                    <a role="button" data-toggle="collapse" data-parent=".navigation" href="#collapse5" aria-expanded="false" aria-controls="collapse5" class="collapsed"><i class="ti-blackboard"></i><span class="sidebar-title">Projects</span></a>
+                    <ul id="collapse5" class="list-unstyled collapse">
+                        <li><a href="@Url.RouteUrl("ProjectHome")">Manage Projects</a></li>
+                        <li><a href="@Url.RouteUrl("ManageProject", new { act = "add" })">Add Project</a></li>
+                    </ul>
+                </li>*@
+                @*<li><a href="@Url.RouteUrl("TrackerHome")" class="bubble"><i class="ti-money"></i><span class="sidebar-title">Payment Tracker</span></a></li>
+                <li><a href="@Url.RouteUrl("MeetingHome")" class="bubble"><i class="ti-calendar"></i><span class="sidebar-title">Meetings</span></a></li>
+                <li><a href="@Url.RouteUrl("DocumentHome")" class="bubble"><i class="ti-file"></i><span class="sidebar-title">Document</span></a></li>*@
+            </ul>
+            <div class="sidebar-category">Server Status</div>
+            <div class="sidebar-widget">
+                <ul class="list-unstyled pl-25 pr-25">
+                    <li class="mb-20">
+                        <div class="block clearfix mb-10"><span class="pull-left fs-12 text-muted">CPU Used</span><span class="pull-right label label-outline label-warning">65%</span></div>
+                        <div class="progress progress-xs bg-light mb-0">
+                            <div role="progressbar" data-transitiongoal="65" class="progress-bar progress-bar-warning"></div>
+                        </div>
+                    </li>
+                    <li class="mb-20">
+                        <div class="block clearfix mb-10"><span class="pull-left fs-12 text-muted">Bandwidth</span><span class="pull-right label label-outline label-danger">80%</span></div>
+                        <div class="progress progress-xs bg-light mb-0">
+                            <div role="progressbar" data-transitiongoal="80" class="progress-bar progress-bar-danger"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+        <!-- Main Sidebar end-->
+        @RenderBody()
+        <!-- Right Sidebar start-->
+        <aside class="right-sidebar closed">
+            <ul role="tablist" class="nav nav-tabs nav-justified nav-sidebar">
+                <li role="presentation" class="active"><a href="#chat" aria-controls="chat" role="tab" data-toggle="tab"><i class="ti-comment-alt"></i></a></li>
+                <li role="presentation"><a href="#announcement" aria-controls="announcement" role="tab" data-toggle="tab"><i class="ti-announcement"></i></a></li>
+                <li role="presentation"><a href="#ticket" aria-controls="ticket" role="tab" data-toggle="tab"><i class="ti-bookmark-alt"></i></a></li>
+                @*<li role="presentation"><a href="#setting" aria-controls="setting" role="tab" data-toggle="tab"><i class="ti-settings"></i></a></li>*@
+            </ul>
+            <div data-mcs-theme="minimal-dark" class="tab-content nav-sidebar-content mCustomScrollbar">
+                <div id="chat" role="tabpanel" class="tab-pane fade in active">
+                    <form>
+                        <div class="form-group has-feedback">
+                            <input type="text" aria-describedby="inputChatSearch" placeholder="Chat with..." class="form-control rounded"><span aria-hidden="true" class="ti-search form-control-feedback"></span><span id="inputChatSearch" class="sr-only">(default)</span>
+                        </div>
+                    </form>
+                    <ul class="chat-list mb-0 fs-12 media-list" id="chatUserList">
+                        <li class="media">
+                            <a href="javascript:;" class="conversation-toggle">
+                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/20.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Jane Curtis</h6>
+                                    <p class="text-muted mb-0">Where are you from?</p>
+                                </div>
+                                <div class="media-right"><span class="badge bg-danger">2</span></div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+
+
+                <div id="announcement" role="tabpanel" class="tab-pane fade">
+                    <ul class="media-list mb-0 fs-12">
+                        <li class="media">
+                            <div class="media-left"><i class="ti-bar-chart-alt media-object mo-xs img-circle bg-primary text-center"></i></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">Market Trend Data</h6>
+                                <p class="text-muted mb-0">Mattis nam fringilla dui nostra, ad fames fusce venenatis massa.</p>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <div class="media-left"><i class="ti-package media-object mo-xs img-circle bg-success text-center"></i></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">Change Your Password!</h6>
+                                <p class="text-muted mb-0">Varius dolor condimentum hendrerit eleifend est urna neque fames faucibus?</p>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <div class="media-left"><i class="ti-gift media-object mo-xs img-circle bg-warning text-center"></i></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">We Apologize</h6>
+                                <p class="text-muted mb-0">Justo at mauris ridiculus conubia penatibus dis varius proin porttitor!</p>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <div class="media-left"><i class="ti-harddrives media-object mo-xs img-circle bg-info text-center"></i></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">Content Policy Update</h6>
+                                <p class="text-muted mb-0">Quis ante imperdiet a volutpat quam tellus condimentum blandit elementum.</p>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <div class="media-left"><i class="ti-mobile media-object mo-xs img-circle bg-purple text-center"></i></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">Mobile Apps</h6>
+                                <p class="text-muted mb-0">Ad iaculis at feugiat integer lobortis vivamus hac egestas venenatis.</p>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <div class="media-left"><i class="ti-alarm-clock media-object mo-xs img-circle bg-danger text-center"></i></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">New Features</h6>
+                                <p class="text-muted mb-0">Primis elementum facilisi tristique faucibus feugiat enim rutrum id himenaeos.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div id="ticket" role="tabpanel" class="tab-pane fade">
+                    <form id="tctForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Subject" id="tctSubject" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <textarea rows="6" placeholder="Description" id="tctBody" class="form-control"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-block btn-success" id="tctBtn" onclick="openTicket();">Create Ticket</button>
+                    </form>
+                    <div id="scsMsg" style="display:none;">
+                        <h4>We Recieve your message, and get back to you shortly.</h4>
+                    </div>
+                </div>
+                <div id="setting" role="tabpanel" class="tab-pane fade">
+                    <form class="form-horizontal fs-12">
+                        <div class="clearfix">
+                            <h6 class="pull-left">Maintenance Mode</h6>
+                            <div class="switch pull-right">
+                                <input id="setting-1" type="checkbox" checked="">
+                                <label for="setting-1" class="switch-success"></label>
+                            </div>
+                        </div>
+                        <p class="text-muted">Ipsum non tempor non nullam nisi congue nisi amet enim.</p>
+                        <div class="clearfix">
+                            <h6 class="pull-left">Location Services</h6>
+                            <div class="switch pull-right">
+                                <input id="setting-2" type="checkbox" checked="">
+                                <label for="setting-2" class="switch-success"></label>
+                            </div>
+                        </div>
+                        <p class="text-muted">Eleifend suscipit erat cursus viverra commodo nostra sit commodo mollis.</p>
+                        <div class="clearfix">
+                            <h6 class="pull-left">Display Errors</h6>
+                            <div class="switch pull-right">
+                                <input id="setting-3" type="checkbox" checked="">
+                                <label for="setting-3" class="switch-success"></label>
+                            </div>
+                        </div>
+                        <p class="text-muted">Amet per tortor adipiscing risus dolor orci diam curabitur senectus.</p>
+                        <div class="clearfix">
+                            <h6 class="pull-left">Use SEO URLs</h6>
+                            <div class="switch pull-right">
+                                <input id="setting-4" type="checkbox" checked="">
+                                <label for="setting-4" class="switch-success"></label>
+                            </div>
+                        </div>
+                        <p class="text-muted">Ullamcorper dignissim facilisis fames proin a leo diam amet urna.</p>
+                        <div class="clearfix">
+                            <h6 class="pull-left">Enable History</h6>
+                            <div class="switch pull-right">
+                                <input id="setting-5" type="checkbox" checked="">
+                                <label for="setting-5" class="switch-success"></label>
+                            </div>
+                        </div>
+                        <p class="text-muted">Consectetur cubilia varius vulputate fermentum non dolor cubilia torquent risus.</p>
+                    </form>
+                </div>
+            </div>
+        </aside>
+        <aside class="conversation closed">
+            <h5 class="text-center m-0 p-20" id="chatRecieverName">Edward Garcia<a href="#" class="conversation-toggle pull-left"><i class="ti-arrow-left text-muted"></i></a><a href="javascript:;" class="pull-right"><i class="ti-pencil text-muted"></i></a></h5>
+            <ul data-mcs-theme="minimal-dark" class="media-list chat-content fs-12 pl-20 pr-20 mCustomScrollbar" id="chatBox">
+                <li class="media">
+                    <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/01.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                    <div class="media-body">
+                        <p>Hello.</p>
+                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted">09:45 PM <i class="ti-check text-success"></i></time>
+                    </div>
+                </li>
+                <li class="media other">
+                    <div class="media-body">
+                        <p>Hi.</p>
+                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted pull-right">09:46 PM <i class="ti-check text-success"></i></time>
+                    </div>
+                    <div class="media-right avatar"><img src="@Url.Content("~/Content/build/images/users/02.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                </li>
+            </ul>
+            @*<form class="pl-20 pr-20">*@
+                <div class="form-group has-feedback mb-0">
+                    <input type="text" id="Chat_Msg" aria-describedby="inputSendMessage" placeholder="Sent a message" class="form-control rounded"><span aria-hidden="true" class="ti-pencil-alt form-control-feedback"></span><span id="inputSendMessage" class="sr-only">(default)</span>
+                </div>
+            @*</form>*@
+        </aside>
+        <!-- Right Sidebar end-->
+    </div>
+
+    @* Hidden Values For Chat Engine**** *@
+    <input type="hidden" id="reciever_ID" />
+    <input type="hidden" id="sender_ID" value="@session.UserSession.UserId.ToString()" />
+
+    <div id="loader" style="position: fixed; top: 0; left: 0; height: 100%; width: 100%; display: none; background-color: black; opacity: 0.7; z-index: 999;">
+        <img src="@Url.Content("~/Content/img/loader.gif")" style="position: absolute; margin-left: 50%; height: 100px; margin-top: 320px;" />
+    </div>
+
+    @************Global Modals*************@
+
+    <div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="GTask_Modal">
+        <div role="document" class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                    <h4 id="myAnimationModalLabel" class="modal-title">Add A Task</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="GtaskForm">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group col-sm-12">
+                                    <label for="GTTitle">Title</label>
+                                    <input type="text" id="GTTitle" name="GTitle" class="form-control" />
+                                    <div id="error_div_GTTitle" style="display:none;">
+                                        <p style="color:red;">Please Enter Title For Task</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group col-sm-6">
+                                    <label for="GTRelateTo">Relate To</label>
+                                    <select id="GTRelateTo" class="form-control">
+                                        <option class="active" value="0">Choose a Category</option>
+                                        <option class="active" value="LEAD">Lead</option>
+                                        <option value="OPPORTUNITY">Opportunity</option>
+                                        <option value="CLIENT">Client</option>
+                                    </select>
+                                    <div id="error_div_GTRelateTo" style="display:none;">
+                                        <p style="color:red;">Please Choose A Related Category</p>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="GTRelateToName">Name</label>
+                                    <select id="GTRelateToName" class="form-control TRelateToName"></select>
+                                    <div id="error_div_GTRelateToName" style="display:none;">
+                                        <p style="color:red;">Please Choose A Related Entity</p>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-12">
+                                    <label for="Description">Description</label>
+                                    <textarea class="form-control" placeholder="Description.." id="GDescription"></textarea>
+                                    <div id="error_div_Description" style="display:none;">
+                                        <p style="color:red;">Please add Decription For Task</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @if (@session.UserSession.UserType == "ADM")
+                        {
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group col-sm-12">
+                                        <label for="AssignToSelect">Assign To</label>
+                                        <select id="GAssignToSelect" class="form-control" onchange="GSetAssignTo();">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group col-sm-4">
+                                    <div class="checkbox-inline checkbox-custom pull-left">
+                                        <input id="TNotification" type="checkbox" onclick="SetTReminder();">
+                                        <label for="TNotification" class="checkbox-muted text-muted">&nbsp; Send Notification</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-raised btn-default" onclick="CancelToDo();" id="cancel">Cancel</button>
+                    <button type="button" class="btn btn-raised btn-danger" id="save" onclick="GSheduleTask();">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="GNotesModal">
+        <div role="document" class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                    <h4 id="myAnimationModalLabel" class="modal-title">Add A Note</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="GnotesForm">
+                        @*<div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group col-sm-12">
+                                        <label for="NTitle">Title</label>
+                                        <input type="text" id="NTitle" name="Title" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>*@
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group col-sm-6">
+                                    <label for="GNRelateTo">Relate To</label>
+                                    <select id="GNRelateTo" class="form-control">
+                                        <option class="active" value="0">Choose a Category</option>
+                                        <option class="active" value="LEAD">Lead</option>
+                                        <option value="OPPORTUNITY">Opportunity</option>
+                                        <option value="CLIENT">Client</option>
+                                    </select>
+                                    <div id="error_div_GNRelateTo" style="display:none;">
+                                        <p style="color:red;">Please Choose A Related Category</p>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="GNRelateToName">Name</label>
+                                    <select id="GNRelateToName" class="form-control TRelateToName"></select>
+                                    <div id="error_div_GNRelateToName" style="display:none;">
+                                        <p style="color:red;">Please Choose A Related Entity</p>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-12">
+                                    <label for="Note">Note</label>
+                                    <textarea class="form-control" placeholder="Note.." id="GNote"></textarea>
+                                    <div id="error_div_GNote" style="display:none;">
+                                        <p style="color:red;">Please add Note</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-raised btn-default" id="cancel" onclick="CancelGNote()">Cancel</button>
+                    <button type="button" class="btn btn-raised btn-danger" id="save" onclick="GAddNote();">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="GDocModal">
+        <div role="document" class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                    <h4 id="myAnimationModalLabel" class="modal-title">New Document</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="/Doc/AddNewDoc" method="post" enctype="multipart/form-data" id="GdocForm">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label for="Title">Title</label>
+                                <input id="GDTitle" type="text" class="form-control">
+                                <div id="error_div_GDTitle" style="display:none;">
+                                    <p style="color:red;">Please Enter Title</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-sm-12">
+                                <label for="Title">Choose Document</label>
+                                <div class="input-group">
+                                    <input id="GDocument" type="file" class="form-control">
+                                    <div id="error_div_GDocument" style="display:none;">
+                                        <p style="color:red;">Please Choose A File</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-sm-12">
+                                <div class="form-group col-sm-6">
+                                    <label for="GDRelateTo">Relate To</label>
+                                    <select id="GDRelateTo" class="form-control">
+                                        <option class="active" value="0">Choose a Category</option>
+                                        <option class="active" value="LEAD">Lead</option>
+                                        <option value="OPPORTUNITY">Opportunity</option>
+                                        <option value="CLIENT">Client</option>
+                                    </select>
+                                    <div id="error_div_GDRelateTo" style="display:none;">
+                                        <p style="color:red;">Please Choose A Related Category</p>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="GDRelateToName">Name</label>
+                                    <select id="GDRelateToName" class="form-control TRelateToName"></select>
+                                    <div id="error_div_GDRelateToName" style="display:none;">
+                                        <p style="color:red;">Please Choose A Related Entity</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        @*<div class="row" style="margin-top:10px;">
+                                <div class="col-sm-12">
+                                    <label for="Opportunity">Related Opportunity</label>
+                                    <input id="Opportunity" type="text" class="form-control">
+                                </div>
+                            </div>*@
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-raised btn-default" onclick="CancelGDoc();">Cancel</button>
+                    <button type="button" class="btn btn-raised btn-danger" onclick="GAddDoc();">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="GEventModal" tabindex="-1" role="dialog" aria-labelledby="ModalEventLabel" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-black">
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                    <h4 id="ModalEventLabel" class="modal-title">Add New Event</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="GeForm">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <input id="GinputTitleEvent" type="text" placeholder="Event Name" class="form-control">
+                                <div id="error_div_GinputTitleEvent" style="display:none;">
+                                    <p style="color:red;">Please Enter Title</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="form-group">
+                                <input id="GstartDate" type="text" class="form-control date-control" placeholder="Start Date">
+                                <div id="error_div_GstartDate" style="display:none;">
+                                    <p style="color:red;">Please Choose Satrt Date</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input id="GstartTime" type="text" placeholder="Start Time" class="form-control ">
+                                <div id="error_div_GstartTime" style="display:none;">
+                                    <p style="color:red;">Please Choose Satrt Time</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="form-group">
+                                <input id="endDate" type="text" class="form-control date-control" placeholder="End Date">
+                                <div id="error_div_GendDate" style="display:none;">
+                                    <p style="color:red;">Please Choose End Date</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input id="endTime" type="text" placeholder="End Time" class="form-control ">
+                                <div id="error_div_GendTime" style="display:none;">
+                                    <p style="color:red;">Please Choose End Time</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="GERelateTo">Relate To</label>
+                                <select id="GERelateTo" class="form-control" >
+                                    <option value="0">Choose a Option</option>
+                                    <option  value="LEAD">Lead</option>
+                                    <option value="OPPORTUNITY">Opportunity</option>
+                                    <option value="CLIENT">Client</option>
+                                </select>
+                                <div id="error_div_GERelateTo" style="display:none;">
+                                    <p style="color:red;">Please Choose A Option</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="GERelateToName">Name</label>
+                                <select id="GERelateToName" class="form-control TRelateToName"></select>
+                                <div id="error_div_GERelateToName" style="display:none;">
+                                    <p style="color:red;">Please Choose A Related Entity</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="ecolor">Color</label>
+                                <input id="ecolor" type="text" value="#9b59b6" class="form-control">
+                            </div>
+                        </div>
+                        @*<div class="col-sm-12">
+                                <div class="form-group">
+                                    <input id="inputBackgroundEvent" type="text" value="#0667D6" class="form-control">
+                                </div>
+                            </div>*@
+                        @*<div class="col-sm-12">
+                                <div class="form-group">
+                                    <textarea id="description" class="form-control" placeholder="Notes"></textarea>
+                                </div>
+                            </div>*@
+                        <input id="start" type="hidden">
+                        <input id="end" type="hidden">
+                        <input id="allDay" type="hidden">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-raised btn-default" >Cancel</button>
+                    <button id="btnAddNewEvent" type="submit" class="btn btn-raised btn-black" onclick="GAddEvents();">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- jQuery-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery/dist/jquery.min.js")"></script>
+
+    <!-- Bootstrap JavaScript-->
+    @*<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>*@
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/bootstrap/dist/js/bootstrap.min.js")"></script>
+    @*<script type="text/javascript" src="@Url.Content("~/Content/select2/select2.full.min.js")"></script>*@
+    <!-- Malihu Scrollbar-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js")"></script>
+    <!-- Animo.js-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/animo.js/animo.min.js")"></script>
+    <!-- Bootstrap Progressbar-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/bootstrap-progressbar/bootstrap-progressbar.min.js")"></script>
+
+    <!-- TinyColor-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/tinycolor/dist/tinycolor-min.js")"></script>
+
+    <!-- Toastr-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/toastr/toastr.min.js")"></script>
+    <!-- MomentJS-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/moment/min/moment.min.js")"></script>
+    <!-- jQuery BlockUI-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/blockUI/jquery.blockUI.js")"></script>
+    <!-- jQuery Counter Up-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery-waypoints/waypoints.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/Counter-Up/jquery.counterup.min.js")"></script>
+
+    <!-- Flot Charts-->
+    <!--[if lte IE 8]>
+    <script type="text/javascript" src="https://raw.githubusercontent.com/flot/flot/master/excanvas.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/flot/jquery.flot.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/flot/jquery.flot.resize.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/flot.curvedlines/curvedLines.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/flot.tooltip/js/jquery.flot.tooltip.min.js")"></script>
+
+    <!-- DataTables-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net/js/jquery.dataTables.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-bs/js/dataTables.bootstrap.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-buttons/js/dataTables.buttons.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-buttons-bs/js/buttons.bootstrap.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/jszip/dist/jszip.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/pdfmabuild/pdfmake.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/pdfmabuild/vfs_fonts.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-buttons/js/buttons.print.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-buttons/js/buttons.html5.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-colreorder/js/dataTables.colReorder.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-responsive/js/dataTables.responsive.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-responsive-bs/js/responsive.bootstrap.js")"></script>
+    <!-- jQuery UI-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery-ui/jquery-ui.min.js")"></script>
+    <!-- FullCalendar-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/fullcalendar/dist/fullcalendar.min.js")"></script>
+    <!-- jQuery MiniColors-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery-minicolors/jquery.minicolors.min.js")"></script>
+    <!-- Bootstrap Date Range Picker-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/bootstrap-daterangepicker/daterangepicker.js")"></script>
+
+    <!-- Bootstrap DateTimePicker-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js")"></script>
+
+ 
+
+    <!-- Bootstrap File Input-->
+    @*<script type="text/javascript" src="@Url.Content("~/Content/plugins/bootstrap-fileinput/js/plugins/canvas-to-blob.min.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/Content/plugins/bootstrap-fileinput/js/fileinput.min.js")"></script>*@
+    <script type="text/javascript" language="javascript" src="@Url.Content("~/Content/multifile-master/jquery.MultiFile.js")"></script>
+
+    <!-- Sweet Alert-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/bootstrap-sweetalert/lib/sweet-alert.min.js")"></script>
+
+    <!-- Bootstrap Markdown-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/bootstrap-markdown/js/bootstrap-markdown.js")"></script>
+
+    <!-- jQuery Steps-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery.steps/build/jquery.steps.min.js")"></script>
+
+    <!-- Summernote-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/summernote/dist/summernote.min.js")"></script>
+    <!-- Custom JS-->
+    <script type="text/javascript" src="@Url.Content("~/Content/build/js/third-layout/app.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/build/js/third-layout/demo.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/build/js/page-content/skins/red-dashboard.js")"></script>
+
+    @*<script type="text/javascript" src="@Url.Content("~/Content/CustomJs/cusJs.js")"></script>*@
+
+    <script type="text/javascript" src="@Url.Content("~/Content/BootstrapCountryPicker/bootstrap-formhelpers-countries.en_US.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/BootstrapCountryPicker/bootstrap-formhelpers-countries.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/AppCustomScripts/GlobalCustomScripts.js")"></script>
+
+
+
+
+    @* Script for chat engine************ *@
+
+><script>
+
+
+
+        function GetUsersForChat() {
+            $.ajax({
+                url: '/Chat/GetUserForChat',
+                type: "POST",
+                async: true,
+                cache: false,
+                success: function (data) {
+                    if (data != '') {
+                        $("#chatUserList").html('');
+                        $("#chatUserList").html(data);
+                    }
+                    else {
+                        location.reload();
+                    }
+                },
+                error: function (xhr) {
+                    $('#errorMessage').html("No connection");
+                }
+            });
+        }
+
+        function setReciever(RecieverID,RecieverName) {
+            $("#reciever_ID").val(RecieverID);
+            //var htmlText = RecieverName + "<a href=\"#\" class=\"conversation-toggle pull-left\"><i class=\"ti-arrow-left text-muted\"></i></a><a href=\"javascript:;\" class=\"pull-right\"><i class=\"ti-pencil text-muted\"></i></a>";
+           // $("#chatRecieverName").html(htmlText);
+            $(".conversation").toggleClass("closed")
+
+        }
+
+        function renderChat(sender , reciever) {
+            $.ajax({
+                url: '/Chat/RenderChat',
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ SenderID: sender, RecieverID: reciever }),
+                async: true,
+                cache: false,
+                success: function (data) {
+                    if (data != '') {
+                        $("#chatBox").html('');
+                        $("#chatBox").html(data);
+                       // location.reload();
+                    }
+                    else {
+
+                        location.reload();
+                    }
+                },
+                error: function (xhr) {
+                    $('#errorMessage').html("No connection");
+                }
+            });
+        }
+
+        function sendMsg() {
+            $.ajax({
+                url: '/Chat/SendMsg',
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ SenderID: $("#sender_ID").val(), RecieverID: $("#reciever_ID").val(), Msg: $("#Chat_Msg").val() }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data == 'Success') {
+                        $("#Chat_Msg").val('');
+                        renderChat($("#sender_ID").val(), $("#reciever_ID").val());
+                    }
+                    else {
+                        renderChat($("#sender_ID").val(), $("#reciever_ID").val());
+                    }
+                },
+                error: function (xhr) {
+                    $('#errorMessage').html("No connection");
+                }
+            });
+        }
+
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#tctForm').show();
+            $('#scsMsg').hide();
+        });
+
+        function openTicket() {
+            $.post('/Tickets/OpenTicket', { subject: $('#tctSubject').val(), body: $('#tctBody').val() }, function (data) {
+                if (data == "1") {
+                    $("#tctForm")[0].reset();
+                    $('#tctForm').hide();
+                    $('#scsMsg').show();
+                }
+                else {
+                    $("#error_msg_tbl").html("<p style=\"color:red;\">There is an error in processing your request. Please Try after some time.</p>");
+                    $("#error_msg_tbl").show();
+                }
+            });
+        }
+
+    </script>
+
+
+
+
+
+</body>
+
+</html>

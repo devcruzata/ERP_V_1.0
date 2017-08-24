@@ -1,0 +1,681 @@
+﻿@model Project.Web.Models.SubscriptionModel
+@*@{
+    Layout = "~/Views/Shared/_LayoutPage_Admin.cshtml";
+    ViewBag.Title = "SubscriptionHome";
+}*@
+@using Project.Web.Common
+@{
+    SessionHelper session = new SessionHelper();
+}
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery/dist/jquery.min.js")"></script>
+<style>
+    .currentPlan {
+        border: 3px solid red !important;
+    }
+    .selectedPlan {
+        border: 3px solid #1f364f !important;
+    }
+    .plan {
+        padding-top: 30px;
+        padding-right: 50px;
+        padding-bottom: 30px;
+        padding-left: 50px;
+        border-left: 1px solid #1f364f !important;
+        border-right: 1px solid #1f364f !important;
+        border-top: 1px solid #1f364f !important;
+        border-bottom: 1px solid #1f364f !important;
+    }
+        .plan:hover {
+            border: 3px solid #1f364f !important;
+        }
+         .upgradeBtn {
+            background-color: #fff !important;
+            border-color: #1f364f !important;
+            color: #1f364f !important;
+        }
+
+        .upgradeBtn:hover {
+            background-color: #1f364f !important;
+            border-color: #1f364f !important;
+            color: #fff !important;
+        }
+            .upgradeBtn:focus {
+                background-color: #1f364f !important;
+                border-color: #1f364f !important;
+                color: #fff !important;
+            }
+</style>
+
+<style>
+    .StripeElement {
+        background-color: white;
+        padding: 8px 12px;
+        border-radius: 4px;
+        border: 1px solid transparent;
+        box-shadow: 0 1px 3px 0 #e6ebf1;
+        -webkit-transition: box-shadow 150ms ease;
+        transition: box-shadow 150ms ease;
+    }
+
+    .StripeElement--focus {
+        box-shadow: 0 1px 3px 0 #cfd7df;
+    }
+
+    .StripeElement--invalid {
+        border-color: #fa755a;
+    }
+
+    .StripeElement--webkit-autofill {
+        background-color: #fefde5 !important;
+    }
+</style>
+<div class="page-container">
+    <div class="page-header clearfix">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4 class="mt-0 mb-5">Pricing Tables</h4>
+                <ol class="breadcrumb mb-0">
+                    <li><a href="@Url.RouteUrl("MyAccount")">Home</a></li>
+                    <li><a href="@Url.RouteUrl("Subscriptions")">Subscriptions</a></li>
+                    <li class="active">Manage Subscription</li>
+                </ol>
+            </div>
+            <div class="col-sm-6">                
+            </div>
+        </div>
+    </div>
+    <div class="page-content container-fluid">        
+        <h3>Subscriptions</h3>        
+        <div class="pricing-table pricing-3">
+            <div class="row row-0">       
+                <div class="col-md-3 text-center plan" style="margin-left: 100px;">
+                    <i class="pricing-icon ti-wheelchair" style="color: #1f364f;"></i>
+                    <h3 class="pricing-title">BAsic</h3>
+                    <div class="pricing-price" style="color: #1f364f;"><span class="pricing-currency" style="color: #1f364f;">$</span>10<span class="pricing-period">/month</span></div>
+                    <ul class="list-unstyled pricing-feature-list">
+                        <li>1 GB of space</li>
+                        <li>Unlimited traffic</li>
+                        <li>Forum access</li>
+                        <li>Support at $25/hour</li>
+                    </ul>
+                    <button type="button" class="btn btn-lg btn-rounded  btn-success upgradeBtn" id="basicPlanbtn" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="SetData('1')">Upgrade Now</button>
+                    <input type="hidden" id="Plan1Name" value="Basic" />
+                    <input type="hidden" id="Plan1Price" value="10" />
+                    <input type="hidden" id="Plan1yearlyPrice" value="110" />
+                    <input type="hidden" id="Plan1ID" value="a27818ca-e836-4915-b2db-395c3c" />
+                    <input type="hidden" id="Plan1Disc" value="1" />
+                </div>                           
+                
+                <div class="col-md-3 text-center plan" style="margin-left: 50px;">
+                    <i class="pricing-icon ti-car" style="color: #1f364f;"></i>
+                    <h3 class="pricing-title">Pro</h3>
+                    <div class="pricing-price" style="color: #1f364f;"><span class="pricing-currency" style="color: #1f364f;">$</span>20<span class="pricing-period">/month</span></div>
+                    <ul class="list-unstyled pricing-feature-list">
+                        <li>5 GB of space</li>
+                        <li>Unlimited traffic</li>
+                        <li>Forum access</li>
+                        <li>Support at $5/hour</li>
+                    </ul>
+                    <button type="button" class="btn btn-lg btn-rounded  btn-success upgradeBtn" id="standardPlanbtn" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="SetData('2')">Upgrade Now</button>
+                    <input type="hidden" id="Plan2Name" value="Pro" />
+                    <input type="hidden" id="Plan2Price" value="20" />
+                    <input type="hidden" id="Plan2ID" value="743b081d-11ec-4c68-99b4-d66552" />
+                    <input type="hidden" id="Plan2Disc" value="10" />
+                </div>
+
+                <div class="col-md-3 text-center plan" id="plan3" style=" margin-left : 50px;">
+                    <i class="pricing-icon ti-truck" style="color: #1f364f;"></i>
+                    <h3 class="pricing-title">Ultimate</h3>
+                    <div class="pricing-price" style="color: #1f364f;"><span class="pricing-currency" style="color: #1f364f;">$</span>30<span class="pricing-period">/month</span></div>
+                    <ul class="list-unstyled pricing-feature-list">
+                        <li>20 GB of space</li>
+                        <li>Unlimited traffic</li>
+                        <li>Forum access</li>
+                        <li>Free Support</li>
+                    </ul>
+                    <button type="button" class="btn btn-lg btn-rounded  btn-success upgradeBtn" id="erpPlanbtn" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="SetData('3')">Upgrade Now</button>
+                    <input type="hidden" id="Plan3Name" value="Ultimate" />
+                    <input type="hidden" id="Plan3Price" value="30" />
+                    <input type="hidden" id="Plan3ID" value="15651487-f331-4aab-baea-bb0223" />
+                    <input type="hidden" id="Plan3Disc" value="10" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" class="modal fade bs-example-modal-lg">
+    <div role="document" class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="border-bottom:1px gray dotted !important;">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 id="myLargeModalLabel" class="modal-title">Compelete Your Purchase</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="col-sm-1">
+                        </div>
+                        <div class="col-sm-10 text-center" style="border-bottom: 0.2px gray solid !important;">
+                            <h4 style="color: #1f364f;" id="pHeding">You Have Choosen Basic Plan.</h4>
+                        </div>
+                        <div class="col-sm-1">
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:20px;">
+                    <div class="col-sm-12">
+                        <div class="col-sm-1">
+                        </div>
+                        <div class="col-sm-10">
+                            <div class="col-sm-3">
+                                <p><b>Subscription Type</b></p>
+                            </div>
+                            <div class="col-sm-4">
+                                <select class="form-control" id="subType">                           
+                                    <option value="1">Monthly</option>
+                                    <option value="12">Annual</option>                                   
+                                </select>
+                            </div>
+                            <div class="col-sm-2" id="disDiv" style="display:none;">
+                                <span class="label label-danger" id="discSpan">Save Over 20%</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                        </div>
+                    </div>
+                </div>                
+                <div class="row" style="margin-top:20px; display:none;" id="offerRow">
+                    <div class="col-sm-12" >
+                        <div class="col-sm-1">
+                        </div>
+                        <div class="col-sm-10 text-center" style="border: 0.2px gray solid; background-color: #fefff4;">
+                            <h4 style="color:green" id="discHead">You can save over 20% by choosing the Annual Subscription option.</h4>
+                        </div>
+                        <div class="col-sm-1">
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:30px;">
+                    <div class="col-sm-12">
+                        <div class="col-sm-1">
+                        </div>
+                        <div class="col-sm-10">
+                            <table style="width:100%">
+                                <thead style="border-bottom: 0.2px gray solid">
+                                    <tr>
+                                        <th>Price</th>
+                                        <th class="text-center">Total Months</th>
+                                        <th class="text-center">Cost</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td  style="font-size:20px;" id="indiP"><b>USD 15$</b></td>
+                                        <td class="text-center" id="mont">12</td>
+                                        <td class="text-center" style="color:green;font-size:20px;"id="totalP"><b>USD 144$</b></td>
+                                    </tr>                                   
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-sm-1">
+                        </div>
+                    </div>
+                </div>
+                @*<div class="row" style="margin-top:30px;">
+                    <div class="col-sm-12">
+                        <div class="col-sm-1">
+                        </div>
+                        <div class="col-sm-10" style="border-bottom: 0.2px gray solid;">
+                            <h5>Credit Card Details</h5>
+                        </div>
+                        <div class="col-sm-1">
+                        </div>
+                    </div>
+                </div>*@
+                @*<div class="row" style="margin-top:10px;">
+                    <div class="col-sm-12">
+                        <div class="col-sm-1">
+                        </div>
+                        <div class="col-sm-10">
+                            <div class="col-sm-4">
+                                <input type="radio" id="card" name="mygroup" class="active" />
+                                <label for="Card"><b>Credit-Card</b></label>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="radio" id="paypal" name="mygroup" />
+                                <label for="paypal"><b>Pay With Paypal</b></label>
+                            </div>                                                
+                        </div>
+                        <div class="col-sm-1">
+                        </div>
+                    </div>
+                </div>*@
+                @*<div class="row" style="margin-top:10px;" id="creditCard" >*@
+                    @*<div class="col-sm-12">
+                        <div class="col-sm-1">
+                        </div>
+                        <div class="col-sm-10">
+                            <div class="col-sm-4">                                
+                                <label for="Card">Card No.</label>
+                                <input type="text" class="form-control" id="cardNo" placeholder="Card no" />
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="paypal">Expiry Date</label>
+                                <input type="text" class="form-control" placeholder="MM/YYYY" />
+                            </div>
+                            <div class="col-sm-2">
+                                <label for="paypal">CVC</label>
+                                <input type="text" class="form-control" placeholder="CVC" />
+                            </div>
+                            <div class="col-sm-3">                                                              
+                                <button class="btn btn-success btn-small btnEditCancel" id="saveWithCard" style="margin-top:24px;">Proceed</button>
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                        </div>
+                    </div>*@
+                    <script src="https://js.stripe.com/v3/"></script>
+                    @*<div class="col-sm-12">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-10">
+                            <form action="/charge" method="post" id="payment-form">
+                                <div class="form-row">
+                                    <label for="card-element">
+                                        Credit or debit card
+                                    </label>
+                                    <div id="card-element">
+                                        <!-- a Stripe Element will be inserted here. -->
+                                    </div>
+
+                                    <!-- Used to display form errors -->
+                                    <div id="card-errors" role="alert"></div>
+                                </div>
+
+                                <button class="btn btn-primary">Submit Payment</button>
+                            </form>
+                        </div>
+                        <div class="col-sm-1"></div>
+                    </div>*@
+                    @*<form action="/charge" method="post" id="payment-form">
+                        <div class="form-row">
+                            <label for="card-element">
+                                Credit or debit card
+                            </label>
+                            <div id="card-element">
+                                <!-- a Stripe Element will be inserted here. -->
+                            </div>
+
+                            <!-- Used to display form errors -->
+                            <div id="card-errors" role="alert"></div>
+                        </div>
+
+                        <button>Submit Payment</button>
+                    </form>*@
+                @*</div>*@
+                @*<div class="row" style="margin-top:10px;display:none;" id="payPalDiv">
+                    <div class="col-sm-12">
+                        <div class="col-sm-1">
+                        </div>
+                        <div class="col-sm-10">
+                            <div class="col-sm-4">
+                                <button class="btn btn-success btn-small btnEditCancel" id="saveWithPayPal" >Proceed With Paypal</button>
+                            </div>                           
+                        </div>
+                        <div class="col-sm-1">
+                        </div>
+                    </div>
+                </div>*@
+            </div>
+            <div class="modal-footer">
+                @*<button type="button" data-dismiss="modal" class="btn btn-raised btn-default">Close</button>*@
+                <button type="button" class="btn btn-raised btn-black" id="cnt">Continue</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form action="/PayPal/ValidateCommand" method="post" id="payPalForm">
+    <input type="hidden" name="CustomerID" id="Customer_ID" value="@ViewBag.CustomerID" />
+    <input type="hidden" name="Product_ID" id="Plan_ID" />
+    <input type="hidden" name="ProductName" id="ProductName" />
+    <input type="hidden"  id="Plan_Price" />
+    <input type="hidden" name="ProductPrice" id="ProductPrice" />
+    <input type="hidden" id="AnnualDisc" />
+    <input type="hidden" id="TotalCost" />
+</form>
+
+<input type="hidden" id="success" value="@TempData["success_msg"]" />
+<input type="hidden" id="error" value="@TempData["error_msg"]" />
+<input type="hidden" id="scustid" value="@session.UserSubscription.sCustID.ToString()"/>
+<input type="hidden" id="stoken" value="@session.UserSubscription.sToken.ToString()" />
+
+<div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="Confimation_Success_Modal">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 id="myAnimationModalLabel" class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <p style="color:green;"><b>Your Subscription Upgraded Successfully!</b></p>
+                        <br />
+                        <p> Thank you for choosing us</p>
+                        <br />
+                        <p>We look forward to build a long-term & perpetual relations.</p>
+                        <br />
+                        <p>Clouderac Team</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default">Cancel</button>
+                @*<button type="button" class="btn btn-raised btn-danger">Submit</button>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+<div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="Confimation_Error_Modal">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 id="myAnimationModalLabel" class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <p style="color:red;"><b>There is An Error In Processing Your Payment. Please Try Again Later!</b></p>
+                        <br />
+                        <p> For More Datails Please Check Your Transaction History . </p>
+                        <br />
+                        <p>Thank You</p>
+                        <br />
+                        <p>We look forward to build a long-term & perpetual relations.</p>
+                        <br />
+                        <p>Clouderac Team</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default">Cancel</button>
+                @*<button type="button" class="btn btn-raised btn-danger">Submit</button>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        if ($("#success").val() != "") {
+            $('#Confimation_Success_Modal').modal('show');
+        }
+
+        if ($("#error").val() != "") {
+            $('#Confimation_Error_Modal').modal('show');
+        }        
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        if ($("#subType").val() == "1") {           
+            $("#offerRow").show();
+            $("#disDiv").hide();            
+        }
+        else {
+            $("#offerRow").hide();
+            $("#disDiv").show();            
+        }
+
+        if ($('#card').is(':checked')) {
+            $("#payPalDiv").hide();
+            $("#creditCard").show();            
+        }
+        if ($('#paypal').is(':checked')) {
+            $("#creditCard").hide();
+            $("#payPalDiv").show();
+        }
+    });
+
+    $(document).ready(function () {
+        $("#card").click(function () {
+            if ($('#card').is(':checked')) {
+                $("#payPalDiv").hide();
+                $("#creditCard").show();
+            }
+            else {
+                $("#creditCard").hide();
+                $("#payPalDiv").show();
+            }
+        });
+
+        $("#paypal").click(function () {
+            if ($('#paypal').is(':checked')) {
+                $("#creditCard").hide();
+                $("#payPalDiv").show();
+            }
+            else {
+                $("#payPalDiv").hide();
+                $("#creditCard").show();
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        $("#subType").change(function () {
+            
+            if ($("#subType").val() == "1") {
+                $("#offerRow").show();
+                $("#disDiv").hide();
+                $("#TotalCost").val($("#Plan_Price").val());
+                $("#ProductPrice").val($("#Plan_Price").val());
+                var priceText = "USD " + $("#Plan_Price").val() + "$";
+                $("#indiP").text(priceText);
+                $("#totalP").text(priceText);
+                $("#mont").text("1");
+            }
+            else{
+                $("#offerRow").hide();
+                $("#disDiv").show();
+                var TotalCost = (((parseInt($("#Plan_Price").val())) * 12) - ((((parseInt($("#Plan_Price").val())) * 12) * parseInt($("#AnnualDisc").val())) / 100));
+                $("#TotalCost").val(TotalCost);
+                $("#ProductPrice").val(TotalCost);
+                var priceText = "USD " + $("#Plan_Price").val() + "$";
+                var totalText = "USD " + TotalCost + "$";
+                $("#indiP").text(priceText);
+                $("#totalP").text(totalText);
+                $("#mont").text("12");
+            }
+        });
+    });
+</script>
+
+<script>
+    function SetData(PlanNo) {
+        var headTxt = "You Have Choosen" + " " + $("#Plan" + PlanNo + "Name").val() + " Plan.";
+        var DiscHeading = "You can save over " + $("#Plan" + PlanNo + "Disc").val() + "% by choosing the Annual Subscription option.";
+        var DiscSpn = "Save Over " + $("#Plan" + PlanNo + "Disc").val() + "%";
+        $("#Plan_ID").val($("#Plan" + PlanNo + "ID").val());
+        $("#ProductName").val($("#Plan" + PlanNo + "Name").val());
+        $("#Plan_Price").val($("#Plan" + PlanNo + "Price").val());
+        $("#AnnualDisc").val($("#Plan" + PlanNo + "Disc").val());
+        $("#pHeding").text(headTxt);
+        $("#discHead").text(DiscHeading);
+        $("#discSpan").text(DiscSpn);
+
+        if ($("#subType").val() == "1") {
+            $("#TotalCost").val($("#Plan_Price").val());
+            $("#ProductPrice").val($("#Plan_Price").val());
+            var priceText = "USD " + $("#Plan_Price").val() + "$";            
+            $("#indiP").text(priceText);
+            $("#totalP").text(priceText);
+            $("#mont").text("1");
+        }
+        else {
+            var TotalCost = (((parseInt($("#Plan_Price").val())) * 12) - ((((parseInt($("#Plan_Price").val())) * 12) * parseInt($("#AnnualDisc").val())) / 100));
+            $("#TotalCost").val(TotalCost);
+            $("#ProductPrice").val(TotalCost);
+            var priceText = "USD " + $("#Plan_Price").val() + "$";
+            var totalText = "USD " + TotalCost + "$";
+            $("#indiP").text(priceText);
+            $("#totalP").text(totalText);
+            $("#mont").text("12");
+        }
+    }
+</script>
+
+<script>
+    $(document).ready(function () {
+        
+        $("#").click(function () {
+            $.ajax({
+                url: '/PayPal/ValidateCommand',
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ product: $('#Plan_ID').val(), ProductPrice: $("#TotalCost").val(), CustomerID: $("#Customer_ID").val(), Subs_Type: $("#subType").val() }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data == 'Success') {
+
+                    }
+                    else {                        
+                    }
+                },
+                error: function (xhr) {
+                    $('#errorMessage').html("No connection");
+                }
+            });
+        });
+
+        $("#saveWithPayPal").click(function () {
+            $("#payPalForm").submit();
+        });
+    });
+</script>
+
+@* Stripe Script *@
+<script>
+    // Create a Stripe client
+    var stripe = Stripe('pk_test_rdkZUMX9Fyt1bXMsXdoI6Sqg');
+
+    // Create an instance of Elements
+    var elements = stripe.elements();
+
+    // Custom styling can be passed to options when creating an Element.
+    // (Note that this demo uses a wider set of styles than the guide below.)
+    var style = {
+        base: {
+            color: '#32325d',
+            lineHeight: '24px',
+            fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+            fontSmoothing: 'antialiased',
+            fontSize: '16px',
+            '::placeholder': {
+                color: '#aab7c4'
+            }
+        },
+        invalid: {
+            color: '#fa755a',
+            iconColor: '#fa755a'
+        }
+    };
+
+    // Create an instance of the card Element
+    var card = elements.create('card', { style: style });
+
+    // Add an instance of the card Element into the `card-element` <div>
+    card.mount('#card-element');
+
+    // Handle real-time validation errors from the card Element.
+    card.addEventListener('change', function (event) {
+        var displayError = document.getElementById('card-errors');
+        if (event.error) {
+            displayError.textContent = event.error.message;
+        } else {
+            displayError.textContent = '';
+        }
+    });
+
+    // Handle form submission
+    var form = document.getElementById('payment-form');
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        stripe.createToken(card).then(function (result) {
+            if (result.error) {
+                // Inform the user if there was an error
+                var errorElement = document.getElementById('card-errors');
+                errorElement.textContent = result.error.message;
+            } else {
+                // Send the token to your server
+                // stripeTokenHandler(result.token);
+                alert(result.token);
+            }
+        });
+    });
+</script>
+
+<script src="https://checkout.stripe.com/checkout.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var renderPaymentMethod = function () {
+            var handler = StripeCheckout.configure({
+                key: 'pk_test_rdkZUMX9Fyt1bXMsXdoI6Sqg', //Your publishable key from the Stripe Portal
+                image: "http://tempurl.com/logo.jpg",  //customize the Checkout popup with your logo
+                email: 'abhishekkhemariya29@gmail.com',
+                token: function (token, args) {
+                    //However you want to get the Token back to the server
+                    alert(token.id);
+                    //AjaxPostToCreateCustomerOnToServer(token.id);
+                    $.post('/Subscription/ManageSubscription', { sToken: token.id, sCustomerID: "", PlanID: $("#Product_ID").val() }, function (data) {
+                        if (data != '') {
+                           
+                            //$("#tctForm")[0].reset();
+                        }
+                        else {
+                            location.reload();
+                        }
+                    });
+                }
+            });
+
+            //Stripe's  checkout.js will display a iframe modal to collect CC info
+            handler.open({
+                name: 'Clouderac',
+                panelLabel: 'Card Details',
+                description: 'Clouderac.com',
+                allowRememberMe: false
+            });
+        };
+
+        $("#cnt").click(function () {
+            if($('#scustid').val() == ""){
+                renderPaymentMethod();
+            }
+            else{
+                ManageSubscription();
+            }
+        });
+
+
+    });
+    function ManageSubscription() {
+        $.post('/Subscription/ManageSubscription', { sToken: $('#stoken').val(), sCustomerID: $('#scustid').val(), PlanID: $("#Product_ID").val() }, function (data) {
+            if (data != '') {
+                
+                //$("#tctForm")[0].reset();
+            }
+            else {
+                location.reload();
+            }
+        });
+    }
+</script>

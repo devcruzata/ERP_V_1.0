@@ -1,0 +1,24 @@
+﻿@model Project.Web.Models.StatusModel
+@{
+    Layout = null;
+}
+<div id="div_Source">
+    <table class="table table-hover">
+        @foreach (var status in Model.status)
+        {
+            <tr style="border-bottom:1px;">
+                <td style="text-align:left;">
+                    <label>@status.Status_Text</label>
+                </td>
+                <td style="text-align:right;">
+                    <button type="button" class="btn btn-small" data-toggle="modal" data-target="#SourceModal" title="Edit Source" onclick="EditSource('@status.Status_Text','@status.Status_Value')"><i class="ti-pencil"></i></button>
+                    <button type="button" class="btn btn-small" title="Delete Source" onclick="DeleteSource('@status.Status_Value')"><i class="ti-trash"></i></button>
+
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+

@@ -1,0 +1,1939 @@
+﻿@model Project.Web.Models.LeadsModel
+@{
+    ViewBag.Title = "testView";
+}
+
+@{
+    SessionHelper session = new SessionHelper();
+    
+}
+<script type="text/javascript" src="@Url.Content("~/Content/BootstrapCountryPicker/bootstrap-formhelpers-countries.en_US.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/BootstrapCountryPicker/bootstrap-formhelpers-countries.js")"></script>
+
+<script>
+    $(document).ready(function () {
+        $(".date-control").daterangepicker({
+            singleDatePicker: true,
+            locale: {
+                format: 'MM/DD/YYYY'
+            },
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#startTime").datetimepicker({ locale: "en-gb", format: "LT" });
+        $("#endTime").datetimepicker({ locale: "en-gb", format: "LT" });
+        $("#ustartTime").datetimepicker({ locale: "en-gb", format: "LT" });
+        $("#uendTime").datetimepicker({ locale: "en-gb", format: "LT" });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#ecolor").minicolors({ theme: "bootstrap" });
+        $("#uColor").minicolors({ theme: "bootstrap" });
+    });
+</script>
+<style>
+    .showmoredetails {
+        display: none;
+    }
+
+    .hidebtn {
+        display: none;
+    }
+
+    .editable-click, a.editable-click {
+        text-decoration: none;
+        color: #428bca;
+        border-bottom: dashed 0px #428bca;
+    }
+
+    .edittext-color {
+        color: #333 !important;
+        border: 0 !important;
+        outline: none !important;
+        text-decoration: none !important;
+    }
+
+        .edittext-color .edits-pencil {
+            margin-left: 10px;
+        }
+
+    .comment-userimg {
+        width: 45px;
+        height: 45px;
+        border-radius: 45px;
+    }
+
+    .comment-boxdiv {
+        margin-top: 15px;
+    }
+
+    .page-header {
+        margin: 0 0 20px;
+    }
+</style>
+
+
+
+<style>
+    .view-leadleftmaindiv {
+        padding-top: 15px;
+    }
+
+    .viewlead-mainrightdiv {
+        padding-top: 15px;
+    }
+
+    .btnlead-edit {
+        width: 100% !important;
+        height: 40px;
+        line-height: 40px;
+        display: block;
+    }
+
+    .text-333 {
+        color: #666;
+    }
+
+    .tag-box {
+        display: inline-block;
+    }
+
+        .tag-box a {
+            color: #666;
+        }
+
+    .tagul-list {
+        padding-left: 0;
+    }
+
+    .viewlead-body {
+        padding: 0;
+    }
+
+    .viewlead-tabs {
+        background: #EDF1F2;
+    }
+
+    #Timeline {
+        padding: 30px 40px 30px 50px;
+    }
+
+    .timlinemedia-body {
+        max-width: 300px;
+        border: 1px solid #dee5e7;
+        background: #f0f3f4;
+        padding: 15px 15px 2px 15px;
+        position: relative;
+        overflow: initial !important;
+    }
+
+    .timeline-time {
+        width: 69px;
+        position: absolute;
+        top: 6px;
+        right: 12px;
+    }
+
+    #Timeline .activities .media-left {
+        max-width: 100px;
+    }
+
+    .timlinemedia-body:before {
+        content: '';
+        position: absolute;
+        left: -12px;
+        top: 20%;
+        width: 0;
+        height: 0;
+        border-bottom: 11px solid transparent;
+        border-right: 11px solid #dee5e7;
+        border-top: 11px solid transparent;
+        clear: both;
+        z-index: 999 !important;
+    }
+
+    .timlinemedia-body:after {
+        content: '';
+        position: absolute;
+        left: -10px;
+        top: 20%;
+        width: 0;
+        height: 0;
+        border-bottom: 11px solid transparent;
+        border-right: 11px solid #f0f3f4;
+        border-top: 11px solid transparent;
+        clear: both;
+        z-index: 9999999 !important;
+    }
+
+    #Notes {
+        padding: 10px 20px 20px;
+    }
+
+    .notes-table {
+        margin-top: 10px;
+    }
+
+        .notes-table tr td {
+            border: 0 !important;
+            padding-left: 0 !important;
+        }
+
+            .notes-table tr td a {
+                color: #666;
+                margin-left: 8px;
+            }
+
+    #Events {
+        padding: 15px;
+    }
+
+    #Tasks {
+        padding: 15px;
+    }
+
+    #Deals {
+        padding: 15px;
+    }
+
+    #Mail {
+        padding: 15px;
+    }
+
+    #Documents {
+        padding: 15px;
+    }
+
+    #Tickets {
+        padding: 15px;
+    }
+</style>
+
+
+
+<div class="page-container">
+    <div class="page-header clearfix page-header-viewleads">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4 class="mt-0 mb-5 ">View Leads</h4>
+                <ol class="breadcrumb mb-0">
+                    <li><a href="@Url.RouteUrl("AdminDashboard_V_2")">Home</a></li>
+                    <li><a href="@Url.RouteUrl("LeadHome")">Lead</a></li>
+                    <li class="active">View Leads</li>
+                </ol>
+            </div>
+            <div class="col-sm-6">
+                @*<div class="btn-group mt-5">
+                    <button type="button" class="btn btn-default btn-outline"><i class="flag-icon flag-icon-us mr-5"></i> English</button>
+                    <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default btn-outline dropdown-toggle"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
+                    <ul class="dropdown-menu dropdown-menu-right animated fadeInDown">
+                        <li><a href="#"><i class="flag-icon flag-icon-de mr-5"></i> German</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-fr mr-5"></i> French</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-es mr-5"></i> Spanish</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-it mr-5"></i> Italian</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-jp mr-5"></i> Japanese</a></li>
+                    </ul>
+                </div>*@
+            </div>
+        </div>
+    </div>
+
+    <div class="page-content container-fluid page-contant-viewleads">
+
+        <div class="col-sm-3 view-leadleftmaindiv">
+            <div class="widget text-center">
+                <div class="widget-body">
+                    <div class="clearfix">
+                        @*<div class="pull-left"><a href="javascript:;"><i class="ti-arrow-left text-muted"></i></a></div>
+                        <div class="pull-right"><a href="javascript:;"><i class="ti-arrow-right text-muted"></i></a></div>*@
+                    </div>
+                    <img src="@Url.Content("~/Content/build/images/users/21.png")" width="100" alt="" class="img-circle">
+                    <h4 class="mb-4">@Model.Name</h4>
+                    <h5 class="mb-5">@Model.JobDescription</h5>
+                    <div class="clearfix mt-20">
+                        <a href="#" onclick="UpdateLeads()"  class="btn-default btnlead-edit">
+                            <i class="ti-pencil"></i> Edit
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="widget">
+                <div class="widget-body">
+                    <h5 class="mb-5 text-muted">Owner</h5>
+                    <h5 class="mb-5"><a href="#" class="text-333">@Model.CreatedBy</a></h5>
+                </div>
+            </div>
+
+            @*<div class="widget">
+                    <div class="widget-body">
+                        <h5 class="mb-5 text-muted">Tags</h5>
+                        <div>
+                            <ul class="tagul-list">
+                                <li class="tag label label-outline label-default tag-box">
+                                    <a href="#" class="">Amsterdam </a>
+                                    <a href="#"><i class="ti-close"></i></a>
+                                </li>
+                                <li class="tag label label-outline label-default tag-box">
+                                    <a href="#" class="">Amsterdam </a>
+                                    <a href="#"><i class="ti-close"></i></a>
+                                </li>
+                                <li class="tag label label-outline label-default tag-box">
+                                    <a href="#" class="">Amsterdam </a>
+                                    <a href="#"><i class="ti-close"></i></a>
+                                </li>
+                            </ul>
+                            <a href="#" class="text-muted"><i class="ti-plus"></i> Add</a>
+                        </div>
+                    </div>
+                </div>*@
+
+            <div class="widget">
+                <div class="widget-body">
+                    <h5 class="mb-5 text-muted">Contact Info</h5>
+                    <h5 class="mb-5"><a href="#" class="text-333">@Model.ContactNo</a></h5>
+                    <h5 class="mb-5"><a href="#" class="text-333" data-toggle="modal" data-target="#Mail_Modal">@Model.Email</a></h5>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-sm-9 viewlead-mainrightdiv">
+            <div class="widget">
+                <div class="widget-body viewlead-body">
+                    <form class="form-horizontal">
+                        <ul role="tablist" class="nav nav-tabs mb-15 viewlead-tabs">
+                            <li role="presentation" class="active"><a href="#Timeline" aria-controls="Timeline" role="tab" data-toggle="tab" onclick="RenderActivity();">Activity</a></li>
+                            @*<li role="presentation"><a href="#Deals" aria-controls="Deals" role="tab" data-toggle="tab">Deals</a></li>*@
+                            @*<li role="presentation"><a href="#Meetings" aria-controls="Meetings" role="tab" data-toggle="tab">Meetings</a></li>*@
+                            <li role="presentation"><a href="#Events" aria-controls="Events" role="tab" data-toggle="tab">Events</a></li>
+                            <li role="presentation"><a href="#Tasks" aria-controls="Tasks" role="tab" data-toggle="tab">To Do</a></li>
+                            <li role="presentation"><a href="#Notes" aria-controls="Notes" role="tab" data-toggle="tab">Notes</a></li>
+                            @*<li role="presentation"><a href="#Events" aria-controls="Events" role="tab" data-toggle="tab">Events</a></li>
+                            <li role="presentation"><a href="#Mail" aria-controls="Mail" role="tab" data-toggle="tab">Mail</a></li>*@
+                            <li role="presentation"><a href="#Documents" aria-controls="Documents" role="tab" data-toggle="tab">Documents</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="Timeline" role="tabpanel" class="tab-pane active">
+                                <ul class="activities list-unstyled mb-0" id="actTable">
+                                    @foreach (var act in Model.Activity)
+                                    {
+                                        if (act.ActivityType == "TASK")
+                                        {
+                                            <li class="activity-primary">
+                                                <div class="media">
+                                                    <div class="media-left">
+                                                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-15 fw-500">@act.CreatedDate</time>
+                                                    </div>
+                                                    <div class="media-body timlinemedia-body">
+                                                        <h5 class="media-heading">New Task Added</h5>
+                                                        <p class="text-muted">@act.Title</p>
+                                                        <h6 class="text-right timeline-time"><i class="ti-time"></i> @act.CreatedTime</h6>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        }
+
+                                        if (act.ActivityType == "MEETING")
+                                        {
+                                            <li class="activity-success">
+                                                <div class="media">
+                                                    <div class="media-left">
+                                                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-15 fw-500">@act.CreatedDate</time>
+                                                    </div>
+                                                    <div class="media-body timlinemedia-body">
+                                                        <h5 class="media-heading">New Meeting Added</h5>
+                                                        <p class="text-muted">@act.Title</p>
+                                                        <h6 class="text-right timeline-time"><i class="ti-time"></i> @act.CreatedTime</h6>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        }
+
+                                        if (act.ActivityType == "NOTE")
+                                        {
+                                            <li class="activity-info">
+                                                <div class="media">
+                                                    <div class="media-left">
+                                                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-15 fw-500">@act.CreatedDate</time>
+                                                    </div>
+                                                    <div class="media-body timlinemedia-body">
+                                                        <h5 class="media-heading">New Notes Added</h5>
+                                                        <p class="text-muted">@act.Title</p>
+                                                        <h6 class="text-right timeline-time"><i class="ti-time"></i> @act.CreatedTime</h6>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        }
+
+                                        if (act.ActivityType == "DEAL")
+                                        {
+                                            <li class="activity-success">
+                                                <div class="media">
+                                                    <div class="media-left">
+                                                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-15 fw-500">@act.CreatedDate</time>
+                                                    </div>
+                                                    <div class="media-body timlinemedia-body">
+                                                        <h5 class="media-heading">New Deal Added</h5>
+                                                        <p class="text-muted">@act.Title</p>
+                                                        <h6 class="text-right timeline-time"><i class="ti-time"></i> @act.CreatedTime</h6>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        }
+
+                                        if (act.ActivityType == "EVENT")
+                                        {
+                                            <li class="activity-danger">
+                                                <div class="media">
+                                                    <div class="media-left">
+                                                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-15 fw-500">@act.CreatedDate</time>
+                                                    </div>
+                                                    <div class="media-body timlinemedia-body">
+                                                        <h5 class="media-heading">New Event Added</h5>
+                                                        <p class="text-muted">@act.Title</p>
+                                                        <h6 class="text-right timeline-time"><i class="ti-time"></i> @act.CreatedTime</h6>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        }
+
+                                        if (act.ActivityType == "MAIL")
+                                        {
+                                            <li class="activity-warning">
+                                                <div class="media">
+                                                    <div class="media-left">
+                                                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-15 fw-500">@act.CreatedDate</time>
+                                                    </div>
+                                                    <div class="media-body timlinemedia-body">
+                                                        <h5 class="media-heading">New Mail</h5>
+                                                        <p class="text-muted">From: @act.FromAdd</p>
+                                                        <p class="text-muted">To: @act.ToAdd</p>
+                                                        <h6 class="text-right timeline-time"><i class="ti-time"></i> @act.CreatedTime</h6>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        }
+
+                                        if (act.ActivityType == "DOCUMENT")
+                                        {
+                                            <li class="activity-info">
+                                                <div class="media">
+                                                    <div class="media-left">
+                                                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-15 fw-500">@act.CreatedDate</time>
+                                                    </div>
+                                                    <div class="media-body timlinemedia-body">
+                                                        <h5 class="media-heading">A New Document Added</h5>
+                                                        @if (act.CreatedBy.ToString() == session.UserSession.UserId.ToString())
+                                                        {
+                                                            <p class="text-muted">Added by you</p>
+                                                        }
+                                                        else
+                                                        {                                                            
+                                                            <p class="text-muted">Added by @act.CreatedByName</p>
+                                                        }                                                       
+                                                        <h6 class="text-right timeline-time"><i class="ti-time"></i> @act.CreatedTime</h6>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        }
+                                        
+                                        if (act.ActivityType == "CREATED")
+                                        {
+                                            <li class="activity-info">
+                                                <div class="media">
+                                                    <div class="media-left">
+                                                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-15 fw-500">@act.CreatedDate</time>
+                                                    </div>
+                                                    <div class="media-body timlinemedia-body">
+                                                        <h5 class="media-heading">Lead Created</h5>
+                                                        <p class="text-muted">@act.Title</p>
+                                                        <h6 class="text-right timeline-time"><i class="ti-time"></i> @act.CreatedTime</h6>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        }
+                                        
+                                        if (act.ActivityType == "UPDATED")
+                                        {
+                                            <li class="activity-info">
+                                                <div class="media">
+                                                    <div class="media-left">
+                                                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-15 fw-500">@act.CreatedDate</time>
+                                                    </div>
+                                                    <div class="media-body timlinemedia-body">
+                                                        <h5 class="media-heading">Lead Updated</h5>
+                                                        <p class="text-muted">@act.Title</p>
+                                                        <h6 class="text-right timeline-time"><i class="ti-time"></i> @act.CreatedTime</h6>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        }
+
+                                        if (act.ActivityType == "STATUS")
+                                        {
+                                            <li class="activity-success">
+                                                <div class="media">
+                                                    <div class="media-left">
+                                                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-15 fw-500">@act.CreatedDate</time>
+                                                    </div>
+                                                    <div class="media-body timlinemedia-body">
+                                                        <h5 class="media-heading">Lead Updated</h5>
+                                                        <p class="text-muted">@act.Title</p>
+                                                        <h6 class="text-right timeline-time"><i class="ti-time"></i> @act.CreatedTime</h6>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        }
+                                    }
+                                </ul>
+                            </div>
+
+                            @*<div id="Deals" role="tabpanel" class="tab-pane">
+                                Deals
+                            </div>*@
+
+                            @*<div id="Meetings" role="tabpanel" class="tab-pane">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Meeting_Modal" style="float:right; margin-right:30px;"><i class="ti-plus"></i> Add</button>
+                                <div class="widget no-border" style="margin-left:20px;">
+                                    <table style="width: 100%" class="table notes-table dt-responsive nowrap">
+                                        <tbody>
+                                            @foreach (var meet in Model.Meeting)
+                                            {
+                                                <tr>
+                                                    <td width="70%">
+                                                        <div class="media">
+                                                            <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/10.jpg")" alt="" class="media-object img-circle"></div>
+                                                            <div class="media-body">
+                                                                <h5 class="media-heading">@meet.Title</h5>
+                                                                <p class="text-muted mb-0">Meeting With @meet.RelateToName on @meet.Date</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td width="30%" class="text-right text-success">
+                                                        <a href="#"><i class="ti-pencil-alt"></i></a>
+                                                        <a href="#"><i class="ti-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>*@
+
+                            <div id="Tasks" role="tabpanel" class="tab-pane">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Task_Modal" style="float: right; margin-right: 30px;"><i class="ti-plus"></i> Add</button>
+                                <div class="widget no-border" style="margin-left:20px;">
+                                    <table style="width: 100%" class="table notes-table dt-responsive nowrap">
+                                        <tbody id="taskTable">
+                                            @foreach (var task in Model.Task)
+                                            {
+                                                <tr>
+                                                    <td width="70%">
+                                                        <div class="media">
+                                                            <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/to-do.jpg")" alt="" class="media-object img-circle"></div>
+                                                            <div class="media-body">
+                                                                <h5 class="media-heading">@task.Title</h5>
+                                                                <p class="text-muted mb-0">@task.Description</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td width="30%" class="text-right text-success">
+                                                        @*<a href="#"><i class="ti-pencil-alt"></i></a>*@
+                                                        <a href="#" onclick="showDeleteConfirmationMsg('@task.Task_ID')" title="Delete Task"><i class="ti-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div id="Events" role="tabpanel" class="tab-pane">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNewEvent" style="float: right; margin-right: 30px;"><i class="ti-plus"></i> Add</button>
+                                <div class="widget no-border" style="margin-left:20px;">
+                                    <table style="width: 100%" class="table notes-table dt-responsive nowrap">
+                                        <tbody id="eventsTable">
+                                            @foreach (var events in Model.Events)
+                                            {
+                                                <tr>
+                                                    <td width="70%">
+                                                        <div class="media">
+                                                            <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/event.png")" alt="" class="media-object img-circle"></div>
+                                                            <div class="media-body">
+                                                                <h5 class="media-heading">@events.title</h5>                                                               
+                                                                    <p class="text-muted mb-0">at @events.createdDate</p>                                                               
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td width="30%" class="text-right text-success">
+                                                        @*<a href="#"><i class="ti-pencil-alt"></i></a>*@
+                                                        <a href="#" onclick="deleteEvents('@events.id')" title="Delete Event"><i class="ti-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div id="Notes" role="tabpanel" class="tab-pane">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Notes_Modal" style="float: right; margin-right: 30px;"><i class="ti-plus"></i> Add</button>
+                                <div class="widget no-border" style="margin-left:20px;">
+                                    <table style="width: 100%" class="table notes-table dt-responsive nowrap">
+                                        <tbody id="notesTable">
+                                            @foreach (var notes in Model.Notes)
+                                            {
+                                                 <tr>
+                                                <td width="70%">
+                                                    <div class="media">
+                                                        <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/notes.png")" alt="" class="media-object img-circle"></div>
+                                                        <div class="media-body">
+                                                            <h5 class="media-heading">@notes.Description</h5>
+                                                            @*@if (notes.Note_Owner_ID.ToString() == HttpContext.Current.Session["UserID"].ToString())*@
+                                                            @if(notes.Note_Owner_Name.ToString() == session.UserSession.UserId.ToString())
+                                                            {
+                                                                <p class="text-muted mb-0">Added By you at @notes.DateTaken</p>
+                                                            }
+                                                            else
+                                                            {
+                                                                <p class="text-muted mb-0">Added By @notes.Note_Owner_Name at @notes.DateTaken</p>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td width="30%" class="text-right text-success">
+                                                    @*<a href="#"><i class="ti-pencil-alt"></i></a>*@
+                                                    <a href="#" onclick="deleteNotes('@notes.Note_ID')" title="Delete Note"><i class="ti-trash"></i></a>
+                                                </td>
+                                            </tr>  
+                                            }                                   
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            @*<div id="Events" role="tabpanel" class="tab-pane">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EventModal" style="float:right; margin-right:30px;"><i class="ti-plus"></i> Add</button>
+                                <div class="widget no-border" style="margin-left:20px;">
+                                    <table style="width: 100%" class="table notes-table dt-responsive nowrap">
+                                        <tbody>
+                                            @foreach (var meet in Model.Meeting)
+                                            {
+                                                <tr>
+                                                    <td width="70%">
+                                                        <div class="media">
+                                                            <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/10.jpg")" alt="" class="media-object img-circle"></div>
+                                                            <div class="media-body">
+                                                                <h5 class="media-heading">@meet.Title</h5>
+                                                                <p class="text-muted mb-0">Meeting With @meet.RelateToName on @meet.Date</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td width="30%" class="text-right text-success">
+                                                        <a href="#"><i class="ti-pencil-alt"></i></a>
+                                                        <a href="#"><i class="ti-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>*@
+
+                            @*<div id="Mail" role="tabpanel" class="tab-pane">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Mail_Modal" style="float: right; margin-right: 30px;"><i class="ti-plus"></i> Add</button>
+                                <div class="widget no-border" style="margin-left:20px;">
+                                    <table style="width: 100%" class="table notes-table dt-responsive nowrap">
+                                        <tbody>
+                                            @foreach (var task in Model.Task)
+                                            {
+                                                <tr>
+                                                    <td width="70%">
+                                                        <div class="media">
+                                                            <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/10.jpg")" alt="" class="media-object img-circle"></div>
+                                                            <div class="media-body">
+                                                                <h5 class="media-heading">@task.Title</h5>
+                                                                <p class="text-muted mb-0">@task.Description</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td width="30%" class="text-right text-success">
+                                                        <a href="#"><i class="ti-pencil-alt"></i></a>
+                                                        <a href="#"><i class="ti-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>*@
+
+                            <div id="Documents" role="tabpanel" class="tab-pane">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#DocModal" style="float: right; margin-right: 30px;"><i class="ti-plus"></i> Add</button>
+                                <div class="widget no-border" style="margin-left:20px;">
+                                    <table style="width: 100%" class="table notes-table dt-responsive nowrap">
+                                        <tbody id="docTable">
+                                            @foreach (var docs in Model.Doc)
+                                            {
+                                                <tr>
+                                                    <td width="70%">
+                                                        <div class="media">
+                                                            <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/Docs.png")" alt="" class="media-object img-circle"></div>
+                                                            <div class="media-body">
+                                                                <h5 class="media-heading" onclick="downloadDoc('@docs.FileName','@docs.FileID')">@docs.FileName</h5>
+                                                                <p class="text-muted mb-0">Added By: @docs.DocOwner_Name</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td width="30%" class="text-right text-success">
+                                                        @*<a href="#"><i class="ti-pencil-alt"></i></a>*@
+                                                        <a href="#" onclick="deleteDocument('@docs.Doc_ID_Auto_PK', '@docs.FileName', '@docs.FileID')" title="Delete Document"><i class="ti-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="Task_Modal">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 id="myAnimationModalLabel" class="modal-title">Add A Task</h4>
+            </div>
+            <div class="modal-body">
+                <form id="taskForm">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group col-sm-12">
+                                <label for="TTitle">Title</label>
+                                <input type="text" id="TTitle" name="Title" class="form-control" />
+                                <div id="error_div_TTitle" style="display:none;">
+                                    <p style="color:red;">Please Enter Title For Task</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group col-sm-6">
+                                <label for="TRelateTo">Relate To</label>
+                                <select id="TRelateTo" class="form-control" disabled="disabled">
+                                    <option class="active" value="LEAD">Lead</option>
+                                    <option value="OPPORTUNITY">Opportunity</option>
+                                    <option value="CLIENT">Client</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="TRelateToName">Name</label>
+                                <div class="input-group">
+                                    <input id="TRelateToName" type="text" class="form-control" value="@Model.Name" readonly><span class="input-group-addon"><span class="ti-search"></span></span>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-12">
+                                <label for="Description">Description</label>
+                                <textarea class="form-control" placeholder="Description.." id="Description"></textarea>
+                                <div id="error_div_Description" style="display:none;">
+                                    <p style="color:red;">Please add Description For Task</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*@if (@HttpContext.Current.Session["User_Type"].ToString() == "ADM")*@
+                    @if(session.UserSession.UserType == "ADM")
+                    {
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group col-sm-12">
+                                    <label for="AssignToSelect">Assign To</label>
+                                    <select id="AssignToSelect" class="form-control" onchange="SetAssignTo();">
+                                        @foreach (var user in ViewBag.Users)
+                                        {
+                                            <option value="@user.User_ID_PK">@user.FullName</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group col-sm-4">
+                                <div class="checkbox-inline checkbox-custom pull-left">
+                                    <input id="TNotification" type="checkbox" onclick="SetTReminder();">
+                                    <label for="TNotification" class="checkbox-muted text-muted">&nbsp; Send Notification</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default" id="cancel" onclick="CancelTodo();">Cancel</button>
+                <button type="button" class="btn btn-raised btn-danger" id="save" onclick="SheduleTask();">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="Mail_Modal">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 id="myAnimationModalLabel" class="modal-title">Compose Mail</h4>
+            </div>
+            <div class="modal-body">
+                <form action="/Mails/SendMail" method="post" enctype="multipart/form-data" id="EmailForm">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group col-sm-12">
+                                <label for="ToEmail">To</label>
+                                <input type="text" name="RelateTo_Name" id="ToAddress" class="form-control" value="@Model.Email" readonly>
+                                <div id="error_div_ToAddress" style="display:none;">
+                                    <p style="color:red;">Please Enter atleast one Reciepent.</p>
+                                </div>
+                                @*<input  name="ToAddress" type="hidden" class="form-control" value="@Model.Email" readonly>*@
+                                <a href="#" id="cc" onclick="showCCdiv();">Add Cc</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-12" id="cc_div" style="display:none">
+                            <div class="form-group col-sm-12">
+                                <label for="cc">Cc</label>
+                                <input id="CcAddress" name="CcAddress" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group col-sm-12">
+                                <label for="BCC">BCC</label>
+                                @*<input type="text" name="MailBy_Name" class="form-control" value="@HttpContext.Current.Session["User"].ToString()" readonly>
+                                <input id="BccAddress" name="BccAddress" type="hidden" class="form-control" value="@HttpContext.Current.Session["UserName"].ToString()" readonly>*@
+                                <input type="text" name="MailBy_Name" class="form-control" value="@session.UserSession.FullName" readonly>
+                                <input id="BccAddress" name="BccAddress" type="hidden" class="form-control" value="@session.UserSession.Username" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group col-sm-12">
+                                <label for="Subject">Subject</label>
+                                <input id="Subject" name="Subject" type="text" class="form-control">
+                                <div id="error_div_Subject" style="display:none;">
+                                    <p style="color:red;">Please Enter Subject.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Attachments</label>
+                                <div class="col-sm-10">
+                                    <input type="file" id="Attechments" name="Attechments" multiple />
+                                    <div id="error_div_Attechments" style="display:none;">
+                                        <p style="color:red;">File size must be less than 5 MB.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:20px;">
+                        <div class="col-sm-12">
+                            <textarea name="MailBody" id="MailBody" data-provide="markdown" rows="10" width="100%"></textarea>
+                        </div>
+                    </div>
+                    <input type="hidden" name="RelateTo_ID" value="@Model.Lead_ID" />
+                    <input type="hidden" name="MailBy_ID" value="@session.UserSession.UserId" />
+                    <input type="hidden" name="FromAddress" value="@session.UserSession.Username" />
+                </form>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default" id="cancel">Cancel</button>
+                <button type="button" class="btn btn-raised btn-danger" id="save" onclick="SendMail();">Send</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="DocModal">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 id="myAnimationModalLabel" class="modal-title">New Document</h4>
+            </div>
+            <div class="modal-body">
+                <form action="/Doc/AddNewDoc" method="post" enctype="multipart/form-data" id="docForm">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <label for="Title">Title</label>
+                            <input id="DTitle" type="text" class="form-control">
+                            <div id="error_div_DTitle" style="display:none;">
+                                <p style="color:red;">Please Enter Title</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-sm-12">
+                            <label for="Title">Choose Document</label>
+                            <div class="input-group">
+                                <input id="Document" type="file" class="form-control">
+                                <div id="error_div_Document" style="display:none;">
+                                    <p style="color:red;">Please Choose A File</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-sm-12">
+                            <label for="Contact">Related Lead</label>
+                            <input id="Contact" type="text" class="form-control" value="@Model.Name">
+                        </div>
+                    </div>
+
+                    @*<div class="row" style="margin-top:10px;">
+                        <div class="col-sm-12">
+                            <label for="Opportunity">Related Opportunity</label>
+                            <input id="Opportunity" type="text" class="form-control">
+                        </div>
+                    </div>*@
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default"onclick="CancelDoc();">Cancel</button>
+                <button type="button" class="btn btn-raised btn-danger" onclick="AddDoc();">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="addNewEvent" tabindex="-1" role="dialog" aria-labelledby="ModalEventLabel" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-black">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 id="ModalEventLabel" class="modal-title">Add New Event</h4>
+            </div>
+            <div class="modal-body">
+                <form id="eForm">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <input id="inputTitleEvent" type="text" placeholder="Event Name" class="form-control">
+                            <div id="error_div_inputTitleEvent" style="display:none;">
+                                <p style="color:red;">Please Enter Title</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <input id="startDate" type="text" class="form-control date-control" placeholder="Start Date">
+                            <div id="error_div_startDate" style="display:none;">
+                                <p style="color:red;">Please Choose Start Date</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <input id="startTime" type="text" placeholder="Start Time" class="form-control ">
+                            <div id="error_div_startTime" style="display:none;">
+                                <p style="color:red;">Please Choose Start Time</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <input id="endDate" type="text" class="form-control date-control" placeholder="End Date">
+                            <div id="error_div_endDate" style="display:none;">
+                                <p style="color:red;">Please Choose End Date</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <input id="endTime" type="text" placeholder="End Time" class="form-control ">
+                            <div id="error_div_endTime" style="display:none;">
+                                <p style="color:red;">Please Choose End Time</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="CRelateTo">Relate To</label>
+                            <select id="CRelateTo" class="form-control" disabled>
+                                <option class="active" value="LEAD">Lead</option>
+                                <option value="0">Choose a Option</option>
+                               
+                                <option value="OPPORTUNITY">Opportunity</option>
+                                <option value="CLIENT">Client</option>
+                            </select>
+                            <div id="error_div_CRelateTo" style="display:none;">
+                                <p style="color:red;">Please Choose An Option</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="CRelateToName">Name</label>                         
+                            <input type="text" id="CRelateToName" value="@Model.Name" class="form-control" readonly="readonly" />
+                            <div id="error_div_CRelateToName" style="display:none;">
+                                <p style="color:red;">Please Choose A Related Entity</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="ecolor">Color</label>
+                            <input id="ecolor" type="text" value="#9b59b6" class="form-control">
+                        </div>
+                    </div>
+                    @*<div class="col-sm-12">
+                            <div class="form-group">
+                                <input id="inputBackgroundEvent" type="text" value="#0667D6" class="form-control">
+                            </div>
+                        </div>*@
+                    @*<div class="col-sm-12">
+                            <div class="form-group">
+                                <textarea id="description" class="form-control" placeholder="Notes"></textarea>
+                            </div>
+                        </div>*@
+                    <input id="start" type="hidden">
+                    <input id="end" type="hidden">
+                    <input id="allDay" type="hidden">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default"onclick="CancelEvent();">Cancel</button>
+                <button id="btnAddNewEvent" type="submit" class="btn btn-raised btn-black" onclick="AddEvents();">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="Notes_Modal">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 id="myAnimationModalLabel" class="modal-title">Add A Note</h4>
+            </div>
+            <div class="modal-body">
+                <form id="notesForm">
+                    @*<div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group col-sm-12">
+                                <label for="NTitle">Title</label>
+                                <input type="text" id="NTitle" name="Title" class="form-control" />
+                            </div>
+                        </div>
+                    </div>*@
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group col-sm-6">
+                                <label for="RelateTo">Relate To</label>
+                                <select id="RelateTo" class="form-control" disabled="disabled">
+                                    <option class="active" value="LEAD">Lead</option>
+                                    <option value="OPPORTUNITY">Opportunity</option>
+                                    <option value="CLIENT">Client</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="RelateToName">Name</label>
+                                <div class="input-group">
+                                    <input id="RelateToName" type="text" class="form-control" value="@Model.Name" readonly><span class="input-group-addon"><span class="ti-search"></span></span>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-12">
+                                <label for="Note">Note</label>
+                                <textarea class="form-control" placeholder="Note.." id="Note"></textarea>
+                                <div id="error_div_Note" style="display:none;">
+                                    <p style="color:red;">Please add Note</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>                
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default" id="cancel" onclick="CancelNote();">Cancel</button>
+                <button type="button" class="btn btn-raised btn-danger" id="save" onclick="AddNote();">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<input type="hidden" id="LeadId" value="@Model.Lead_ID" />
+<input type="hidden" id="AssignTo" value="@session.UserSession.Username" />
+
+<script>
+    function UpdateLeads() {
+        var Lead_ID_PK = $('#LeadId').val();
+        window.location = '/Leads/UpdateLeads?Lead_ID_Pk=' + Lead_ID_PK;
+    }
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#startTime").datetimepicker({ locale: "en-gb", format: "LT" });
+        $("#endTime").datetimepicker({ locale: "en-gb", format: "LT" });
+    });
+</script>
+
+<script>
+    function showCCdiv() {
+        $("#cc").hide();
+        $("#cc_div").show();
+    }
+</script>
+
+<script>
+    function ValidateEmailForm() {
+        if ($('#ToAddress').val().trim() == '') {
+            $('#error_div_ToAddress').show();
+            return false;
+        }
+        else if ($('#ToAddress').val().trim() == '') {
+            $('#error_div_Subject').show();
+            $('#error_div_ToAddress').hide();
+            return false;
+        }
+        //else if ($("#Attechments").files[0].size > 5000) {
+        //    $("#error_div_Attechments").show();
+        //    $('#error_div_Subject').hide();
+        //    $('#error_div_ToAddress').hide();
+        //    return false;
+        //}
+        else {
+            $("#error_div_Attechments").hide();
+            $('#error_div_Subject').hide();
+            $('#error_div_ToAddress').hide();
+            return true;
+        }
+    }
+    function SendMail() {
+        if (ValidateEmailForm()) {
+            $(".se-pre-con").show();
+            Send();
+        }
+    }
+
+    function Send() {
+       
+        var formMail = $('#EmailForm');
+        
+        if (window.FormData !== undefined) {
+            var AttacementFileUpload = $("#Attechments").get(0);
+
+            var attachedfiles = AttacementFileUpload.files;
+        // Create FormData object  
+        var EmailFormData = new FormData();  
+        
+        // Looping over all files and add it to FormData object  
+        for (var i = 0; i < attachedfiles.length; i++) {
+            EmailFormData.append(attachedfiles[i].name, attachedfiles[i]);
+        }  
+        
+        // Adding one more key to FormData object  
+        EmailFormData.append('ToAddress', $('#ToAddress').val());
+        EmailFormData.append('ccAddress', $('#CcAddress').val());
+        EmailFormData.append('bccAddress', $('#BccAddress').val());
+        EmailFormData.append('Subject', $('#Subject').val());
+        EmailFormData.append('body', $('#MailBody').val());
+       
+        $.ajax({
+            url: '/Mails/SendMail',
+            type: "POST",
+            contentType: false,
+            data: EmailFormData,
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                if (data != 'success') {
+                    // location.reload();
+                    $(".se-pre-con").hide();
+                    $('#Mail_Modal').modal('hide');
+                    $("#EmailForm")[0].reset();
+
+                }
+                else {
+                    // location.reload();
+                    $(".se-pre-con").hide();
+                    $('#Mail_Modal').modal('hide');
+                    $("#EmailForm")[0].reset();
+                }
+            },
+            error: function (xhr) {
+                $(".se-pre-con").hide();
+                $('#errorMessage').html("No connection");
+            }
+        });
+    } else {
+            alert("FormData is not supported.");
+    }
+    }
+</script>
+
+<script>
+    $(document).ready(function () {
+        $(".date-added").daterangepicker({
+            singleDatePicker: true,
+            locale: {
+                format: 'DD/MM/YYYY'
+            },
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        if ($("#RemindMe").is(':checked')) {
+            $("#h_div").show();
+            $("#m_div").show();
+        }
+        else {
+            $("#h_div").hide();
+            $("#m_div").hide();
+        }
+
+        SetMeetings();
+
+    });
+
+    function SetReminder() {
+        if ($("#RemindMe").is(':checked')) {
+            $("#h_div").show();
+            $("#m_div").show();
+        }
+        else {
+            $("#h_div").hide();
+            $("#m_div").hide();
+        }
+    }
+
+    function SheduleMeeting() {
+        $.ajax({
+            url: '/Meeting/AjaxAddMeeting',
+            dataType: "json",
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ Titele: $("#Title").val(), SheduledDate: $("#sheduleDate").val(), RelateTo: $("#LeadId").val(), Agenda: $("#Agenda").val(), RemindMe: reminder, Hours: $("#Houres").val(), Minutes: $("#Minutes").val() }),
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                if (data = 'Success') {
+                    $("#Meeting_Modal").modal('hide');
+                    location.reload();
+                }
+                else {
+                    $("#Meeting_Modal").modal('hide');
+                    location.reload();
+                }
+            },
+            error: function (xhr) {
+                $('#errorMessage').html("No connection");
+            }
+        });
+    }
+
+    function SetMeetings() {
+        $.ajax({
+            url: '/Leads/TempMeetindData',
+            type: "POST",
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                alert(data);
+                if (data != '') {
+                    $("#meeting_div").html('');
+                    $("#meeting_div").html(data);
+
+                }
+                else {
+
+
+                }
+            },
+            error: function (xhr) {
+                $('#errorMessage').html("No connection");
+            }
+        });
+    }
+</script>
+
+ @*Task Section Scripts***********@
+<script>
+   
+    function SetAssignTo() {
+        $("#AssignTo").val($("#AssignToSelect").val());
+    }
+    function validateTaskForm() {
+        if ($('#TTitle').val().trim() == '') {
+            $('#error_div_TTitle').show();
+            return false;
+        }
+        else if ($('#Description').val().trim() == '') {
+            $('#error_div_Description').show();
+            $('#error_div_TTitle').hide();
+            return false;
+        }
+        else {
+            $('#error_div_Description').hide();
+            $('#error_div_TTitle').hide();
+            return true;
+        }
+    }
+
+    function SheduleTask() {
+
+        if (validateTaskForm()) {
+            $(".se-pre-con").show();
+            var notificationFlag = '0';
+            if ($("#TNotification").is(':checked')) {
+                notification_Flag = '1';
+            }
+            else {
+                notification_Flag = '0';
+            }
+
+            $.ajax({
+                url: '/Task/AjaxAddTask',
+                dataType: "html",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ Titele: $("#TTitle").val(), RelateTo: $("#LeadId").val(), Description: $("#Description").val(), notificationFlag: notification_Flag, AssignTo: $("#AssignToSelect").val() , RelatedTable:'LEAD' }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data != '') {
+                        $("#Task_Modal").modal('hide');
+                        $("#taskForm")[0].reset();
+                        $('#taskTable').html('');
+                        $('#taskTable').html(data);
+                        $(".se-pre-con").fadeOut("slow");
+                    }
+                    else {
+                        $("#Task_Modal").modal('hide');
+                        $("#taskForm")[0].reset();
+                        $(".se-pre-con").fadeOut("slow");
+                    }
+                },
+                error: function (xhr) {
+                    $('#errorMessage').html("No connection");
+                }
+            });
+        }        
+    }
+
+    function CancelTask() {
+          $("#taskForm")[0].reset();
+      
+    }
+    function CancelTodo() {
+        $("#TTitle").val('');
+        $("#Description").val('');
+        $('#error_div_TTitle').hide();
+        $('#error_div_Description').hide();
+        $('#TNotification').attr('checked', false);
+    }
+
+    function deleteTask(TaskID) {      
+        alert(TaskID)
+            $.ajax({
+                url: '/Task/DeleteTask',
+                dataType: "html",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ Task_ID: TaskID, RelatedTable: 'LEAD', RelateTo: $("#LeadId").val(), RelatedTable:'LEAD'}),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data != '') {
+
+                        $('#taskTable').html('');
+                        $('#taskTable').html(data);
+                        //location.reload();
+                    }
+                    else {
+
+                        // location.reload();
+                    }
+                },
+                error: function (xhr) {                  
+                    $('#errorMessage').html("No connection");
+                }
+            });      
+    }
+
+    function showDeleteConfirmationMsg(Task_ID) {
+        swal({
+            title: "Are you sure?",
+            text: "Are you sure to delete this task!",
+            type: "warning",
+            showCancelButton: !0,
+            cancelButtonClass: "btn-raised btn-default",
+            cancelButtonText: "Cancel!",
+            confirmButtonClass: "btn-raised btn-danger",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: !0
+        },
+        function () {           
+            deleteTask(Task_ID);
+        })
+    }
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        if ($("#ERemindMe").is(':checked')) {
+            $("#Eh_div").show();
+            $("#Em_div").show();
+        }
+        else {
+            $("#Eh_div").hide();
+            $("#Em_div").hide();
+        }      
+
+    });
+
+    
+
+    function AddEvent() {
+        var reminder = '0';
+        if ($("#ERemindMe").is(':checked')) {
+            reminder = '1';
+        }
+        else {
+            reminder = '0';
+        }
+
+        $.ajax({
+            url: '/Meeting/AjaxAddMeeting',
+            dataType: "json",
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ Titele: $("#ETitle").val(),Priority:$('#EPriority').val(), StartDate: $("#EstartDate").val(), EndDate: $("#EendDate").val(), RelateTo: $("#LeadId").val(), Description: $("#EDescription").val(), RemindMe: reminder, AssignTo: $("#AssignTo").val() }),
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                if (data = 'Success') {
+                    $("#Task_Modal").modal('hide');
+                    location.reload();
+                }
+                else {
+                    $("#Task_Modal").modal('hide');
+                    location.reload();
+                }
+            },
+            error: function (xhr) {
+                $('#errorMessage').html("No connection");
+            }
+        });
+    }
+
+    function AddNewEvent() {
+        $.ajax({
+            url: '/Calender/SaveEvent',
+            dataType: "json",
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ Title: $("#inputTitleEvent").val(), StartDate: $("#start").val() + ' ' + $("#startTime").val(), EndDate: $("#end").val() + ' ' + $("#endTime").val(),RelatedLead: $("#LeadId").val(), Description: $("#description").val() ,RelatedTable:'LEAD'}),
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                if (data == '1') {
+                    $('#fullcalendar').fullCalendar('refetchEvents');
+                    $("#addNewEvent").modal('hide');
+                    $("#eForm")[0].reset();
+                }
+                else {
+                    $("#addNewEvent").modal('hide');
+                    $("#eForm")[0].reset();
+                }
+            },
+            error: function (xhr) {
+                $("#addNewEvent").modal('hide');
+                $("#eForm")[0].reset();
+                $('#errorMessage').html("No connection");
+            }
+        });
+    }
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#txtDescription").summernote({
+            height: 500,
+            toolbar:
+                [["style", ["style"]], ["font", ["bold", "italic", "underline", "clear"]], ["fontname", ["fontname"]], ["fontsize", ["fontsize"]], ["color", ["color"]], ["para", ["ul", "ol", "paragraph"]], ["height", ["height"]], ["table", ["table"]], ["insert", ["link", "picture", "hr"]], ["view", ["fullscreen"]]]
+        }),
+        $(".start-date, .end-date").daterangepicker({ singleDatePicker: !0 })
+    });
+</script>
+
+@* Notes Section Scripts************ *@
+<script>
+    function validateNotesForm() {
+        if ($("#Note").val().trim() == '') {
+            $('#error_div_Note').show();
+            return false;
+        }
+        else {
+            $('#error_div_Note').hide();
+            return true;
+        }
+    }
+    function AddNote() {
+        
+        if (validateNotesForm()) {
+            $(".se-pre-con").show();
+            $.ajax({
+                url: '/Notes/AjaxAddNote',
+                dataType: "html",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ RelateTo: $("#LeadId").val(), Note: $("#Note").val() , RelatedTable : 'LEAD' }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data != '') {
+                        $("#Notes_Modal").modal('hide');
+                        $("#notesForm")[0].reset();
+                        $('#notesTable').html('');
+                        $('#notesTable').html(data);
+                        $(".se-pre-con").hide();
+                        //location.reload();
+                    }
+                    else {
+                        $("#Notes_Modal").modal('hide');
+                        $("#notesForm")[0].reset();
+                        $(".se-pre-con").hide();
+                      //  location.reload();
+                    }
+                },
+                error: function (xhr) {
+                    $(".se-pre-con").hide();
+                    $('#errorMessage').html("No connection");
+                }
+            });
+        }        
+    }
+    function deleteNotes(NotesID) {
+        swal({
+            title: "Are you sure?",
+            text: "Are you sure to delete this Note!",
+            type: "warning",
+            showCancelButton: !0,
+            cancelButtonClass: "btn-raised btn-default",
+            cancelButtonText: "Cancel!",
+            confirmButtonClass: "btn-raised btn-danger",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: !0
+        },
+        function () {          
+            $.ajax({
+                url: '/Notes/DeleteNotes',
+                dataType: "html",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ Notes_ID: NotesID, RelatedTable: 'LEAD', RelateToID: $("#LeadId").val() }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data != '') {
+                        $('#notesTable').html('');
+                        $('#notesTable').html(data);                       
+                    }
+                    else {                        
+                    }
+                },
+                error: function (xhr) {                    
+                    $('#errorMessage').html("No connection");
+                }
+            });
+        })
+    }
+    function CancelNote()
+    {
+        $("#Note").val('');
+        $("#error_div_Note").hide();
+    }
+</script>
+
+<script>
+    function validateDocForm() {
+        if ($("#DTitle").val().trim() == '') {
+            $('#error_div_DTitle').show();
+            return false;
+        }
+        else if ($("#Document").val().trim() == '') {
+            $('#error_div_Document').show();
+            $('#error_div_DTitle').hide();
+            return false;
+        }
+        else {
+            $('#error_div_Document').hide();
+            $('#error_div_DTitle').hide();
+            return true;
+        }
+    }
+    function AddDoc() {
+        if (validateDocForm()) {
+            $(".se-pre-con").show();
+            AddDocument();
+        }
+    }
+
+    function AddDocument() {
+        // Checking whether FormData is available in browser 
+        var RelateTO = $("#LeadId").val();
+        var title = $("#DTitle").val();
+        if (window.FormData !== undefined) {
+
+            var fileUpload = $("#Document").get(0);
+            var files = fileUpload.files;
+
+            // Create FormData object  
+            var fileData = new FormData();
+
+            // Looping over all files and add it to FormData object  
+            for (var i = 0; i < files.length; i++) {
+                fileData.append(files[i].name, files[i]);
+            }
+
+            // Adding one more key to FormData object  
+            fileData.append('Title', $("#DTitle").val());
+            fileData.append('RelateTo', $("#LeadId").val());
+            fileData.append('RelatedTable', 'LEAD');
+            // $("#loader").show();
+            $.ajax({
+                url: '/Doc/AddNewDoc',
+                type: "POST",
+                contentType: false, // Not to set any content header  
+                processData: false, // Not to process data  
+                data: fileData,
+                success: function (data) {
+                    if (data != '') {
+                        $("#DocModal").modal('hide');
+                        $('#docTable').html('');
+                        $('#docTable').html(data);
+                        $("#docForm")[0].reset();
+                        $(".se-pre-con").hide();
+                    }
+                    else {
+                        $("#DocModal").modal('hide');
+                        $("#docForm")[0].reset();
+                        $(".se-pre-con").hide();
+                    }
+                },
+                error: function (err) {
+                    $(".se-pre-con").hide();
+                    alert(err.statusText);
+                }
+            });
+        } else {
+            alert("FormData is not supported.");
+        }
+    }
+    function CancelDoc()
+    {
+        $("#LeadId").val('');
+        $("#DTitle").val('');
+        $("#Document").val('');
+        $('#error_div_DTitle').hide();             
+        $('#error_div_Document').hide();
+    }
+
+    function deleteDocument(DocumentID,Fname,FID) {
+        swal({
+            title: "Are you sure?",
+            text: "Are you sure to delete this Document!",
+            type: "warning",
+            showCancelButton: !0,
+            cancelButtonClass: "btn-raised btn-default",
+            cancelButtonText: "Cancel!",
+            confirmButtonClass: "btn-raised btn-danger",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: !0
+        },
+        function () {
+            $(".se-pre-con").show();
+            $.ajax({
+                url: '/Doc/DeleteDoc',
+                dataType: "html",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ Doc_ID_PK: DocumentID, FileName: Fname, FileID: FID, RelatedTable: 'LEAD', RelateToID: $("#LeadId").val() }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data != '') {
+                        $(".se-pre-con").hide();
+                        $('#docTable').html('');
+                        $('#docTable').html(data);
+                    }
+                    else {
+                        $(".se-pre-con").hide();
+                    }
+                },
+                error: function (xhr) {
+                    $(".se-pre-con").hide();
+                    $('#errorMessage').html("No connection");
+                }
+            });
+        })
+    }
+
+    function downloadDoc(Fname, FID) {
+        window.location = '/Doc/DownLoad?FileName=' + Fname + '&FileID=' + FID;
+    }
+</script>
+
+
+<script>
+    function RenderActivity() {
+        $(".se-pre-con").show();
+        $.ajax({
+            url: '/Leads/AjaxActivity',
+            dataType: "html",
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ LeadId: $("#LeadId").val() }),
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                if (data != '') {
+                    $(".se-pre-con").hide();
+                    $('#actTable').html('');
+                    $('#actTable').html(data);
+                }
+                else {
+                    $(".se-pre-con").hide();
+                }
+            },
+            error: function (xhr) {
+                $(".se-pre-con").hide();
+                $('#errorMessage').html("No connection");
+            }
+        });
+    }
+</script>
+
+
+
+<script>
+    function showSuccessMsg() {
+        swal({
+            title: "Send!",
+            text: "Mail Sent Successfully!",
+            type: "success",
+            confirmButtonClass: "btn-raised btn-success",
+            confirmButtonText: "OK"
+        })
+    }
+
+    function showErrorMsg() {
+        swal({
+            title: "Fail!",
+            text: "Error Occured in Sending Mail!",
+            type: "error",
+            confirmButtonClass: "btn-raised btn-danger",
+            confirmButtonText: "OK"
+        })
+    }
+
+   
+</script>
+
+@* Events Section Scripts************ *@
+<script>
+    function validateEventsForm() {     
+        if ($("#inputTitleEvent").val().trim() == '') {
+            $('#error_div_inputTitleEvent').show();
+            return false;
+        }
+        else if ($("#startDate").val().trim() == '') {
+            $('#error_div_startDate').show();
+            $('#error_div_inputTitleEvent').hide();
+            return false;
+        }
+        else if ($("#startTime").val().trim() == '') {
+            $('#error_div_startTime').show();
+            $('#error_div_startDate').hide();
+            $('#error_div_inputTitleEvent').hide();
+            return false;
+        }
+        else if ($("#endDate").val().trim() == '') {
+            $('#error_div_endDate').show();
+            $('#error_div_startTime').hide();
+            $('#error_div_startDate').hide();
+            $('#error_div_inputTitleEvent').hide();
+            return false;
+        }
+        else if ($("#endTime").val().trim() == '') {
+            $('#error_div_endTime').show();
+            $('#error_div_endDate').hide();
+            $('#error_div_startTime').hide();
+            $('#error_div_startDate').hide();
+            $('#error_div_inputTitleEvent').hide();
+            return false;
+        }
+        else {
+            $('#error_div_endTime').hide();
+            $('#error_div_endDate').hide();
+            $('#error_div_startTime').hide();
+            $('#error_div_startDate').hide();
+            $('#error_div_inputTitleEvent').hide();
+            return true;
+        }
+    }
+    function AddEvents() {
+
+        if (validateEventsForm()) {
+            $(".se-pre-con").show();
+            var sd;
+            var ed;
+            if ($("#startDate").val().indexOf('/') > -1) {
+                sd = $("#startDate").val().replace(/\//g, "-");
+            }
+            else {
+                sd = $("#startDate").val();
+            }
+
+            if ($("#endDate").val().indexOf('/') > -1) {
+                ed = $("#endDate").val().replace(/\//g, "-");
+            }
+            else {
+                ed = $("#endDate").val();
+            }
+
+            $.ajax({
+                url: '/Events/AddRelatedEvent',
+                dataType: "html",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ Title: $("#inputTitleEvent").val(), StartDate: sd + ' ' + $("#startTime").val(), EndDate: ed + ' ' + $("#endTime").val(), RelatedTo: $("#LeadId").val(), RelatedTable: 'LEAD', uColour: $("#ecolor").val() }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data != "") {
+
+                        $('#eventsTable').html('');
+                        $('#eventsTable').html(data);
+
+                        $("#addNewEvent").modal('hide');
+                        $("#eForm")[0].reset();
+                        $(".se-pre-con").hide();
+                    }
+                    else {
+                        $("#addNewEvent").modal('hide');
+                        $("#eForm")[0].reset();
+                        $(".se-pre-con").hide();
+                    }
+                },
+                error: function (xhr) {
+                    $("#Event").modal('hide');
+                    $("#uForm")[0].reset();
+                    $('#errorMessage').html("No connection");
+                    $(".se-pre-con").hide();
+                }
+            });
+        }
+    }
+    function CancelEvent() {
+        $("#inputTitleEvent").val('');
+        $("#start").val('');
+        $("#startTime").val('');
+        $("#end").val('');
+        $("#endTime").val('');
+        $("#description").val('');
+        $("#error_div_inputTitleEvent").hide();
+        $("#error_div_startDate").hide();
+        $("#error_div_startTime").hide();
+        $("#error_div_endDate").hide();
+        $("#error_div_endTime").hide();
+        $("#error_div_endDate").hide();
+
+    }
+   
+    function deleteEvents(EventID) {      
+        swal({
+            title: "Are you sure?",
+            text: "Are you sure to delete this Event!",
+            type: "warning",
+            showCancelButton: !0,
+            cancelButtonClass: "btn-raised btn-default",
+            cancelButtonText: "Cancel!",
+            confirmButtonClass: "btn-raised btn-danger",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: !0
+        },
+        function () {
+            $(".se-pre-con").show();
+            $.ajax({
+                url: '/Events/DeleteEvents',
+                dataType: "html",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ Events_ID: EventID, RelatedTable: 'LEAD', RelateToID: $("#LeadId").val() }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data != '') {
+                        $('#eventsTable').html('');
+                        $('#eventsTable').html(data);
+                        $(".se-pre-con").hide();
+                    }
+                    else {
+                        $(".se-pre-con").hide();
+                    }
+                },
+                error: function (xhr) {
+                    $('#errorMessage').html("No connection");
+                    $(".se-pre-con").hide();
+                }
+            });
+        })
+    }
+</script>

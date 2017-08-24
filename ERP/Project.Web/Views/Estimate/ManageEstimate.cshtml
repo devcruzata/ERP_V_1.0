@@ -1,0 +1,315 @@
+﻿@model Project.Web.Models.EstimateModel
+@{
+    ViewBag.Title = "Manage-Estimate";
+}
+
+<!-- jQuery-->
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery/dist/jquery.min.js")"></script>
+
+
+
+
+<!-- Page Content -->
+<div class="page-container">
+    <div class="page-header clearfix">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4 class="mt-0 mb-5">Add Estimates</h4>
+                <ol class="breadcrumb mb-0">
+                    <li><a href="@Url.RouteUrl("AdminHome")">Home</a></li>
+                    <li><a href="@Url.RouteUrl("EstimateHome")">Estimates</a></li>
+                    <li class="active">Add Estimate</li>
+                </ol>
+            </div>
+            <div class="col-sm-6">
+                <div class="btn-group mt-5">
+                    <button type="button" class="btn btn-default btn-outline"><i class="flag-icon flag-icon-us mr-5"></i> English</button>
+                    <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default btn-outline dropdown-toggle"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
+                    <ul class="dropdown-menu dropdown-menu-right animated fadeInDown">
+                        <li><a href="#"><i class="flag-icon flag-icon-de mr-5"></i> German</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-fr mr-5"></i> French</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-es mr-5"></i> Spanish</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-it mr-5"></i> Italian</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-jp mr-5"></i> Japanese</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-content container-fluid">
+        <div class="widget">
+            <div class="widget-heading clearfix">
+                <h3 class="widget-title pull-left">Add Estimate</h3>
+                @if (ViewBag.Error_Msg != "")
+                {
+                    <div style="margin-left:200px;">
+                        <p style="color:red;">@ViewBag.Error_Msg</p>
+                    </div>
+                }
+                <div class="pull-right">
+                    <button type="button" class="btn btn-primary" title="Add Estimate" onclick="SubmitForm()"><i class="ti-save"></i></button>
+                    <button type="button" class="btn btn-default" title="Cancel" onclick="Cancel();"><i class="ti-share-alt"></i></button>
+                </div>
+            </div>
+            <div class="widget-body">
+                <form class="form-horizontal" method="post" action="/Estimate/ManageEstimate" enctype="multipart/form-data" id="mainForm">
+
+                    <div class="tab-content">
+                        <div id="general" role="tabpanel" class="tab-pane active">
+                            <div class="col-sm-12 form-group form-row">
+                                <div class="col-sm-3">
+                                    <input placeholder="Date" class="form-control form-cutom date-added" name="Date" id="Date">
+                                    <div id="error_Div_Date" style="display:none;color:red;">
+                                        <p style="color:red;">Please Select A Date</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.DropDownListFor(m => m.Lead_ID_Fk, (List<SelectListItem>)ViewBag.Leads, new { @class = "form-control form-cutom" })
+                                    <div id="error_Div_Lead_ID_Fk" style="display:none;color:red;">
+                                        <p style="color:red;">Please Either Choose A Lead or A client</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.DropDownListFor(m => m.Client_ID_Fk, (List<SelectListItem>)ViewBag.Clients, new { @class = "form-control form-cutom" })
+                                    <div id="error_Div_Client_ID_Fk" style="display:none;color:red;">
+                                        <p style="color:red;">Please Either Choose A Lead or A client</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <select class="form-control form-cutom" id="Priority" name="Priority">
+                                        <option value="0">Choose A Priority</option>
+                                        <option value="Low">Low</option>
+                                        <option value="Medium">Medium</option>
+                                        <option value="High">High</option>
+                                    </select>
+                                    <div id="error_Div_Priority" style="display:none;color:red;">
+                                        <p style="color:red;">Please Choose A Priority</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 form-group form-row">
+                                <div class="col-sm-3">
+                                </div>
+                                <div class="col-sm-3">
+                                    @*@Html.DropDownListFor(m => m.Category, (List<SelectListItem>)ViewBag.Category_List, new { @class = "form-control form-cutom" })*@
+                                    <div id="error_Div_Category" style="display:none;color:red;">
+                                        <p style="color:red;">Please Choose A Category</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <select class="form-control form-cutom" id="Language" name="Language">
+                                        <option value="0">Choose A Language</option>
+                                    </select>
+                                    <div id="error_Div_Language" style="display:none;color:red;">
+                                        <p style="color:red;">Please Choose A Language</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <select class="form-control form-cutom" id="AssignTo" name="AssignTo">
+                                        <option value="0">Choose A Team</option>
+                                    </select>
+                                    <div id="error_Div_AssignTo" style="display:none;color:red;">
+                                        <p style="color:red;">Please Choose A Team</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="col-sm-12 form-group form-row">
+                                    <div class="col-lg-12 pd-zero">
+                                        <textarea id="Requirment" name="Requirment" class="form-control" placeholder="Requirement"></textarea>
+                                        <input type="hidden" name="Requirment" id="Requirment" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="clearfix"></div>
+                            <div class="col-sm-12 form-group form-row">
+                                <div class="col-sm-12 text-right">
+                                    @*<span class="input-group-btn">
+                                <div class="btn btn-default browse-button">
+                                    <span class="browse-button-text">
+                                        <i class="fa fa-folder-open"></i> Upload File
+                                    </span>
+                                    <input type="file" accept="" name="UploadedDoc" id="UploadedDoc" />
+                                </div>
+                            </span>*@
+                                    <input type="file" accept="" name="UploadedDoc" id="UploadedDoc" value="Upload file" />
+                                    <div id="error_Div_UploadedDoc1" style="display:none;color:red; float:left;">
+                                        <p style="color:red;">Only .doc , .pdf extensions are allowed</p>
+                                    </div>
+                                    <div id="error_Div_UploadedDoc2" style="display: none; color: red; float: left;">
+                                        <p style="color:red;">File Size must be less than 10MB.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.container -->
+
+<script>
+    $(document).ready(function () {
+        $(".date-added").daterangepicker({
+            singleDatePicker: true,
+            locale: {
+                format: 'DD/MM/YYYY'
+            },
+        });
+    });
+</script>
+
+@*<script>
+    $(document).ready(function () {
+        $("#txtDescription").summernote({
+            height: 500,
+            toolbar:
+                [["style", ["style"]], ["font", ["bold", "italic", "underline", "clear"]], ["fontname", ["fontname"]], ["fontsize", ["fontsize"]], ["color", ["color"]], ["para", ["ul", "ol", "paragraph"]], ["height", ["height"]], ["table", ["table"]], ["insert", ["link", "picture", "hr"]], ["view", ["fullscreen"]]]
+        }),
+        $(".start-date, .end-date").daterangepicker({ singleDatePicker: !0 })
+    });
+</script>*@
+
+
+
+
+
+
+
+
+<script>
+    $(document).ready(function () {       
+        $("#Category").change(function () {           
+            $.post('@Url.Action("GetLanguageByCategory", "Estimate")', { Category_ID: $("#Category").val() },
+                function (fooList) {
+                    $('#Language').empty();
+                    $.each(fooList, function (i, foo) {
+                        //$('#MonthYear').append($("<option />").val(this.Value).text(this.Value));
+                        $('#Language').append('<option value="' + this.Value + '">' + this.Text + '</option');
+                    });
+                });
+        });
+
+        $("#Language").change(function () {
+            $.post('@Url.Action("GetTeamByLanguage", "Estimate")', { Language_ID: $("#Language").val() },
+                function (fooList) {
+                    $('#AssignTo').empty();
+                    $.each(fooList, function (i, foo) {
+                        //$('#MonthYear').append($("<option />").val(this.Value).text(this.Value));
+                        $('#AssignTo').append('<option value="' + this.Value + '">' + this.Text + '</option');
+                    });
+                });
+        });
+        
+    });
+</script>
+
+<script>
+    function validateForm() {
+        var ext = $('#UploadedDoc').val().split('.').pop().toLowerCase();
+        if ($("#Date").val().trim() == "") {
+            $("#error_Div_Date").show();
+            return false;
+        }
+        else if ($("#Lead_ID_Fk").val().trim() == "0" && $("#Client_ID_Fk").val().trim() == "0") {
+            $("#error_Div_Lead_ID_Fk").show();
+            $("#error_Div_Client_ID_Fk").show();
+            $("#error_Div_Date").hide();
+            return false;
+        }
+        else if ($("#Lead_ID_Fk").val().trim() != "0" && $("#Client_ID_Fk").val().trim() != "0") {
+            $("#error_Div_Lead_ID_Fk").show();
+            $("#error_Div_Client_ID_Fk").show();
+            $("#error_Div_Date").hide();
+            return false;
+        }
+        else if ($("#Priority").val().trim() == "0") {
+            $("#error_Div_Priority").show();
+            $("#error_Div_Lead_ID_Fk").hide();
+            $("#error_Div_Client_ID_Fk").hide();
+            $("#error_Div_Date").hide();
+            return false;
+        }
+        else if ($("#Category").val().trim() == "0") {
+            $("#error_Div_Category").show();
+            $("#error_Div_Priority").hide();
+            $("#error_Div_Lead_ID_Fk").hide();
+            $("#error_Div_Client_ID_Fk").hide();
+            $("#error_Div_Date").hide();
+            return false;
+        }
+        else if ($("#Language").val().trim() == "0") {
+            $("#error_Div_Language").show();
+            $("#error_Div_Category").hide();
+            $("#error_Div_Priority").hide();
+            $("#error_Div_Lead_ID_Fk").hide();
+            $("#error_Div_Client_ID_Fk").hide();
+            $("#error_Div_Date").hide();
+            return false;
+        }
+        else if ($("#AssignTo").val().trim() == "0") {
+            $("#error_Div_AssignTo").show();
+            $("#error_Div_Language").hide();
+            $("#error_Div_Category").hide();
+            $("#error_Div_Priority").hide();
+            $("#error_Div_Lead_ID_Fk").hide();
+            $("#error_Div_Client_ID_Fk").hide();
+            $("#error_Div_Date").hide();
+            return false;
+        }
+        else if ($("#UploadedDoc").val() != '' && $.inArray(ext, ['doc', 'pdf']) == -1) {           
+            $("#error_Div_UploadedDoc1").show();
+            $("#error_Div_AssignTo").hide();
+            $("#error_Div_Language").hide();
+            $("#error_Div_Category").hide();
+            $("#error_Div_Priority").hide();
+            $("#error_Div_Lead_ID_Fk").hide();
+            $("#error_Div_Client_ID_Fk").hide();
+            $("#error_Div_Date").hide();
+            return false;
+        }
+        else if ($("#UploadedDoc").val() != '' && $('#UploadedDoc')[0].files[0].size > 10000000) {
+            alert('2');
+            $("#error_Div_UploadedDoc2").show();
+            $("#error_Div_UploadedDoc1").hide();
+            $("#error_Div_AssignTo").hide();
+            $("#error_Div_Language").hide();
+            $("#error_Div_Category").hide();
+            $("#error_Div_Priority").hide();
+            $("#error_Div_Lead_ID_Fk").hide();
+            $("#error_Div_Client_ID_Fk").hide();
+            $("#error_Div_Date").hide();
+            return false;
+        }
+        else {
+            $("#error_Div_UploadedDoc2").hide();
+            $("#error_Div_UploadedDoc1").hide();
+            $("#error_Div_AssignTo").hide();
+            $("#error_Div_Language").hide();
+            $("#error_Div_Category").hide();
+            $("#error_Div_Priority").hide();
+            $("#error_Div_Lead_ID_Fk").hide();
+            $("#error_Div_Client_ID_Fk").hide();
+            $("#error_Div_Date").hide();
+            return true;
+        }
+    }
+
+    function SubmitForm() {       
+        if (validateForm()) {
+           // $("#Requirment").val($("#txtEditor").Editor("getText"));
+            $("#mainForm").submit();
+        }
+    }
+
+    function Cancel() {
+        window.location = '@Url.RouteUrl("EstimateHome")';
+    }
+</script>

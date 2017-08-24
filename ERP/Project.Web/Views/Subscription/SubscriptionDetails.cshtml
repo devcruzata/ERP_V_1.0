@@ -1,0 +1,209 @@
+﻿@model Project.Web.Models.SubscriptionModel
+@*@{
+        Layout = "~/Views/Shared/_LayoutPage_Admin.cshtml";
+        ViewBag.Title = "SubscriptionHome";
+    }*@
+@using Project.Web.Common
+@{
+    SessionHelper session = new SessionHelper();
+}
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery/dist/jquery.min.js")"></script>
+<style>
+    .currentPlan {
+        border: 3px solid red !important;
+    }
+
+    .selectedPlan {
+        border: 3px solid #1f364f !important;
+    }
+
+    .plan {
+        padding-top: 30px;
+        padding-right: 50px;
+        padding-bottom: 30px;
+        padding-left: 50px;
+        border-left: 1px solid #1f364f !important;
+        border-right: 1px solid #1f364f !important;
+        border-top: 1px solid #1f364f !important;
+        border-bottom: 1px solid #1f364f !important;
+    }
+
+        .plan:hover {
+            border: 3px solid #1f364f !important;
+        }
+
+    .upgradeBtn {
+        background-color: #fff !important;
+        border-color: #1f364f !important;
+        color: #1f364f !important;
+    }
+
+        .upgradeBtn:hover {
+            background-color: #1f364f !important;
+            border-color: #1f364f !important;
+            color: #fff !important;
+        }
+
+        .upgradeBtn:focus {
+            background-color: #1f364f !important;
+            border-color: #1f364f !important;
+            color: #fff !important;
+        }
+</style>
+
+<style>
+    .StripeElement {
+        background-color: white;
+        padding: 8px 12px;
+        border-radius: 4px;
+        border: 1px solid transparent;
+        box-shadow: 0 1px 3px 0 #e6ebf1;
+        -webkit-transition: box-shadow 150ms ease;
+        transition: box-shadow 150ms ease;
+    }
+
+    .StripeElement--focus {
+        box-shadow: 0 1px 3px 0 #cfd7df;
+    }
+
+    .StripeElement--invalid {
+        border-color: #fa755a;
+    }
+
+    .StripeElement--webkit-autofill {
+        background-color: #fefde5 !important;
+    }
+</style>
+<div class="page-container">
+    <div class="page-header clearfix">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4 class="mt-0 mb-5">Pricing Tables</h4>
+                <ol class="breadcrumb mb-0">
+                    <li><a href="@Url.RouteUrl("MyAccount")">Home</a></li>
+                    <li><a href="@Url.RouteUrl("Subscriptions")">Subscriptions</a></li>
+                    <li class="active">Manage Subscription</li>
+                </ol>
+            </div>
+            <div class="col-sm-6">
+            </div>
+        </div>
+    </div>
+    <div class="page-content container-fluid">
+        <h3>Subscriptions</h3>
+        <div class="pricing-table pricing-3">
+            <div class="row row-0">
+                <div class="col-sm-12" style="background-color:gray;">
+                    <div class="col-sm-12">
+                        <table class="table table-bordered" >
+                            <tr>
+                                <td colspan="2">Billing Cycle</td>
+                                <td colspan="4">Plan :</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td colspan="4"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    Every <b>1 Month</b><br />
+                                    5% Discount
+                                </td>
+                                <td colspan="5">
+                                    $10 &nbsp;&nbsp;&nbsp;<button class="btn btn-subcribe"></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    Every <b>1 Month</b><br />
+                                    5% Discount
+                                </td>
+                                <td colspan="5">
+                                    $10 &nbsp;&nbsp;&nbsp;<button class="btn btn-subcribe"></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    Every <b>1 Month</b><br />
+                                    5% Discount
+                                </td>
+                                <td colspan="5">
+                                    $10 &nbsp;&nbsp;&nbsp;<button class="btn btn-subcribe"></button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<input type="hidden" id="success" value="@TempData["success_msg"]" />
+<input type="hidden" id="error" value="@TempData["error_msg"]" />
+<input type="hidden" id="scustid" value="@session.UserSubscription.sCustID.ToString()" />
+<input type="hidden" id="stoken" value="@session.UserSubscription.sToken.ToString()" />
+
+<div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="Confimation_Success_Modal">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 id="myAnimationModalLabel" class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <p style="color:green;"><b>Your Subscription Upgraded Successfully!</b></p>
+                        <br />
+                        <p> Thank you for choosing us</p>
+                        <br />
+                        <p>We look forward to build a long-term & perpetual relations.</p>
+                        <br />
+                        <p>Clouderac Team</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default">Cancel</button>
+                @*<button type="button" class="btn btn-raised btn-danger">Submit</button>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+<div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="Confimation_Error_Modal">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 id="myAnimationModalLabel" class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <p style="color:red;"><b>There is An Error In Processing Your Payment. Please Try Again Later!</b></p>
+                        <br />
+                        <p> For More Datails Please Check Your Transaction History . </p>
+                        <br />
+                        <p>Thank You</p>
+                        <br />
+                        <p>We look forward to build a long-term & perpetual relations.</p>
+                        <br />
+                        <p>Clouderac Team</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default">Cancel</button>
+                @*<button type="button" class="btn btn-raised btn-danger">Submit</button>*@
+            </div>
+        </div>
+    </div>
+</div>
+

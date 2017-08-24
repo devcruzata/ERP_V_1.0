@@ -1,0 +1,22 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageLogin.cshtml";
+}
+@{
+    SessionHelper session = new SessionHelper();
+}
+<div class="container page-container">
+    <div class="page-content">
+        <div class="logo"><img class="m-10" src="@Url.Content("~/Content/build/images/logo/login-logo.png")" alt="" width="190"></div>
+        <div id="esp-profile" data-percent="65" style="height: 130px; width: 130px; line-height: 100px; padding: 15px;" class="easy-pie-chart"><img src="@Url.Content("~/Content/build/images/users/04.jpg")" alt="" width="100" class="img-circle"></div>
+        <h4 class="fs-16 text-white mt-15 fw-300">@session.UserSession.FullName</h4>
+        <p class="text-muted">Enter your password to retrieve your session.</p>
+        <br>
+        <form method="post" action="/Authentication/LockScreen">
+            <div class="form-group">
+                <input type="hidden" name="Username" value="@ViewBag.Username" />
+                <input type="password" placeholder="Enter Password" class="form-control" name="Password">
+                <input type="hidden" name="LastPage" value=""/>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,406 @@
+﻿@model Project.Web.Models.OpportunityModel
+@{
+    ViewBag.Title = "ClientHome";
+}
+
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery/dist/jquery.min.js")"></script>
+
+
+
+<div class="page-container">
+    <div class="page-header clearfix">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4 class="mt-0 mb-5">Manage Opportunity</h4>
+                <ol class="breadcrumb mb-0">
+                    <li><a href="@Url.RouteUrl("AdminDashboard_V_2")">Home</a></li>
+                    <li><a href="@Url.RouteUrl("OpportunityHome")">Opportunities</a></li>
+                    <li class="active">Manage Opportunities</li>
+                </ol>
+            </div>
+            <div class="col-sm-6">
+                @*<div class="btn-group mt-5">
+                    <button type="button" class="btn btn-default btn-outline"><i class="flag-icon flag-icon-us mr-5"></i> English</button>
+                    <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default btn-outline dropdown-toggle"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
+                    <ul class="dropdown-menu dropdown-menu-right animated fadeInDown">
+                        <li><a href="#"><i class="flag-icon flag-icon-de mr-5"></i> German</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-fr mr-5"></i> French</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-es mr-5"></i> Spanish</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-it mr-5"></i> Italian</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-jp mr-5"></i> Japanese</a></li>
+                    </ul>
+                </div>*@
+            </div>
+        </div>
+    </div>
+    <div class="page-content container-fluid">
+        <div class="widget">
+            <div class="widget-heading clearfix">
+                <h3 class="widget-title pull-left">Manage Opportunities</h3>
+                <div class="pull-right">                   
+                    <div class="btn-group mt-5">
+                        <a href="@Url.RouteUrl("ManageOpportunity", new { act = "add" })" type="button" class="btn btn-default btn-outline"><i class="ti-wallet mr-5"></i> Opportunity</a>
+                        <a href="#" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default btn-outline dropdown-toggle"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></a>
+                        <ul class="dropdown-menu dropdown-menu-right animated fadeInDown">
+                            <li><a href="@Url.RouteUrl("ManageOpportunity", new { act = "add" })">Add Opportunity</a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#AssignOpportunityModal">Assign Opportunity</a></li>                           
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="widget-body">
+                <table id="lead-list-1" style="width: 100%" class="table table-hover dt-responsive nowrap">
+                    <thead>
+
+                        <tr>
+                            <th class="text-center">
+                                <div class="checkbox-custom">
+                                    <input id="selectAll" type="checkbox" value="option1">
+                                    <label for="selectAll" class="pl-0">&nbsp;</label>
+                                </div>
+                            </th>
+
+                            <th width="10%" class="text-center">Opportunity</th>
+                            <th width="15%" class="text-center">Quote</th>
+                            <th width="12%" class="text-center">Contact</th>
+                            <th width="12%" class="text-center">Stage</th>
+                            <th width="10%" class="text-center">Assigned To</th>
+                            <th width="25%" class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="opTable">
+                        @{
+                            foreach (var opp in Model.Opportunity)
+                            {
+
+                                <tr>
+                                    <td class="text-center">
+                                        <div class="checkbox-custom">
+                                            <input id="check_@opp.Opportunity_ID" type="checkbox" class="opp_id_check" value="@opp.Opportunity_ID" onclick="SelectOpportunity(this);">
+                                            <label for="check_@opp.Opportunity_ID" class="pl-0">&nbsp;</label>
+                                        </div>
+                                    </td>
+
+                                    <td class="text-center">@opp.Name</td>
+                                    <td class="text-center">@opp.Amount</td>
+                                    <td class="text-center">@opp.RelateTo_Name</td>
+                                    <td class="text-center"><span class="label label-success">@opp.Stage</span></td>
+                                    <td class="text-center">@opp.AssignTO_Name</td>
+                                    <td class="text-center">
+                                        @*<button type="button" data-toggle="modal" data-target=".bs-example-modal-animation" class="btn btn-raised btn-primary">Launch modal</button>*@
+                                        <button type="button" class="btn btn-outline btn-primary" onclick="ViewOpportunity('@opp.Opportunity_ID');" title="View Opportunity"><i class="ti-eye"></i></button>
+                                        <button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target="#statusModal" title="Change Status" onclick="setStatusModalData('@opp.Opportunity_ID','@opp.stageId');"><i class="ti-pencil"></i></button>
+                                        <button type="button" class="btn btn-outline btn-danger" onclick="DeleteOpportunity('@opp.Opportunity_ID');" title="Delete Opportunity"><i class="ti-trash"></i></button>
+                                    </td>
+                                </tr>
+
+                            }
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="statusModal">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 id="myAnimationModalLabel" class="modal-title">Write Comments</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        @*<div class="form-group col-sm-6">
+                            <label for="date-added">Date Added</label>
+                            <div class="input-group">
+                                <input id="date-added" type="text" class="form-control"><span class="input-group-addon"><span class="ti-calendar"></span></span>
+                            </div>
+                        </div>*@
+                        <div class="form-group col-sm-6">
+                       
+                            <label for="Stage">Stage</label>
+                            @Html.DropDownListFor(m => m.Stage, (List<SelectListItem>)ViewBag.Stage_List, new { @class = "form-control form-cutom" })
+
+                            <input type="hidden" id="oppoId" value="@Model.Stage" />
+                            <div id="error_Div_Stage" style="display:none;color:red;">
+                                <p style="color:red;">Please Choose A Stage</p>
+                            </div>
+                            @*<input type="hidden" id="oppoId"/>*@
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label for="selectBasic">Comment</label>
+                            <textarea class="form-control" id="notes" placeholder="Comment.."></textarea>
+                            <div id="error_div_Notes" style="display:none;">
+                                <p style="color:red;">Please add Comments </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default"onclick="CancelStatus();">Cancel</button>
+                <button type="button" class="btn btn-raised btn-danger" onclick="ChangeStatus();">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="AssignOpportunityModal">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 id="myAnimationModalLabel" class="modal-title">Assign Opportunity</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12" id="userList">
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="AssignTo">Assign Opportunity</label>
+                                @*<select class="input-medium  form-control  select2" id="UserSelect" style="width:100%;">
+                                        @foreach (var user in ViewBag.Users)
+                                        {
+                                            <option value="@user.User_ID_PK">@user.FullName</option>
+                                        }
+                                    </select>*@
+                                @Html.DropDownListFor(m => m.AssignTO_ID, (List<SelectListItem>)ViewBag.Users, new { @class = "form-control select2", id = "UserSelect" })
+                                <div id="error_Div_AssignTo" style="display:none;color:red;">
+                                    <p style="color:red;">Please Choose A User</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default" id="cancel"onclick="CancelAssign();">Cancel</button>
+                <button type="button" class="btn btn-raised btn-danger" id="save" onclick="AssignOpportunity();">Assign</button>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="Opportunities" />
+<script>
+    $(document).ready(function () {
+        $("#date-added").daterangepicker({
+            singleDatePicker: true,
+            locale: {
+                format: 'DD/MM/YYYY'
+            },
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        setStatusModalData();
+        //$('#Stage').val($('#oppoId').val());
+    });
+</script>
+<script>
+    // Table Script*******
+
+    $(document).ready(function () {
+
+        var e1 = $("#lead-list-1").DataTable({ pageLength: 10, colReorder: !0, buttons: ["copy", "excel", "pdf", "print"], searching: !0, aLengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]], order: [[5, "desc"]], columnDefs: [{ orderable: !1, targets: [0, 5] }] });
+        $("#lead-list-1_wrapper .col-sm-6:eq(1)").addClass("text-right"), e1.buttons().container().appendTo("#lead-list-1_wrapper .col-sm-6:eq(1)")
+
+    });
+</script>
+
+<script>
+    function guid() {
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+          s4() + '-' + s4() + s4() + s4();
+    }
+
+    function s4() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+          .toString(16)
+          .substring(1);
+    }
+
+    
+    function ViewOpportunity(Opportunity_ID_Auto_PK) {
+        window.location = '/Opportunity/ViewOpportunity?sessionid=' + guid() + '&Opportunityid=' + Opportunity_ID_Auto_PK;
+    }
+
+    
+
+    function DeleteOpportunity(Opportunity_ID_PK) {
+        swal({
+            title: "Are you sure?",
+            text: "Are you sure to delete this Opportunity!",
+            type: "warning",
+            showCancelButton: !0,
+            cancelButtonClass: "btn-raised btn-default",
+            cancelButtonText: "Cancel!",
+            confirmButtonClass: "btn-raised btn-danger",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: !0
+        },
+        function () {
+            $(".se-pre-con").show();
+            var Odata = Opportunity_ID_PK;
+            var url = "/Opportunity/DeleteOpportunity";
+            $.post(url, { Opportunity_ID_PK: Odata }, function (data) {
+                if (data != "") {
+                    $('#opTable').html('');
+                    $('#opTable').html(data);
+                    $(".se-pre-con").hide();
+                }
+                else  {
+                   // $("#error_msg_tbl").html("<p style=\"color:red;\">There is an error in processing your request. Please Try after some time.</p>");
+                   // $("#error_msg_tbl").show();
+                    $(".se-pre-con").hide();
+                }
+            });
+        })
+    }
+
+    function setStatusModalData(OpportunityId, stage) {     
+        $('#oppoId').val(OpportunityId);
+        $('#Stage').val(stage);
+    }
+    function validateNotesForm() {
+
+        if ($("#notes").val().trim() == '') {
+            $('#error_div_Notes').show();
+            return false;
+        }
+        else {
+            $('#error_div_Notes').hide();
+            return true;
+        }
+    }
+  
+
+    function ChangeStatus() {
+        if (validateNotesForm()) {
+        $(".se-pre-con").show();
+        var note = $("#notes").val();
+        var status = $("#Stage").val();       
+          
+        $.post('/Opportunity/ChangeStatus', { OpportunityId: $('#oppoId').val(), status: status, Note: note }, function (data) {
+            if (data != '') {                    
+                $('#opTable').html('');
+                $('#opTable').html(data);
+                $('#statusModal').modal('hide');
+                //$("#docForm")[0].reset();        
+                $(".se-pre-con").hide();
+                CancelStatus();
+            }
+            else {
+                $('#statusModal').modal('hide');
+                $(".se-pre-con").hide();
+            }
+        });          
+    }
+    }
+
+    function CancelStatus() {
+        $('#Stage').val('');
+        $('#notes').val('');
+        $('#error_div_Notes').hide();
+    }
+</script>
+
+<script>
+    $(document).ready(function () {
+
+        $("#selectAll").click(function () {
+            var oppoid = $("#Opportunities").val();
+            if (!$("#selectAll").is(':checked')) {
+                $(".opp_id_check").prop('checked', $(this).prop("checked"));
+                $("#Opportunities").val('');
+            }
+            else {
+                $(".opp_id_check").prop('checked', $(this).prop("checked"));
+                $(".opp_id_check").each(function () {
+                    var $this = $(this);
+                    var id = $this.attr('id');
+                    var temp = id.split('_');
+                    if ($("#selectAll").is(":checked")) {
+                        oppoid = oppoid + "," + temp[1];
+                        $("#Opportunities").val(oppoid);
+                    }
+                });
+            }
+        });
+    });
+    function SelectOpportunity(thi) {
+        var opportunity_ids = $("#Opportunities").val();
+        var id = $(thi).attr('id');
+        var temp = id.split('_');
+
+        if ($(thi).is(":checked")) {
+            opportunity_ids = opportunity_ids + "," + temp[1];
+            $("#Opportunities").val(opportunity_ids);
+        } else {
+            opportunity_ids = opportunity_ids.replace(temp[1], "");
+            $("#Opportunities").val(opportunity_ids);
+        }
+    }
+
+    function AssignOpportunity() {
+        var aFlag = false;
+        var leads = $("#Opportunities").val().split(',');
+        for (var i = 0; i < leads.length; ++i) {
+            if (leads[i] != "") {
+                aFlag = true;
+            }
+        }
+
+        if (aFlag == true) {
+            if ($("#UserSelect").val() != '0') {
+                $('#error_Div_AssignTo').hide();
+                $(".se-pre-con").show();
+                $.post('/Opportunity/AjaxAssignOpportunity', { Opportunity_ID: $("#Opportunities").val(), User_ID: $("#UserSelect").val() }, function (data) {
+                    if (data != "") {
+                        $('#opTable').html('');
+                        $('#opTable').html(data);
+                        $("#selectAll").attr('checked', false);
+                        $('#AssignOpportunityModal').modal('hide');
+                        $("#Opportunities").val('');
+                        $(".se-pre-con").hide();
+                    }
+                });
+            }
+            else {
+                $('#error_Div_AssignTo').show();
+            }
+        }
+        else {
+            showAlert();
+        }
+    }
+    function CancelAssign() {
+        $("#UserSelect").val('0');
+        $('#error_Div_AssignTo').hide();
+    }
+
+    function showAlert() {
+        swal({
+            title: "Warning!",
+            text: "Please Choose A Opportunity first!",
+            type: "warning",
+            confirmButtonClass: "btn-raised btn-warning",
+            confirmButtonText: "OK"
+        },
+        function () {
+            $('#AssignOpportunityModal').modal('hide');
+        });
+
+    }
+    
+</script>

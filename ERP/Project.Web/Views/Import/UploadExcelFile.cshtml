@@ -1,0 +1,160 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Clouderac</title>
+    
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/bootstrap/dist/css/bootstrap.min.css")"> 
+    <!-- Fonts-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/themify-icons/themify-icons.css")">
+     <!-- Font Awesome-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/font-awesome/css/font-awesome.min.css")">   
+
+    
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file://-->
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script type="text/javascript" src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="container">
+        <div class="row" style="margin-top:30px;">
+            <div class="col-sm-12">
+                <div class="col-sm-12">
+                    <div class="panel panel-info" style="border-color: #1f364f !important;">
+                        <div class="panel-heading text-center" style="background-color: #1f364f !important;">
+                            <h3 class="panel-title card-header" style="color: white !important;">Upload Excel File</h3>
+                        </div>
+                        <div class="panel-body">
+                          @*//  <form action="/Import/ImportExcelFile" method="post" enctype="multipart/form-data" id="file_form">*@
+                                <div class="form-group">
+                                    <input type="file" name="UploadedFile" id="UploadedFile" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-danger" onclick="UploadFile();"><i class="ti-upload"></i>&nbsp;Upload</button>
+                                </div>
+                          @*//  </form>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="loader" style="position: fixed; top: 0; left: 0; height: 100%; width: 100%; display: none; background-color: black; opacity: 0.7; z-index: 999;">
+        <img src="@Url.Content("~/Content/img/loader.gif")"  />
+    </div>
+
+    <div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="Confimation_Modal">
+        <div role="document" class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                    <h4 id="myAnimationModalLabel" class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12 text-center" id="Total_Leads">
+                            @*<p></p>*@
+                            @*<br />*@
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" data-dismiss="modal" class="btn btn-raised btn-default" onclick="Cancel();">Cancel</button>
+                    @*<button type="button" class="btn btn-raised btn-danger">Submit</button>*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery/dist/jquery.min.js")"></script>
+
+    <!-- Bootstrap JavaScript-->  
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/bootstrap/dist/js/bootstrap.min.js")"></script>
+
+    <script>        
+
+        function UploadFile() {
+            // Checking whether FormData is available in browser 
+            $("#loader").show();
+            if (window.FormData !== undefined) {
+
+                var fileUpload = $("#UploadedFile").get(0);
+                var files = fileUpload.files;
+
+                // Create FormData object  
+                var fileData = new FormData();
+
+                // Looping over all files and add it to FormData object  
+                for (var i = 0; i < files.length; i++) {
+                    fileData.append(files[i].name, files[i]);
+                }
+
+                // Adding one more key to FormData object  
+               // fileData.append('Comment', $("#txtDescription").val());
+               // fileData.append('Estimate_ID', $("#Estimate_ID").val());
+                // $("#loader").show();
+                $.ajax({
+                    url: '/Import/ImportExcelFileToLeadDataTable',
+                    type: "POST",
+                    contentType: false, // Not to set any content header  
+                    processData: false, // Not to process data  
+                    data: fileData,
+                    success: function (data) {
+                        if (data != '') {
+                            var temp = data.split(',');
+                            var msg = temp[0];
+                            var totalLeads = temp[1];
+                            if (msg == "Success") {
+                                $("#loader").hide();
+                                $("#Total_Leads").html('<p><b>'+totalLeads+'</b>'+ ' ' + 'Leads Imported Successfully</p>');
+                                $('#Confimation_Modal').modal('show');
+                                //window.close();
+                            }
+                            else{
+                                $("#Total_Leads").text('Something went wrong , Please Try again..');
+                                $('#Confimation_Modal').modal('show');
+                               // window.close();
+                            }                           
+                        }
+                        else {
+                            window.close();                           
+                        }
+                    },
+                    error: function (err) {
+                        alert(err.statusText);
+                    }
+                });
+            } else {
+                alert("FormData is not supported.");
+            }
+        }
+
+        function Cancel() {
+            window.close();
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

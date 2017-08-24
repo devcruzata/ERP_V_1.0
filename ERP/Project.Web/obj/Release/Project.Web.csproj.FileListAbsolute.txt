@@ -1,0 +1,1051 @@
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\Project.Web.dll.config
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\Project.Web.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\Project.Web.pdb
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\Antlr3.Runtime.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\BAL.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\DotNetOpenAuth.AspNet.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\DotNetOpenAuth.Core.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.Consumer.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\EntityFramework.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\EPPlus.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\Microsoft.CSharp.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\Microsoft.Data.Edm.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\Microsoft.Data.OData.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\Microsoft.Web.Infrastructure.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\Microsoft.Web.WebPages.OAuth.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\Newtonsoft.Json.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\Project.Entity.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\Project.ViewModel.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\RestSharp.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\System.Net.Http.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\System.Net.Http.Formatting.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\System.Net.Http.WebRequest.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\System.Spatial.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\System.Web.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\System.Web.Helpers.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\System.Web.Http.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\System.Web.Http.OData.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\System.Web.Http.WebHost.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\System.Web.Mvc.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\System.Web.Optimization.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\System.Web.Razor.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\System.Web.WebPages.Deployment.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\System.Web.WebPages.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\System.Web.WebPages.Razor.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\WebGrease.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\WebMatrix.Data.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\WebMatrix.WebData.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\DAL.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\BAL.pdb
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\Project.Entity.pdb
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\Project.ViewModel.pdb
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\EPPlus.xml
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\RestSharp.xml
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\EntityFramework.xml
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\Newtonsoft.Json.xml
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\System.Net.Http.Formatting.xml
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\System.Web.Helpers.xml
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\System.Web.Http.xml
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\System.Web.Http.WebHost.xml
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\System.Web.Mvc.xml
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\System.Web.Razor.xml
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\System.Web.WebPages.xml
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\System.Web.WebPages.Deployment.xml
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\System.Web.WebPages.Razor.xml
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\WebMatrix.Data.xml
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\Microsoft.Web.WebPages.OAuth.xml
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\WebMatrix.WebData.xml
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\DotNetOpenAuth.AspNet.xml
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\DotNetOpenAuth.Core.xml
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.Consumer.xml
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.xml
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.xml
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\System.Web.Http.OData.xml
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\Microsoft.Data.Edm.xml
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\Microsoft.Data.OData.xml
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\System.Spatial.xml
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\DAL.pdb
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\de\Microsoft.Data.Edm.resources.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\es\Microsoft.Data.Edm.resources.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\fr\Microsoft.Data.Edm.resources.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\it\Microsoft.Data.Edm.resources.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\ja\Microsoft.Data.Edm.resources.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\ko\Microsoft.Data.Edm.resources.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\ru\Microsoft.Data.Edm.resources.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\de\Microsoft.Data.OData.resources.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\es\Microsoft.Data.OData.resources.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\fr\Microsoft.Data.OData.resources.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\it\Microsoft.Data.OData.resources.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\ja\Microsoft.Data.OData.resources.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\ko\Microsoft.Data.OData.resources.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\ru\Microsoft.Data.OData.resources.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\zh-Hant\Microsoft.Data.OData.resources.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\de\System.Spatial.resources.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\es\System.Spatial.resources.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\fr\System.Spatial.resources.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\it\System.Spatial.resources.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\ja\System.Spatial.resources.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\ko\System.Spatial.resources.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\ru\System.Spatial.resources.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\zh-Hans\System.Spatial.resources.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\bin\zh-Hant\System.Spatial.resources.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\obj\Release\Project.Web.csprojResolveAssemblyReference.cache
+D:\ABHISHEK\Work Space\ERP\Project.Web\obj\Release\Project.Web.dll
+D:\ABHISHEK\Work Space\ERP\Project.Web\obj\Release\Project.Web.pdb
+I:\CRM 25 april\ERP\Project.Web\bin\Project.Web.dll.config
+I:\CRM 25 april\ERP\Project.Web\bin\Project.Web.dll
+I:\CRM 25 april\ERP\Project.Web\bin\Project.Web.pdb
+I:\CRM 25 april\ERP\Project.Web\bin\Antlr3.Runtime.dll
+I:\CRM 25 april\ERP\Project.Web\bin\BAL.dll
+I:\CRM 25 april\ERP\Project.Web\bin\DotNetOpenAuth.AspNet.dll
+I:\CRM 25 april\ERP\Project.Web\bin\DotNetOpenAuth.Core.dll
+I:\CRM 25 april\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.Consumer.dll
+I:\CRM 25 april\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.dll
+I:\CRM 25 april\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.dll
+I:\CRM 25 april\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+I:\CRM 25 april\ERP\Project.Web\bin\EntityFramework.dll
+I:\CRM 25 april\ERP\Project.Web\bin\EPPlus.dll
+I:\CRM 25 april\ERP\Project.Web\bin\Microsoft.CSharp.dll
+I:\CRM 25 april\ERP\Project.Web\bin\Microsoft.Data.Edm.dll
+I:\CRM 25 april\ERP\Project.Web\bin\Microsoft.Data.OData.dll
+I:\CRM 25 april\ERP\Project.Web\bin\Microsoft.Web.Infrastructure.dll
+I:\CRM 25 april\ERP\Project.Web\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+I:\CRM 25 april\ERP\Project.Web\bin\Microsoft.Web.WebPages.OAuth.dll
+I:\CRM 25 april\ERP\Project.Web\bin\Newtonsoft.Json.dll
+I:\CRM 25 april\ERP\Project.Web\bin\Project.Entity.dll
+I:\CRM 25 april\ERP\Project.Web\bin\Project.ViewModel.dll
+I:\CRM 25 april\ERP\Project.Web\bin\RestSharp.dll
+I:\CRM 25 april\ERP\Project.Web\bin\System.Net.Http.dll
+I:\CRM 25 april\ERP\Project.Web\bin\System.Net.Http.Formatting.dll
+I:\CRM 25 april\ERP\Project.Web\bin\System.Net.Http.WebRequest.dll
+I:\CRM 25 april\ERP\Project.Web\bin\System.Spatial.dll
+I:\CRM 25 april\ERP\Project.Web\bin\System.Web.dll
+I:\CRM 25 april\ERP\Project.Web\bin\System.Web.Helpers.dll
+I:\CRM 25 april\ERP\Project.Web\bin\System.Web.Http.dll
+I:\CRM 25 april\ERP\Project.Web\bin\System.Web.Http.OData.dll
+I:\CRM 25 april\ERP\Project.Web\bin\System.Web.Http.WebHost.dll
+I:\CRM 25 april\ERP\Project.Web\bin\System.Web.Mvc.dll
+I:\CRM 25 april\ERP\Project.Web\bin\System.Web.Optimization.dll
+I:\CRM 25 april\ERP\Project.Web\bin\System.Web.Razor.dll
+I:\CRM 25 april\ERP\Project.Web\bin\System.Web.WebPages.Deployment.dll
+I:\CRM 25 april\ERP\Project.Web\bin\System.Web.WebPages.dll
+I:\CRM 25 april\ERP\Project.Web\bin\System.Web.WebPages.Razor.dll
+I:\CRM 25 april\ERP\Project.Web\bin\WebGrease.dll
+I:\CRM 25 april\ERP\Project.Web\bin\WebMatrix.Data.dll
+I:\CRM 25 april\ERP\Project.Web\bin\WebMatrix.WebData.dll
+I:\CRM 25 april\ERP\Project.Web\bin\DAL.dll
+I:\CRM 25 april\ERP\Project.Web\bin\BAL.pdb
+I:\CRM 25 april\ERP\Project.Web\bin\Project.Entity.pdb
+I:\CRM 25 april\ERP\Project.Web\bin\Project.ViewModel.pdb
+I:\CRM 25 april\ERP\Project.Web\bin\EPPlus.xml
+I:\CRM 25 april\ERP\Project.Web\bin\RestSharp.xml
+I:\CRM 25 april\ERP\Project.Web\bin\EntityFramework.xml
+I:\CRM 25 april\ERP\Project.Web\bin\Newtonsoft.Json.xml
+I:\CRM 25 april\ERP\Project.Web\bin\System.Net.Http.Formatting.xml
+I:\CRM 25 april\ERP\Project.Web\bin\System.Web.Helpers.xml
+I:\CRM 25 april\ERP\Project.Web\bin\System.Web.Http.xml
+I:\CRM 25 april\ERP\Project.Web\bin\System.Web.Http.WebHost.xml
+I:\CRM 25 april\ERP\Project.Web\bin\System.Web.Mvc.xml
+I:\CRM 25 april\ERP\Project.Web\bin\System.Web.Razor.xml
+I:\CRM 25 april\ERP\Project.Web\bin\System.Web.WebPages.xml
+I:\CRM 25 april\ERP\Project.Web\bin\System.Web.WebPages.Deployment.xml
+I:\CRM 25 april\ERP\Project.Web\bin\System.Web.WebPages.Razor.xml
+I:\CRM 25 april\ERP\Project.Web\bin\WebMatrix.Data.xml
+I:\CRM 25 april\ERP\Project.Web\bin\Microsoft.Web.WebPages.OAuth.xml
+I:\CRM 25 april\ERP\Project.Web\bin\WebMatrix.WebData.xml
+I:\CRM 25 april\ERP\Project.Web\bin\DotNetOpenAuth.AspNet.xml
+I:\CRM 25 april\ERP\Project.Web\bin\DotNetOpenAuth.Core.xml
+I:\CRM 25 april\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.Consumer.xml
+I:\CRM 25 april\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.xml
+I:\CRM 25 april\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.xml
+I:\CRM 25 april\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+I:\CRM 25 april\ERP\Project.Web\bin\System.Web.Http.OData.xml
+I:\CRM 25 april\ERP\Project.Web\bin\Microsoft.Data.Edm.xml
+I:\CRM 25 april\ERP\Project.Web\bin\Microsoft.Data.OData.xml
+I:\CRM 25 april\ERP\Project.Web\bin\System.Spatial.xml
+I:\CRM 25 april\ERP\Project.Web\bin\DAL.pdb
+I:\CRM 25 april\ERP\Project.Web\bin\de\Microsoft.Data.Edm.resources.dll
+I:\CRM 25 april\ERP\Project.Web\bin\es\Microsoft.Data.Edm.resources.dll
+I:\CRM 25 april\ERP\Project.Web\bin\fr\Microsoft.Data.Edm.resources.dll
+I:\CRM 25 april\ERP\Project.Web\bin\it\Microsoft.Data.Edm.resources.dll
+I:\CRM 25 april\ERP\Project.Web\bin\ja\Microsoft.Data.Edm.resources.dll
+I:\CRM 25 april\ERP\Project.Web\bin\ko\Microsoft.Data.Edm.resources.dll
+I:\CRM 25 april\ERP\Project.Web\bin\ru\Microsoft.Data.Edm.resources.dll
+I:\CRM 25 april\ERP\Project.Web\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+I:\CRM 25 april\ERP\Project.Web\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+I:\CRM 25 april\ERP\Project.Web\bin\de\Microsoft.Data.OData.resources.dll
+I:\CRM 25 april\ERP\Project.Web\bin\es\Microsoft.Data.OData.resources.dll
+I:\CRM 25 april\ERP\Project.Web\bin\fr\Microsoft.Data.OData.resources.dll
+I:\CRM 25 april\ERP\Project.Web\bin\it\Microsoft.Data.OData.resources.dll
+I:\CRM 25 april\ERP\Project.Web\bin\ja\Microsoft.Data.OData.resources.dll
+I:\CRM 25 april\ERP\Project.Web\bin\ko\Microsoft.Data.OData.resources.dll
+I:\CRM 25 april\ERP\Project.Web\bin\ru\Microsoft.Data.OData.resources.dll
+I:\CRM 25 april\ERP\Project.Web\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+I:\CRM 25 april\ERP\Project.Web\bin\zh-Hant\Microsoft.Data.OData.resources.dll
+I:\CRM 25 april\ERP\Project.Web\bin\de\System.Spatial.resources.dll
+I:\CRM 25 april\ERP\Project.Web\bin\es\System.Spatial.resources.dll
+I:\CRM 25 april\ERP\Project.Web\bin\fr\System.Spatial.resources.dll
+I:\CRM 25 april\ERP\Project.Web\bin\it\System.Spatial.resources.dll
+I:\CRM 25 april\ERP\Project.Web\bin\ja\System.Spatial.resources.dll
+I:\CRM 25 april\ERP\Project.Web\bin\ko\System.Spatial.resources.dll
+I:\CRM 25 april\ERP\Project.Web\bin\ru\System.Spatial.resources.dll
+I:\CRM 25 april\ERP\Project.Web\bin\zh-Hans\System.Spatial.resources.dll
+I:\CRM 25 april\ERP\Project.Web\bin\zh-Hant\System.Spatial.resources.dll
+I:\CRM 25 april\ERP\Project.Web\obj\Release\Project.Web.csprojResolveAssemblyReference.cache
+I:\CRM 25 april\ERP\Project.Web\obj\Release\Project.Web.dll
+I:\CRM 25 april\ERP\Project.Web\obj\Release\Project.Web.pdb
+F:\Workspace\ERP\Project.Web\bin\Project.Web.dll.config
+F:\Workspace\ERP\Project.Web\bin\Project.Web.dll
+F:\Workspace\ERP\Project.Web\bin\Project.Web.pdb
+F:\Workspace\ERP\Project.Web\bin\Antlr3.Runtime.dll
+F:\Workspace\ERP\Project.Web\bin\BAL.dll
+F:\Workspace\ERP\Project.Web\bin\DotNetOpenAuth.AspNet.dll
+F:\Workspace\ERP\Project.Web\bin\DotNetOpenAuth.Core.dll
+F:\Workspace\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.Consumer.dll
+F:\Workspace\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.dll
+F:\Workspace\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.dll
+F:\Workspace\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+F:\Workspace\ERP\Project.Web\bin\EntityFramework.dll
+F:\Workspace\ERP\Project.Web\bin\EPPlus.dll
+F:\Workspace\ERP\Project.Web\bin\Google.GData.Client.dll
+F:\Workspace\ERP\Project.Web\bin\Google.GData.Contacts.dll
+F:\Workspace\ERP\Project.Web\bin\Google.GData.Extensions.dll
+F:\Workspace\ERP\Project.Web\bin\Microsoft.CSharp.dll
+F:\Workspace\ERP\Project.Web\bin\Microsoft.Data.Edm.dll
+F:\Workspace\ERP\Project.Web\bin\Microsoft.Data.OData.dll
+F:\Workspace\ERP\Project.Web\bin\Microsoft.Web.Infrastructure.dll
+F:\Workspace\ERP\Project.Web\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+F:\Workspace\ERP\Project.Web\bin\Microsoft.Web.WebPages.OAuth.dll
+F:\Workspace\ERP\Project.Web\bin\Newtonsoft.Json.dll
+F:\Workspace\ERP\Project.Web\bin\Project.Entity.dll
+F:\Workspace\ERP\Project.Web\bin\Project.ViewModel.dll
+F:\Workspace\ERP\Project.Web\bin\RestSharp.dll
+F:\Workspace\ERP\Project.Web\bin\Stripe.net.dll
+F:\Workspace\ERP\Project.Web\bin\System.Net.Http.dll
+F:\Workspace\ERP\Project.Web\bin\System.Net.Http.Formatting.dll
+F:\Workspace\ERP\Project.Web\bin\System.Net.Http.WebRequest.dll
+F:\Workspace\ERP\Project.Web\bin\System.Spatial.dll
+F:\Workspace\ERP\Project.Web\bin\System.Web.dll
+F:\Workspace\ERP\Project.Web\bin\System.Web.Helpers.dll
+F:\Workspace\ERP\Project.Web\bin\System.Web.Http.dll
+F:\Workspace\ERP\Project.Web\bin\System.Web.Http.OData.dll
+F:\Workspace\ERP\Project.Web\bin\System.Web.Http.WebHost.dll
+F:\Workspace\ERP\Project.Web\bin\System.Web.Mvc.dll
+F:\Workspace\ERP\Project.Web\bin\System.Web.Optimization.dll
+F:\Workspace\ERP\Project.Web\bin\System.Web.Razor.dll
+F:\Workspace\ERP\Project.Web\bin\System.Web.WebPages.Deployment.dll
+F:\Workspace\ERP\Project.Web\bin\System.Web.WebPages.dll
+F:\Workspace\ERP\Project.Web\bin\System.Web.WebPages.Razor.dll
+F:\Workspace\ERP\Project.Web\bin\WebGrease.dll
+F:\Workspace\ERP\Project.Web\bin\WebMatrix.Data.dll
+F:\Workspace\ERP\Project.Web\bin\WebMatrix.WebData.dll
+F:\Workspace\ERP\Project.Web\bin\DAL.dll
+F:\Workspace\ERP\Project.Web\bin\BAL.pdb
+F:\Workspace\ERP\Project.Web\bin\Project.Entity.pdb
+F:\Workspace\ERP\Project.Web\bin\Project.ViewModel.pdb
+F:\Workspace\ERP\Project.Web\bin\EPPlus.xml
+F:\Workspace\ERP\Project.Web\bin\Newtonsoft.Json.xml
+F:\Workspace\ERP\Project.Web\bin\RestSharp.xml
+F:\Workspace\ERP\Project.Web\bin\EntityFramework.xml
+F:\Workspace\ERP\Project.Web\bin\System.Net.Http.Formatting.xml
+F:\Workspace\ERP\Project.Web\bin\System.Web.Helpers.xml
+F:\Workspace\ERP\Project.Web\bin\System.Web.Http.xml
+F:\Workspace\ERP\Project.Web\bin\System.Web.Http.WebHost.xml
+F:\Workspace\ERP\Project.Web\bin\System.Web.Mvc.xml
+F:\Workspace\ERP\Project.Web\bin\System.Web.Razor.xml
+F:\Workspace\ERP\Project.Web\bin\System.Web.WebPages.xml
+F:\Workspace\ERP\Project.Web\bin\System.Web.WebPages.Deployment.xml
+F:\Workspace\ERP\Project.Web\bin\System.Web.WebPages.Razor.xml
+F:\Workspace\ERP\Project.Web\bin\WebMatrix.Data.xml
+F:\Workspace\ERP\Project.Web\bin\Microsoft.Web.WebPages.OAuth.xml
+F:\Workspace\ERP\Project.Web\bin\WebMatrix.WebData.xml
+F:\Workspace\ERP\Project.Web\bin\DotNetOpenAuth.AspNet.xml
+F:\Workspace\ERP\Project.Web\bin\DotNetOpenAuth.Core.xml
+F:\Workspace\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.Consumer.xml
+F:\Workspace\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.xml
+F:\Workspace\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.xml
+F:\Workspace\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+F:\Workspace\ERP\Project.Web\bin\System.Web.Http.OData.xml
+F:\Workspace\ERP\Project.Web\bin\Microsoft.Data.Edm.xml
+F:\Workspace\ERP\Project.Web\bin\Microsoft.Data.OData.xml
+F:\Workspace\ERP\Project.Web\bin\System.Spatial.xml
+F:\Workspace\ERP\Project.Web\bin\DAL.pdb
+F:\Workspace\ERP\Project.Web\bin\de\Microsoft.Data.Edm.resources.dll
+F:\Workspace\ERP\Project.Web\bin\es\Microsoft.Data.Edm.resources.dll
+F:\Workspace\ERP\Project.Web\bin\fr\Microsoft.Data.Edm.resources.dll
+F:\Workspace\ERP\Project.Web\bin\it\Microsoft.Data.Edm.resources.dll
+F:\Workspace\ERP\Project.Web\bin\ja\Microsoft.Data.Edm.resources.dll
+F:\Workspace\ERP\Project.Web\bin\ko\Microsoft.Data.Edm.resources.dll
+F:\Workspace\ERP\Project.Web\bin\ru\Microsoft.Data.Edm.resources.dll
+F:\Workspace\ERP\Project.Web\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+F:\Workspace\ERP\Project.Web\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+F:\Workspace\ERP\Project.Web\bin\de\Microsoft.Data.OData.resources.dll
+F:\Workspace\ERP\Project.Web\bin\es\Microsoft.Data.OData.resources.dll
+F:\Workspace\ERP\Project.Web\bin\fr\Microsoft.Data.OData.resources.dll
+F:\Workspace\ERP\Project.Web\bin\it\Microsoft.Data.OData.resources.dll
+F:\Workspace\ERP\Project.Web\bin\ja\Microsoft.Data.OData.resources.dll
+F:\Workspace\ERP\Project.Web\bin\ko\Microsoft.Data.OData.resources.dll
+F:\Workspace\ERP\Project.Web\bin\ru\Microsoft.Data.OData.resources.dll
+F:\Workspace\ERP\Project.Web\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+F:\Workspace\ERP\Project.Web\bin\zh-Hant\Microsoft.Data.OData.resources.dll
+F:\Workspace\ERP\Project.Web\bin\de\System.Spatial.resources.dll
+F:\Workspace\ERP\Project.Web\bin\es\System.Spatial.resources.dll
+F:\Workspace\ERP\Project.Web\bin\fr\System.Spatial.resources.dll
+F:\Workspace\ERP\Project.Web\bin\it\System.Spatial.resources.dll
+F:\Workspace\ERP\Project.Web\bin\ja\System.Spatial.resources.dll
+F:\Workspace\ERP\Project.Web\bin\ko\System.Spatial.resources.dll
+F:\Workspace\ERP\Project.Web\bin\ru\System.Spatial.resources.dll
+F:\Workspace\ERP\Project.Web\bin\zh-Hans\System.Spatial.resources.dll
+F:\Workspace\ERP\Project.Web\bin\zh-Hant\System.Spatial.resources.dll
+F:\Workspace\ERP\Project.Web\obj\Release\Project.Web.csprojResolveAssemblyReference.cache
+F:\Workspace\ERP\Project.Web\obj\Release\Project.Web.dll
+F:\Workspace\ERP\Project.Web\obj\Release\Project.Web.pdb
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\Project.Web.dll.config
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\Project.Web.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\Project.Web.pdb
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\Antlr3.Runtime.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\BAL.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\DotNetOpenAuth.AspNet.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\DotNetOpenAuth.Core.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.Consumer.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\EntityFramework.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\EPPlus.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\Google.GData.Client.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\Google.GData.Contacts.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\Google.GData.Extensions.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\Microsoft.CSharp.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\Microsoft.Data.Edm.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\Microsoft.Data.OData.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\Microsoft.Web.Infrastructure.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\Microsoft.Web.WebPages.OAuth.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\Newtonsoft.Json.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\Project.Entity.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\Project.ViewModel.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\RestSharp.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\Stripe.net.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\System.Net.Http.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\System.Net.Http.Formatting.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\System.Net.Http.WebRequest.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\System.Spatial.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\System.Web.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\System.Web.Helpers.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\System.Web.Http.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\System.Web.Http.OData.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\System.Web.Http.WebHost.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\System.Web.Mvc.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\System.Web.Optimization.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\System.Web.Razor.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\System.Web.WebPages.Deployment.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\System.Web.WebPages.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\System.Web.WebPages.Razor.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\WebGrease.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\WebMatrix.Data.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\WebMatrix.WebData.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\DAL.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\BAL.pdb
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\Project.Entity.pdb
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\Project.ViewModel.pdb
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\EPPlus.xml
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\Newtonsoft.Json.xml
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\RestSharp.xml
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\EntityFramework.xml
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\System.Net.Http.Formatting.xml
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\System.Web.Helpers.xml
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\System.Web.Http.xml
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\System.Web.Http.WebHost.xml
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\System.Web.Mvc.xml
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\System.Web.Razor.xml
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\System.Web.WebPages.xml
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\System.Web.WebPages.Deployment.xml
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\System.Web.WebPages.Razor.xml
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\WebMatrix.Data.xml
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\Microsoft.Web.WebPages.OAuth.xml
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\WebMatrix.WebData.xml
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\DotNetOpenAuth.AspNet.xml
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\DotNetOpenAuth.Core.xml
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.Consumer.xml
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.xml
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.xml
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\System.Web.Http.OData.xml
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\Microsoft.Data.Edm.xml
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\Microsoft.Data.OData.xml
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\System.Spatial.xml
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\DAL.pdb
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\de\Microsoft.Data.Edm.resources.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\es\Microsoft.Data.Edm.resources.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\fr\Microsoft.Data.Edm.resources.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\it\Microsoft.Data.Edm.resources.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\ja\Microsoft.Data.Edm.resources.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\ko\Microsoft.Data.Edm.resources.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\ru\Microsoft.Data.Edm.resources.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\de\Microsoft.Data.OData.resources.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\es\Microsoft.Data.OData.resources.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\fr\Microsoft.Data.OData.resources.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\it\Microsoft.Data.OData.resources.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\ja\Microsoft.Data.OData.resources.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\ko\Microsoft.Data.OData.resources.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\ru\Microsoft.Data.OData.resources.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\zh-Hant\Microsoft.Data.OData.resources.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\de\System.Spatial.resources.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\es\System.Spatial.resources.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\fr\System.Spatial.resources.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\it\System.Spatial.resources.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\ja\System.Spatial.resources.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\ko\System.Spatial.resources.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\ru\System.Spatial.resources.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\zh-Hans\System.Spatial.resources.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\bin\zh-Hant\System.Spatial.resources.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\obj\Release\Project.Web.csprojResolveAssemblyReference.cache
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\obj\Release\Project.Web.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Web\obj\Release\Project.Web.pdb
+I:\erp21july\ERP\Project.Web\bin\Project.Web.dll.config
+I:\erp21july\ERP\Project.Web\bin\Project.Web.dll
+I:\erp21july\ERP\Project.Web\bin\Project.Web.pdb
+I:\erp21july\ERP\Project.Web\bin\Antlr3.Runtime.dll
+I:\erp21july\ERP\Project.Web\bin\BAL.dll
+I:\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.AspNet.dll
+I:\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.Core.dll
+I:\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.Consumer.dll
+I:\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.dll
+I:\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.dll
+I:\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+I:\erp21july\ERP\Project.Web\bin\EntityFramework.dll
+I:\erp21july\ERP\Project.Web\bin\EPPlus.dll
+I:\erp21july\ERP\Project.Web\bin\Google.GData.Client.dll
+I:\erp21july\ERP\Project.Web\bin\Google.GData.Contacts.dll
+I:\erp21july\ERP\Project.Web\bin\Google.GData.Extensions.dll
+I:\erp21july\ERP\Project.Web\bin\Microsoft.CSharp.dll
+I:\erp21july\ERP\Project.Web\bin\Microsoft.Data.Edm.dll
+I:\erp21july\ERP\Project.Web\bin\Microsoft.Data.OData.dll
+I:\erp21july\ERP\Project.Web\bin\Microsoft.Web.Infrastructure.dll
+I:\erp21july\ERP\Project.Web\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+I:\erp21july\ERP\Project.Web\bin\Microsoft.Web.WebPages.OAuth.dll
+I:\erp21july\ERP\Project.Web\bin\Newtonsoft.Json.dll
+I:\erp21july\ERP\Project.Web\bin\Project.Entity.dll
+I:\erp21july\ERP\Project.Web\bin\Project.ViewModel.dll
+I:\erp21july\ERP\Project.Web\bin\RestSharp.dll
+I:\erp21july\ERP\Project.Web\bin\Stripe.net.dll
+I:\erp21july\ERP\Project.Web\bin\System.Net.Http.dll
+I:\erp21july\ERP\Project.Web\bin\System.Net.Http.Formatting.dll
+I:\erp21july\ERP\Project.Web\bin\System.Net.Http.WebRequest.dll
+I:\erp21july\ERP\Project.Web\bin\System.Spatial.dll
+I:\erp21july\ERP\Project.Web\bin\System.Web.dll
+I:\erp21july\ERP\Project.Web\bin\System.Web.Helpers.dll
+I:\erp21july\ERP\Project.Web\bin\System.Web.Http.dll
+I:\erp21july\ERP\Project.Web\bin\System.Web.Http.OData.dll
+I:\erp21july\ERP\Project.Web\bin\System.Web.Http.WebHost.dll
+I:\erp21july\ERP\Project.Web\bin\System.Web.Mvc.dll
+I:\erp21july\ERP\Project.Web\bin\System.Web.Optimization.dll
+I:\erp21july\ERP\Project.Web\bin\System.Web.Razor.dll
+I:\erp21july\ERP\Project.Web\bin\System.Web.WebPages.Deployment.dll
+I:\erp21july\ERP\Project.Web\bin\System.Web.WebPages.dll
+I:\erp21july\ERP\Project.Web\bin\System.Web.WebPages.Razor.dll
+I:\erp21july\ERP\Project.Web\bin\WebGrease.dll
+I:\erp21july\ERP\Project.Web\bin\WebMatrix.Data.dll
+I:\erp21july\ERP\Project.Web\bin\WebMatrix.WebData.dll
+I:\erp21july\ERP\Project.Web\bin\DAL.dll
+I:\erp21july\ERP\Project.Web\bin\BAL.pdb
+I:\erp21july\ERP\Project.Web\bin\Project.Entity.pdb
+I:\erp21july\ERP\Project.Web\bin\Project.ViewModel.pdb
+I:\erp21july\ERP\Project.Web\bin\EPPlus.xml
+I:\erp21july\ERP\Project.Web\bin\Newtonsoft.Json.xml
+I:\erp21july\ERP\Project.Web\bin\RestSharp.xml
+I:\erp21july\ERP\Project.Web\bin\EntityFramework.xml
+I:\erp21july\ERP\Project.Web\bin\System.Net.Http.Formatting.xml
+I:\erp21july\ERP\Project.Web\bin\System.Web.Helpers.xml
+I:\erp21july\ERP\Project.Web\bin\System.Web.Http.xml
+I:\erp21july\ERP\Project.Web\bin\System.Web.Http.WebHost.xml
+I:\erp21july\ERP\Project.Web\bin\System.Web.Mvc.xml
+I:\erp21july\ERP\Project.Web\bin\System.Web.Razor.xml
+I:\erp21july\ERP\Project.Web\bin\System.Web.WebPages.xml
+I:\erp21july\ERP\Project.Web\bin\System.Web.WebPages.Deployment.xml
+I:\erp21july\ERP\Project.Web\bin\System.Web.WebPages.Razor.xml
+I:\erp21july\ERP\Project.Web\bin\WebMatrix.Data.xml
+I:\erp21july\ERP\Project.Web\bin\Microsoft.Web.WebPages.OAuth.xml
+I:\erp21july\ERP\Project.Web\bin\WebMatrix.WebData.xml
+I:\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.AspNet.xml
+I:\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.Core.xml
+I:\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.Consumer.xml
+I:\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.xml
+I:\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.xml
+I:\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+I:\erp21july\ERP\Project.Web\bin\System.Web.Http.OData.xml
+I:\erp21july\ERP\Project.Web\bin\Microsoft.Data.Edm.xml
+I:\erp21july\ERP\Project.Web\bin\Microsoft.Data.OData.xml
+I:\erp21july\ERP\Project.Web\bin\System.Spatial.xml
+I:\erp21july\ERP\Project.Web\bin\DAL.pdb
+I:\erp21july\ERP\Project.Web\bin\de\Microsoft.Data.Edm.resources.dll
+I:\erp21july\ERP\Project.Web\bin\es\Microsoft.Data.Edm.resources.dll
+I:\erp21july\ERP\Project.Web\bin\fr\Microsoft.Data.Edm.resources.dll
+I:\erp21july\ERP\Project.Web\bin\it\Microsoft.Data.Edm.resources.dll
+I:\erp21july\ERP\Project.Web\bin\ja\Microsoft.Data.Edm.resources.dll
+I:\erp21july\ERP\Project.Web\bin\ko\Microsoft.Data.Edm.resources.dll
+I:\erp21july\ERP\Project.Web\bin\ru\Microsoft.Data.Edm.resources.dll
+I:\erp21july\ERP\Project.Web\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+I:\erp21july\ERP\Project.Web\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+I:\erp21july\ERP\Project.Web\bin\de\Microsoft.Data.OData.resources.dll
+I:\erp21july\ERP\Project.Web\bin\es\Microsoft.Data.OData.resources.dll
+I:\erp21july\ERP\Project.Web\bin\fr\Microsoft.Data.OData.resources.dll
+I:\erp21july\ERP\Project.Web\bin\it\Microsoft.Data.OData.resources.dll
+I:\erp21july\ERP\Project.Web\bin\ja\Microsoft.Data.OData.resources.dll
+I:\erp21july\ERP\Project.Web\bin\ko\Microsoft.Data.OData.resources.dll
+I:\erp21july\ERP\Project.Web\bin\ru\Microsoft.Data.OData.resources.dll
+I:\erp21july\ERP\Project.Web\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+I:\erp21july\ERP\Project.Web\bin\zh-Hant\Microsoft.Data.OData.resources.dll
+I:\erp21july\ERP\Project.Web\bin\de\System.Spatial.resources.dll
+I:\erp21july\ERP\Project.Web\bin\es\System.Spatial.resources.dll
+I:\erp21july\ERP\Project.Web\bin\fr\System.Spatial.resources.dll
+I:\erp21july\ERP\Project.Web\bin\it\System.Spatial.resources.dll
+I:\erp21july\ERP\Project.Web\bin\ja\System.Spatial.resources.dll
+I:\erp21july\ERP\Project.Web\bin\ko\System.Spatial.resources.dll
+I:\erp21july\ERP\Project.Web\bin\ru\System.Spatial.resources.dll
+I:\erp21july\ERP\Project.Web\bin\zh-Hans\System.Spatial.resources.dll
+I:\erp21july\ERP\Project.Web\bin\zh-Hant\System.Spatial.resources.dll
+I:\erp21july\ERP\Project.Web\obj\Release\Project.Web.csprojResolveAssemblyReference.cache
+I:\erp21july\ERP\Project.Web\obj\Release\Project.Web.dll
+I:\erp21july\ERP\Project.Web\obj\Release\Project.Web.pdb
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Project.Web.dll.config
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Project.Web.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Project.Web.pdb
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Antlr3.Runtime.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\BAL.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.AspNet.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.Core.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.Consumer.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\EntityFramework.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\EPPlus.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Google.GData.Client.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Google.GData.Contacts.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Google.GData.Extensions.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Microsoft.CSharp.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Microsoft.Data.Edm.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Microsoft.Data.OData.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Microsoft.Web.Infrastructure.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Microsoft.Web.WebPages.OAuth.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Newtonsoft.Json.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Project.Entity.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Project.ViewModel.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\RestSharp.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Stripe.net.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Net.Http.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Net.Http.Formatting.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Net.Http.WebRequest.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Spatial.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.Helpers.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.Http.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.Http.OData.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.Http.WebHost.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.Mvc.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.Optimization.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.Razor.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.WebPages.Deployment.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.WebPages.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.WebPages.Razor.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\WebGrease.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\WebMatrix.Data.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\WebMatrix.WebData.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\DAL.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\BAL.pdb
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Project.Entity.pdb
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Project.ViewModel.pdb
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\EPPlus.xml
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Newtonsoft.Json.xml
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\RestSharp.xml
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\EntityFramework.xml
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Net.Http.Formatting.xml
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.Helpers.xml
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.Http.xml
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.Http.WebHost.xml
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.Mvc.xml
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.Razor.xml
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.WebPages.xml
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.WebPages.Deployment.xml
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.WebPages.Razor.xml
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\WebMatrix.Data.xml
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Microsoft.Web.WebPages.OAuth.xml
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\WebMatrix.WebData.xml
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.AspNet.xml
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.Core.xml
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.Consumer.xml
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.xml
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.xml
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.Http.OData.xml
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Microsoft.Data.Edm.xml
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Microsoft.Data.OData.xml
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Spatial.xml
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\DAL.pdb
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\de\Microsoft.Data.Edm.resources.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\es\Microsoft.Data.Edm.resources.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\fr\Microsoft.Data.Edm.resources.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\it\Microsoft.Data.Edm.resources.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\ja\Microsoft.Data.Edm.resources.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\ko\Microsoft.Data.Edm.resources.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\ru\Microsoft.Data.Edm.resources.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\de\Microsoft.Data.OData.resources.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\es\Microsoft.Data.OData.resources.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\fr\Microsoft.Data.OData.resources.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\it\Microsoft.Data.OData.resources.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\ja\Microsoft.Data.OData.resources.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\ko\Microsoft.Data.OData.resources.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\ru\Microsoft.Data.OData.resources.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\zh-Hant\Microsoft.Data.OData.resources.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\de\System.Spatial.resources.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\es\System.Spatial.resources.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\fr\System.Spatial.resources.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\it\System.Spatial.resources.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\ja\System.Spatial.resources.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\ko\System.Spatial.resources.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\ru\System.Spatial.resources.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\zh-Hans\System.Spatial.resources.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\bin\zh-Hant\System.Spatial.resources.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\obj\Release\Project.Web.csprojResolveAssemblyReference.cache
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\obj\Release\Project.Web.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Web\obj\Release\Project.Web.pdb
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Project.Web.dll.config
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Project.Web.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Project.Web.pdb
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Antlr3.Runtime.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\BAL.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.AspNet.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.Core.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.Consumer.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\EntityFramework.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\EPPlus.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Google.GData.Client.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Google.GData.Contacts.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Google.GData.Extensions.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Microsoft.CSharp.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Microsoft.Data.Edm.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Microsoft.Data.OData.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Microsoft.Web.Infrastructure.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Microsoft.Web.WebPages.OAuth.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Newtonsoft.Json.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Project.Entity.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Project.ViewModel.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\RestSharp.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Stripe.net.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Net.Http.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Net.Http.Formatting.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Net.Http.WebRequest.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Spatial.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.Helpers.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.Http.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.Http.OData.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.Http.WebHost.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.Mvc.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.Optimization.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.Razor.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.WebPages.Deployment.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.WebPages.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.WebPages.Razor.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\WebGrease.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\WebMatrix.Data.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\WebMatrix.WebData.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\DAL.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\BAL.pdb
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Project.Entity.pdb
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Project.ViewModel.pdb
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\EPPlus.xml
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Newtonsoft.Json.xml
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\RestSharp.xml
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\EntityFramework.xml
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Net.Http.Formatting.xml
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.Helpers.xml
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.Http.xml
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.Http.WebHost.xml
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.Mvc.xml
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.Razor.xml
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.WebPages.xml
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.WebPages.Deployment.xml
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.WebPages.Razor.xml
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\WebMatrix.Data.xml
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Microsoft.Web.WebPages.OAuth.xml
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\WebMatrix.WebData.xml
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.AspNet.xml
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.Core.xml
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.Consumer.xml
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.xml
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.xml
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Web.Http.OData.xml
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Microsoft.Data.Edm.xml
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\Microsoft.Data.OData.xml
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\System.Spatial.xml
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\DAL.pdb
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\de\Microsoft.Data.Edm.resources.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\es\Microsoft.Data.Edm.resources.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\fr\Microsoft.Data.Edm.resources.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\it\Microsoft.Data.Edm.resources.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\ja\Microsoft.Data.Edm.resources.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\ko\Microsoft.Data.Edm.resources.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\ru\Microsoft.Data.Edm.resources.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\de\Microsoft.Data.OData.resources.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\es\Microsoft.Data.OData.resources.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\fr\Microsoft.Data.OData.resources.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\it\Microsoft.Data.OData.resources.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\ja\Microsoft.Data.OData.resources.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\ko\Microsoft.Data.OData.resources.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\ru\Microsoft.Data.OData.resources.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\zh-Hant\Microsoft.Data.OData.resources.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\de\System.Spatial.resources.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\es\System.Spatial.resources.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\fr\System.Spatial.resources.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\it\System.Spatial.resources.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\ja\System.Spatial.resources.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\ko\System.Spatial.resources.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\ru\System.Spatial.resources.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\zh-Hans\System.Spatial.resources.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\bin\zh-Hant\System.Spatial.resources.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\obj\Release\Project.Web.csprojResolveAssemblyReference.cache
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\obj\Release\Project.Web.dll
+D:\ABHISHEK\Work Space\ERP_AUG\ERP_V_1.1\ERP_V_1.1\erp21july\ERP\Project.Web\obj\Release\Project.Web.pdb
+G:\ERP_AUG\ERP\Project.Web\bin\Project.Web.dll.config
+G:\ERP_AUG\ERP\Project.Web\bin\Project.Web.dll
+G:\ERP_AUG\ERP\Project.Web\bin\Project.Web.pdb
+G:\ERP_AUG\ERP\Project.Web\bin\Antlr3.Runtime.dll
+G:\ERP_AUG\ERP\Project.Web\bin\BAL.dll
+G:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.AspNet.dll
+G:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.Core.dll
+G:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.Consumer.dll
+G:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.dll
+G:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.dll
+G:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+G:\ERP_AUG\ERP\Project.Web\bin\EntityFramework.dll
+G:\ERP_AUG\ERP\Project.Web\bin\EPPlus.dll
+G:\ERP_AUG\ERP\Project.Web\bin\Google.GData.Client.dll
+G:\ERP_AUG\ERP\Project.Web\bin\Google.GData.Contacts.dll
+G:\ERP_AUG\ERP\Project.Web\bin\Google.GData.Extensions.dll
+G:\ERP_AUG\ERP\Project.Web\bin\Microsoft.CSharp.dll
+G:\ERP_AUG\ERP\Project.Web\bin\Microsoft.Data.Edm.dll
+G:\ERP_AUG\ERP\Project.Web\bin\Microsoft.Data.OData.dll
+G:\ERP_AUG\ERP\Project.Web\bin\Microsoft.Web.Infrastructure.dll
+G:\ERP_AUG\ERP\Project.Web\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+G:\ERP_AUG\ERP\Project.Web\bin\Microsoft.Web.WebPages.OAuth.dll
+G:\ERP_AUG\ERP\Project.Web\bin\Newtonsoft.Json.dll
+G:\ERP_AUG\ERP\Project.Web\bin\Project.Entity.dll
+G:\ERP_AUG\ERP\Project.Web\bin\Project.ViewModel.dll
+G:\ERP_AUG\ERP\Project.Web\bin\RestSharp.dll
+G:\ERP_AUG\ERP\Project.Web\bin\Stripe.net.dll
+G:\ERP_AUG\ERP\Project.Web\bin\System.Net.Http.dll
+G:\ERP_AUG\ERP\Project.Web\bin\System.Net.Http.Formatting.dll
+G:\ERP_AUG\ERP\Project.Web\bin\System.Net.Http.WebRequest.dll
+G:\ERP_AUG\ERP\Project.Web\bin\System.Spatial.dll
+G:\ERP_AUG\ERP\Project.Web\bin\System.Web.dll
+G:\ERP_AUG\ERP\Project.Web\bin\System.Web.Helpers.dll
+G:\ERP_AUG\ERP\Project.Web\bin\System.Web.Http.dll
+G:\ERP_AUG\ERP\Project.Web\bin\System.Web.Http.OData.dll
+G:\ERP_AUG\ERP\Project.Web\bin\System.Web.Http.WebHost.dll
+G:\ERP_AUG\ERP\Project.Web\bin\System.Web.Mvc.dll
+G:\ERP_AUG\ERP\Project.Web\bin\System.Web.Optimization.dll
+G:\ERP_AUG\ERP\Project.Web\bin\System.Web.Razor.dll
+G:\ERP_AUG\ERP\Project.Web\bin\System.Web.WebPages.Deployment.dll
+G:\ERP_AUG\ERP\Project.Web\bin\System.Web.WebPages.dll
+G:\ERP_AUG\ERP\Project.Web\bin\System.Web.WebPages.Razor.dll
+G:\ERP_AUG\ERP\Project.Web\bin\WebGrease.dll
+G:\ERP_AUG\ERP\Project.Web\bin\WebMatrix.Data.dll
+G:\ERP_AUG\ERP\Project.Web\bin\WebMatrix.WebData.dll
+G:\ERP_AUG\ERP\Project.Web\bin\DAL.dll
+G:\ERP_AUG\ERP\Project.Web\bin\BAL.pdb
+G:\ERP_AUG\ERP\Project.Web\bin\Project.Entity.pdb
+G:\ERP_AUG\ERP\Project.Web\bin\Project.ViewModel.pdb
+G:\ERP_AUG\ERP\Project.Web\bin\EPPlus.xml
+G:\ERP_AUG\ERP\Project.Web\bin\Newtonsoft.Json.xml
+G:\ERP_AUG\ERP\Project.Web\bin\RestSharp.xml
+G:\ERP_AUG\ERP\Project.Web\bin\EntityFramework.xml
+G:\ERP_AUG\ERP\Project.Web\bin\System.Net.Http.Formatting.xml
+G:\ERP_AUG\ERP\Project.Web\bin\System.Web.Helpers.xml
+G:\ERP_AUG\ERP\Project.Web\bin\System.Web.Http.xml
+G:\ERP_AUG\ERP\Project.Web\bin\System.Web.Http.WebHost.xml
+G:\ERP_AUG\ERP\Project.Web\bin\System.Web.Mvc.xml
+G:\ERP_AUG\ERP\Project.Web\bin\System.Web.Razor.xml
+G:\ERP_AUG\ERP\Project.Web\bin\System.Web.WebPages.xml
+G:\ERP_AUG\ERP\Project.Web\bin\System.Web.WebPages.Deployment.xml
+G:\ERP_AUG\ERP\Project.Web\bin\System.Web.WebPages.Razor.xml
+G:\ERP_AUG\ERP\Project.Web\bin\WebMatrix.Data.xml
+G:\ERP_AUG\ERP\Project.Web\bin\Microsoft.Web.WebPages.OAuth.xml
+G:\ERP_AUG\ERP\Project.Web\bin\WebMatrix.WebData.xml
+G:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.AspNet.xml
+G:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.Core.xml
+G:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.Consumer.xml
+G:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.xml
+G:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.xml
+G:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+G:\ERP_AUG\ERP\Project.Web\bin\System.Web.Http.OData.xml
+G:\ERP_AUG\ERP\Project.Web\bin\Microsoft.Data.Edm.xml
+G:\ERP_AUG\ERP\Project.Web\bin\Microsoft.Data.OData.xml
+G:\ERP_AUG\ERP\Project.Web\bin\System.Spatial.xml
+G:\ERP_AUG\ERP\Project.Web\bin\DAL.pdb
+G:\ERP_AUG\ERP\Project.Web\bin\de\Microsoft.Data.Edm.resources.dll
+G:\ERP_AUG\ERP\Project.Web\bin\es\Microsoft.Data.Edm.resources.dll
+G:\ERP_AUG\ERP\Project.Web\bin\fr\Microsoft.Data.Edm.resources.dll
+G:\ERP_AUG\ERP\Project.Web\bin\it\Microsoft.Data.Edm.resources.dll
+G:\ERP_AUG\ERP\Project.Web\bin\ja\Microsoft.Data.Edm.resources.dll
+G:\ERP_AUG\ERP\Project.Web\bin\ko\Microsoft.Data.Edm.resources.dll
+G:\ERP_AUG\ERP\Project.Web\bin\ru\Microsoft.Data.Edm.resources.dll
+G:\ERP_AUG\ERP\Project.Web\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+G:\ERP_AUG\ERP\Project.Web\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+G:\ERP_AUG\ERP\Project.Web\bin\de\Microsoft.Data.OData.resources.dll
+G:\ERP_AUG\ERP\Project.Web\bin\es\Microsoft.Data.OData.resources.dll
+G:\ERP_AUG\ERP\Project.Web\bin\fr\Microsoft.Data.OData.resources.dll
+G:\ERP_AUG\ERP\Project.Web\bin\it\Microsoft.Data.OData.resources.dll
+G:\ERP_AUG\ERP\Project.Web\bin\ja\Microsoft.Data.OData.resources.dll
+G:\ERP_AUG\ERP\Project.Web\bin\ko\Microsoft.Data.OData.resources.dll
+G:\ERP_AUG\ERP\Project.Web\bin\ru\Microsoft.Data.OData.resources.dll
+G:\ERP_AUG\ERP\Project.Web\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+G:\ERP_AUG\ERP\Project.Web\bin\zh-Hant\Microsoft.Data.OData.resources.dll
+G:\ERP_AUG\ERP\Project.Web\bin\de\System.Spatial.resources.dll
+G:\ERP_AUG\ERP\Project.Web\bin\es\System.Spatial.resources.dll
+G:\ERP_AUG\ERP\Project.Web\bin\fr\System.Spatial.resources.dll
+G:\ERP_AUG\ERP\Project.Web\bin\it\System.Spatial.resources.dll
+G:\ERP_AUG\ERP\Project.Web\bin\ja\System.Spatial.resources.dll
+G:\ERP_AUG\ERP\Project.Web\bin\ko\System.Spatial.resources.dll
+G:\ERP_AUG\ERP\Project.Web\bin\ru\System.Spatial.resources.dll
+G:\ERP_AUG\ERP\Project.Web\bin\zh-Hans\System.Spatial.resources.dll
+G:\ERP_AUG\ERP\Project.Web\bin\zh-Hant\System.Spatial.resources.dll
+G:\ERP_AUG\ERP\Project.Web\obj\Release\Project.Web.dll
+G:\ERP_AUG\ERP\Project.Web\obj\Release\Project.Web.pdb
+G:\ERP_AUG\ERP\Project.Web\obj\Release\Project.Web.csprojResolveAssemblyReference.cache
+I:\ERP_AUG\ERP\Project.Web\bin\Project.Web.dll.config
+I:\ERP_AUG\ERP\Project.Web\bin\Project.Web.dll
+I:\ERP_AUG\ERP\Project.Web\bin\Project.Web.pdb
+I:\ERP_AUG\ERP\Project.Web\bin\Antlr3.Runtime.dll
+I:\ERP_AUG\ERP\Project.Web\bin\BAL.dll
+I:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.AspNet.dll
+I:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.Core.dll
+I:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.Consumer.dll
+I:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.dll
+I:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.dll
+I:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+I:\ERP_AUG\ERP\Project.Web\bin\EntityFramework.dll
+I:\ERP_AUG\ERP\Project.Web\bin\EPPlus.dll
+I:\ERP_AUG\ERP\Project.Web\bin\Google.GData.Client.dll
+I:\ERP_AUG\ERP\Project.Web\bin\Google.GData.Contacts.dll
+I:\ERP_AUG\ERP\Project.Web\bin\Google.GData.Extensions.dll
+I:\ERP_AUG\ERP\Project.Web\bin\Microsoft.CSharp.dll
+I:\ERP_AUG\ERP\Project.Web\bin\Microsoft.Data.Edm.dll
+I:\ERP_AUG\ERP\Project.Web\bin\Microsoft.Data.OData.dll
+I:\ERP_AUG\ERP\Project.Web\bin\Microsoft.Web.Infrastructure.dll
+I:\ERP_AUG\ERP\Project.Web\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+I:\ERP_AUG\ERP\Project.Web\bin\Microsoft.Web.WebPages.OAuth.dll
+I:\ERP_AUG\ERP\Project.Web\bin\Newtonsoft.Json.dll
+I:\ERP_AUG\ERP\Project.Web\bin\Project.Entity.dll
+I:\ERP_AUG\ERP\Project.Web\bin\Project.ViewModel.dll
+I:\ERP_AUG\ERP\Project.Web\bin\RestSharp.dll
+I:\ERP_AUG\ERP\Project.Web\bin\Stripe.net.dll
+I:\ERP_AUG\ERP\Project.Web\bin\System.Net.Http.dll
+I:\ERP_AUG\ERP\Project.Web\bin\System.Net.Http.Formatting.dll
+I:\ERP_AUG\ERP\Project.Web\bin\System.Net.Http.WebRequest.dll
+I:\ERP_AUG\ERP\Project.Web\bin\System.Spatial.dll
+I:\ERP_AUG\ERP\Project.Web\bin\System.Web.dll
+I:\ERP_AUG\ERP\Project.Web\bin\System.Web.Helpers.dll
+I:\ERP_AUG\ERP\Project.Web\bin\System.Web.Http.dll
+I:\ERP_AUG\ERP\Project.Web\bin\System.Web.Http.OData.dll
+I:\ERP_AUG\ERP\Project.Web\bin\System.Web.Http.WebHost.dll
+I:\ERP_AUG\ERP\Project.Web\bin\System.Web.Mvc.dll
+I:\ERP_AUG\ERP\Project.Web\bin\System.Web.Optimization.dll
+I:\ERP_AUG\ERP\Project.Web\bin\System.Web.Razor.dll
+I:\ERP_AUG\ERP\Project.Web\bin\System.Web.WebPages.Deployment.dll
+I:\ERP_AUG\ERP\Project.Web\bin\System.Web.WebPages.dll
+I:\ERP_AUG\ERP\Project.Web\bin\System.Web.WebPages.Razor.dll
+I:\ERP_AUG\ERP\Project.Web\bin\WebGrease.dll
+I:\ERP_AUG\ERP\Project.Web\bin\WebMatrix.Data.dll
+I:\ERP_AUG\ERP\Project.Web\bin\WebMatrix.WebData.dll
+I:\ERP_AUG\ERP\Project.Web\bin\DAL.dll
+I:\ERP_AUG\ERP\Project.Web\bin\BAL.pdb
+I:\ERP_AUG\ERP\Project.Web\bin\Project.Entity.pdb
+I:\ERP_AUG\ERP\Project.Web\bin\Project.ViewModel.pdb
+I:\ERP_AUG\ERP\Project.Web\bin\EPPlus.xml
+I:\ERP_AUG\ERP\Project.Web\bin\Newtonsoft.Json.xml
+I:\ERP_AUG\ERP\Project.Web\bin\RestSharp.xml
+I:\ERP_AUG\ERP\Project.Web\bin\EntityFramework.xml
+I:\ERP_AUG\ERP\Project.Web\bin\System.Net.Http.Formatting.xml
+I:\ERP_AUG\ERP\Project.Web\bin\System.Web.Helpers.xml
+I:\ERP_AUG\ERP\Project.Web\bin\System.Web.Http.xml
+I:\ERP_AUG\ERP\Project.Web\bin\System.Web.Http.WebHost.xml
+I:\ERP_AUG\ERP\Project.Web\bin\System.Web.Mvc.xml
+I:\ERP_AUG\ERP\Project.Web\bin\System.Web.Razor.xml
+I:\ERP_AUG\ERP\Project.Web\bin\System.Web.WebPages.xml
+I:\ERP_AUG\ERP\Project.Web\bin\System.Web.WebPages.Deployment.xml
+I:\ERP_AUG\ERP\Project.Web\bin\System.Web.WebPages.Razor.xml
+I:\ERP_AUG\ERP\Project.Web\bin\WebMatrix.Data.xml
+I:\ERP_AUG\ERP\Project.Web\bin\Microsoft.Web.WebPages.OAuth.xml
+I:\ERP_AUG\ERP\Project.Web\bin\WebMatrix.WebData.xml
+I:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.AspNet.xml
+I:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.Core.xml
+I:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.Consumer.xml
+I:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.xml
+I:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.xml
+I:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+I:\ERP_AUG\ERP\Project.Web\bin\System.Web.Http.OData.xml
+I:\ERP_AUG\ERP\Project.Web\bin\Microsoft.Data.Edm.xml
+I:\ERP_AUG\ERP\Project.Web\bin\Microsoft.Data.OData.xml
+I:\ERP_AUG\ERP\Project.Web\bin\System.Spatial.xml
+I:\ERP_AUG\ERP\Project.Web\bin\DAL.pdb
+I:\ERP_AUG\ERP\Project.Web\bin\de\Microsoft.Data.Edm.resources.dll
+I:\ERP_AUG\ERP\Project.Web\bin\es\Microsoft.Data.Edm.resources.dll
+I:\ERP_AUG\ERP\Project.Web\bin\fr\Microsoft.Data.Edm.resources.dll
+I:\ERP_AUG\ERP\Project.Web\bin\it\Microsoft.Data.Edm.resources.dll
+I:\ERP_AUG\ERP\Project.Web\bin\ja\Microsoft.Data.Edm.resources.dll
+I:\ERP_AUG\ERP\Project.Web\bin\ko\Microsoft.Data.Edm.resources.dll
+I:\ERP_AUG\ERP\Project.Web\bin\ru\Microsoft.Data.Edm.resources.dll
+I:\ERP_AUG\ERP\Project.Web\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+I:\ERP_AUG\ERP\Project.Web\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+I:\ERP_AUG\ERP\Project.Web\bin\de\Microsoft.Data.OData.resources.dll
+I:\ERP_AUG\ERP\Project.Web\bin\es\Microsoft.Data.OData.resources.dll
+I:\ERP_AUG\ERP\Project.Web\bin\fr\Microsoft.Data.OData.resources.dll
+I:\ERP_AUG\ERP\Project.Web\bin\it\Microsoft.Data.OData.resources.dll
+I:\ERP_AUG\ERP\Project.Web\bin\ja\Microsoft.Data.OData.resources.dll
+I:\ERP_AUG\ERP\Project.Web\bin\ko\Microsoft.Data.OData.resources.dll
+I:\ERP_AUG\ERP\Project.Web\bin\ru\Microsoft.Data.OData.resources.dll
+I:\ERP_AUG\ERP\Project.Web\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+I:\ERP_AUG\ERP\Project.Web\bin\zh-Hant\Microsoft.Data.OData.resources.dll
+I:\ERP_AUG\ERP\Project.Web\bin\de\System.Spatial.resources.dll
+I:\ERP_AUG\ERP\Project.Web\bin\es\System.Spatial.resources.dll
+I:\ERP_AUG\ERP\Project.Web\bin\fr\System.Spatial.resources.dll
+I:\ERP_AUG\ERP\Project.Web\bin\it\System.Spatial.resources.dll
+I:\ERP_AUG\ERP\Project.Web\bin\ja\System.Spatial.resources.dll
+I:\ERP_AUG\ERP\Project.Web\bin\ko\System.Spatial.resources.dll
+I:\ERP_AUG\ERP\Project.Web\bin\ru\System.Spatial.resources.dll
+I:\ERP_AUG\ERP\Project.Web\bin\zh-Hans\System.Spatial.resources.dll
+I:\ERP_AUG\ERP\Project.Web\bin\zh-Hant\System.Spatial.resources.dll
+I:\ERP_AUG\ERP\Project.Web\obj\Release\Project.Web.csprojResolveAssemblyReference.cache
+I:\ERP_AUG\ERP\Project.Web\obj\Release\Project.Web.dll
+I:\ERP_AUG\ERP\Project.Web\obj\Release\Project.Web.pdb
+H:\ERP_AUG\ERP\Project.Web\bin\Project.Web.dll.config
+H:\ERP_AUG\ERP\Project.Web\bin\Project.Web.dll
+H:\ERP_AUG\ERP\Project.Web\bin\Project.Web.pdb
+H:\ERP_AUG\ERP\Project.Web\bin\Antlr3.Runtime.dll
+H:\ERP_AUG\ERP\Project.Web\bin\BAL.dll
+H:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.AspNet.dll
+H:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.Core.dll
+H:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.Consumer.dll
+H:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.dll
+H:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.dll
+H:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+H:\ERP_AUG\ERP\Project.Web\bin\EntityFramework.dll
+H:\ERP_AUG\ERP\Project.Web\bin\EPPlus.dll
+H:\ERP_AUG\ERP\Project.Web\bin\Google.GData.Client.dll
+H:\ERP_AUG\ERP\Project.Web\bin\Google.GData.Contacts.dll
+H:\ERP_AUG\ERP\Project.Web\bin\Google.GData.Extensions.dll
+H:\ERP_AUG\ERP\Project.Web\bin\Microsoft.CSharp.dll
+H:\ERP_AUG\ERP\Project.Web\bin\Microsoft.Data.Edm.dll
+H:\ERP_AUG\ERP\Project.Web\bin\Microsoft.Data.OData.dll
+H:\ERP_AUG\ERP\Project.Web\bin\Microsoft.Web.Infrastructure.dll
+H:\ERP_AUG\ERP\Project.Web\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+H:\ERP_AUG\ERP\Project.Web\bin\Microsoft.Web.WebPages.OAuth.dll
+H:\ERP_AUG\ERP\Project.Web\bin\Newtonsoft.Json.dll
+H:\ERP_AUG\ERP\Project.Web\bin\Project.Entity.dll
+H:\ERP_AUG\ERP\Project.Web\bin\Project.ViewModel.dll
+H:\ERP_AUG\ERP\Project.Web\bin\RestSharp.dll
+H:\ERP_AUG\ERP\Project.Web\bin\Stripe.net.dll
+H:\ERP_AUG\ERP\Project.Web\bin\System.Net.Http.dll
+H:\ERP_AUG\ERP\Project.Web\bin\System.Net.Http.Formatting.dll
+H:\ERP_AUG\ERP\Project.Web\bin\System.Net.Http.WebRequest.dll
+H:\ERP_AUG\ERP\Project.Web\bin\System.Spatial.dll
+H:\ERP_AUG\ERP\Project.Web\bin\System.Web.dll
+H:\ERP_AUG\ERP\Project.Web\bin\System.Web.Helpers.dll
+H:\ERP_AUG\ERP\Project.Web\bin\System.Web.Http.dll
+H:\ERP_AUG\ERP\Project.Web\bin\System.Web.Http.OData.dll
+H:\ERP_AUG\ERP\Project.Web\bin\System.Web.Http.WebHost.dll
+H:\ERP_AUG\ERP\Project.Web\bin\System.Web.Mvc.dll
+H:\ERP_AUG\ERP\Project.Web\bin\System.Web.Optimization.dll
+H:\ERP_AUG\ERP\Project.Web\bin\System.Web.Razor.dll
+H:\ERP_AUG\ERP\Project.Web\bin\System.Web.WebPages.Deployment.dll
+H:\ERP_AUG\ERP\Project.Web\bin\System.Web.WebPages.dll
+H:\ERP_AUG\ERP\Project.Web\bin\System.Web.WebPages.Razor.dll
+H:\ERP_AUG\ERP\Project.Web\bin\WebGrease.dll
+H:\ERP_AUG\ERP\Project.Web\bin\WebMatrix.Data.dll
+H:\ERP_AUG\ERP\Project.Web\bin\WebMatrix.WebData.dll
+H:\ERP_AUG\ERP\Project.Web\bin\DAL.dll
+H:\ERP_AUG\ERP\Project.Web\bin\BAL.pdb
+H:\ERP_AUG\ERP\Project.Web\bin\Project.Entity.pdb
+H:\ERP_AUG\ERP\Project.Web\bin\Project.ViewModel.pdb
+H:\ERP_AUG\ERP\Project.Web\bin\EPPlus.xml
+H:\ERP_AUG\ERP\Project.Web\bin\Newtonsoft.Json.xml
+H:\ERP_AUG\ERP\Project.Web\bin\RestSharp.xml
+H:\ERP_AUG\ERP\Project.Web\bin\EntityFramework.xml
+H:\ERP_AUG\ERP\Project.Web\bin\System.Net.Http.Formatting.xml
+H:\ERP_AUG\ERP\Project.Web\bin\System.Web.Helpers.xml
+H:\ERP_AUG\ERP\Project.Web\bin\System.Web.Http.xml
+H:\ERP_AUG\ERP\Project.Web\bin\System.Web.Http.WebHost.xml
+H:\ERP_AUG\ERP\Project.Web\bin\System.Web.Mvc.xml
+H:\ERP_AUG\ERP\Project.Web\bin\System.Web.Razor.xml
+H:\ERP_AUG\ERP\Project.Web\bin\System.Web.WebPages.xml
+H:\ERP_AUG\ERP\Project.Web\bin\System.Web.WebPages.Deployment.xml
+H:\ERP_AUG\ERP\Project.Web\bin\System.Web.WebPages.Razor.xml
+H:\ERP_AUG\ERP\Project.Web\bin\WebMatrix.Data.xml
+H:\ERP_AUG\ERP\Project.Web\bin\Microsoft.Web.WebPages.OAuth.xml
+H:\ERP_AUG\ERP\Project.Web\bin\WebMatrix.WebData.xml
+H:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.AspNet.xml
+H:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.Core.xml
+H:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.Consumer.xml
+H:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.OAuth.xml
+H:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.xml
+H:\ERP_AUG\ERP\Project.Web\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+H:\ERP_AUG\ERP\Project.Web\bin\System.Web.Http.OData.xml
+H:\ERP_AUG\ERP\Project.Web\bin\Microsoft.Data.Edm.xml
+H:\ERP_AUG\ERP\Project.Web\bin\Microsoft.Data.OData.xml
+H:\ERP_AUG\ERP\Project.Web\bin\System.Spatial.xml
+H:\ERP_AUG\ERP\Project.Web\bin\DAL.pdb
+H:\ERP_AUG\ERP\Project.Web\bin\de\Microsoft.Data.Edm.resources.dll
+H:\ERP_AUG\ERP\Project.Web\bin\es\Microsoft.Data.Edm.resources.dll
+H:\ERP_AUG\ERP\Project.Web\bin\fr\Microsoft.Data.Edm.resources.dll
+H:\ERP_AUG\ERP\Project.Web\bin\it\Microsoft.Data.Edm.resources.dll
+H:\ERP_AUG\ERP\Project.Web\bin\ja\Microsoft.Data.Edm.resources.dll
+H:\ERP_AUG\ERP\Project.Web\bin\ko\Microsoft.Data.Edm.resources.dll
+H:\ERP_AUG\ERP\Project.Web\bin\ru\Microsoft.Data.Edm.resources.dll
+H:\ERP_AUG\ERP\Project.Web\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+H:\ERP_AUG\ERP\Project.Web\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+H:\ERP_AUG\ERP\Project.Web\bin\de\Microsoft.Data.OData.resources.dll
+H:\ERP_AUG\ERP\Project.Web\bin\es\Microsoft.Data.OData.resources.dll
+H:\ERP_AUG\ERP\Project.Web\bin\fr\Microsoft.Data.OData.resources.dll
+H:\ERP_AUG\ERP\Project.Web\bin\it\Microsoft.Data.OData.resources.dll
+H:\ERP_AUG\ERP\Project.Web\bin\ja\Microsoft.Data.OData.resources.dll
+H:\ERP_AUG\ERP\Project.Web\bin\ko\Microsoft.Data.OData.resources.dll
+H:\ERP_AUG\ERP\Project.Web\bin\ru\Microsoft.Data.OData.resources.dll
+H:\ERP_AUG\ERP\Project.Web\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+H:\ERP_AUG\ERP\Project.Web\bin\zh-Hant\Microsoft.Data.OData.resources.dll
+H:\ERP_AUG\ERP\Project.Web\bin\de\System.Spatial.resources.dll
+H:\ERP_AUG\ERP\Project.Web\bin\es\System.Spatial.resources.dll
+H:\ERP_AUG\ERP\Project.Web\bin\fr\System.Spatial.resources.dll
+H:\ERP_AUG\ERP\Project.Web\bin\it\System.Spatial.resources.dll
+H:\ERP_AUG\ERP\Project.Web\bin\ja\System.Spatial.resources.dll
+H:\ERP_AUG\ERP\Project.Web\bin\ko\System.Spatial.resources.dll
+H:\ERP_AUG\ERP\Project.Web\bin\ru\System.Spatial.resources.dll
+H:\ERP_AUG\ERP\Project.Web\bin\zh-Hans\System.Spatial.resources.dll
+H:\ERP_AUG\ERP\Project.Web\bin\zh-Hant\System.Spatial.resources.dll
+H:\ERP_AUG\ERP\Project.Web\obj\Release\Project.Web.dll
+H:\ERP_AUG\ERP\Project.Web\obj\Release\Project.Web.pdb

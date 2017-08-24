@@ -1,0 +1,562 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPage_Admin.cshtml";
+}
+
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery/dist/jquery.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/bootstrapck4-skin/ckeditor.js")"></script>
+<script type="text/javascript">
+    //$(function () {
+    //    $('.summernote').summernote({
+    //        height: 200
+    //    });      
+       
+    //       // alert($('.summernote').summernote('code'));
+    //      //  alert($('.summernote').val());
+        
+    //});
+    //$(document).ready(function () {
+    //    $('.summernote').summernote({
+    //        height: 300,
+    //        tabsize: 2
+    //       // airMode: true
+    //    });
+    //});
+
+   
+
+    
+        $(document).ready(function () {
+            CKEDITOR.replace("ckeditor-full"),
+            CKEDITOR.config.height = 840
+            // CKEDITOR.inline("ckeditor-inline")
+        });
+    
+</script>
+<style>
+    .content_btn:hover {
+        width: 70px;
+        height: 70px;
+        background-color: #fff;
+        border: 1px solid #1f364f !important;
+    }
+</style>
+
+<div class="page-container">
+    <div class="page-header clearfix">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4 class="mt-0 mb-5">Manage Clients</h4>
+                <ol class="breadcrumb mb-0">
+                    <li><a href="@Url.RouteUrl("AdminDashboard_V_2")">Home</a></li>
+                    <li><a href="@Url.RouteUrl("MarketingCampaign")">Email Campaign</a></li>
+                    <li class="active">Email Campaign</li>
+                </ol>
+            </div>
+            <div class="col-sm-6">
+                @*<div class="btn-group mt-5">
+                    <button type="button" class="btn btn-default btn-outline"><i class="flag-icon flag-icon-us mr-5"></i> English</button>
+                    <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default btn-outline dropdown-toggle"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
+                    <ul class="dropdown-menu dropdown-menu-right animated fadeInDown">
+                        <li><a href="#"><i class="flag-icon flag-icon-de mr-5"></i> German</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-fr mr-5"></i> French</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-es mr-5"></i> Spanish</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-it mr-5"></i> Italian</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-jp mr-5"></i> Japanese</a></li>
+                    </ul>
+                 </div>*@
+></div>
+        </div>
+    </div>
+    <div class="page-content container-fluid">
+        <div class="widget">
+            <div class="widget-heading clearfix">
+                <h3 class="widget-title pull-left">Email Campaign</h3>
+                <div class="pull-right">
+                    <a type="button" href="/MarketingCampaign/AddEmailCampaign" class="btn btn-primary" title="Create Campaign"><i class="ti-plus"></i></a>
+                </div>
+            </div>
+            <div class="widget-body">
+                <form id="form-horizontal" class="form-horizontal">
+                    <h3>Campaign Details</h3>
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Title" class="col-sm-3 col-md-4 control-label">Title <span style="color:red;">*</span></label>
+                                    <div class="col-sm-9 col-md-8">
+                                        <input id="Title" name="Title" type="text" class="form-control ">
+                                        <div id="error_div_Title" style="display:none;">
+                                            <p style="color:red;">Please Provide Title.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="MSubject" class="col-sm-3 col-md-4 control-label">Mail Subject <span style="color:red;">*</span></label>
+                                    <div class="col-sm-9 col-md-8">
+                                        <input id="MSubject" name="MSubject" type="text" class="form-control">
+                                        <div id="error_div_MSubject" style="display:none;">
+                                            <p style="color:red;">Please Provide Subject.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="SName" class="col-sm-3 col-md-4 control-label">Sender Name <span style="color:red;">*</span></label>
+                                    <div class="col-sm-9 col-md-8">
+                                        <input id="SName" name="SName" type="text" class="form-control">
+                                        <div id="error_div_SName" style="display:none;">
+                                            <p style="color:red;">Please Provide Sender Name.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="SEmail" class="col-sm-3 col-md-4 control-label">Sender Email <span style="color:red;">*</span></label>
+                                    <div class="col-sm-9 col-md-8">
+                                        <input id="SEmail" name="SEmail" type="text" class="form-control">
+                                        <div id="error_div_SEmail" style="display:none;">
+                                            <p style="color:red;">Please Provide Valid Email Address</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="REmail" class="col-sm-3 col-md-4 control-label">Reply Email <span style="color:red;">*</span></label>
+                                    <div class="col-sm-9 col-md-8">
+                                        <input id="REmail" name="REmail" type="text" class="form-control">
+                                        <div id="error_div_REmail" style="display:none;">
+                                            <p style="color:red;">Please Provide Valid Email Address</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <p style="margin-left:20px;color:red;">(*) Mandatory</p>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <h3>Add Content</h3>
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <div class="btn-group" >
+                                    <button type="button" class="btn btn-info text switch_btn" id="text_btn" onclick="toggleSwitch(this);">Text</button>
+                                    <button type="button" class="btn btn-default thtml switch_btn" id="html_btn" onclick="toggleSwitch(this);">HTML</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top:30px;">
+                            <div class="col-sm-12 text-center" id="text_opt">
+                                @*<textarea name="TextContent" id="TextContent" data-provide="markdown" rows="10"></textarea>*@
+                               
+                                @*<div class="summernote"></div>*@
+                                <textarea name="TextContent" id="ckeditor-full" class="summernote"></textarea>
+                            </div>
+                            
+                        </div>
+                        <div class="row" style="margin-top:30px;">
+                            <div class="col-sm-12 text-center">
+                                <div class="col-sm-12 text-center" id="html_opt" style="display:none;">
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-3 text-center">
+                                        <h4>Templates</h4>
+                                        <a href="#" type="button" class="btn content_btn" data-toggle="modal" data-target="#TemplateModal" style="width: 100px; height: 100px; border: 1px solid #1f364f !important; background-color: #1f364f !important;" id="btn_templ" onmouseover="templImgBlue();" onmouseout="templImgWhite();"><img src="@Url.Content("~/Content/img/icon-white.png")" style="width:40px;height:40px; margin-top:25px;" id="templ" /></a>
+                                        <div style="margin-top:10px;">
+                                            <a href="#" type="button" class="btn btn-danger" data-toggle="modal" data-target="#TemplateModal" style="">Choose</a>
+                                            <p style="margin-top:10px;">Choose From Our Pre Installed Template</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 text-center">
+                                        <h4>Import/Upload</h4>
+                                        <a href="#" type="button" class="btn" data-toggle="modal" data-target="#UploadeModal" style=" width: 100px; height: 100px; border: 1px solid #1f364f !important; background-color: #1f364f !important;" id="btn_impo" onmouseover="impoImgBlue();" onmouseout="impoImgWhite();"><img src="@Url.Content("~/Content/img/import-white.png")" style="width: 40px; height: 40px; margin-top: 25px;" id="impo" /></a>
+                                        <div style="margin-top:10px;">
+                                            <a href="#" type="button" class="btn btn-danger" data-toggle="modal" data-target="#UploadeModal">Choose</a>
+                                            <p style="margin-top:10px;">Import or Upload Existing Template</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <h3>Choose Audience</h3>
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="txtNameCard" class="col-sm-3 col-md-4 control-label">Name on Card</label>
+                                    <div class="col-sm-9 col-md-8">
+                                        <input id="txtNameCard" name="txtNameCard" type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="ddlCreditCardType" class="col-sm-3 col-md-4 control-label">Credit Card Type</label>
+                                    <div class="col-sm-9 col-md-8">
+                                        <select id="ddlCreditCardType" name="ddlCreditCardType" class="form-control">
+                                            <option value="">--Please Select--</option>
+                                            <option value="AE">American Express</option>
+                                            <option value="VI">Visa</option>
+                                            <option value="MC">MasterCard</option>
+                                            <option value="DI">Discover</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="txtCreditCardNumber" class="col-sm-3 col-md-4 control-label">Credit Card Number</label>
+                                    <div class="col-sm-9 col-md-8">
+                                        <input id="txtCreditCardNumber" name="txtCreditCardNumber" type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="txtCardVerificationNumber" class="col-sm-3 col-md-4 control-label">Card Verification Number</label>
+                                    <div class="col-sm-9 col-md-8">
+                                        <input id="txtCardVerificationNumber" name="txtCardVerificationNumber" type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="txtExpirationDate" class="col-sm-3 col-md-4 control-label">Expiration Date</label>
+                                    <div class="col-sm-9 col-md-8">
+                                        <input id="txtExpirationDate" name="txtExpirationDate" type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <h3>Review Campaign</h3>
+                    <fieldset>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width:10%">#</th>
+                                    <th style="width:40%">Product Name</th>
+                                    <th style="width:15%">Price</th>
+                                    <th style="width:15%">Qty</th>
+                                    <th style="width:20%">Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Samsung Galaxy S7 Edge</td>
+                                    <td class="text-right">$899.00</td>
+                                    <td class="text-right">1</td>
+                                    <td class="text-right">$899.00</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Apple Iphone 6S Pus</td>
+                                    <td class="text-right">$999.00</td>
+                                    <td class="text-right">1</td>
+                                    <td class="text-right">$999.00</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>Sony Xperia X Performance</td>
+                                    <td class="text-right">$799.00</td>
+                                    <td class="text-right">1</td>
+                                    <td class="text-right">$799.00</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" class="text-right">Subtotal</td>
+                                    <td class="text-right">$2597.00</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" class="text-right">Shipping & Handling</td>
+                                    <td class="text-right">$10.00</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" class="text-right">Grand Total</td>
+                                    <td class="text-right">$2607.00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="TemplateModal">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 id="myAnimationModalLabel" class="modal-title">Choose Template</h4>
+            </div>
+            <div class="modal-body">
+                <form action="#" method="post" id="mainForm">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="col-sm-6">
+                                <div class="thumbnails">
+                                    <div class="thumbnail">
+                                        <img src="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="SourceID" id="sourceID" />
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default" id="cancel">Cancel</button>
+                <button type="button" class="btn btn-raised btn-danger" id="save" onclick="SubmitForm();">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="UploadeModal">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 id="myAnimationModalLabel" class="modal-title">Upload/Import Template</h4>
+            </div>
+            <div class="modal-body">
+                <form action="#" method="post" id="mainForm">
+                    <div class="row">
+                        <div class="col-sm-12">
+                        </div>
+                    </div>
+                    <input type="hidden" name="SourceID" id="sourceID" />
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default" id="cancel">Cancel</button>
+                <button type="button" class="btn btn-raised btn-danger" id="save" onclick="SubmitForm();">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#date-added").daterangepicker({
+            singleDatePicker: true,
+            locale: {
+                format: 'DD/MM/YYYY'
+            },
+        });
+    });
+</script>
+<script>
+    function toggleSwitch(thi) {
+        if ($(thi).hasClass('text')) {
+            $('#html_btn').removeClass("btn-info");
+            $('#text_btn').addClass("btn-info");
+            $('#html_opt').hide();
+            $('#text_opt').show();
+        }
+        else {
+            $('#text_btn').removeClass("btn-info");
+            $('#html_btn').addClass("btn-info");
+            $('#text_opt').hide();
+            $('#html_opt').show();
+        }
+    }
+
+    function templImgBlue() {
+        $("#btn_templ").css({ "backgroundColor": " #fff", "border": "1px solid #1f364f" });
+        $('#templ').attr('src', '../Content/img/icon-blue.png');
+    };
+
+    function templImgWhite() {
+        $("#btn_templ").css({ "backgroundColor": " #1f364f", "border": "1px solid #1f364f" });
+        $('#templ').attr('src', '../Content/img/icon-white.png');
+    };
+
+    function impoImgBlue() {
+        $("#btn_impo").css({ "backgroundColor": " #fff", "border": "1px solid #1f364f" });
+        $('#impo').attr('src', '../Content/img/import-blue.png');
+    };
+
+    function impoImgWhite() {
+        $("#btn_impo").css({ "backgroundColor": " #1f364f", "border": "1px solid #1f364f" });
+        $('#impo').attr('src', '../Content/img/import-white.png');
+    };
+
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#SEmail").focusout(function () {
+            alert();
+            var emailRegex = /^[A-Za-z0-9._]*\@@[A-Za-z]*\.[A-Za-z]{2,5}$/;
+            if ($("#SEmail").val().trim() != "" && !emailRegex.test($("#SEmail").val().trim())) {
+                $("#error_div_SEmail").show();
+            }
+            else {
+                $("#error_div_SEmail").hide();
+            }
+        });
+
+        $("#REmail").focusout(function () {
+            var emailRegex = /^[A-Za-z0-9._]*\@@[A-Za-z]*\.[A-Za-z]{2,5}$/;
+            if ($("#REmail").val().trim() != "" && !emailRegex.test($("#REmail").val().trim())) {
+                $("#error_div_REmail").show();
+            }
+            else {
+                $("#error_div_REmail").hide();
+            }
+        });
+    });
+
+
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        $("#form-horizontal").steps({
+            headerTag: "h3",
+            bodyTag: "fieldset",
+            transitionEffect: "slide",
+            onStepChanging: function (event, currentIndex, newIndex) {
+                if (currentIndex < newIndex) {
+                    if (currentIndex == 0) {
+                        if (!(validateStep1())) {
+                            return false;
+                        }
+                        else {                           
+                            return true;
+                        }
+                    }
+                    if (currentIndex == 1) {
+                        //if (!(validateStep2())) {
+                        //    // Do not jump to the next step
+                        //    return false;
+                        //}
+                        //alert($('.summernote').summernote('code'));
+                        alert($('.summernote').val());
+                    }
+                    if (currentIndex == 2) {
+                        if (!(validateStep3())) {
+                            // Do not jump to the next step
+                            return false;
+                        }
+                    }
+                    if (currentIndex == 3) {
+                        if (!(validateStep4())) {
+                            // Do not jump to the next step
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            },
+            onStepChanged: function (event, currentIndex, priorIndex) {
+                // Used to skip the "Warning" step if the user is old enough.
+                if (currentIndex === 2 && priorIndex === 1) {
+                    form.steps("next");
+                }
+                // Used to skip the "Warning" step if the user is old enough and wants to the previous step.
+                if (currentIndex === 2 && priorIndex === 3) {
+                    form.steps("previous");
+                }
+            },
+            onFinishing: function (event, currentIndex) {
+                form.validate().settings.ignore = ":disabled";
+                return form.valid();
+            },
+            onFinished: function (event, currentIndex) {
+                alert("Submitted!");
+            }
+        })
+    });
+</script>
+
+<script>
+    function validateStep1() {
+        var emailRegex = /^[A-Za-z0-9._]*\@@[A-Za-z]*\.[A-Za-z]{2,5}$/;
+        if($("#Title").val().trim() == ""){
+            $('#error_div_Title').show();
+        }
+        else if($("#MSubject").val().trim() == ""){
+            $('#error_div_MSubject').show();
+            $('#error_div_Title').hide();
+        }
+        else if ($("#SName").val().trim() == "") {
+            $('#error_div_SName').show();
+            $('#error_div_MSubject').hide();
+            $('#error_div_Title').hide();
+            return false;
+        }
+        else if ($("#SEmail").val().trim() == "") {
+            $('#error_div_SEmail').show();
+            $('#error_div_SName').hide();
+            $('#error_div_MSubject').hide();
+            $('#error_div_Title').hide();
+            return false;
+        }
+        else if ($("#SEmail").val().trim() != "" && !emailRegex.test($("#SEmail").val().trim())) {
+            $('#error_div_SEmail').show();
+            $('#error_div_SName').hide();
+            $('#error_div_MSubject').hide();
+            $('#error_div_Title').hide();
+            return false;
+        }
+        else if ($("#REmail").val().trim() == "") {
+            $('#error_div_REmail').show();
+            $('#error_div_SEmail').hide();
+            $('#error_div_SName').hide();
+            $('#error_div_MSubject').hide();
+            $('#error_div_Title').hide();
+            return false;
+        }
+        else if ($("#REmail").val().trim() != "" && !emailRegex.test($("#REmail").val().trim())) {
+            $('#error_div_REmail').show();
+            $('#error_div_SEmail').hide();
+            $('#error_div_SName').hide();
+            $('#error_div_MSubject').hide();
+            $('#error_div_Title').hide();
+            return false;
+        }
+        else {
+            $('#error_div_REmail').hide();
+            $('#error_div_SEmail').hide();
+            $('#error_div_SName').hide();
+            $('#error_div_MSubject').hide();
+            $('#error_div_Title').hide();
+            return true ;
+        }
+    }
+</script>
+
+
+

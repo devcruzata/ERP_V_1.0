@@ -1,0 +1,52 @@
+﻿@model Project.Web.Models.PaymentTrackingModel
+
+@{
+    Layout = null;
+}
+
+<table id="payment-list-1" style="width: 100%" class="table table-hover dt-responsive nowrap">
+    <thead>
+        <tr>
+            <th class="text-center">Title</th>
+            <th class="text-center">Client</th>
+            <th class="text-center">Total Cost<br />(IN $)</th>
+            <th class="text-center">Paid<br />(IN $)</th>
+            <th class="text-center">Reamining<br />(IN $)</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var trackRecord in Model.tracker)
+            {
+
+                <tr>
+                    <td class="text-center">@trackRecord.Project_Title</td>
+                    <td class="text-center">@trackRecord.ClientName</td>
+                    <td class="text-center">@trackRecord.TotalCost</td>
+                    <td class="text-center">@trackRecord.AmountPaid</td>
+                    <td class="text-center">@trackRecord.AmountRemainig</td>
+                    <td class="text-center"><span class="label label-success">@trackRecord.Status</span></td>
+                    <td class="text-center">
+
+                        <button type="button" class="btn btn-outline btn-primary" onclick="ViewTrackRecord('@trackRecord.Trackin_ID_PK');" title="View Track Record"><i class="ti-eye"></i></button>
+                        @if (trackRecord.TotalCost == trackRecord.AmountPaid)
+                        {
+                             <button type="button" class="btn btn-outline btn-warning" data-toggle="modal" data-target="#PaymentModal" title="Add Payment" onclick="setProjectCost('@trackRecord.TotalCost','@trackRecord.Trackin_ID_PK');" disabled="disabled"><i class="ti-money"></i></button>
+                        }
+                        else
+                        {
+                             <button type="button" class="btn btn-outline btn-warning" data-toggle="modal" data-target="#PaymentModal" title="Add Payment" onclick="setProjectCost('@trackRecord.TotalCost','@trackRecord.Trackin_ID_PK');"><i class="ti-money"></i></button>
+                        } 
+                        <button type="button" class="btn btn-outline btn-danger" onclick="DeleteTracker('@trackRecord.Trackin_ID_PK');" title="Remove Project"><i class="ti-trash"></i></button>
+
+                    </td>
+                </tr>
+
+            }
+        }
+
+    </tbody>
+</table>
+

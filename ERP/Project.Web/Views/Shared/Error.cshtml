@@ -1,0 +1,22 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    Layout = "~/Views/Shared/_LayoutPageLogin.cshtml";
+    ViewBag.Title = "Error";
+}
+
+<div class="container page-container">
+    <div class="page-content">
+        <div class="logo"><img src="@Url.Content("~/Content/build/images/logo/logo-iconic-light.png")" alt="" width="100"></div>
+        <h1 style="font-size: 130px" class="m-0 text-muted fw-300">5<i class="ti-face-sad fs-100"></i><i class="ti-face-sad fs-100"></i></h1>
+        <h4 class="fs-16 text-white fw-300">Unexpected Error!</h4>        
+        @if (@HttpContext.Current.Session["User_Type"].ToString() == "ADM")        
+        {           
+            <p class="text-muted mb-15">An error occurred and your request couldn't be completed.</p><a href="@Url.RouteUrl("AdminHome")" role="button" style="width: 130px" class="btn btn-primary btn-rounded">Return home</a>
+        }
+        else
+        {            
+            <p class="text-muted mb-15">An error occurred and your request couldn't be completed.</p><a href="@Url.RouteUrl("DevHome")" role="button" style="width: 130px" class="btn btn-primary btn-rounded">Return home</a>
+        }
+    </div>
+</div>

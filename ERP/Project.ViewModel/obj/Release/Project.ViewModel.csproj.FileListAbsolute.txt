@@ -1,0 +1,54 @@
+D:\ABHISHEK\Work Space\ERP\Project.ViewModel\bin\Release\Project.ViewModel.dll
+D:\ABHISHEK\Work Space\ERP\Project.ViewModel\bin\Release\Project.ViewModel.pdb
+D:\ABHISHEK\Work Space\ERP\Project.ViewModel\bin\Release\RestSharp.dll
+D:\ABHISHEK\Work Space\ERP\Project.ViewModel\bin\Release\RestSharp.xml
+D:\ABHISHEK\Work Space\ERP\Project.ViewModel\obj\Release\Project.ViewModel.csprojResolveAssemblyReference.cache
+D:\ABHISHEK\Work Space\ERP\Project.ViewModel\obj\Release\Project.ViewModel.dll
+D:\ABHISHEK\Work Space\ERP\Project.ViewModel\obj\Release\Project.ViewModel.pdb
+I:\CRM 25 april\ERP\Project.ViewModel\bin\Release\Project.ViewModel.dll
+I:\CRM 25 april\ERP\Project.ViewModel\bin\Release\Project.ViewModel.pdb
+I:\CRM 25 april\ERP\Project.ViewModel\bin\Release\RestSharp.dll
+I:\CRM 25 april\ERP\Project.ViewModel\bin\Release\RestSharp.xml
+I:\CRM 25 april\ERP\Project.ViewModel\obj\Release\Project.ViewModel.csprojResolveAssemblyReference.cache
+I:\CRM 25 april\ERP\Project.ViewModel\obj\Release\Project.ViewModel.dll
+I:\CRM 25 april\ERP\Project.ViewModel\obj\Release\Project.ViewModel.pdb
+F:\Workspace\ERP\Project.ViewModel\bin\Release\Project.ViewModel.dll
+F:\Workspace\ERP\Project.ViewModel\bin\Release\Project.ViewModel.pdb
+F:\Workspace\ERP\Project.ViewModel\bin\Release\RestSharp.dll
+F:\Workspace\ERP\Project.ViewModel\bin\Release\RestSharp.xml
+F:\Workspace\ERP\Project.ViewModel\obj\Release\Project.ViewModel.dll
+F:\Workspace\ERP\Project.ViewModel\obj\Release\Project.ViewModel.pdb
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.ViewModel\bin\Release\Project.ViewModel.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.ViewModel\bin\Release\Project.ViewModel.pdb
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.ViewModel\bin\Release\RestSharp.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.ViewModel\bin\Release\RestSharp.xml
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.ViewModel\obj\Release\Project.ViewModel.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.ViewModel\obj\Release\Project.ViewModel.pdb
+I:\erp21july\ERP\Project.ViewModel\bin\Release\Project.ViewModel.dll
+I:\erp21july\ERP\Project.ViewModel\bin\Release\Project.ViewModel.pdb
+I:\erp21july\ERP\Project.ViewModel\bin\Release\RestSharp.dll
+I:\erp21july\ERP\Project.ViewModel\bin\Release\RestSharp.xml
+I:\erp21july\ERP\Project.ViewModel\obj\Release\Project.ViewModel.csprojResolveAssemblyReference.cache
+I:\erp21july\ERP\Project.ViewModel\obj\Release\Project.ViewModel.dll
+I:\erp21july\ERP\Project.ViewModel\obj\Release\Project.ViewModel.pdb
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.ViewModel\bin\Release\Project.ViewModel.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.ViewModel\bin\Release\Project.ViewModel.pdb
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.ViewModel\bin\Release\RestSharp.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.ViewModel\bin\Release\RestSharp.xml
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.ViewModel\obj\Release\Project.ViewModel.csprojResolveAssemblyReference.cache
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.ViewModel\obj\Release\Project.ViewModel.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.ViewModel\obj\Release\Project.ViewModel.pdb
+G:\ERP_AUG\ERP\Project.ViewModel\bin\Release\Project.ViewModel.dll
+G:\ERP_AUG\ERP\Project.ViewModel\bin\Release\Project.ViewModel.pdb
+G:\ERP_AUG\ERP\Project.ViewModel\bin\Release\RestSharp.dll
+G:\ERP_AUG\ERP\Project.ViewModel\bin\Release\RestSharp.xml
+G:\ERP_AUG\ERP\Project.ViewModel\obj\Release\Project.ViewModel.csprojResolveAssemblyReference.cache
+G:\ERP_AUG\ERP\Project.ViewModel\obj\Release\Project.ViewModel.dll
+G:\ERP_AUG\ERP\Project.ViewModel\obj\Release\Project.ViewModel.pdb
+I:\ERP_AUG\ERP\Project.ViewModel\bin\Release\Project.ViewModel.dll
+I:\ERP_AUG\ERP\Project.ViewModel\bin\Release\Project.ViewModel.pdb
+I:\ERP_AUG\ERP\Project.ViewModel\bin\Release\RestSharp.dll
+I:\ERP_AUG\ERP\Project.ViewModel\bin\Release\RestSharp.xml
+I:\ERP_AUG\ERP\Project.ViewModel\obj\Release\Project.ViewModel.csprojResolveAssemblyReference.cache
+I:\ERP_AUG\ERP\Project.ViewModel\obj\Release\Project.ViewModel.dll
+I:\ERP_AUG\ERP\Project.ViewModel\obj\Release\Project.ViewModel.pdb

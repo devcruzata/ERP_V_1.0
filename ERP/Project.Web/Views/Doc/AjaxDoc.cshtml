@@ -1,0 +1,22 @@
+﻿@{
+    Layout = null;
+}
+
+@foreach (var docs in Model.Doc)
+{
+    <tr>
+        <td width="70%">
+            <div class="media">
+                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/Docs.png")" alt="" class="media-object img-circle"></div>
+                <div class="media-body">
+                    <h5 class="media-heading" onclick="downloadDoc('@docs.FileName','@docs.FileID')">@docs.FileName</h5>
+                    <p class="text-muted mb-0">Added By: @docs.DocOwner_Name</p>
+                </div>
+            </div>
+        </td>
+        <td width="30%" class="text-right text-success">
+            @*<a href="#"><i class="ti-pencil-alt"></i></a>*@
+            <a href="#" onclick="deleteDocument('@docs.Doc_ID_Auto_PK', '@docs.FileName', '@docs.FileID')" title="Delete Document"><i class="ti-trash"></i></a>
+        </td>
+    </tr>
+}

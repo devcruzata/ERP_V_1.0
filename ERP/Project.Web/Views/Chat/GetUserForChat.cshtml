@@ -1,0 +1,22 @@
+﻿@model Project.Web.Models.UserModel
+@{
+    Layout = null;
+}
+
+@foreach (var user in Model.users)
+{
+    <li class="media" onclick="setReciever('@user.User_ID_PK','@user.FullName');">
+        <a href="#" class="conversation-toggle">
+            <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/01.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+            <div class="media-body">
+                <h6 class="media-heading">@user.FullName</h6>
+                @*<p class="text-muted mb-0">Where are you from?</p>*@
+            </div>
+            @if (user.UnReadReadCount != "0")
+            {
+                <div class="media-right"><span class="badge bg-danger">@user.UnReadReadCount</span></div>
+            }
+        </a>
+    </li>
+}
+

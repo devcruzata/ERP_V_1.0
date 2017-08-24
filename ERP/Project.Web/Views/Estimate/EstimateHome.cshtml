@@ -1,0 +1,314 @@
+﻿@model Project.Web.Models.EstimateModel
+@{
+    ViewBag.Title = "Estimate-Home";
+}
+
+ <script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery/dist/jquery.min.js")"></script>
+
+
+
+<div class="page-container">
+    <div class="page-header clearfix">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4 class="mt-0 mb-5">Manage Estimates</h4>
+                <ol class="breadcrumb mb-0">
+                    <li><a href="@Url.RouteUrl("AdminHome")">Home</a></li>
+                    <li><a href="@Url.RouteUrl("EstimateHome")">Estimates</a></li>
+                    <li class="active">Manage Estimates</li>
+                </ol>
+            </div>
+            <div class="col-sm-6">
+                <div class="btn-group mt-5">
+                    <button type="button" class="btn btn-default btn-outline"><i class="flag-icon flag-icon-us mr-5"></i> English</button>
+                    <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default btn-outline dropdown-toggle"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
+                    <ul class="dropdown-menu dropdown-menu-right animated fadeInDown">
+                        <li><a href="#"><i class="flag-icon flag-icon-de mr-5"></i> German</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-fr mr-5"></i> French</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-es mr-5"></i> Spanish</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-it mr-5"></i> Italian</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-jp mr-5"></i> Japanese</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-content container-fluid">
+        <div class="widget">
+            <div class="widget-heading clearfix">
+                <h3 class="widget-title pull-left">Manage Estimates</h3>
+                <div class="pull-right">
+                    @*<button type="button" class="btn btn-primary"><i class="ti-save"></i></button>
+                        <button type="button" class="btn btn-default"><i class="ti-share-alt"></i></button>*@
+                </div>
+            </div>
+            <div class="widget-body">
+                
+                    <ul role="tablist" class="nav nav-tabs mb-15">
+                        <li role="presentation" class="active"><a href="#In-Process" aria-controls="In-Process" role="tab" data-toggle="tab">In-Process</a></li>
+                        <li role="presentation"><a href="#Approved" aria-controls="Approved" role="tab" data-toggle="tab">Approved</a></li>
+                        <li role="presentation"><a href="#Declined" aria-controls="pending" role="tab" data-toggle="tab">Declined</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="In-Process" role="tabpanel" class="tab-pane active">
+                            <table id="lead-list-1" style="width: 100%" class="table table-hover dt-responsive nowrap">
+                                <thead>
+                                    <tr>
+                                        <th width="10%" class="text-center">Date</th>
+                                        <th width="15%" class="text-center">Lead</th>
+                                        <th width="12%" class="text-center">Client</th>
+                                        <th width="12%" class="text-center">Category</th>
+                                        @*<th width="10%" class="text-center">Language</th>*@
+                                        <th width="25%" class="text-center">Assign To</th>
+                                        <th width="25%" class="text-center">Priority</th>
+                                        <th width="25%" class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var est in Model.Estimations)
+                                    {
+                                        if (est.Status == "In-Process")
+                                        {
+                                            <tr>
+                                                <td class="text-center">@est.Date.ToString("d MMM yyyy")</td>
+                                                <td class="text-center">@est.Lead</td>
+                                                <td class="text-center">@est.Client</td>
+                                                <td class="text-center">@est.CategoryName</td>
+                                                @*<td class="text-center">@est.LanguageName</td>*@
+                                                <td class="text-center">@est.Assigne</td>
+                                                <td class="text-center">@est.Priority</td>
+                                                <td class="text-center" width="30%" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                                    <button type="button" class="btn btn-outline btn-primary" onclick="ViewEstimate('@est.Estimate_ID_Auto_PK');" title=" view Estimate"><i class="ti-eye"></i></button>
+                                                    <button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target=".bs-example-modal-animation" title="Change Status" onclick="setModalData('@est.Estimate_ID_Auto_PK', '@est.Status')"><i class="ti-pencil"></i></button>
+                                                    <button type="button" class="btn btn-outline btn-danger" onclick="DeleteEstimate('@est.Estimate_ID_Auto_PK');" title="Delete Estimate"><i class="ti-trash"></i></button>
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    }
+                                </tbody>
+
+                            </table>
+                        </div>
+                        <div id="Approved" role="tabpanel" class="tab-pane">
+                            <table id="lead-list-2" style="width: 100%" class="table table-hover dt-responsive nowrap">
+                                <thead>
+                                    <tr>
+                                        <th width="10%" class="text-center">Date</th>
+                                        <th width="15%" class="text-center">Lead</th>
+                                        <th width="12%" class="text-center">Client</th>
+                                        <th width="12%" class="text-center">Category</th>
+                                        @*<th width="10%" class="text-center">Language</th>*@
+                                        <th width="25%" class="text-center">Assign To</th>
+                                        <th width="25%" class="text-center">Priority</th>
+                                        <th width="25%" class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var est in Model.Estimations)
+                                    {
+                                        if (est.Status == "Approved")
+                                        {
+                                            <tr>
+                                                <td class="text-center">@est.Date.ToString("d MMM yyyy")</td>
+                                                <td class="text-center">@est.Lead</td>
+                                                <td class="text-center">@est.Client</td>
+                                                <td class="text-center">@est.CategoryName</td>
+                                                @*<td class="text-center">@est.LanguageName</td>*@
+                                                <td class="text-center">@est.Assigne</td>
+                                                <td class="text-center">@est.Priority</td>
+                                                <td class="text-center" width="30%" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                                    <button type="button" class="btn btn-outline btn-primary" onclick="ViewEstimate('@est.Estimate_ID_Auto_PK');" title=" view Estimate"><i class="ti-eye"></i></button>
+                                                    @*<button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target=".bs-example-modal-animation" title="Change Status"><i class="ti-pencil"></i></button>*@
+                                                    @*<button type="button" class="btn btn-outline btn-danger" onclick="DeleteEstimate('@est.Estimate_ID_Auto_PK');" title="Delete Estimate"><i class="ti-trash"></i></button>*@
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    }
+                                </tbody>
+
+                            </table>
+                        </div>
+                        <div id="Declined" role="tabpanel" class="tab-pane">
+                            <table id="lead-list-3" style="width: 100%" class="table table-hover dt-responsive nowrap">
+                                <thead>
+                                    <tr>
+                                        <th width="10%" class="text-center">Date</th>
+                                        <th width="15%" class="text-center">Lead</th>
+                                        <th width="12%" class="text-center">Client</th>
+                                        <th width="12%" class="text-center">Category</th>
+                                        @*<th width="10%" class="text-center">Language</th>*@
+                                        <th width="25%" class="text-center">Assign To</th>
+                                        <th width="25%" class="text-center">Priority</th>
+                                        <th width="25%" class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var est in Model.Estimations)
+                                    {
+                                        if (est.Status == "Declined")
+                                        {
+                                            <tr>
+                                                <td class="text-center">@est.Date.ToString("d MMM yyyy")</td>
+                                                <td class="text-center">@est.Lead</td>
+                                                <td class="text-center">@est.Client</td>
+                                                <td class="text-center">@est.CategoryName</td>
+                                                @*<td class="text-center">@est.LanguageName</td>*@
+                                                <td class="text-center">@est.Assigne</td>
+                                                <td class="text-center">@est.Priority</td>
+                                                <td class="text-center" width="30%" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                                    <button type="button" class="btn btn-outline btn-primary" onclick="ViewEstimate('@est.Estimate_ID_Auto_PK');" title=" view Estimate"><i class="ti-eye"></i></button>
+                                                    @*<button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target=".bs-example-modal-animation" title="Change Status"><i class="ti-pencil"></i></button>*@
+                                                    @*<button type="button" class="btn btn-outline btn-danger" onclick="DeleteEstimate('@est.Estimate_ID_Auto_PK');" title="Delete Estimate"><i class="ti-trash"></i></button>*@
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    }
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="Status_Modal">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 id="myAnimationModalLabel" class="modal-title">Change Status</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        @*<div class="form-group col-sm-6">
+                                <label for="date-added">Date Added</label>
+                                <div class="input-group">
+                                    <input id="date-added" type="text" class="form-control"><span class="input-group-addon"><span class="ti-calendar"></span></span>
+                                </div>
+                            </div>*@
+                        <div class="form-group col-sm-6">
+                            @*<label for="Status"></label>*@
+                            <select id="Status" class="form-control">
+                                <option value="0" class="active">Please Choose A Status</option>
+                                <option value="Approved">Approved</option>
+                                <option value="Declined">Declined</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label for="selectBasic">Comment</label>
+                            <textarea class="form-control" placeholder="Comment.." id="Notes"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default">Cancel</button>
+                <button type="button" class="btn btn-raised btn-danger" onclick="ChangeStatus();">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="EstimateId" />
+<input type="hidden" id="Stat" />
+<script>
+    $(document).ready(function () {
+        $("#date-added").daterangepicker({
+            singleDatePicker: true,
+            locale: {
+                format: 'DD/MM/YYYY'
+            },
+        });
+    });
+</script>
+
+<script>
+    // Table Script*******
+
+    $(document).ready(function () {
+
+        var e1 = $("#lead-list-1").DataTable({ pageLength: 10, colReorder: !0, buttons: ["copy", "excel", "pdf", "print"], searching: !1, aLengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]], order: [[5, "desc"]], columnDefs: [{ orderable: !1, targets: [0, 6] }] });
+        $("#lead-list-1_wrapper .col-sm-6:eq(1)").addClass("text-right"), e1.buttons().container().appendTo("#lead-list-1_wrapper .col-sm-6:eq(1)")
+
+        var e2 = $("#lead-list-2").DataTable({ pageLength: 10, colReorder: !0, buttons: ["copy", "excel", "pdf", "print"], searching: !1, aLengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]], order: [[5, "desc"]], columnDefs: [{ orderable: !1, targets: [0, 6] }] });
+        $("#lead-list-2_wrapper .col-sm-6:eq(1)").addClass("text-right"), e2.buttons().container().appendTo("#lead-list-2_wrapper .col-sm-6:eq(1)")
+
+        var e3 = $("#lead-list-3").DataTable({ pageLength: 10, colReorder: !0, buttons: ["copy", "excel", "pdf", "print"], searching: !1, aLengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]], order: [[5, "desc"]], columnDefs: [{ orderable: !1, targets: [0, 6] }] });
+        $("#lead-list-3_wrapper .col-sm-6:eq(1)").addClass("text-right"), e3.buttons().container().appendTo("#lead-list-3_wrapper .col-sm-6:eq(1)")
+    });
+</script>
+
+
+
+
+
+<script>
+
+    function ViewEstimate(Estimation_ID_Auto_PK) {
+        
+        window.location = '/Estimate/ViewEstimate?Estimate_ID_PK=' + Estimation_ID_Auto_PK
+    }
+
+    function DeleteEstimate(Estimation_ID_Auto_PK) {
+
+        var result = confirm("Are you sure to delete this Estimate ?");
+        if (result == true) {
+            // var divId = "div-" + Service_ID_Auto_PK;
+
+            var Edata = Estimation_ID_Auto_PK;
+
+            var url = "/Estimate/DeleteEstimate";
+            $.post(url, { Estimate_ID_PK: Edata }, function (data) {
+                if (data == "1") {
+                    location.reload();
+                }
+                if (data = "0") {
+                    $("#error_msg_tbl").html("<p style=\"color:red;\">There is an error in processing your request. Please Try after some time.</p>");
+                    $("#error_msg_tbl").show();
+                }
+            });
+        }
+    }
+</script>
+
+<script>
+    function setModalData(lead, status) {
+        $("#EstimateId").val(lead);
+        $("#Stat").val(status);
+      //  $("#Status").val(status);
+    }
+    function ChangeStatus() {
+
+        //var dat = $("#date-added").val();
+        var note = $("#Notes").val();
+        var status = $("#Status").val();
+
+        $.ajax({
+            url: '/Estimate/AjaxChangeStatus',
+            dataType: "json",
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ EstimateID: $('#EstimateId').val(), status: status, Note: note }),
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                if (data == 'success') {
+                    $('#Status_Modal').modal('hide');
+                    window.location = '/Estimate/EstimateHome';
+                }
+                else {
+                }
+            },
+            error: function (xhr) {
+                $('#errorMessage').html("No connection");
+            }
+        });
+    }
+</script>

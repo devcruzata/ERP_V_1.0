@@ -1,0 +1,23 @@
+﻿@model Project.Web.Models.SourceModel
+@{
+    Layout = null;
+}
+<div id="div_Source">
+    <table class="table table-hover">
+        @foreach (var source in ViewBag.sources)
+        {
+            <tr style="border-bottom:1px;">
+                <td style="text-align:left;">
+                    <label>@source.Text</label>
+                </td>
+                <td style="text-align:right;">
+                    <button type="button" class="btn btn-small" data-toggle="modal" data-target="#SourceModal" title="Edit Source" onclick="EditSource('@source.Value','@source.Text')"><i class="ti-pencil"></i></button>
+                    <button type="button" class="btn btn-small" title="Delete Source" onclick="DeleteSource('@source.Value')"><i class="ti-trash"></i></button>
+
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+

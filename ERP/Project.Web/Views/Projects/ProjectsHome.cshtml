@@ -1,0 +1,289 @@
+﻿@model Project.Web.Models.ProjectModel
+@{
+    ViewBag.Title = "ClientHome";
+}
+
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery/dist/jquery.min.js")"></script>
+
+
+
+<div class="page-container">
+    <div class="page-header clearfix">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4 class="mt-0 mb-5">Manage Projects</h4>
+                <ol class="breadcrumb mb-0">
+                    <li><a href="@Url.RouteUrl("AdminHome")">Home</a></li>
+                    <li><a href="@Url.RouteUrl("ProjectHome")">Projects</a></li>
+                    <li class="active">Manage Projects</li>
+                </ol>
+            </div>
+            <div class="col-sm-6">
+                <div class="btn-group mt-5">
+                    <button type="button" class="btn btn-default btn-outline"><i class="flag-icon flag-icon-us mr-5"></i> English</button>
+                    <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default btn-outline dropdown-toggle"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
+                    <ul class="dropdown-menu dropdown-menu-right animated fadeInDown">
+                        <li><a href="#"><i class="flag-icon flag-icon-de mr-5"></i> German</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-fr mr-5"></i> French</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-es mr-5"></i> Spanish</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-it mr-5"></i> Italian</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-jp mr-5"></i> Japanese</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-content container-fluid">
+        <div class="widget">
+            <div class="widget-heading clearfix">
+                <h3 class="widget-title pull-left">Manage Projects</h3>
+                <div class="pull-right">
+                    @*<button type="button" class="btn btn-primary"><i class="ti-save"></i></button>
+                        <button type="button" class="btn btn-default"><i class="ti-share-alt"></i></button>*@
+                </div>
+            </div>
+            <div class="widget-body">                
+                <table id="lead-list-1" style="width: 100%" class="table table-hover dt-responsive nowrap">
+                                <thead>
+                                    <tr>
+                                        <th  class="text-center">Title</th>
+                                        <th  class="text-center">Date</th>
+                                        <th  class="text-center">Client</th>
+                                        <th  class="text-center">Category</th>
+                                        <th  class="text-center">Model</th>
+                                        <th  class="text-center">Status</th>
+                                        <th  class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        foreach (var project in Model.Projectss)
+                                        {
+                                            
+                                                <tr>
+                                                <td class="text-center">@project.Title</td>
+                                                <td class="text-center">@project.Date.ToString("d MMM yyyy")</td>
+                                                <td class="text-center">@project.ClientName</td>
+                                                <td class="text-center">@project.CategoryName</td>
+                                                <td class="text-center">@project.Model</td>
+                                                    @if (project.Status == "NEW")
+                                                    {
+                                                        <td class="text-center"><span class="label label-primary">@project.Status</span></td>
+                                                    }
+                                                    else if (project.Status == "Pending For Client Approval")
+                                                    {
+                                                        <td class="text-center"><span class="label label-warning">@project.Status</span></td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td class="text-center"><span class="label label-success">@project.Status</span></td>
+                                                    }
+                                                <td class="text-center">
+                                                    @*<button type="button" data-toggle="modal" data-target=".bs-example-modal-animation" class="btn btn-raised btn-primary">Launch modal</button>*@
+                                                    <button type="button" class="btn btn-outline btn-primary" onclick="ViewProject('@project.Project_ID_PK');" title="View Project"><i class="ti-eye"></i></button>
+                                                    @if (project.isSigned == false && project.Status == "NEW")
+                                                    {
+                                                        <button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target=".modal-agreement" title="Send Agreement" onclick="setProjectCost('@project.ProjectCost','@project.Project_ID_PK');"><i class="ti-email"></i></button>
+                                                    }
+                                                    @if (project.isSigned == false && project.Status == "Pending For Client Approval")
+                                                    {
+                                                        <button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target=".modal-agreement" title="Send Agreement" onclick="setProjectCost('@project.ProjectCost','@project.Project_ID_PK');" disabled><i class="ti-email"></i></button>
+                                                    }                                           
+                                                    @if (project.isSigned == true || project.Status == "Approved")
+                                                    {
+                                                       <button type="button" class="btn btn-outline btn-success" onclick="ViewAgreement('@project.Project_ID_PK');" title="View Agreement"><i class="ti-eye"></i></button>
+                                                    }                                            
+                                                    <button type="button" class="btn btn-outline btn-danger" onclick="DeleteProject('@project.Project_ID_PK');" title="Delete Project"><i class="ti-trash"></i></button>
+                                               </td>
+                                            </tr>
+                                            
+                                            
+
+                                        }
+                                    }
+
+                                </tbody>
+                            </table>    
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation modal-agreement">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 id="myAnimationModalLabel" class="modal-title">Add Payment MileStones</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form action="/Projects/SendAgreement" method="post" id="PaymentForm">
+                        <div class="col-sm-12">
+                            <div class="form-group col-sm-6">
+                                <label for="Balance">Total Cost</label>
+                                <div class="input-group">
+                                    <input id="Balance" type="text" class="form-control" readonly>
+                                    <input type="hidden" id="Project_ID_PK" name="Project_ID_PK" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12" id="payment_data1">
+                            <div class="form-group col-sm-3">
+                                <div class="input-group">
+                                    <input placeholder="Mile-Stone" id="MileStone" name="PayMent_Date" type="text" class="form-control date-added">
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <input placeholder="Upfront(%)" id="Upfront" name="PayMent_Upfront" type="text" class="form-control">
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <input placeholder="Remaining" id="Remaining" name="PayMent_Remaining" type="text" class="form-control">
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <button type="button" class="btn btn-sm btn-outline btn-primary" id="plus_btn_1" onclick="AddRow(this);"><i class="ti-plus"></i></button>
+                            </div>
+                        </div>
+                    </form>                    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default">Cancel</button>
+                <button type="button" class="btn btn-raised btn-danger" onclick="SendAgreement();">Send Agreement</button>
+            </div>
+        </div>
+
+        
+    </div>
+</div>
+
+<div id="payment_data_hidden" style="display:none;">
+    <div class="col-sm-12">
+        <div class="form-group col-sm-3">
+            <div class="input-group">
+                <input placeholder="Mile-Stone" id="MileStone" name="PayMent_Date" type="text" class="form-control date-added">
+            </div>
+        </div>
+        <div class="form-group col-sm-3">
+            <input placeholder="Upfront(%)" id="Upfront" name="PayMent_Upfront" type="text" class="form-control">
+        </div>
+        <div class="form-group col-sm-3">
+            <input placeholder="Remaining" id="Remaining" name="PayMent_Remaining" type="text" class="form-control">
+        </div>
+        <div class="form-group col-sm-3">
+            <button type="button" class="btn btn-sm btn-outline btn-primary" onclick="AddRow(this);"><i class="ti-plus"></i></button>
+            <button type="button" class="btn btn-sm btn-outline btn-danger" onclick="RemoveRow(this);"><i class="ti-minus"></i></button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function setProjectCost(ProjectCost, Project_ID) {       
+        $("#Balance").val(ProjectCost);
+        $("#Project_ID_PK").val(Project_ID);
+    }
+</script>
+
+<script>
+    function AddRow(thi) {        
+        var id = $(thi).attr('id');
+        var temp = id.split('_');
+        var newID = 'payment_data' + (parseInt(temp[2]) + 1).toString();
+        var newID1 = 'plus_btn_' + (parseInt(temp[2]) + 1).toString();
+        var newID2 = 'minus_btn_' + (parseInt(temp[2]) + 1).toString();
+        $('#payment_data_hidden').children().first().attr('id', newID)
+        $('#payment_data_hidden').children().first().children().last().children().first().attr('id', newID1)
+        $('#payment_data_hidden').children().first().children().last().children().last().attr('id', newID2)
+        var payment_dataHidden = $("#payment_data_hidden").html();        
+        $("#plus_btn_" + temp[2]).hide();
+        $("#minus_btn_" + temp[2]).hide();
+        $("#payment_data" + temp[2]).after(payment_dataHidden);
+        AddPicker();
+    }
+
+    function RemoveRow(thi) {
+        var id = $(thi).attr('id');
+        var temp = id.split('_');
+        var newID = 'payment_data' + temp[2];
+        $("#" + newID).html('');
+        $("#" + newID).hide();
+        $("#plus_btn_" + (parseInt(temp[2]) - 1).toString()).show();
+        $("#minus_btn_" + (parseInt(temp[2]) - 1).toString()).show();
+    }
+
+    function AddPicker() {
+        $(".date-added").daterangepicker({
+            singleDatePicker: true,
+            locale: {
+                format: 'DD/MM/YYYY'
+            },
+        });
+    }
+
+    function SendAgreement() {
+        $("#PaymentForm").submit();
+    }
+</script>
+
+
+
+
+
+<script>
+    $(document).ready(function () {
+        $("#date-added").daterangepicker({
+            singleDatePicker: true,
+            locale: {
+                format: 'DD/MM/YYYY'
+            },
+        });
+
+        $(".date-added").daterangepicker({
+            singleDatePicker: true,
+            locale: {
+                format: 'DD/MM/YYYY'
+            },
+        });
+    });
+</script>
+<script>
+    // Table Script*******
+
+    $(document).ready(function () {
+
+        var e1 = $("#lead-list-1").DataTable({ pageLength: 10, colReorder: !0, buttons: ["copy", "excel", "pdf", "print"], searching: !1, aLengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]], order: [[5, "desc"]], columnDefs: [{ orderable: !1, targets: [0, 5] }] });
+        $("#lead-list-1_wrapper .col-sm-6:eq(1)").addClass("text-right"), e1.buttons().container().appendTo("#lead-list-1_wrapper .col-sm-6:eq(1)")
+
+    });
+</script>
+<script>
+    function ViewAgreement(Project_ID) {
+        window.location = '/Projects/ViewAgreement?Project_ID_Pk=' + Project_ID;
+    }
+
+    function ViewProject(Project_ID) {
+        window.location = '/Projects/ViewProjects?Project_ID_Pk=' + Project_ID;
+    }
+
+    function DeleteProject(Project_ID_Auto_PK) {
+
+        var result = confirm("All Data Related to this Project Will be Deleted . Are you sure to delete this Project ?");
+        if (result == true) {
+            // var divId = "div-" + Service_ID_Auto_PK;
+
+            var Pdata = Project_ID_Auto_PK;
+
+            var url = "/Projects/DeleteProject";
+            $.post(url, { Project_ID_PK: Pdata }, function (data) {
+                if (data == "1") {
+                    location.reload();
+                }
+                if (data = "0") {
+                    $("#error_msg_tbl").html("<p style=\"color:red;\">There is an error in processing your request. Please Try after some time.</p>");
+                    $("#error_msg_tbl").show();
+                }
+            });
+        }
+    }
+</script>

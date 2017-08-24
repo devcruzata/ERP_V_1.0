@@ -1,0 +1,396 @@
+﻿@model Project.Web.Models.OpportunityModel
+
+@{
+    SessionHelper session = new SessionHelper();
+}
+
+@*<link rel="stylesheet" type="text/css" href="@Url.Content("~/Scripts/jquery-ui.css")">*@
+<!-- jQuery-->
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery/dist/jquery.min.js")"></script>
+@*<script type="text/javascript" src="@Url.Content("~/Scripts/jquery-ui-1.8.24.min.js")"></script>*@
+@*<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>*@
+@*<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>*@
+<script type="text/javascript" src="@Url.Content("~/Content/BootstrapCountryPicker/bootstrap-formhelpers-countries.en_US.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/BootstrapCountryPicker/bootstrap-formhelpers-countries.js")"></script>
+
+
+
+
+@*<script type="text/javascript">
+        $(document).ready(function () {
+            $("#RealateTo_ID").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/Opportunity/AutoClientSearch",
+                        type: "POST",
+                        dataType: "json",
+                        data: { searchText: request.term },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return { label: item.Name, value: item.Name };
+                            }))
+
+                        }
+                    })
+                },
+                messages: {
+                    noResults: "", results: ""
+                }
+            });
+        })
+    </script>*@
+
+@*<script type="text/javascript">
+        $(function () {
+            $('#RealateTo_ID').autocomplete({
+                source: function (request, response) {
+                    $.getJSON("/Opportunity/AutoClientSearch?searchText=" + request.term, function (data) {
+                        response(data);
+                    });
+                },
+                minLength: 0,
+                delay: 100
+            });
+        });
+    </script>*@
+
+
+
+<!-- Page Content -->
+<div class="page-container">
+    <div class="page-header clearfix">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4 class="mt-0 mb-5">Edit Opportunities</h4>
+                <ol class="breadcrumb mb-0">
+                    <li><a href="@Url.RouteUrl("AdminDashboard_V_2")">Home</a></li>
+                    <li><a href="@Url.RouteUrl("OpportunityHome")">Opportunities</a></li>
+                    <li class="active">Edit Opportunity</li>
+                </ol>
+            </div>
+            <div class="col-sm-6">
+                @*<div class="btn-group mt-5">
+                        <button type="button" class="btn btn-default btn-outline"><i class="flag-icon flag-icon-us mr-5"></i> English</button>
+                        <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default btn-outline dropdown-toggle"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
+                        <ul class="dropdown-menu dropdown-menu-right animated fadeInDown">
+                            <li><a href="#"><i class="flag-icon flag-icon-de mr-5"></i> German</a></li>
+                            <li><a href="#"><i class="flag-icon flag-icon-fr mr-5"></i> French</a></li>
+                            <li><a href="#"><i class="flag-icon flag-icon-es mr-5"></i> Spanish</a></li>
+                            <li><a href="#"><i class="flag-icon flag-icon-it mr-5"></i> Italian</a></li>
+                            <li><a href="#"><i class="flag-icon flag-icon-jp mr-5"></i> Japanese</a></li>
+                        </ul>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+    <div class="page-content container-fluid">
+        <div class="widget">
+            <div class="widget-heading clearfix">
+                <h3 class="widget-title pull-left">Edit Opportunity</h3>
+                @if (ViewBag.Error_Msg != "")
+                {
+                    <div style="margin-left:200px;">
+                        <p style="color:red;">@ViewBag.Error_Msg</p>
+                    </div>
+                }
+                <div class="pull-right">
+                    <button type="button" class="btn btn-primary" title="Add Opportunity" onclick="SubmitForm()"><i class="ti-save"></i></button>
+                    <button type="button" class="btn btn-default" title="Cancel" onclick="Cancel();"><i class="ti-share-alt"></i></button>
+                </div>
+            </div>
+            <div class="widget-body">
+                <form class="form-horizontal" method="post" action="/Opportunity/UpdateOpportunity" enctype="multipart/form-data" id="mainForm">
+
+                    <div class="tab-content">
+                        <div id="general" role="tabpanel" class="tab-pane active">
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label for="Name">Name</label>
+                                    <input class="form-control form-cutom" name="Name" id="Name" value="@Model.Name"/>
+                                    <div id="error_Div_Name" style="display:none;color:red;">
+                                        <p style="color:red;">Please Enter Name.</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="Amount">Amount</label>
+                                    <input class="form-control form-cutom" name="Amount" id="Amount" value="@Model.Amount">
+                                    <div id="error_Div_Amount" style="display:none;color:red;">
+                                        <p style="color:red;">Please Enter Amount</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-sm-6">
+                                    <label for="RealateTo_ID">Client</label>
+                                    @*<div class="input-group">*@
+                                    @*<input id="RealateTo_ID" name="RealateTo_ID" type="text" class="form-control"><span class="input-group-addon"><span class="ti-search"></span></span>*@
+
+                                    @Html.DropDownListFor(m => m.RealateTo_ID, (List<SelectListItem>)ViewBag.Client, new { @class = "form-control select2" })@*<span class="input-group-addon"><span class="ti-search"></span></span>*@
+                                    @*</div>*@
+                                    <div id="error_Div_RealateTo_ID" style="display:none;color:red;">
+                                        <p style="color:red;">Please Choose A Client</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label for="Opportunity_Owner">Opportunity Owner</label>
+                                    <input type="text" class="form-control" id="Opportunity_Owner" value="@session.UserSession.FullName" readonly>
+                                    <input type="hidden" class="form-control" name="Opportunity_Owner" value="@session.UserSession.UserId" id="Opportunity_Owner_ID">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label for="ExpectedCloseDate">Expected Close Date</label>
+                                    <div class="input-group">
+                                        <input id="ExpectedCloseDate" name="ExpectedCloseDate" type="text" class="form-control date-added" value="@Model.ExpectedCloseDate"><span class="input-group-addon"><span class="ti-calendar"></span></span>
+                                    </div>
+                                    <div id="error_Div_ExpectedCloseDate" style="display:none;color:red;">
+                                        <p style="color:red;">Please Choose A Date</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="Stage">Stage</label>
+                                    @Html.DropDownListFor(m => m.Stage, (List<SelectListItem>)ViewBag.Stage_List, new { @class = "form-control form-cutom" })
+                                    @*<select id="Stage" name="Stage" class="form-control">
+                                        <option value="0">Please Choose A Stage</option>
+                                        <option value="In-Process">In Process</option>
+                                        <option value="Working">Working</option>
+                                        <option value="Negotiation/Review">Negotiation/Review</option>
+                                        <option value="Closed-Won">Closed Won</option>
+                                        <option value="On-Wait">On Wait</option>
+                                        <option value="Closed-Lost">Closed Lost</option>
+                                    </select>*@
+                                    <input type="hidden" id="st" value="@Model.Stage"/>
+                                    <div id="error_Div_Stage" style="display:none;color:red;">
+                                        <p style="color:red;">Please Choose A Stage</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label for="Type">Type</label>
+                                    <select id="Type" name="Type" class="form-control">
+                                        <option value="0">Please Choose Type</option>
+                                        <option value="Existing-Business">Existing-Business</option>
+                                        <option value="New-Business">New Business</option>
+                                    </select>
+                                    <input type="hidden" id="tp" value="@Model.Type" />
+                                    <div id="error_Div_Type" style="display:none;color:red;">
+                                        <p style="color:red;">Please Choose A Type</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="Source">Source</label>
+                                    @Html.DropDownListFor(m => m.Source, (List<SelectListItem>)ViewBag.Source_List, new { @class = "form-control form-cutom" })
+                                    <div id="error_Div_Source" style="display:none;color:red;">
+                                        <p style="color:red;">Please Enter Source.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label for="Probability">Probability</label>
+                                    <input id="Probability" type="text" class="form-control" name="Probability" onkeypress="return isNumberKey(event)" maxlength="13" value="@Model.Probability">
+                                    <div id="error_Div_Probability" style="display:none;color:red;">
+                                        <p style="color:red;">Please Enter Probability</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="LostReason">Reason Of Lost</label>
+                                    @Html.DropDownListFor(m => m.LostReason, (List<SelectListItem>)ViewBag.Reason_List, new { @class = "form-control form-cutom" })
+                                    @*<select id="LostReason" name="LostReason" class="form-control">
+                                        <option value="0">Please Choose A Lost Reason</option>
+                                        <option value="Lost To Competiter">Lost To Competiter</option>
+                                        <option value="No Budget/ Lost Funding">No Budget/ Lost Funding</option>
+                                        <option value="Non Responsive">Non Responsive</option>
+                                        <option value="Price">Price</option>
+                                        <option value="Missing Feature">Missing Feature</option>
+                                        <option value="Timing">Timing</option>
+                                        <option value="Usability">Usability</option>
+                                        <option value="Others">Others</option>
+                                    </select>*@
+                                    <input type="hidden" id="lr" value="@Model.LostReason"/>
+                                    <div id="error_Div_Stage" style="display:none;color:red;">
+                                        <p style="color:red;">Please Choose A Reason</p>
+                                    </div>
+                                </div>
+                            </div>
+                            @if (@session.UserSession.UserType == "ADM")
+                            {
+                                <div class="form-group">
+                                    <div class="col-sm-6">
+                                        <label for="AssignTO_ID">Assign To</label>
+                                        <select id="AssignTO_ID" class="form-control" name="AssignTO_ID">
+                                            <option value="0">Please Choose A User</option>
+                                            @foreach (var user in ViewBag.Users)
+                                            {
+                                                <option value="@user.User_ID_PK">@user.FullName</option>
+                                            }
+                                        </select>
+                                        <input type="hidden" id="at" value="@Model.AssignTO_ID"/>
+                                    </div>
+                                </div>
+                            }
+                            <input type="hidden" name="Opportunity_ID" value="@Model.Opportunity_ID" />
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <textarea class="form-control" placeholder="Description" name="Description" id="Description"></textarea>
+                                    <input type="hidden" id="des" value="@Model.Description"/>
+                                    <div id="error_Div_Requirement" style="display:none;color:red;">
+                                        <p style="color:red;">Please Enter Requiremnts</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@{
+    string myDateString = DateTime.Now.ToString("dd/MM/yyyy").Replace("-", "/");
+    <input type="hidden" id="curDat" value="@myDateString" />
+}
+<!-- /.container -->
+<script>
+    $(document).ready(function () {
+        $('#Description').val($('#des').val());
+        $('#LostReason').val($('#lr').val());
+        $('#Type').val($('#tp').val());
+        $('#AssignTO_ID').val($('#at').val());
+        $('#Stage').val($('#st').val());
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        var dat = $("#curDat").val().toString();
+        $(".date-added").daterangepicker({
+            singleDatePicker: !0,
+            locale: {
+                format: 'DD/MM/YYYY'
+            },
+        });
+    });
+</script>
+
+@*<script type="text/javascript">
+        $(function () {
+            $("#RealateTo_ID").autocomplete({
+                source: "/Opportunity/AutoClientSearch",
+                minLength: 1,
+                select: function (event, ui) {
+                    if (ui.item) {
+                        $("#RealateTo_ID").val(ui.item.value);
+                        $("form").submit();
+                    }
+                }
+            });
+        });
+    </script>*@
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.select2').select2();
+    });
+</script>
+
+<script type="text/javascript">
+        $(document).ready(function () {
+
+        });
+
+        function validateForm() {
+
+            if ($("#Name").val().trim() == "") {
+                $("#error_Div_Name").show();
+                return false();
+            }
+            else if ($("#Amount").val().trim() == "") {
+
+                $("#error_Div_Amount").show();
+                $("#error_Div_Name").hide();
+                return false;
+            }
+            else if ($("#RealateTo_ID").val().trim() == "0") {
+
+                $("#error_Div_RealateTo_ID").show();
+                $("#error_Div_Amount").hide();
+                $("#error_Div_Name").hide();
+                return false;
+            }
+            else if ($("#Stage").val().trim() == "0") {
+
+                $("#error_Div_Stage").show();
+                $("#error_Div_RealateTo_ID").hide();
+                $("#error_Div_Amount").hide();
+                $("#error_Div_Name").hide();
+                return false;
+            }
+            else if ($("#Source").val().trim() == "0") {
+
+                $("#error_Div_Source").show();
+                $("#error_Div_Stage").hide();
+                $("#error_Div_RealateTo_ID").hide();
+                $("#error_Div_Amount").hide();
+                $("#error_Div_Name").hide();
+                return false;
+            }
+            else {
+
+                $("#error_Div_Source").hide();
+                $("#error_Div_Stage").hide();
+                $("#error_Div_RealateTo_ID").hide();
+                $("#error_Div_Amount").hide();
+                $("#error_Div_Name").hide();
+                return true;
+            }
+        }
+
+
+        function SubmitForm() {
+
+            if (validateForm()) {
+
+                $("#mainForm").submit();
+            }
+        }
+
+        function Cancel() {
+            window.location = '@Url.RouteUrl("OpportunityHome")';
+        }
+
+</script>
+
+<script>
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+
+    function zipCheck(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+
+</script>
+
+<script>
+
+
+</script>

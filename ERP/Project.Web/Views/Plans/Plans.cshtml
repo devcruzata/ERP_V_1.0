@@ -1,0 +1,432 @@
+﻿@model Project.Web.Models.PlanModel
+
+@{
+    Layout = "~/Views/Shared/LayOut_SuperAdmin.cshtml";    
+}
+
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery/dist/jquery.min.js")"></script>
+
+
+
+<div class="page-container">
+    <div class="page-header clearfix">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4 class="mt-0 mb-5">Manage Subscription</h4>
+                <ol class="breadcrumb mb-0">
+                    <li><a href="@Url.RouteUrl("SuperAdmin")">Home</a></li>
+                    <li><a href="@Url.RouteUrl("Plans")">Plans</a></li>
+                    <li class="active">Manage Plan</li>
+                </ol>
+            </div>
+            <div class="col-sm-6">
+                @*<div class="btn-group mt-5">
+                        <button type="button" class="btn btn-default btn-outline"><i class="flag-icon flag-icon-us mr-5"></i> English</button>
+                        <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default btn-outline dropdown-toggle"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
+                        <ul class="dropdown-menu dropdown-menu-right animated fadeInDown">
+                            <li><a href="#"><i class="flag-icon flag-icon-de mr-5"></i> German</a></li>
+                            <li><a href="#"><i class="flag-icon flag-icon-fr mr-5"></i> French</a></li>
+                            <li><a href="#"><i class="flag-icon flag-icon-es mr-5"></i> Spanish</a></li>
+                            <li><a href="#"><i class="flag-icon flag-icon-it mr-5"></i> Italian</a></li>
+                            <li><a href="#"><i class="flag-icon flag-icon-jp mr-5"></i> Japanese</a></li>
+                        </ul>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+    <div class="page-content container-fluid">
+        <div class="widget">
+            <div class="widget-heading clearfix">
+                <h3 class="widget-title pull-left">Plans</h3>
+
+                <div class="pull-right">
+                    <button type="button" class="btn btn-outline btn-primary" data-toggle="modal" data-target=".bs-example-modal-animation" title="Add Subscription"><i class="ti-plus"></i></button>
+                </div>
+                @*<div class="pull-right">
+                        <div class="btn-group mt-5">
+                            <a href="@Url.RouteUrl("ManageSubscriptionHolder", new { act = "add" })" type="button" class="btn btn-default btn-outline"><i class="ti-wallet mr-5"></i> Subscription Holder</a>
+                            <a href="#" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default btn-outline dropdown-toggle"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></a>
+                            <ul class="dropdown-menu dropdown-menu-right animated fadeInDown">
+                                <li><a href="@Url.RouteUrl("ManageSubscriptionHolder", new { act = "add" })">Add Opportunity</a></li>
+                                <li><a href="#">Assign Opportunity</a></li>
+                            </ul>
+                        </div>
+                    </div>*@
+            </div>
+            <div class="widget-body">
+                <table id="lead-list-1" style="width: 100%" class="table table-striped table-hover dt-responsive nowrap">
+                    <thead>
+                        <tr>
+                            <th width="10%" class="text-center">Name</th>
+                            <th width="15%" class="text-center">Price</th>
+                            <th width="12%" class="text-center">Type</th>
+                            <th width="12%" class="text-center">Status</th>
+                            @*<th width="10%" class="text-center"></th>*@
+                            <th width="25%" class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pTable">
+                            @{
+                                foreach (var plan in Model.plans)
+                                {
+
+                                    <tr>
+                                        <td class="text-center">@plan.Name</td>
+                                        <td class="text-center">@plan.Price</td>  
+                                        <td class="text-center">@plan.Type</td>                                 
+                                        <td class="text-center"><span class="label label-success">@plan.Status</span></td>                                      
+                                        <td class="text-center">                                          
+                                            <button type="button" class="btn btn-outline btn-danger" onclick="DeleteSubscription('@plan.Plan_ID');" title="Delete Plan"><i class="ti-trash"></i></button>
+                                        </td>
+                                    </tr>
+
+                                }
+                            }
+
+                        </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="AssignLeadsModal">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 id="myAnimationModalLabel" class="modal-title">Assign Leads</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12" id="userList">
+
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                            </div>
+                            <div class="col-sm-6">
+                                @*<select class="input-medium  form-control  select2" id="UserSelect" style="width:100%;">
+                                        @foreach (var user in ViewBag.Users)
+                                        {
+                                            <option value="@user.User_ID_PK">@user.FullName</option>
+                                        }
+                                    </select>*@
+@*@Html.DropDownListFor(m => m.AssignTo, (List<SelectListItem>)ViewBag.Users, new { @class = "form-control select2", id = "UserSelect" })
+                                </div>
+                                <div class="col-sm-3">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-raised btn-default" id="cancel">Cancel</button>
+                    <button type="button" class="btn btn-raised btn-danger" id="save" onclick="AssignLead();">Assign</button>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+<div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="PlanModal">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 id="myAnimationModalLabel" class="modal-title">Add New Plan</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row" id="error_div" style="display:none;">
+                    <div class="col-sm-12 text-center">
+                        <p id="error_txt" style="color:red"></p>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:10px;">
+                    <div class="col-sm-12">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-4">
+                            <label>Title</label>
+                            <input type="text" class="form-control" name="Title" id="Title" placeholder="Title" />
+                            <div id="error_div_Title" style="display:none;">
+                                <p style="color:red;">Please Enter Title</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <label>Price</label>
+                            <input type="text" class="form-control" name="Price" id="Price" placeholder="in USD" onkeypress="return isNumberKey(event)" />
+                            <div id="error_div_Price" style="display:none;">
+                                <p style="color:red;">Please Enter Price</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-2"></div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top:10px;">
+                    <div class="col-sm-12">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-8">
+                            <label>Type</label>                           
+                            <select class="form-control" name="PType" id="PType">
+                                <option value="0">Choose A Type</option>
+                                <option value="month">Monthly</option>
+                                <option value="year">Yearly</option>
+                            </select>
+                            <div id="error_div_PType" style="display:none;">
+                                <p style="color:red;">Please Choose A Type</p>
+                            </div>
+                        </div>                      
+                        <div class="col-sm-2"></div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:10px;">
+                    <div class="col-sm-12">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-8">                           
+                            <label>Features</label>
+                            <div class="form-group">                               
+                                    <textarea class="form-control" placeholder="Features" name="Features" id="Features"></textarea>
+                                    <div id="error_Div_Features" style="display:none;color:red;">
+                                        <p style="color:red;">Please Enter Features</p>
+                                    </div>                                
+                            </div>                      
+                            <div id="error_div_Email" style="display:none;">                                
+                                <p style="color:red;"></p>
+                            </div>
+                        </div>                      
+                        <div class="col-sm-2"></div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:10px;">
+                    <div class="col-sm-12">
+                        <div class="col-sm-2"></div>
+                        @*<div class="col-sm-8">
+                            <div class="checkbox-inline checkbox-custom pull-left">
+                                <input id="IsAdmin" type="checkbox">
+                                <label for="IsAdmin" class="checkbox-muted text-muted">Is User H</label>
+                            </div>
+                        </div>*@
+                        <div class="col-sm-2"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default">Cancel</button>
+                <button type="button" class="btn btn-raised btn-danger" onclick="SubmitPlanForm();">Add Plan</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*<script>
+        $(document).ready(function () {
+            $("#date-added").daterangepicker({
+                singleDatePicker: true,
+                locale: {
+                    format: 'DD/MM/YYYY'
+                },
+            });
+        });
+    </script>*@
+    <script>
+        // Table Script*******
+
+        $(document).ready(function () {
+
+            var e1 = $("#lead-list-1").DataTable({ pageLength: 10, colReorder: !0, buttons: ["copy", "excel", "pdf", "print"], searching: !0, aLengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]], order: [[4, "desc"]], columnDefs: [{ orderable: !1, targets: [0, 4] }] });
+            $("#lead-list-1_wrapper .col-sm-6:eq(1)").addClass("text-right"), e1.buttons().container().appendTo("#lead-list-1_wrapper .col-sm-6:eq(1)")
+
+        });
+    </script>
+    <script>
+        //function ViewSubscription(Subscription_ID) {
+        //    window.location = '/Plans/ViewPlans?Subscription_ID=' + Subscription_ID;
+        //}
+
+        function DeleteSubscription(Plan_ID) {
+
+            var result = confirm("Are you sure to delete this plan ?");
+            if (result == true) {
+                // var divId = "div-" + Service_ID_Auto_PK;
+
+                var Pdata = Plan_ID;
+
+                var url = "/Plans/DeletePlans";
+                $.post(url, { Plan_ID: Ldata }, function (data) {
+                    if (data != "") {
+                        $('#pTable').html('');
+                        $('#pTable').html(data);
+                    }
+                    else  {
+                        $("#error_msg_tbl").html("<p style=\"color:red;\">There is an error in processing your request. Please Try after some time.</p>");
+                        $("#error_msg_tbl").show();
+                    }
+                });
+            }
+        }
+
+        function DeleteSubscription(Plan_ID) {
+            swal({
+                title: "Are you sure?",
+                text: "Are you sure to delete this Plan!",
+                type: "warning",
+                showCancelButton: !0,
+                cancelButtonClass: "btn-raised btn-default",
+                cancelButtonText: "Cancel!",
+                confirmButtonClass: "btn-raised btn-danger",
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: !0
+            },
+            function () {
+                $(".se-pre-con").show();
+                var Pdata = Plan_ID;
+
+                var url = "/Plans/DeletePlans";
+                $.post(url, { Plan_ID: Pdata }, function (data) {
+                    if (data != "") {
+                        $('#pTable').html('');
+                        $('#pTable').html(data);
+                        $(".se-pre-con").hide();
+                    }
+                    else {
+                        $("#error_msg_tbl").html("<p style=\"color:red;\">There is an error in processing your request. Please Try after some time.</p>");
+                        $("#error_msg_tbl").show();
+                        $(".se-pre-con").hide();
+                    }
+                });
+            })
+        }
+        </script>
+<script>
+        function ValidatePlanForm() {            
+            if ($("#Title").val().trim() == '') {                
+                $('#error_div_Title').show();
+                return false;
+            }
+            else if ($("#Price").val().trim() == '') {               
+                $('#error_div_Price').show();
+                $('#error_div_Title').hide();
+                return false;
+            }
+            else if ($("#PType").val().trim() == '0') {               
+                $('#error_div_PType').show();
+                $('#error_div_Price').hide();
+                $('#error_div_Title').hide();
+                return false;
+            }
+            else if ($("#Features").val().trim() == '') {
+                $('#error_Div_Features').show();
+                $('#error_div_PType').hide();
+                $('#error_div_Price').hide();
+                $('#error_div_Title').hide();
+                return false;
+            }
+            else {
+                $('#error_Div_Features').hide();
+                $('#error_div_PType').hide();
+                $('#error_div_Price').hide();
+                $('#error_div_Title').hide();
+                return true;
+            }
+        }
+        function SubmitPlanForm() {            
+            if (ValidatePlanForm()) {
+                AddPlan();
+            }
+        }        
+        
+        function AddPlan() {           
+            $.post('/Plans/AjaxAddPlan', { PlanName: $("#Title").val(), PlanPrice: $("#Price").val(), PlanType: $("#PType").val(), Features: $("#Features").val() }, function (data) {
+                if (data != '') {
+                    $('#pTable').html('');
+                    $('#pTable').html(data);
+                    $('#PlanModal').modal('hide');
+                    //$("#tctForm")[0].reset();
+                }
+                else {
+                    location.reload();
+                }
+            });        
+        }
+    </script>
+<script>
+
+    //function setEditPlanForm(title,price,type,feature){
+    //    $("#eTitle").val(title);
+    //    $("#ePrice").val(price);
+    //    $("#ePType").val(type);
+    //    $("#eFeatures").val(feature);
+    //}
+
+
+    //function ValidateEditPlanForm() {            
+    //    if ($("#eTitle").val().trim() == '') {                
+    //        $('#error_div_eTitle').show();
+    //        return false;
+    //    }
+    //    else if ($("#ePrice").val().trim() == '') {               
+    //        $('#error_div_ePrice').show();
+    //        $('#error_div_eTitle').hide();
+    //        return false;
+    //    }
+    //    else if ($("#ePType").val().trim() == '0') {               
+    //        $('#error_div_ePType').show();
+    //        $('#error_div_ePrice').hide();
+    //        $('#error_div_eTitle').hide();
+    //        return false;
+    //    }
+    //    else if ($("#eFeatures").val().trim() == '') {
+    //        $('#error_Div_eFeatures').show();
+    //        $('#error_div_ePType').hide();
+    //        $('#error_div_ePrice').hide();
+    //        $('#error_div_eTitle').hide();
+    //        return false;
+    //    }
+    //    else {
+    //        $('#error_Div_eFeatures').hide();
+    //        $('#error_div_ePType').hide();
+    //        $('#error_div_ePrice').hide();
+    //        $('#error_div_eTitle').hide();
+    //        return true;
+    //    }
+    //}
+    //function SubmitEditPlanForm() {            
+    //    if (ValidateEditPlanForm()) {
+    //        EditPlan();
+    //    }
+    //}        
+    //function EditPlan() {
+    //    $.post('/Plans/AjaxEditSubscription', { Name: $("#eTitle").val(), Price: $("#ePrice").val(), PlanType: $("#ePType").val(), Features: $("#eFeatures").val() }, function (data) {
+    //        if (data == 'success') {
+    //            location.reload();
+    //        }
+    //        else {
+    //            location.reload();
+
+    //        }
+    //    });
+    //}
+</script>
+<script>
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+
+    function zipCheck(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+
+</script>

@@ -1,0 +1,1489 @@
+﻿@model Project.Web.Models.GenralSetingModel
+@*@{
+    Layout = "~/Views/Shared/_LayoutPage_Admin.cshtml";
+ }*@
+
+<!-- jQuery-->
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery/dist/jquery.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/BootstrapCountryPicker/bootstrap-formhelpers-countries.en_US.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/BootstrapCountryPicker/bootstrap-formhelpers-countries.js")"></script>
+<style>
+    .invalid{
+        border:1px solid red;
+    }
+</style>
+<!-- Page Content -->
+<div class="page-container">
+    <div class="page-header clearfix">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4 class="mt-0 mb-5">Manage Settings</h4>
+                <ol class="breadcrumb mb-0">
+                    <li><a href="@Url.RouteUrl("AdminDashboard_V_2")">Home</a></li>
+                    <li><a href="@Url.RouteUrl("UserSetings")">User Settings</a></li>
+                    <li class="active">Account Settings</li>
+                </ol>
+            </div>
+            <div class="col-sm-6">                
+            </div>
+        </div>
+    </div>
+    <div class="page-content container-fluid">
+        <div class="widget">
+            <div class="widget-heading clearfix">
+                <h3 class="widget-title pull-left">Account Settings</h3>
+                @if (ViewBag.Error_Msg != "")
+                {
+                    <div style="margin-left:200px;">
+                        <p style="color:red;">@ViewBag.Error_Msg</p>
+                    </div>
+                }
+                <div class="pull-right">
+                    
+                </div>
+            </div>
+            <div class="widget-body">
+                   
+                
+                <ul role="tablist" class="nav nav-tabs mb-15 viewlead-tabs">
+                    <li role="presentation" class="active"><a href="#GenralSeting" aria-controls="GenralSeting" role="tab" data-toggle="tab">Account Settings</a></li>
+                    <li role="presentation"><a href="#MailSetings" aria-controls="MailSetings" role="tab" data-toggle="tab" onclick="GetMailSetings();">Mail Settings</a></li>
+                    <li role="presentation"><a href="#UserRoles" aria-controls="UserRoles" role="tab" data-toggle="tab" onclick="GetRole();">User Roles</a></li>
+                    <li role="presentation"><a href="#LSource" aria-controls="LSource" role="tab" data-toggle="tab">Dropdown list Settings</a></li>
+                    <li role="presentation"><a href="#dsync" aria-controls="dsync" role="tab" data-toggle="tab">Data Sync</a></li>                    
+                </ul>
+
+                <div class="tab-content">
+
+                    <div id="GenralSeting" role="tabpanel" class="tab-pane active">
+                        <div class="pull-right" style="margin-bottom:10px;">
+                            <button type="button" class="btn btn-primary" title="Edit" id="edit_btn"><i class="ti-pencil"></i></button>
+                            <button type="button" class="btn btn-primary" title="Add Leads" onclick="SubmitForm()" id="save_btn" style="display:none;"><i class="ti-save"></i></button>
+                            <button type="button" class="btn btn-default" title="Cancel" onclick="Cancel();" id="cancel_btn" style="display:none;"><i class="ti-share-alt"></i></button>                
+                        </div>
+                        <div class="widget no-border" style="margin-left:20px;">
+                            <form class="form-horizontal" id="viewForm">
+                                <div class="tab-content">
+                                    <div id="general" role="tabpanel" class="tab-pane active">
+                                        <table class="table no-border" style="border:none;">
+                                            <tr>
+                                                <td width="25%" style="text-align: left; background-color: #fbfbfb;"><label>Company Name</label></td>
+                                                <td>@Model.Company</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="25%" style="text-align: left; background-color: #fbfbfb;"><label>Address</label></td>
+                                                <td>@Model.Address</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="25%" style="text-align: left; background-color: #fbfbfb;"><label>City</label></td>
+                                                <td>@Model.City</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="25%" style="text-align: left; background-color: #fbfbfb;"><label>State</label></td>
+                                                <td>@Model.Stete</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="25%" style="text-align: left; background-color: #fbfbfb;"><label>Country</label></td>
+                                                <td>@Model.Country</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="25%" style="text-align: left; background-color: #fbfbfb;"><label>Zipcode</label></td>
+                                                <td>@Model.Zipcode</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="25%" style="text-align: left; background-color: #fbfbfb;"><label>Phone</label></td>
+                                                <td>@Model.Phone</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="25%" style="text-align: left; background-color: #fbfbfb;"><label>Website</label></td>
+                                                <td>@Model.Website</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="25%" style="text-align: left; background-color: #fbfbfb;"><label>Currency</label></td>
+                                                <td>@Model.Currency</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <form class="form-horizontal" action="/UserSetings/AjaxGenralSetings" method="post" enctype="multipart/form-data" id="mainForm" style="display:none;">
+                                <div class="tab-content">
+                                    <div id="general" role="tabpanel" class="tab-pane active">
+                                        <table class="table no-border" style="border:none;">
+                                            <tr>
+                                                <td width="25%" style="text-align: left; background-color: #fbfbfb;">
+                                                    <label>Company Name</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control form-cutom" id="Comapny" name="Company" value="@Model.Company" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td width="25%" style="text-align: left; background-color: #fbfbfb;">
+                                                    <label>Address</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control form-cutom" id="Address" name="Address" value="@Model.Address" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td width="25%" style="text-align: left; background-color: #fbfbfb;">
+                                                    <label>City</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control form-cutom" id="City" name="City" value="@Model.City" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td width="25%" style="text-align: left; background-color: #fbfbfb;">
+                                                    <label>State</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control form-cutom" id="State" name="Stete" value="@Model.Stete" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td width="25%" style="text-align: left; background-color: #fbfbfb;">
+                                                    <label>Country</label>
+                                                </td>
+                                                <td>
+                                                    <select class="input-medium bfh-countries form-control form-cutom" data-country="US" id="Country" name="Country"></select>
+                                                    <input type="hidden" id="cnt" value="@Model.Country" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td width="25%" style="text-align: left; background-color: #fbfbfb;">
+                                                    <label>Zipcode</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control form-cutom" id="Zipcode" name="Zipcode" max="6" onkeypress="return isNumberKey(event)" value="@Model.Zipcode" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td width="25%" style="text-align: left; background-color: #fbfbfb;">
+                                                    <label>Phone</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control form-cutom" id="Phone" name="Phone" maxlength="14" onkeypress="return isNumberKey(event)" value="@Model.Zipcode" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td width="25%" style="text-align: left; background-color: #fbfbfb;">
+                                                    <label>Website</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control form-cutom" id="Website" name="Website" value="@Model.Website" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td width="25%" style="text-align: left; background-color: #fbfbfb;">
+                                                    <label>Currency</label>
+                                                </td>
+                                                <td>
+                                                    <select class="form-control form-cutom" id="Currency" name="Currency">
+                                                        <option value="0">Choose A Currency</option>
+                                                        <option value="USD">USD</option>
+                                                        <option value="EURO">Euro</option>
+                                                        <option value="INR">INR</option>
+                                                    </select>
+                                                    <input type="hidden" id="cur" value="@Model.Currency" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div id="MailSetings" role="tabpanel" class="tab-pane">
+                        @*<div class="pull-right" style="margin-bottom:10px;">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#GroupModal"><i class="ti-plus" title="Add New"></i></button>
+                        </div>*@
+                        <div class="widget no-border" style="margin-left:20px;">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" style="background-color: #1f364f !important;">
+                                            <h1 class="panel-title" style="color: #ffffff !important;">Inbound Setting</h1>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="col-md-12">
+                                                <label for="">Host</label>
+                                                <select class="form-control" id="imailHost">
+                                                    <option value="IMAP">IMAP</option>
+                                                    <option value="POP">POP</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label for="">Host Url</label>
+                                                <input type="text" id="imailHostUrl" class="form-control" />                                                                                           
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label for="">Port</label>
+                                                <input type="text" id="imailport" class="form-control" max="8" onkeypress="return isNumberKey(event)" />
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label for="">Username</label>
+                                                <input type="text" id="imailusername" class="form-control" />
+                                                <div class="col-md-6"></div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label for="">Password</label>
+                                                <input type="password" id="imailpassword" class="form-control" />
+                                                <div class="col-md-6"></div>
+
+                                            </div>                                            
+                                            <div class="col-md-12" style="margin-top:10px;">
+                                                <input type="checkbox" id="iismailssl" />
+                                                <label for="mailssl">Is SSL Enabled</label>
+
+                                            </div>
+                                            <div class="col-md-12">
+                                                <input type="hidden" id="imailsettingId" />
+                                                <button type="submit" class="btn btn-primary" id="mbtnSave" onclick="saveInboundSettings();" style="margin-top: 20px; background-color: #1f364f !important; color: #ffffff !important; border-color: #1f364f !important; ">Save</button>
+                                            </div>
+                                            <div class="col-md-12 text-center" >
+                                               <div id="isuccessdiv" style="display:none;">
+                                                   <p style="color:green;">Your Inbound Settings Saved Successfully.</p>
+                                               </div>
+                                                <div id="ierrordiv" style="display:none;">
+                                                    <p style="color:red;">Error Occured, Please Try again.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" style="background-color: #1f364f !important;">
+                                            <h1 class="panel-title" style="color: #ffffff !important;">Outbound Setting</h1>
+                                        </div>
+                                        <div class="panel-body">                                            
+                                            <div class="col-md-12">
+                                                <label for="">Host Url</label>
+                                                <input type="text" id="omailHostUrl" class="form-control" />
+                                                <div class="col-md-6"></div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label for="">Port</label>
+                                                <input type="text" id="omailport" class="form-control" max="8" onkeypress="return isNumberKey(event)" />
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label for="">Username</label>
+                                                <input type="text" id="omailusername" class="form-control" />
+                                                <div class="col-md-6"></div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label for="">Password</label>
+                                                <input type="password" id="omailpassword" class="form-control" />
+                                                <div class="col-md-6"></div>
+
+                                            </div>                                            
+                                            <div class="col-md-12" style="margin-top:10px;">
+                                                <input type="checkbox" id="oismailssl" />
+                                                <label for="mailssl">Is SSL Enabled</label>                                                
+                                            </div>
+                                            <div class="col-md-12">
+                                                <input type="hidden" id="omailsettingId" />
+                                                <button type="submit" class="btn btn-primary" id="mibtnSave" onclick="saveOutboundSettings();" style="margin-top: 20px; background-color: #1f364f !important; color: #ffffff !important; border-color: #1f364f !important; ">Save</button>
+                                            </div>
+                                            <div class="col-md-12 text-center">
+                                                <div id="osuccessdiv" style="display:none;">
+                                                    <p style="color:green;">Your Outbound Settings Saved Successfully.</p>
+                                                </div>
+                                                <div id="oerrordiv" style="display:none;">
+                                                    <p style="color:red;">Error Occured, Please Try again.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                                
+                            </div>                           
+                        </div>
+                    </div>
+
+                    <div id="UserRoles" role="tabpanel" class="tab-pane">
+                        <div class="pull-right" style="margin-bottom:10px;">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#RolesModal"><i class="ti-plus" title="Add New"></i></button>
+                        </div>
+                        <div class="widget no-border" style="margin-left:20px;" id="rTable">
+                            <table class="table table-hover dt-responsive nowrap">
+                                <tr>
+                                    <th>Roles</th>
+                                    <th>Action</th>
+                                </tr>
+                                @*@foreach (var role in Model.roles)
+                                {
+                                    <tr>
+                                        <td>@role.RoleName</td>
+                                        <td>
+                                            <button type="button" class="btn btn-outline btn-primary" onclick="GetUserRoleForUpdate(@role.Role_ID);" title="Edit User Role"><i class="ti-pencil"></i></button>
+                                        </td>
+                                    </tr>
+                                }*@
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="LSource" role="tabpanel" class="tab-pane">
+                        @*<div class="pull-right" style="margin-bottom:10px;">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#SourceModal"><i class="ti-plus" title="Add New"></i></button>
+                        </div>
+                        <div class="widget no-border" style="margin-left:20px;">                            
+                        </div>*@
+
+                        <div class="row">
+                            <div class="col-sm-12 text-center">
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-3 text-center" style="margin-left:100px;">
+                                    <select class="form-control form-cutom" id="module">
+                                        <option value="0">Select Module</option>
+                                        <option value="Lead">Lead</option>
+                                        <option value="Opportunity">Oppurtunity</option>
+                                        <option value="Client">Client</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-3"></div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top:20px;display:none;" id="dropList1">
+                            <div class="col-sm-12 text-center">
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-3 text-center" style="margin-left:100px;">
+                                    <select class="form-control form-cutom" id="droplistSelect1">
+                                        <option value="0">Select DropList In Leads</option>
+                                        <option value="Source">Source</option>                                        
+                                    </select>
+                                </div>
+                                <div class="col-sm-3"></div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top:20px;display:none;" id="dropList2">
+                            <div class="col-sm-12 text-center">
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-3 text-center" style="margin-left:100px;">
+                                    <select class="form-control form-cutom" id="droplistSelect2">
+                                        <option value="0">Select DropList In Opporrtunity</option>
+                                        <option value="Status">Status</option>
+                                        <option value="Source">Source</option>
+                                        <option value="ReasonOfLost">Reason Of Lost</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-3"></div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top:20px;display:none;" id="dropList3">
+                            <div class="col-sm-12 text-center">
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-3 text-center" style="margin-left:100px;">
+                                    <select class="form-control form-cutom" id="droplistSelect3">
+                                        <option value="0">Select DropList In Client</option>
+                                        <option value="Source">Source</option>
+                                        <option value="Status">Status</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-3"></div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <hr />
+                            </div>
+                        </div>
+
+                        <div class="row" id="OptionsBox" style="display:none;">
+                            <div class="col-sm-12">
+                                <div class="co-sm-3"></div>
+                                <div class="col-sm-6" style="margin-left:280px;">
+                                    <div class="panel panel-info">
+                                        <div class="panel-heading" style="background-color: #1f364f !important;">
+                                            <h3 class="panel-title card-header" style="color: white !important;">Droplist Options</h3>                                           
+                                            <button class="btn btn_small" style="background-color: #fff; color: #1f364f !important; border-color: #fff; float: right; " id="Source_btn" data-toggle="modal" data-target="#DropListModal" title="Add"><i class="ti-plus"></i></button>                                                                                
+                                        </div>
+                                        <div class="panel-body" id="pbody">
+                                            <div id="div_Source">
+                                                <table class="table table-hover" id="opTable">
+                                                    <tr style="border-bottom:1px;">
+                                                        <td style="text-align:left;">
+                                                            <label></label>
+                                                        </td>
+                                                        <td style="text-align:right;">
+                                                            <button type="button" class="btn btn-small" data-toggle="modal" data-target="#SourceModal" title="Edit Source" onclick="EditSource"><i class="ti-pencil"></i></button>
+                                                            <button type="button" class="btn btn-small" title="Delete Source" onclick="DeleteListing"><i class="ti-trash"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4"></div>
+                            </div>
+                        </div>
+
+                    </div>    
+
+                    <div id="dsync" role="tabpanel" class="tab-pane">                     
+
+                        <div class="row">
+                            <div class="col-sm-12 text-center">
+                                <div class="col-sm-2"></div>                                
+                                <div class="col-sm-4">
+                                    <form method="post" action="/UserSetings/GetContactPermission">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <img src="@Url.Content("~/Content/img/google-contacts-sync.png")" alt="Google Contact" />
+                                                @*<h1 class="panel-title" style="color: #ffffff !important;">Google Contacts</h1>*@
+                                            </div>
+                                            <div class="panel-body">
+                                                Sync Your Clouderac Account Contacts with your Gmail Account.<br />
+                                                <button type="submit" class="btn btn-primary" id="gContact" style="margin-top: 20px; background-color: #1f364f !important; color: #ffffff !important; border-color: #1f364f !important; "><i class="ti-google"></i>  Connect</button>
+                                            </div>
+                                        </div>
+                                    </form>                                    
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" >
+                                            @*<h1 class="panel-title" style="color: #ffffff !important;">Google Calender</h1>*@
+                                            <img src="@Url.Content("~/Content/img/google-calendar-sync.png")" class="" alt="Google Contact" />
+                                        </div>
+                                        <div class="panel-body">
+                                            Sync Your Clouderac Account Events with your Google Calendar.<br />
+                                            <button class="btn btn-primary" style="margin-top: 20px; background-color: #1f364f !important; color: #ffffff !important; border-color: #1f364f !important; "><i class="ti-google"></i>  Connect</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2"></div>
+                            </div>
+                        </div>                       
+
+                    </div>               
+                </div>             
+            </div>
+        </div>
+    </div>
+</div>
+
+<div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="DropListModal">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 id="myAnimationModalLabel" class="modal-title">Manage Droplist Option</h4>
+            </div>
+            <div class="modal-body">
+                <form action="/UserSetings/AjaxManageSource" method="post" id="dropListForm">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group col-sm-3">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <input type="text" id="Option" name="Option" class="form-control form-cutom" placeholder="Option Text" />
+                                <div id="error_div_Option" style="display:none;">
+                                    <p style="color:red">Please Enter Option Text</p>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-3">
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="OptionID" id="OptionID" />
+                    <input type="hidden" name="hModule" id="hModule" />
+                    <input type="hidden" name="hdroplist" id="hdroplist" />
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default" id="cancel"onclick="CancelDroplistOtion()">Cancel</button>
+                <button type="button" class="btn btn-raised btn-danger" id="save" onclick="AddDropListOption();">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="RolesModal">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 id="myAnimationModalLabel" class="modal-title">Add Roles</h4>
+            </div>
+            <div class="modal-body">
+                <form id="pForm" action="/AdminSeting/ManageRoles" method="post">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group col-sm-12">
+                                <label for="GName">Role Name</label>
+                                <input type="text" class="form-control" id="RoleName" name="RoleName" placeholder="Role Name..">
+                                <div id="error_div_RName" style="display:none;">
+                                    <p style=" color:red;">Please Enter Role Name.</p>
+                                </div>
+                                <input type="hidden" id="S_ID" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-sm-12">
+                            <div class="form-group col-sm-12">
+                                <h4>Permissions</h4>
+                                <hr />
+                                <table class="table table-hover dt-responsive nowrap">
+                                    <tr>
+                                        <th>Permission Name</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Associated Leads</td>
+                                        <td>
+                                            <label></label>
+                                            <input type="checkbox" id="AssociatedLeads" name="AssociatedLeads" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Systemwide Leads</td>
+                                        <td>
+                                            <label></label>
+                                            <input type="checkbox" id="SystemwideLeads" name="SystemwideLeads" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Associated Opportunity</td>
+                                        <td>
+                                            <label></label>
+                                            <input type="checkbox" id="AssociatedOpportunity" name="AssociatedOpportunity" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Systemwide Opportunity</td>
+                                        <td>
+                                            <label></label>
+                                            <input type="checkbox" id="SystemwideOpportunity" name="SystemwideOpportunity" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Associated Clients</td>
+                                        <td>
+                                            <label></label>
+                                            <input type="checkbox" id="AssociatedClients" name="AssociatedClients" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Systemwide Clients</td>
+                                        <td>
+                                            <label></label>
+                                            <input type="checkbox" id="SystemwideClients" name="SystemwideClients" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Calendar</td>
+                                        <td>
+                                            <label></label>
+                                            <input type="checkbox" id="Calendar" name="Calendar" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Task</td>
+                                        <td>
+                                            <label></label>
+                                            <input type="checkbox" id="Task" name="Task" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Notes</td>
+                                        <td>
+                                            <label></label>
+                                            <input type="checkbox" id="Notes" name="Notes" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Documents</td>
+                                        <td>
+                                            <label></label>
+                                            <input type="checkbox" id="Documents" name="Documents" />
+                                        </td>
+                                    </tr>                                    
+                                    <tr>
+                                        <td>User Management</td>
+                                        <td>
+                                            <label></label>
+                                            <input type="checkbox" id="UserManagement" name="UserManagement" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Site Management</td>
+                                        <td>
+                                            <label></label>
+                                            <input type="checkbox" id="SiteManagement" name="SiteManagement" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Help Desk Tickets</td>
+                                        <td>
+                                            <label></label>
+                                            <input type="checkbox" id="HelpDeskTickets" name="HelpDeskTickets" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lead distribution</td>
+                                        <td>
+                                            <label></label>
+                                            <input type="checkbox" id="LeadDistribution" name="LeadDistribution" />
+                                        </td>
+                                    </tr>                                    
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default" onclick="cleanForm();">Cancel</button>
+                <button type="button" class="btn btn-raised btn-danger" id="save_btn" onclick="submitPForm();">Save</button>
+                <button type="button" class="btn btn-raised btn-danger" style="display:none;" id="edit_btn" onclick="EditStatus();">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="UpdateRolesModal">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 id="myAnimationModalLabel" class="modal-title">Update Roles</h4>
+            </div>
+            <div class="modal-body">
+                <form id="UpForm" action="/AdminSeting/AjaxUpdateRoles" method="post">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group col-sm-12">
+                                <label for="GName">Role Name</label>
+                                <input type="text" class="form-control" id="URoleName" name="RoleName" placeholder="Role Name..">
+                                <div id="Uerror_div_RName" style="display:none;">
+                                    <p style=" color:red;">Please Enter Role Name.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-sm-12">
+                            <div class="form-group col-sm-12">
+                                <h4>Permissions</h4>
+                                <hr />
+                                <table class="table table-hover dt-responsive nowrap">
+                                    <tr>
+                                        <th>Permission Name</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Associated Leads</td>
+                                        <td>
+                                            <label></label>
+                                            <input type="checkbox" id="UAssociatedLeads" name="AssociatedLeads" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Systemwide Leads</td>
+                                        <td>
+                                            <label></label>
+                                            <input type="checkbox" id="USystemwideLeads" name="SystemwideLeads" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Associated Opportunity</td>
+                                        <td>
+                                            <label></label>
+                                            <input type="checkbox" id="UAssociatedOpportunity" name="AssociatedOpportunity" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Systemwide Opportunity</td>
+                                        <td>
+                                            <label></label>
+                                            <input type="checkbox" id="USystemwideOpportunity" name="SystemwideOpportunity" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Associated Clients</td>
+                                        <td>
+                                            <label></label>
+                                            <input type="checkbox" id="UAssociatedClients" name="AssociatedClients" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Systemwide Clients</td>
+                                        <td>
+                                            <label></label>
+                                            <input type="checkbox" id="USystemwideClients" name="SystemwideClients" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Calendar</td>
+                                        <td>
+                                            <label></label>
+                                            <input type="checkbox" id="UCalendar" name="Calendar" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Edit Task/appointments</td>
+                                        <td>
+                                            <label></label>
+                                            <input type="checkbox" id="UTask" name="Task" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lead Notes</td>
+                                        <td>
+                                            <label></label>
+                                            <input type="checkbox" id="UNotes" name="Notes" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Documents</td>
+                                        <td>
+                                            <label></label>
+                                            <input type="checkbox" id="UDocuments" name="Documents" />
+                                        </td>
+                                    </tr>                                    
+                                    <tr>
+                                        <td>User Management</td>
+                                        <td>
+                                            <label></label>
+                                            <input type="checkbox" id="UUserManagement" name="UserManagement" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Site Management</td>
+                                        <td>
+                                            <label></label>
+                                            <input type="checkbox" id="USiteManagement" name="SiteManagement" />
+                                        </td>
+                                    </tr>                                    
+                                    <tr>
+                                        <td>Lead distribution</td>
+                                        <td>
+                                            <label></label>
+                                            <input type="checkbox" id="ULeadDistribution" name="LeadDistribution" />
+                                        </td>
+                                    </tr>                                    
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="R_ID" name="Role_ID" />
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default" >Cancel</button>
+                <button type="button" class="btn btn-raised btn-danger" id="save_btn" onclick="submitUPForm();">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.container -->
+
+<script>
+    $(document).ready(function () {
+        $("#Country").val($("#cnt").val());
+        $("#Currency").val($("#cur").val());
+    });
+</script>
+
+@* Genral Seting Section Scripts************ *@
+
+<script>
+    $(document).ready(function () {
+        $("#edit_btn").click(function () {
+            $("#viewForm").hide();
+            $("#edit_btn").hide();
+            $("#save_btn").show();
+            $("#cancel_btn").show();
+            $("#mainForm").show();
+        });
+
+        $("#cancel_btn").click(function () {
+            $("#mainForm").hide();
+            $("#save_btn").hide();
+            $("#cancel_btn").hide();
+            $("#edit_btn").show();
+            $("#viewForm").show();            
+            
+        });
+    });
+
+    function SubmitForm() {       
+        var formPayment = $('#mainForm');
+            $.ajax({
+                url: formPayment.attr('action'),
+                type: "POST",
+                data: formPayment.serialize(),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data != '') {                        
+                        $("#mainForm").hide();
+                        $("#save_btn").hide();
+                        $("#cancel_btn").hide();
+                        $("#edit_btn").show();
+                        $("#viewForm").show();
+                        $("#viewForm").html('');
+                        $("#viewForm").html(data);
+                    }
+                    else {
+                        location.reload();
+                    }
+                },
+                error: function (xhr) {
+                    $('#errorMessage').html("No connection");
+                }
+            });
+        
+    }
+</script>
+
+
+@* Droplist Seting Scripts****** *@
+<script>   
+
+    $(document).ready(function () {
+
+        //For Module Chage
+        $("#module").change(function () {
+            if ($("#module").val() == "Lead") {
+                $("#dropList1").show();
+                $("#dropList2").hide();
+                $("#dropList3").hide();
+                $("#OptionsBox").hide();
+            }
+            else if ($("#module").val() == "Opportunity") {
+                $("#dropList1").hide();
+                $("#dropList2").show();
+                $("#dropList3").hide();
+                $("#OptionsBox").hide();
+
+            }
+            else if ($("#module").val() == "Client") {
+                $("#dropList1").hide();
+                $("#dropList2").hide();
+                $("#dropList3").show();
+                $("#OptionsBox").hide();
+            }
+            else {
+                $("#dropList1").hide();
+                $("#dropList2").hide();
+                $("#dropList3").hide();
+                $("#OptionsBox").hide();
+
+            }
+        });
+
+        //For Lead Pages
+        $("#droplistSelect1").change(function () {
+            GetDroplistOptions('Lead', $("#droplistSelect1").val());
+
+        });
+
+        //For Opportunity Pages
+        $("#droplistSelect2").change(function () {
+            GetDroplistOptions('Opportunity', $("#droplistSelect2").val());
+
+        });
+
+        //For Client Pages
+        $("#droplistSelect3").change(function () {
+            GetDroplistOptions('Client', $("#droplistSelect3").val());
+
+
+        });
+
+
+    });
+
+    function GetDroplistOptions(Module, dName) {
+
+        $.ajax({
+            url: '/UserSetings/GetDropListing',
+            dataType: "html",
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ Module: Module, DropName: dName }),
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (data) {               
+                if (data != '') {                   
+                    $("#pbody").html('');
+                    $("#pbody").html(data);
+                    $('#hModule').val(Module);
+                    $('#hdroplist').val(dName);
+                    $('#Option').val('');
+                    $('#OptionID').val('');
+                    $("#OptionsBox").show();
+                   
+                }
+                else {
+                    $('#Option').val('');
+                    $('#OptionID').val('');
+                    $("#OptionsBox").show();
+                }
+            },
+            error: function (xhr) {
+                alert();
+                $('#errorMessage').html("No connection");
+            }
+        });        
+    }
+
+    function AddDropListOption() {
+        if ($('#Option').val().trim() == '') {
+            $('#error_div_Option').show();
+        }
+        else {
+            $('#error_div_Option').hide();
+            $.post('/UserSetings/AjaxManageDropListOption', { OptionText: $('#Option').val(), OptionID: $('#OptionID').val(), Module: $('#hModule').val(), DropListName: $('#hdroplist').val() }, function (data) {
+                if (data != '') {
+                    $("#pbody").html('');
+                    $("#pbody").html(data);
+                    $('#DropListModal').modal('hide');
+                    $("#dropListForm")[0].reset();
+                }
+            });
+        }
+    }
+    function CancelDroplistOtion()
+    {
+        $('#Option').val('');
+        $('#error_div_Option').hide();
+    }
+
+    function EditOption(OptionID, OptionText) {
+        $("#Option").val(OptionText);
+        $("#OptionID").val(OptionID);
+    }
+
+    function DeleteOption(Op_ID) {
+        swal({
+            title: "Are you sure?",
+            text: "Are you sure to delete this Option!",
+            type: "warning",
+            showCancelButton: !0,
+            cancelButtonClass: "btn-raised btn-default",
+            cancelButtonText: "Cancel!",
+            confirmButtonClass: "btn-raised btn-danger",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: !0
+        },
+        function () {
+            $.post('/UserSetings/DeleteDropListOption', { OptionID: Op_ID, Module: $('#hModule').val(), DropListName: $('#hdroplist').val() }, function (data) {
+                if (data != "") {
+                    $("#pbody").html('');
+                    $("#pbody").html(data);
+                }
+                else {
+                    location.reload();
+                }
+            });
+        })
+    }
+
+</script>
+
+
+@* User Role Section Scripts**************** *@
+<script>
+    function ValidatepForm() {
+        if ($("#RoleName").val().trim() == '') {
+            $("#error_div_RName").show();
+            return false;
+        }
+        else {
+            $("#error_div_RName").hide();
+            return true;
+        }
+    }
+
+    function submitPForm() {
+        if (ValidatepForm()) {
+            AddRole();
+        }
+    }
+    function CancelRole() {
+        $('#RoleName').val('');
+        $('#error_div_RName').hide();
+    }
+
+    function GetRole() {
+        $(".se-pre-con").show();
+        $.ajax({
+            type: "POST",
+            url: "/UserSetings/GetRoles",
+            data: {},
+            datatype: "html",
+            success: function (data) {
+                if (data != "") {                   
+                    $('#rTable').html('');
+                    $('#rTable').html(data);
+                    $(".se-pre-con").hide();
+                }
+                else {
+                    $(".se-pre-con").hide();
+                }
+
+            }
+        });
+    }
+
+    function AddRole() {
+        $(".se-pre-con").show();
+        $.ajax({
+            type: "POST",
+            url: "/UserSetings/AjaxManageRoles",
+            data: $("#pForm").serialize(),
+            datatype: "html",
+            success: function (data) {
+                if (data != "" && data != "Role Already Exists") {
+                    $("#RolesModal").modal('hide');
+                    $('#rTable').html('');
+                    $('#rTable').html(data);
+                    $(".se-pre-con").hide();
+                }
+                else {
+                    $(".se-pre-con").hide();
+                }
+
+            }
+        });
+    }
+
+    function GetUserRoleForUpdate(Role_ID) {
+        $(".se-pre-con").show();
+        $("#R_ID").val(Role_ID);
+        $.ajax({
+            type: "POST",
+            url: "/UserSetings/GetRolesForEdit",
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ RoleID: Role_ID }),
+            datatype: "json",
+            success: function (data) {
+                if (data != "") {
+                    // cleanForm();
+                    $("#UpForm")[0].reset();
+                    $("#URoleName").val(data.RoleName);
+
+                    if (data.AssociatedLeads == "on") {
+                        $('#UAssociatedLeads').attr('checked', true);
+                    }
+                    else {
+                        $('#UAssociatedLeads').attr('checked', false);
+                    }
+                    if (data.SystemwideLeads == "on") {
+                        $('#USystemwideLeads').attr('checked', true);
+                    }
+                    else {
+                        $('#USystemwideLeads').attr('checked', false);
+                    }
+                    if (data.AssociatedOpportunity == "on") {
+                        $('#UAssociatedOpportunity').attr('checked', true);
+                    }
+                    else {
+                        $('#UAssociatedOpportunity').attr('checked', false);
+                    }
+                    if (data.SystemwideOpportunity == "on") {
+                        $('#USystemwideOpportunity').attr('checked', true);
+                    }
+                    else {
+                        $('#USystemwideClients').attr('checked', false);
+                    }
+                    if (data.AssociatedClients == "on") {
+                        $('#UAssociatedClients').attr('checked', true);
+                    }
+                    else {
+                        $('#UAssociatedClients').attr('checked', false);
+                    }
+                    if (data.SystemwideClients == "on") {
+                        $('#USystemwideClients').attr('checked', true);
+                    }
+                    else {
+                        $('#USystemwideClients').attr('checked', false);
+                    }
+                    if (data.Calendar == "on") {
+                        $('#UCalendar').attr('checked', true);
+                    }
+                    else {
+                        $('#UCalendar').attr('checked', false);
+                    }
+                    if (data.EditTask == "on") {
+                        $('#UTask').attr('checked', true);
+                    }
+                    else {
+                        $('#UTask').attr('checked', false);
+                    }
+                    if (data.LeadNotes == "on") {
+                        $('#UNotes').attr('checked', true);
+                    }
+                    else {
+                        $('#UNotes').attr('checked', false);
+                    }
+                    if (data.Documents == "on") {
+                        $('#UDocuments').attr('checked', true);
+                    }
+                    else {
+                        $('#UDocuments').attr('checked', false);
+                    }                    
+                    if (data.LeadDistribution == "on") {
+                        $('#ULeadDistribution').attr('checked', true);
+                    }
+                    else {
+                        $('#ULeadDistribution').attr('checked', false);
+                    }
+                    if (data.UserManagement == "on") {
+                        $('#UUserManagement').attr('checked', true);
+                    }
+                    else {
+                        $('#UUserManagement').attr('checked', false);
+                    }
+
+                    if (data.SiteManagement == "on") {
+                        $('#USiteManagement').attr('checked', true);
+                    }
+                    else {
+                        $('#USiteManagement').attr('checked', false);
+                    }
+
+                    $("#UpdateRolesModal").modal('show');
+                    $(".se-pre-con").hide();
+                }
+                else {
+                    $(".se-pre-con").hide();
+                }
+
+            }
+        });
+    }
+
+    function cleanUForm() {
+        alert();
+        $("#URoleName").val('');
+
+        $('#UAssociatedLeads').attr('checked', false);
+        $('#USystemwideLeads').attr('checked', false);
+        $('#UCalendar').attr('checked', false);
+        $('#UEditTask').attr('checked', false);
+        $('#ULeadNotes').attr('checked', false);
+        $('#UDocuments').attr('checked', false);
+        $('#UManageDocuments').attr('checked', false);
+        $('#UHelpDeskTickets').attr('checked', false);
+        $('#ULeadDistribution').attr('checked', false);
+        $('#UResidualsAccess').attr('checked', false);
+        $('#UResidualManagerView').attr('checked', false);
+        $('#UMerchantinfoAssociatedLead').attr('checked', false);
+        $('#UMerchantinfoSystemwideLeads').attr('checked', false);
+        $('#UManageMerchant').attr('checked', false);
+        $('#UStatements').attr('checked', false);
+        $('#UTriggerStatementDownload').attr('checked', false);
+        $('#UPortfolioActivityAssociatedleads').attr('checked', false);
+        $('#UPortfolioActivitySystemwideleads').attr('checked', false);
+        $('#UProposalGenerator').attr('checked', false);
+        $('#UUnderwritngApplicationSubmissions').attr('checked', false);
+        $('#UAgenttracker').attr('checked', false);
+        $('#UMessagingSystem').attr('checked', false);
+        $('#UMerchantApplication').attr('checked', false);
+        $('#UUserManagement').attr('checked', false);
+        $('#USiteManagement').attr('checked', false);
+    }
+
+    function cleanForm() {
+       
+        $("#RoleName").val('');
+
+        $('#AssociatedLeads').attr('checked', false);
+        $('#SystemwideLeads').attr('checked', false);
+        $('#Calendar').attr('checked', false);
+        $('#EditTask').attr('checked', false);
+        $('#LeadNotes').attr('checked', false);
+        $('#Documents').attr('checked', false);
+        $('#ManageDocuments').attr('checked', false);
+        $('#HelpDeskTickets').attr('checked', false);
+        $('#LeadDistribution').attr('checked', false);
+        $('#ResidualsAccess').attr('checked', false);
+        $('#ResidualManagerView').attr('checked', false);
+        $('#MerchantinfoAssociatedLead').attr('checked', false);
+        $('#MerchantinfoSystemwideLeads').attr('checked', false);
+        $('#ManageMerchant').attr('checked', false);
+        $('#Statements').attr('checked', false);
+        $('#TriggerStatementDownload').attr('checked', false);
+        $('#PortfolioActivityAssociatedleads').attr('checked', false);
+        $('#PortfolioActivitySystemwideleads').attr('checked', false);
+        $('#ProposalGenerator').attr('checked', false);
+        $('#UnderwritngApplicationSubmissions').attr('checked', false);
+        $('#Agenttracker').attr('checked', false);
+        $('#MessagingSystem').attr('checked', false);
+        $('#MerchantApplication').attr('checked', false);
+        $('#UserManagement').attr('checked', false);
+        $('#SiteManagement').attr('checked', false);
+    }
+
+    function ValidateUpForm() {
+        if ($("#URoleName").val().trim() == '') {
+            $("#Uerror_div_RName").show();
+            return false;
+        }
+        else {
+            $("#Uerror_div_RName").hide();
+            return true;
+        }
+    }
+
+    function submitUPForm() {
+        if (ValidateUpForm()) {
+            UpdateRole();
+        }
+    }
+
+    function UpdateRole() {
+        $(".se-pre-con").show();
+        $.ajax({
+            type: "POST",
+            url: "/UserSetings/AjaxUpdateRoles",
+            data: $("#UpForm").serialize(),
+            datatype: "html",
+            success: function (data) {
+                if (data != "") {                  
+                    $("#UpdateRolesModal").modal('hide');
+                    $('#rTable').html('');
+                    $('#rTable').html(data);
+                    $(".se-pre-con").hide();
+                }
+                else {
+                    $(".se-pre-con").hide();
+                }
+            },
+            error: function (xhr) {           
+            $('#errorMessage').html("No connection");
+            $(".se-pre-con").hide();
+        }
+        });
+    }
+</script>
+
+
+@* Data Sync Section Script********* *@
+<script>
+    function getOuth2TokenForCaontactSync() {
+        
+    }
+</script>
+
+@* Mail-Setting Scripts*************** *@
+<script>
+    function saveInboundSettings() {
+        var isssl = false;
+        if ($("#iismailssl").is(':checked')) {
+            isssl = true;
+        }
+        else{
+            isssl = false;
+        }
+        if ($("#imailHostUrl").val().trim() == "") {
+            $("#imailHostUrl").addClass('invalid');
+        }
+        else if ($("#imailusername").val().trim() == "") {
+            $("#imailusername").addClass('invalid');
+            $("#imailHostUrl").removeClass('invalid');
+        }
+        else if ($("#imailpassword").val().trim() == "") {
+            $("#imailpassword").addClass('invalid');
+            $("#imailusername").removeClass('invalid');
+            $("#imailHostUrl").removeClass('invalid');
+        }
+        else if ($("#imailport").val().trim() == "") {
+            $("#imailport").addClass('invalid');
+            $("#imailpassword").removeClass('invalid');
+            $("#imailusername").removeClass('invalid');
+            $("#imailHostUrl").removeClass('invalid');
+        }
+        else {
+            $("#imailport").removeClass('invalid');
+            $("#imailpassword").removeClass('invalid');
+            $("#imailusername").removeClass('invalid');
+            $("#imailHostUrl").removeClass('invalid');
+
+            $(".se-pre-con").show();
+            $.ajax({
+                url: '/UserSetings/AddMailSetings',
+                dataType: "html",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ hosttype: $("#imailHost").val(), hosturl: $("#imailHostUrl").val(), port: $("#imailport").val(), username: $("#imailusername").val(), password: $("#imailpassword").val(), isssl: isssl, msettingId: $("#imailsettingId").val(),settingtype:'INBOUND' }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data != '') {           
+                        $("#isuccessdiv").show();
+                        $("#ieroordiv").hide();
+                        $("#imailsettingId").val(data);
+                        $(".se-pre-con").hide();
+                    }
+                    else {
+                        $("#ieroordiv").show();
+                        $("#isuccessdiv").hide();
+                        $(".se-pre-con").hide();
+                        
+                    }
+                },
+                error: function (xhr) {
+                    alert();
+                    $('#errorMessage').html("No connection");
+                    $(".se-pre-con").hide();
+                }
+            });
+        }
+    }
+
+    function saveOutboundSettings() {
+        var isssl = false;
+        if ($("#oismailssl").is(':checked')) {
+            isssl = true;
+        }
+        else {
+            isssl = false;
+        }
+        if ($("#omailHostUrl").val().trim() == "") {
+            $("#omailHostUrl").addClass('invalid');
+        }
+        else if ($("#omailusername").val().trim() == "") {
+            $("#omailusername").addClass('invalid');
+            $("#omailHostUrl").removeClass('invalid');
+        }
+        else if ($("#omailpassword").val().trim() == "") {
+            $("#omailpassword").addClass('invalid');
+            $("#omailusername").removeClass('invalid');
+            $("#omailHostUrl").removeClass('invalid');
+        }
+        else if ($("#omailport").val().trim() == "") {
+            $("#omailport").addClass('invalid');
+            $("#omailpassword").removeClass('invalid');
+            $("#omailusername").removeClass('invalid');
+            $("#omailHostUrl").removeClass('invalid');
+        }
+        else {
+            $("#omailport").removeClass('invalid');
+            $("#omailpassword").removeClass('invalid');
+            $("#omailusername").removeClass('invalid');
+            $("#omailHostUrl").removeClass('invalid');
+
+            $(".se-pre-con").show();
+            $.ajax({
+                url: '/UserSetings/AddMailSetings',
+                dataType: "html",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ hosttype: 'SMTP', hosturl: $("#omailHostUrl").val(), port: $("#omailport").val(), username: $("#omailusername").val(), password: $("#omailpassword").val(), isssl: isssl, msettingId: $("#omailsettingId").val(), settingtype: 'OUTBOUND' }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data != '') {
+                        $("#osuccessdiv").show();
+                        $("#oeroordiv").hide();
+                        $("#omailsettingId").val(data);
+                        $(".se-pre-con").hide();
+                    }
+                    else {
+                        $("#oeroordiv").show();
+                        $("#osuccessdiv").hide();
+                        $(".se-pre-con").hide();
+                    }
+                },
+                error: function (xhr) {
+                    alert();
+                    $('#errorMessage').html("No connection");
+                    $(".se-pre-con").hide();
+                }
+            });
+        }
+    }
+
+    function GetMailSetings() {
+        $(".se-pre-con").show();
+        $.ajax({
+            url: '/UserSetings/GetMailSetings',
+            //dataType: "html",
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({}),
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                if (data != '') {
+                    $("#imailsettingId").val(data.inMailSeting_Id_Pk);
+                    $("#imailHost").val(data.inHostType);
+                    $("#imailHostUrl").val(data.inHostUrl);
+                    $("#imailport").val(data.inPort);
+                    $("#imailusername").val(data.inUsername);
+                    $("#imailpassword").val(data.inPassword);
+                    if (data.inIsssl == true) {
+                        $('#iismailssl').prop('checked', true);
+                    }
+                    $("#omailsettingId").val(data.oMailSeting_Id_Pk);
+                    $("#omailHostUrl").val(data.oHostUrl);
+                    $("#omailport").val(data.oPort);
+                    $("#omailusername").val(data.oUsername);
+                    $("#omailpassword").val(data.oPassword);
+                    if (data.oIsssl == true) {
+                        $('#oismailssl').prop('checked', true);
+                    }
+                    $(".se-pre-con").hide();
+                }
+                else {                    
+                    $(".se-pre-con").hide();
+                }
+            },
+            error: function (xhr) {               
+                $('#errorMessage').html("No connection");
+                $(".se-pre-con").hide();
+            }
+        });
+    }
+</script>
+
+
+
+
+
+
+
+
+<script>
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+
+    function zipCheck(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+
+</script>
+
+

@@ -1,0 +1,40 @@
+﻿@{
+    Layout = null;
+}
+
+
+        @{
+            foreach (var lead in Model.leads)
+            {
+                if (lead.Status == "Working")
+                {
+                    <tr>
+                        <td class="text-center">@lead.Name</td>
+                        <td class="text-center">@lead.Email</td>
+                        <td class="text-center">@lead.SkypeNo</td>
+                        <td class="text-center">@lead.FollowUpDate.ToString("d MMM yyyy")</td>
+                        @if (lead.Status == "Working")
+                        {
+                            <td class="text-center"><span class="label label-warning">@lead.Status</span></td>
+                        }
+                        else if (lead.Status == "Future-Followup")
+                        {
+                            <td class="text-center"><span class="label label-warning">@lead.Status</span></td>
+                        }
+                        else
+                        {
+                            <td class="text-center"><span class="label label-danger">@lead.Status</span></td>
+                        }
+                        <td class="text-center">@lead.AssignToName</td>
+                        <td class="text-center">
+                            <button type="button" class="btn btn-outline btn-primary" onclick="ViewLeads('@lead.Lead_ID_Auto_PK');" title="View Lead"><i class="ti-eye"></i></button>
+                            <button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target="#Status_Modal" title="Change Status" onclick="setModalData('@lead.Lead_ID_Auto_PK', '@lead.Status')"><i class="ti-pencil"></i></button>
+                            <button type="button" class="btn btn-outline btn-danger" onclick="DeleteLead('@lead.Lead_ID_Auto_PK');"><i class="ti-trash"></i></button>
+                        </td>
+                    </tr>
+                }
+
+            }
+        }
+
+

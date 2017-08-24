@@ -1,0 +1,1487 @@
+﻿@model Project.Web.Models.DashboardModel
+@{
+    Layout = null;
+    
+}
+
+    @using Project.Web.Common;
+    @{
+        SessionHelper session = new SessionHelper();
+    } 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Clouderac</title>
+    <!-- PACE-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/PACE/themes/blue/pace-theme-flash.css")">
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/PACE/pace.min.js")"></script>
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/bootstrap/dist/css/bootstrap.min.css")">
+    <!-- Fonts-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/themify-icons/themify-icons.css")">
+    <!-- Malihu Scrollbar-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css")">
+    <!-- Animo.js-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/animo.js/animate-animo.min.css")">
+    <!-- Flag Icons-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/flag-icon-css/css/flag-icon.min.css")">
+    <!-- Bootstrap Progressbar-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css")">
+    <!-- SpinKit-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/SpinKit/css/spinners/7-three-bounce.css")">
+    <!-- Morris Chart-->
+    @*<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/morris.js/morris.css")">*@
+    <!-- DataTables-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/datatables.net-bs/css/dataTables.bootstrap.min.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/datatables.net-buttons-bs/css/buttons.bootstrap.min.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/datatables.net-colreorder-bs/css/colReorder.bootstrap.min.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/datatables.net-responsive-bs/css/responsive.bootstrap.min.css")">
+    <!-- Primary Style-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/build/css/fourth-layout.css")">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file://-->
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script type="text/javascript" src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style>
+        /* This only works with JavaScript,
+        if it's not present, don't show loader */
+        .no-js #loader {
+            display: none;
+        }
+
+        .js #loader {
+            display: block;
+            position: absolute;
+            left: 100px;
+            top: 0;
+        }
+
+        .se-pre-con {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url(../Content/img/Preloader_10.gif) center no-repeat #fff;
+        }
+    </style>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery/dist/jquery.min.js")"></script>
+
+    <script src="@Url.Content("~/Content/CustomNotificationScripts/cusnotification.js")"></script>
+    
+    
+    
+    <script>
+        // Wait for window load
+        $(window).load(function () {
+            // Animate loader off screen
+            $(".se-pre-con").fadeOut("slow");;
+        });
+
+    </script>
+    
+
+</head>
+<body>
+    <div class="se-pre-con"></div>
+    <!-- Header start-->
+    <header>
+        <div class="search-bar closed">
+            @*<form>
+                <div class="input-group input-group-lg">
+                    <input type="text" placeholder="Search for..." class="form-control"><span class="input-group-btn">
+                        <button type="button" class="btn btn-default search-bar-toggle"><i class="ti-close"></i></button>
+                    </span>
+                </div>
+            </form>*@
+        </div><a href="index.html" class="brand pull-left"><img src="@Url.Content("~/Content/build/images/logo/logo-light.png")" alt="" width="100" class="logo"><img src="@Url.Content("~/Content/img/Z-logo.png")" alt="" width="28" class="logo-sm"></a><a href="javascript:;" role="button" class="hamburger-menu pull-left"><span></span></a>
+        @*<form class="mt-15 mb-15 pull-left hidden-xs">
+            <div class="form-group has-feedback mb-0">
+                <input type="text" aria-describedby="inputSearchFor" placeholder="Search for..." style="width: 200px" class="form-control rounded"><span aria-hidden="true" class="ti-search form-control-feedback"></span><span id="inputSearchFor" class="sr-only">(default)</span>
+            </div>
+        </form>*@
+        <ul class="notification-bar list-inline pull-right">
+            <li class="visible-xs"><a href="javascript:;" role="button" class="header-icon search-bar-toggle"><i class="ti-search"></i></a></li>
+            <li class="dropdown">
+                <a id="dropdownMenu1" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle bubble header-icon"><span class="btn btn-danger"><i class="ti-plus"></i></span></a>
+                <div aria-labelledby="dropdownMenu1" class="dropdown-menu dropdown-menu-right dm-medium fs-12 animated fadeInDown">
+                    <h5 class="dropdown-header">CREATE</h5>
+                    <ul data-mcs-theme="minimal-dark" class="media-list mCustomScrollbar">
+                        <li class="media">
+                            <a href="@Url.RouteUrl("ManageLeads", new { act = "add" })">
+                                <div class="media-left avatar"><span type="button" class="btn btn-success btn-sm add-btn-header"><i class="ti-user"></i></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading top-btn-label">Add Lead</h6>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="@Url.RouteUrl("ManageClient", new { act = "add" })">
+                                <div class="media-left avatar"><span type="button" class="btn btn-warning btn-sm add-btn-header"><i class="ti-id-badge"></i></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading top-btn-label">Add Client</h6>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="@Url.RouteUrl("ManageOpportunity", new { act = "add" })">
+                                <div class="media-left avatar"><span type="button" class="btn btn-primary btn-sm add-btn-header"><i class="ti-write"></i></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading top-btn-label">Add Opportunity</h6>
+                                </div>
+                            </a>
+                        </li>
+                        @*<li class="media">
+                            <a href="#">
+                                <div class="media-left avatar"><span type="button" class="btn btn-danger btn-sm add-btn-header"><i class="ti-calendar"></i></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading top-btn-label">Add Event</h6>
+                                </div>
+                            </a>
+                        </li>*@
+                        <li class="media">
+                            <a href="#" data-toggle="modal" data-target="#GTask_Modal" onclick="GetUserListing();">
+                                <div class="media-left avatar"><span type="button" class="btn btn-primary btn-sm add-btn-header"><i class="ti-list"></i></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading top-btn-label">Add Task</h6>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="#" data-toggle="modal" data-target="#GNotesModal">
+                                <div class="media-left avatar"><span type="button" class="btn btn-success btn-sm add-btn-header"><i class="ti-notepad"></i></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading top-btn-label">Add Notes</h6>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="#" data-toggle="modal" data-target="#GDocModal">
+                                <div class="media-left avatar"><span type="button" class="btn btn-warning btn-sm add-btn-header"><i class="ti-dropbox"></i></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading top-btn-label">Add Document</h6>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </li>
+            <li class="dropdown">
+                <a id="dropdownMenu1" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle bubble header-icon" onclick="showNotification();"><i class="ti-world"></i><span class="badge bg-danger" id="nfBadge"></span></a>
+                <div aria-labelledby="dropdownMenu1" class="dropdown-menu dropdown-menu-right dm-medium fs-12 animated fadeInDown">
+                    @*<h5 class="dropdown-header">You have 6 notifications</h5>*@
+                    <ul data-mcs-theme="minimal-dark" class="media-list mCustomScrollbar" id="ntbar">
+                        <li class="media" id="nonfMessage">
+                            <h5 class="dropdown-header">You dont have any notifications</h5>
+                            <div class="loaderNf" style="display:none;"></div>
+                        </li>
+                    </ul>
+                    <div class="dropdown-footer text-center p-10" id="clrAll" style="display:none;"><a href="javascript:;" class="fw-500 text-muted" onclick="clearAllNotifications();">Clear all notifications</a></div>
+                </div>
+            </li>
+            <li class="dropdown hidden-xs">
+                <a id="dropdownMenu2" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle header-icon lh-1 pt-15 pb-15">
+                    <div class="media mt-0">
+                        <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/11.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                        <div class="media-right media-middle pl-0">
+                            <p class="fs-12 text-base mb-0">Hi, @session.UserSession.FirstName</p>
+                        </div>
+                    </div>
+                </a>
+                <ul aria-labelledby="dropdownMenu2" class="dropdown-menu fs-12 animated fadeInDown">
+                    <li><a href="#"><i class="ti-user mr-5"></i> My Profile</a></li>
+                    <li><a href="#"><i class="ti-settings mr-5"></i> Account Settings</a></li>
+                    <li><a href="/Authentication/LockScreen"><i class="ti-settings mr-5"></i> Lock</a></li>
+                    <li><a href="/Authentication/Logout"><i class="ti-power-off mr-5"></i> Logout</a></li>
+                </ul>
+            </li>
+            <li><a href="javascript:;" role="button" class="right-sidebar-toggle bubble header-icon"><i class="ti-layout-sidebar-right"></i><span class="dot bg-danger"></span></a></li>
+        </ul>
+    </header>
+    <!-- Header end-->
+    <div class="main-container">
+        <!-- Main Sidebar start-->
+        <aside class="main-sidebar">
+            <div class="user">
+                <div id="esp-user-profile" data-percent="65" style="height: 130px; width: 130px; line-height: 100px; padding: 15px;" class="easy-pie-chart"><img src="@Url.Content("~/Content/build/images/users/11.jpg")" alt="" class="avatar img-circle"><span class="status bg-success"></span></div>
+                <h4 class="fs-16 text-white mt-15 mb-5 fw-300">@session.UserSession.FirstName</h4>
+                <p class="mb-0 text-muted">Admin</p>
+            </div>
+            <ul class="list-unstyled navigation mb-0">
+                @if (@session.UserSession.UserType == "ADM")
+                {
+                    <li><a href="@Url.RouteUrl("AdminDashboard_V_2")" class="bubble"><i class="ti-home"></i><span class="sidebar-title">Dashboard</span></a></li>
+                }
+                else
+                {
+                    <li><a href="@Url.RouteUrl("CrmUserHome")" class="bubble"><i class="ti-home"></i><span class="sidebar-title"><b>Dashboard</b></span></a></li>
+                }
+                <li><a href="@Url.RouteUrl("LeadHome")" class="bubble"><i class="ti-user"></i><span class="sidebar-title">Leads</span></a></li>
+                <li><a href="@Url.RouteUrl("ClientHome")" class="bubble"><i class="ti-id-badge"></i><span class="sidebar-title">Clients</span></a></li>
+                <li><a href="@Url.RouteUrl("OpportunityHome")" class="bubble"><i class="ti-write"></i><span class="sidebar-title">Opportunities</span></a></li>
+                @*<li><a href="@Url.RouteUrl("Calender")" class="bubble"><i class="ti-id-badge"></i><span class="sidebar-title">Calender</span></a></li>*@
+                <li><a href="@Url.RouteUrl("Calender")" class="bubble"><i class="ti-id-badge"></i><span class="sidebar-title">Calendar</span></a></li>
+
+
+
+                @*<li class="panel">
+                <a role="button" data-toggle="collapse" data-parent=".navigation" href="#collapse4" aria-expanded="false" aria-controls="collapse4" class="collapsed"><i class="ti-write"></i><span class="sidebar-title">Opportunities</span></a>
+                <ul id="collapse4" class="list-unstyled collapse">
+                    <li><a href="@Url.RouteUrl("OpportunityHome")">Manage Opportunity</a></li>
+                    <li><a href="@Url.RouteUrl("ManageOpportunity", new { act = "add" })">Add Opportunity</a></li>
+                </ul>
+            </li>*@
+                @*<li class="panel">
+                <a role="button" data-toggle="collapse" data-parent=".navigation" href="#collapse3" aria-expanded="false" aria-controls="collapse3" class="collapsed"><i class="ti-id-badge"></i><span class="sidebar-title">Clients</span></a>
+                <ul id="collapse3" class="list-unstyled collapse">
+                    <li><a href="@Url.RouteUrl("ClientHome")">Manage Clients</a></li>
+                    <li><a href="@Url.RouteUrl("ManageClient", new { act = "add" })">Add Client</a></li>
+                </ul>
+            </li>*@
+
+                <li><a href="@Url.RouteUrl("UserHome")" class="bubble"><i class="ti-user"></i><span class="sidebar-title">User Management</span></a></li>
+                <li><a href="@Url.RouteUrl("UserSetings")" class="bubble"><i class="ti-settings"></i><span class="sidebar-title">Settings</span></a></li>
+                <li><a href="@Url.RouteUrl("Subscriptions")" class="bubble"><i class="ti-credit-card"></i><span class="sidebar-title">Subscription</span></a></li>
+                <li><a href="@Url.RouteUrl("MarketingCampaign")" class="bubble"><i class="ti-bar-chart"></i><span class="sidebar-title">Campaign</span><span class="label label-outline label-danger">Coming-Soon</span></a></li>
+                <li><a href="#" class="bubble"><i class="ti-email"></i><span class="sidebar-title">E-Marketing</span><span class="label label-outline label-danger">Coming-Soon</span></a></li>
+                @*<li class="panel">
+                <a role="button" data-toggle="collapse" data-parent=".navigation" href="#collapse5" aria-expanded="false" aria-controls="collapse5" class="collapsed"><i class="ti-blackboard"></i><span class="sidebar-title">Projects</span></a>
+                <ul id="collapse5" class="list-unstyled collapse">
+                    <li><a href="@Url.RouteUrl("ProjectHome")">Manage Projects</a></li>
+                    <li><a href="@Url.RouteUrl("ManageProject", new { act = "add" })">Add Project</a></li>
+                </ul>
+            </li>*@
+                @*<li><a href="@Url.RouteUrl("TrackerHome")" class="bubble"><i class="ti-money"></i><span class="sidebar-title">Payment Tracker</span></a></li>
+            <li><a href="@Url.RouteUrl("MeetingHome")" class="bubble"><i class="ti-calendar"></i><span class="sidebar-title">Meetings</span></a></li>
+            <li><a href="@Url.RouteUrl("DocumentHome")" class="bubble"><i class="ti-file"></i><span class="sidebar-title">Document</span></a></li>*@
+            </ul>
+            <div class="sidebar-category">Server Status</div>
+            <div class="sidebar-widget">
+                <ul class="list-unstyled pl-25 pr-25">
+                    <li class="mb-20">
+                        <div class="block clearfix mb-10"><span class="pull-left fs-12 text-muted">CPU Used</span><span class="pull-right label label-outline label-warning">65%</span></div>
+                        <div class="progress progress-xs bg-light mb-0">
+                            <div role="progressbar" data-transitiongoal="65" class="progress-bar progress-bar-warning"></div>
+                        </div>
+                    </li>
+                    <li class="mb-20">
+                        <div class="block clearfix mb-10"><span class="pull-left fs-12 text-muted">Bandwidth</span><span class="pull-right label label-outline label-danger">80%</span></div>
+                        <div class="progress progress-xs bg-light mb-0">
+                            <div role="progressbar" data-transitiongoal="80" class="progress-bar progress-bar-danger"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+        <!-- Main Sidebar end-->
+        <div class="page-container">
+            <div class="page-header container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h4 class="mt-0 mb-5">Welcome to Clouderac</h4>
+                        <p class="text-muted mb-0">Admin Dashboard</p>
+                    </div>
+                    <div class="col-sm-6">
+                        @*<div class="btn-group mt-5">
+                            <button type="button" class="btn btn-default btn-outline"><i class="flag-icon flag-icon-us mr-5"></i> English</button>
+                            <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default btn-outline dropdown-toggle"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
+                            <ul class="dropdown-menu dropdown-menu-right animated fadeInDown">
+                                <li><a href="#"><i class="flag-icon flag-icon-de mr-5"></i> German</a></li>
+                                <li><a href="#"><i class="flag-icon flag-icon-fr mr-5"></i> French</a></li>
+                                <li><a href="#"><i class="flag-icon flag-icon-es mr-5"></i> Spanish</a></li>
+                                <li><a href="#"><i class="flag-icon flag-icon-it mr-5"></i> Italian</a></li>
+                                <li><a href="#"><i class="flag-icon flag-icon-jp mr-5"></i> Japanese</a></li>
+                            </ul>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+            <div class="page-content container-fluid">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="widget">
+                            <div class="widget-heading clearfix">
+                                <h3 class="widget-title pull-left">Opportunity Status</h3>
+                                <ul class="widget-tools pull-right list-inline">
+                                    <li><a href="javascript:;" class="widget-collapse"><i class="ti-angle-up"></i></a></li>
+                                    <li><a href="javascript:;" class="widget-reload"><i class="ti-reload"></i></a></li>
+                                    <li><a href="javascript:;" class="widget-remove"><i class="ti-close"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="widget-body">
+                                <div id="flot-order" style="height: 302px"></div>                            
+                            </div>                            
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="widget no-border p-15 bg-purple media">
+                                    <div class="media-left media-middle"><i class="media-object ti-shopping-cart fs-36"></i></div>
+                                    <div class="media-body">
+                                        <h6 class="m-0">Deals</h6>
+                                        <div class="fs-20">@Model.TotalDeals
+                                            <span class="fs-12">
+                                                @if (Model.DealsTraditions == "UP")
+                                                {
+                                                    <i class="ti-arrow-up fs-10"></i>@Model.DealsPercentageChange 
+                                                }
+                                                else if(Model.DealsTraditions == "DOWN")
+                                                {
+                                                    <i class="ti-arrow-down fs-10"></i>@Model.DealsPercentageChange
+                                                }
+                                                else
+                                                {
+                                                    <i class="ti-minus fs-10"></i>@Model.DealsPercentageChange 
+                                                }
+                                            </span>   
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="widget no-border p-15 bg-success media">
+                                    <div class="media-left media-middle"><i class="media-object ti-user fs-36"></i></div>
+                                    <div class="media-body">
+                                        <h6 class="m-0">Revenue</h6>
+                                        <div class="fs-20">
+                                            @Model.TotalDealsRevenue
+                                        <span class="fs-12">
+                                            @if (Model.DealsRevenueTraditions == "UP")
+                                            {
+                                                <i class="ti-arrow-up fs-10"></i>@Model.DealsRevenuePercentageChange
+                                            }
+                                            else if (Model.DealsRevenueTraditions == "DOWN")
+                                            {
+                                                <i class="ti-arrow-down fs-10"></i>@Model.DealsRevenuePercentageChange
+                                            }
+                                            else
+                                            {
+                                                <i class="ti-minus fs-10"></i>@Model.DealsRevenuePercentageChange
+                                            }
+                                        </span>
+                                    </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="widget no-border p-15 bg-danger media">
+                                    <div class="media-left media-middle"><i class="media-object ti-trash fs-36"></i></div>
+                                    <div class="media-body">
+                                        <h6 class="m-0">Leads</h6>
+                                        <div class="fs-20">
+                                            @Model.TotalLeads
+                                            <span class="fs-12">
+                                                @if (Model.LeadsTradition == "UP")
+                                                {
+                                                    <i class="ti-arrow-up fs-10"></i>@Model.LeadsPercentageChange
+                                                }
+                                                else if (Model.LeadsTradition == "DOWN")
+                                                {
+                                                    <i class="ti-arrow-down fs-10"></i>@Model.LeadsPercentageChange
+                                                }
+                                                else
+                                                {
+                                                    <i class="ti-minus fs-10"></i>@Model.LeadsPercentageChange
+                                                }
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="widget no-border p-15 bg-warning media">
+                                    <div class="media-left media-middle"><i class="media-object ti-paint-bucket fs-36"></i></div>
+                                    <div class="media-body">
+                                        <h6 class="m-0">Clients</h6>
+                                        <div class="fs-20">
+                                            @Model.TotalClients
+                                            <span class="fs-12">
+                                                @if (Model.ClientsTraditions == "UP")
+                                                {
+                                                    <i class="ti-arrow-up fs-10"></i>@Model.ClientsPercentageChange
+                                                }
+                                                else if (Model.ClientsTraditions == "DOWN")
+                                                {
+                                                    <i class="ti-arrow-down fs-10"></i>@Model.ClientsPercentageChange
+                                                }
+                                                else
+                                                {
+                                                    <i class="ti-minus fs-10"></i>@Model.ClientsPercentageChange
+                                                }
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="widget no-border p-15 bg-info media">
+                                    <div class="media-left media-middle"><i class="media-object ti-direction-alt fs-36"></i></div>
+                                    <div class="media-body">
+                                        <h6 class="m-0">Chargebacks</h6>
+                                        <div class="fs-20">24 <span class="fs-12"><i class="ti-arrow-down fs-10"></i> 2%</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="widget no-border p-15 bg-primary media">
+                                    <div class="media-left media-middle"><i class="media-object ti-email fs-36"></i></div>
+                                    <div class="media-body">
+                                        <h6 class="m-0">Emails</h6>
+                                        <div class="fs-20">6114 <span class="fs-12"><i class="ti-arrow-up fs-10"></i> 4%</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget no-border p-20 bg-black">
+                            <div class="media">
+                                <div class="media-left media-middle pr-15"><i class="ti-pulse fs-60"></i></div>
+                                <div class="media-body">
+                                    <ul class="list-unstyled fs-12 mb-0">
+                                        <li class="pt-5 pb-5">
+                                            <div class="block clearfix mb-5"><span class="pull-left text-white">Task Compeleted Today</span><span class="pull-right text-white">@Model.TaskCompletedPercentageToday %</span></div>
+                                            <div class="progress progress-xs bg-light mb-0">
+                                                <div role="progressbar" data-transitiongoal="@Model.TaskCompletedPercentageToday" aria-valuenow="@Model.TaskCompletedPercentageToday" style="width: 65%;" class="progress-bar progress-bar-white"></div>
+                                            </div>
+                                        </li>
+                                        <li class="pt-5 pb-5">
+                                            <div class="block clearfix mb-5"><span class="pull-left text-white">Task Compeleted Yesterday</span><span class="pull-right text-white">@Model.TaskCompletedPercentageYesterday %</span></div>
+                                            <div class="progress progress-xs bg-light mb-0">
+                                                <div role="progressbar" data-transitiongoal="@Model.TaskCompletedPercentageYesterday" aria-valuenow="@Model.TaskCompletedPercentageYesterday" style="width: 80%;" class="progress-bar progress-bar-white"></div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="widget">
+                            <div class="widget-heading clearfix">
+                                <h3 class="widget-title pull-left">Top Opportunities</h3>
+                                <ul class="widget-tools pull-right list-inline">
+                                    <li><a href="javascript:;" class="widget-collapse"><i class="ti-angle-up"></i></a></li>
+                                    <li><a href="javascript:;" class="widget-reload"><i class="ti-reload"></i></a></li>
+                                    <li><a href="javascript:;" class="widget-remove"><i class="ti-close"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="widget-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">Source</th>
+                                                <th class="text-center">Contact</th>
+                                                <th class="text-center">Amount</th>
+                                                <th class="text-center">Stage</th>
+                                                <th class="text-center">Oppoutunity Owner</th>
+                                                <th class="text-center">Assign To</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var deal in Model.TopFiveDeals)
+                                            {
+                                                <tr>
+                                                    <td class="text-center">@deal.Source</td>
+                                                    <td class="text-center">@deal.RelateTo_Name</td>
+                                                    <td class="text-center">@deal.Amount</td>
+                                                    <td class="text-center">@deal.Stage</td>
+                                                    <td class="text-center">@deal.Opportunity_Owner_Name</td>
+                                                    <td class="text-center">@deal.AssignTO_Name</td>
+                                                </tr>
+                                            }                                                                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget">
+                            <div class="widget-heading clearfix">
+                                <h3 class="widget-title pull-left">Monthly Revenue</h3>
+                                <ul class="widget-tools pull-right list-inline">
+                                    <li><a href="javascript:;" class="widget-collapse"><i class="ti-angle-up"></i></a></li>
+                                    <li><a href="javascript:;" class="widget-reload"><i class="ti-reload"></i></a></li>
+                                    <li><a href="javascript:;" class="widget-remove"><i class="ti-close"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="widget-body">
+                                <div id="flot-sales" style="height: 313px"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="widget">
+                            <div class="widget-heading clearfix">
+                                <h3 class="widget-title pull-left">Top 3 Sources</h3>
+                                <ul class="widget-tools pull-right list-inline">
+                                    <li><a href="javascript:;" class="widget-remove"><i class="ti-close"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="widget-body">
+                                <div id="morris-category" style="height: 224px"></div>
+                                <div style="margin: 0 -20px -20px -20px" class="table-responsive">
+                                    <table class="table table-hover mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center" style="width:40%">Source</th>
+                                                <th class="text-center" style="width:30%">Total Leads</th>
+                                                @*<th style="width:30%">Up/Down</th>*@
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var source in Model.TopThreeSources)
+                                            {
+                                                <tr>
+                                                  <td class="text-center">@source.Source_Name</td>
+                                                  <td class="text-success text-center">@source.TotalLeads</td>
+                                                  @*<td class="text-success">+3.26%</td>*@
+                                               </tr>
+                                            }
+                                                                                 
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget">
+                            <div class="widget-heading clearfix no-border">
+                                <h3 class="widget-title pull-left">Recent Transactions</h3>
+                                <ul class="widget-tools pull-right list-inline">
+                                    <li><a href="javascript:;" class="widget-remove"><i class="ti-close"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="widget-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table mb-0">
+                                        <tbody>
+                                            <tr>
+                                                <td>Advertising</td>
+                                                <td><span class="text-muted">06/23/2016</span></td>
+                                                <td><span class="text-success">+2.34</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>eBanking</td>
+                                                <td><span class="text-muted">06/20/2016</span></td>
+                                                <td><span class="text-danger">-4.29</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Google</td>
+                                                <td><span class="text-muted">06/18/2016</span></td>
+                                                <td><span class="text-danger">-1.32</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Facebook</td>
+                                                <td><span class="text-muted">06/17/2016</span></td>
+                                                <td><span class="text-success">+3.56</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Youtube</td>
+                                                <td><span class="text-muted">06/15/2016</span></td>
+                                                <td><span class="text-danger">-5.58</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Twitter</td>
+                                                <td><span class="text-muted">06/14/2016</span></td>
+                                                <td><span class="text-danger">-2.18</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="widget no-border">
+                            <table id="order-table" style="width: 100%" class="table table-hover dt-responsive nowrap">
+                                <thead>
+                                    <tr>
+                                        <th width="10%" class="text-center">Name</th>
+                                        <th width="15%" class="text-center">Email</th>
+                                        <th width="12%" class="text-center">Skype No</th>
+                                        <th width="12%" class="text-center">Date</th>
+                                        <th width="10%" class="text-center">Status</th>
+                                        <th width="25%" class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        foreach (var client in Model.Contacts)
+                                        {
+
+                                            <tr>
+                                                @*<td>
+                                                    <div class="media">
+                                                        <div class="media-left avatar"><img src="../build/images/users/10.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                                                        <div class="media-body">
+                                                            <h5 class="media-heading">Philip Fernandez</h5>
+                                                            <p class="text-muted mb-0">489 Rhapsody Street</p>
+                                                        </div>
+                                                    </div>
+                                                </td>*@
+                                                <td class="text-center">@client.Name</td>
+                                                <td class="text-center">@client.Email</td>
+                                                <td class="text-center">@client.SkypeNo</td>
+                                                <td class="text-center">@client.Date.ToString("d MMM yyyy")</td>
+                                                @if (client.Status == "Active")
+                                                {
+                                                    <td class="text-center"><span class="label label-success">@client.Status</span></td>
+                                                }
+                                                else
+                                                {
+                                                    <td class="text-center"><span class="label label-warning">@client.Status</span></td>
+                                                }
+                                                <td class="text-center">
+                                                    @*<button type="button" data-toggle="modal" data-target=".bs-example-modal-animation" class="btn btn-raised btn-primary">Launch modal</button>*@
+                                                    <button type="button" class="btn btn-outline btn-primary" onclick="ViewClient('@client.Client_ID_Auto_PK');" title="View Client"><i class="ti-eye"></i></button>
+                                                    @*<button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target=".bs-example-modal-animation" title="Change Status"><i class="ti-pencil"></i></button>*@
+                                                    <button type="button" class="btn btn-outline btn-danger" onclick="DeleteClient('@client.Client_ID_Auto_PK');" title="Delete Client"><i class="ti-trash"></i></button>
+                                                </td>
+                                            </tr>
+
+                                        }
+                                    }
+
+                                </tbody>                        
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">2016 &copy;  <a href="http://clouderac.cruzata.com">Clouderac - A Compelete CRM</a> by <a href="http://www.cruzata.com" target="_blank">Cruzata.</a></div>
+        </div>
+       
+        <!-- Right Sidebar start-->
+        <aside class="right-sidebar closed">
+            <ul role="tablist" class="nav nav-tabs nav-justified nav-sidebar">
+                <li role="presentation" class="active"><a href="#chat" aria-controls="chat" role="tab" data-toggle="tab"><i class="ti-comment-alt"></i></a></li>
+                <li role="presentation"><a href="#announcement" aria-controls="announcement" role="tab" data-toggle="tab"><i class="ti-announcement"></i></a></li>
+                <li role="presentation"><a href="#ticket" aria-controls="ticket" role="tab" data-toggle="tab"><i class="ti-bookmark-alt"></i></a></li>
+                <li role="presentation"><a href="#setting" aria-controls="setting" role="tab" data-toggle="tab"><i class="ti-settings"></i></a></li>
+            </ul>
+            <div data-mcs-theme="minimal-dark" class="tab-content nav-sidebar-content mCustomScrollbar">
+                <div id="chat" role="tabpanel" class="tab-pane fade in active">
+                    <form>
+                        <div class="form-group has-feedback">
+                            <input type="text" aria-describedby="inputChatSearch" placeholder="Chat with..." class="form-control rounded"><span aria-hidden="true" class="ti-search form-control-feedback"></span><span id="inputChatSearch" class="sr-only">(default)</span>
+                        </div>
+                    </form>
+                    <ul class="chat-list mb-0 fs-12 media-list">
+                        <li class="media">
+                            <a href="javascript:;" class="conversation-toggle">
+                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/20.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Jane Curtis</h6>
+                                    <p class="text-muted mb-0">Where are you from?</p>
+                                </div>
+                                <div class="media-right"><span class="badge bg-danger">2</span></div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="javascript:;" class="conversation-toggle">
+                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/01.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Edward Garcia</h6>
+                                    <p class="text-muted mb-0">Nice to meet you.</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="javascript:;" class="conversation-toggle">
+                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/02.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Bruce Olson</h6>
+                                    <p class="text-muted mb-0">What do you want to do?</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="javascript:;" class="conversation-toggle">
+                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/03.jpg")" alt="" class="media-object img-circle"><span class="status bg-warning"></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Martha Rodriguez</h6>
+                                    <p class="text-muted mb-0">I'm hungry.</p>
+                                </div>
+                                <div class="media-right"><span class="badge bg-danger">1</span></div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="javascript:;" class="conversation-toggle">
+                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/05.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Hannah Williamson</h6>
+                                    <p class="text-muted mb-0">Do you know the address?</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="javascript:;" class="conversation-toggle">
+                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/06.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Anthony Mills</h6>
+                                    <p class="text-muted mb-0">No problem.</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="javascript:;" class="conversation-toggle">
+                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/07.jpg")" alt="" class="media-object img-circle"><span class="status bg-warning"></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Ethan Stanley</h6>
+                                    <p class="text-muted mb-0">Hello?</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="javascript:;" class="conversation-toggle">
+                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/08.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Jonathan Castro</h6>
+                                    <p class="text-muted mb-0">OK. Thanks.</p>
+                                </div>
+                                <div class="media-right"><span class="badge bg-danger">1</span></div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="javascript:;" class="conversation-toggle">
+                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/09.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Denise Rose</h6>
+                                    <p class="text-muted mb-0">Bye bye.</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="javascript:;" class="conversation-toggle">
+                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/10.jpg")" alt="" class="media-object img-circle"><span class="status bg-danger"></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Eugene Meyer</h6>
+                                    <p class="text-muted mb-0">How are you?</p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="announcement" role="tabpanel" class="tab-pane fade">
+                    <ul class="media-list mb-0 fs-12">
+                        <li class="media">
+                            <div class="media-left"><i class="ti-bar-chart-alt media-object mo-xs img-circle bg-primary text-center"></i></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">Market Trend Data</h6>
+                                <p class="text-muted mb-0">Mattis nam fringilla dui nostra, ad fames fusce venenatis massa.</p>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <div class="media-left"><i class="ti-package media-object mo-xs img-circle bg-success text-center"></i></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">Change Your Password!</h6>
+                                <p class="text-muted mb-0">Varius dolor condimentum hendrerit eleifend est urna neque fames faucibus?</p>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <div class="media-left"><i class="ti-gift media-object mo-xs img-circle bg-warning text-center"></i></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">We Apologize</h6>
+                                <p class="text-muted mb-0">Justo at mauris ridiculus conubia penatibus dis varius proin porttitor!</p>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <div class="media-left"><i class="ti-harddrives media-object mo-xs img-circle bg-info text-center"></i></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">Content Policy Update</h6>
+                                <p class="text-muted mb-0">Quis ante imperdiet a volutpat quam tellus condimentum blandit elementum.</p>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <div class="media-left"><i class="ti-mobile media-object mo-xs img-circle bg-purple text-center"></i></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">Mobile Apps</h6>
+                                <p class="text-muted mb-0">Ad iaculis at feugiat integer lobortis vivamus hac egestas venenatis.</p>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <div class="media-left"><i class="ti-alarm-clock media-object mo-xs img-circle bg-danger text-center"></i></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">New Features</h6>
+                                <p class="text-muted mb-0">Primis elementum facilisi tristique faucibus feugiat enim rutrum id himenaeos.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div id="ticket" role="tabpanel" class="tab-pane fade">
+                    <form id="tctForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Subject" id="tctSubject" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <textarea rows="6" placeholder="Description" id="tctBody" class="form-control"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-block btn-success" id="tctBtn" onclick="openTicket();">Create Ticket</button>
+                    </form>
+                    <div id="scsMsg" style="display:none;">
+                        <h4>We Recieve your message, and get back to you shortly.</h4>
+                    </div>
+                </div>
+                <div id="setting" role="tabpanel" class="tab-pane fade">
+                    <form class="form-horizontal fs-12">
+                        <div class="clearfix">
+                            <h6 class="pull-left">Maintenance Mode</h6>
+                            <div class="switch pull-right">
+                                <input id="setting-1" type="checkbox" checked="">
+                                <label for="setting-1" class="switch-success"></label>
+                            </div>
+                        </div>
+                        <p class="text-muted">Ipsum non tempor non nullam nisi congue nisi amet enim.</p>
+                        <div class="clearfix">
+                            <h6 class="pull-left">Location Services</h6>
+                            <div class="switch pull-right">
+                                <input id="setting-2" type="checkbox" checked="">
+                                <label for="setting-2" class="switch-success"></label>
+                            </div>
+                        </div>
+                        <p class="text-muted">Eleifend suscipit erat cursus viverra commodo nostra sit commodo mollis.</p>
+                        <div class="clearfix">
+                            <h6 class="pull-left">Display Errors</h6>
+                            <div class="switch pull-right">
+                                <input id="setting-3" type="checkbox" checked="">
+                                <label for="setting-3" class="switch-success"></label>
+                            </div>
+                        </div>
+                        <p class="text-muted">Amet per tortor adipiscing risus dolor orci diam curabitur senectus.</p>
+                        <div class="clearfix">
+                            <h6 class="pull-left">Use SEO URLs</h6>
+                            <div class="switch pull-right">
+                                <input id="setting-4" type="checkbox" checked="">
+                                <label for="setting-4" class="switch-success"></label>
+                            </div>
+                        </div>
+                        <p class="text-muted">Ullamcorper dignissim facilisis fames proin a leo diam amet urna.</p>
+                        <div class="clearfix">
+                            <h6 class="pull-left">Enable History</h6>
+                            <div class="switch pull-right">
+                                <input id="setting-5" type="checkbox" checked="">
+                                <label for="setting-5" class="switch-success"></label>
+                            </div>
+                        </div>
+                        <p class="text-muted">Consectetur cubilia varius vulputate fermentum non dolor cubilia torquent risus.</p>
+                    </form>
+                </div>
+            </div>
+        </aside>
+        <aside class="conversation closed">
+            <h5 class="text-center m-0 p-20">Edward Garcia<a href="javascript:;" class="conversation-toggle pull-left"><i class="ti-arrow-left text-muted"></i></a><a href="javascript:;" class="pull-right"><i class="ti-pencil text-muted"></i></a></h5>
+            <ul data-mcs-theme="minimal-dark" class="media-list chat-content fs-12 pl-20 pr-20 mCustomScrollbar">
+                <li class="media">
+                    <div class="media-left avatar"><img src="../build/images/users/04.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                    <div class="media-body">
+                        <p>Hello.</p>
+                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted">09:45 PM <i class="ti-check text-success"></i></time>
+                    </div>
+                </li>
+                <li class="media other">
+                    <div class="media-body">
+                        <p>Hi.</p>
+                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted pull-right">09:46 PM <i class="ti-check text-success"></i></time>
+                    </div>
+                    <div class="media-right avatar"><img src="../build/images/users/18.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                </li>
+                <li class="media">
+                    <div class="media-left avatar"><img src="../build/images/users/04.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                    <div class="media-body">
+                        <p>How are you?</p>
+                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted">09:47 PM <i class="ti-check text-success"></i></time>
+                    </div>
+                </li>
+                <li class="media other">
+                    <div class="media-body">
+                        <p>I'm good. How are you?</p>
+                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted pull-right">09:50 PM <i class="ti-check text-success"></i></time>
+                    </div>
+                    <div class="media-right avatar"><img src="../build/images/users/18.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                </li>
+                <li class="media">
+                    <div class="media-left avatar"><img src="../build/images/users/04.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                    <div class="media-body">
+                        <p>Good. Do you speak English?</p>
+                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted">09:55 PM <i class="ti-check text-success"></i></time>
+                    </div>
+                </li>
+                <li class="media other">
+                    <div class="media-body">
+                        <p>A little. Are you American?</p>
+                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted pull-right">09:56 PM <i class="ti-check text-success"></i></time>
+                    </div>
+                    <div class="media-right avatar"><img src="../build/images/users/18.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                </li>
+                <li class="media">
+                    <div class="media-left avatar"><img src="../build/images/users/04.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                    <div class="media-body">
+                        <p>Yes.</p>
+                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted">10:00 PM <i class="ti-check text-success"></i></time>
+                    </div>
+                </li>
+                <li class="media other">
+                    <div class="media-body">
+                        <p>Where are you from?</p>
+                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted pull-right">10:01 PM <i class="ti-check text-success"></i></time>
+                    </div>
+                    <div class="media-right avatar"><img src="../build/images/users/18.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                </li>
+                <li class="media">
+                    <div class="media-left avatar"><img src="../build/images/users/04.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                    <div class="media-body">
+                        <p>I'm from California.</p>
+                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted">10:03 PM <i class="ti-check text-success"></i></time>
+                    </div>
+                </li>
+                <li class="media other">
+                    <div class="media-body">
+                        <p>Nice to meet you.</p>
+                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted pull-right">10:04 PM <i class="ti-check text-success"></i></time>
+                    </div>
+                    <div class="media-right avatar"><img src="../build/images/users/18.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                </li>
+                <li class="media">
+                    <div class="media-left avatar"><img src="../build/images/users/04.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                    <div class="media-body">
+                        <p>Nice to meet you too.</p>
+                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted">10:05 PM <i class="ti-check text-success"></i></time>
+                    </div>
+                </li>
+            </ul>
+            <form class="pl-20 pr-20">
+                <div class="form-group has-feedback mb-0">
+                    <input type="text" aria-describedby="inputSendMessage" placeholder="Sent a message" class="form-control rounded"><span aria-hidden="true" class="ti-pencil-alt form-control-feedback"></span><span id="inputSendMessage" class="sr-only">(default)</span>
+                </div>
+            </form>
+        </aside>
+        <!-- Right Sidebar end-->
+    </div>
+
+    @************Global Modals*************@
+
+    <div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="GTask_Modal">
+        <div role="document" class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                    <h4 id="myAnimationModalLabel" class="modal-title">Add A Task</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="GtaskForm">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group col-sm-12">
+                                    <label for="GTTitle">Title</label>
+                                    <input type="text" id="GTTitle" name="GTitle" class="form-control" />
+                                    <div id="error_div_GTTitle" style="display:none;">
+                                        <p style="color:red;">Please Enter Title For Task</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group col-sm-6">
+                                    <label for="GTRelateTo">Relate To</label>
+                                    <select id="GTRelateTo" class="form-control">
+                                        <option class="active" value="0">Choose a Category</option>
+                                        <option class="active" value="LEAD">Lead</option>
+                                        <option value="OPPORTUNITY">Opportunity</option>
+                                        <option value="CLIENT">Client</option>
+                                    </select>
+                                    <div id="error_div_GTRelateTo" style="display:none;">
+                                        <p style="color:red;">Please Choose A Related Category</p>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="GTRelateToName">Name</label>
+                                    <select id="GTRelateToName" class="form-control TRelateToName"></select>
+                                    <div id="error_div_GTRelateToName" style="display:none;">
+                                        <p style="color:red;">Please Choose A Related Entity</p>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-12">
+                                    <label for="Description">Description</label>
+                                    <textarea class="form-control" placeholder="Description.." id="GDescription"></textarea>
+                                    <div id="error_div_Description" style="display:none;">
+                                        <p style="color:red;">Please add Decription For Task</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @if (@session.UserSession.UserType == "ADM")
+                        {
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group col-sm-12">
+                                        <label for="AssignToSelect">Assign To</label>
+                                        <select id="GAssignToSelect" class="form-control" onchange="GSetAssignTo();"></select>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group col-sm-4">
+                                    <div class="checkbox-inline checkbox-custom pull-left">
+                                        <input id="TNotification" type="checkbox" onclick="SetTReminder();">
+                                        <label for="TNotification" class="checkbox-muted text-muted">&nbsp; Send Notification</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-raised btn-default" onclick="CancelToDo();" id="cancel">Cancel</button>
+                    <button type="button" class="btn btn-raised btn-danger" id="save" onclick="GSheduleTask();">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="GNotesModal">
+        <div role="document" class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                    <h4 id="myAnimationModalLabel" class="modal-title">Add A Note</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="GnotesForm">
+                        @*<div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group col-sm-12">
+                                        <label for="NTitle">Title</label>
+                                        <input type="text" id="NTitle" name="Title" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>*@
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group col-sm-6">
+                                    <label for="GNRelateTo">Relate To</label>
+                                    <select id="GNRelateTo" class="form-control">
+                                        <option class="active" value="0">Choose a Category</option>
+                                        <option class="active" value="LEAD">Lead</option>
+                                        <option value="OPPORTUNITY">Opportunity</option>
+                                        <option value="CLIENT">Client</option>
+                                    </select>
+                                    <div id="error_div_GNRelateTo" style="display:none;">
+                                        <p style="color:red;">Please Choose A Related Category</p>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="GNRelateToName">Name</label>
+                                    <select id="GNRelateToName" class="form-control TRelateToName"></select>
+                                    <div id="error_div_GNRelateToName" style="display:none;">
+                                        <p style="color:red;">Please Choose A Related Entity</p>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-12">
+                                    <label for="Note">Note</label>
+                                    <textarea class="form-control" placeholder="Note.." id="GNote"></textarea>
+                                    <div id="error_div_GNote" style="display:none;">
+                                        <p style="color:red;">Please add Note</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-raised btn-default" id="cancel" onclick="CancelGNote()">Cancel</button>
+                    <button type="button" class="btn btn-raised btn-danger" id="save" onclick="GAddNote();">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="GDocModal">
+        <div role="document" class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                    <h4 id="myAnimationModalLabel" class="modal-title">New Document</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="/Doc/AddNewDoc" method="post" enctype="multipart/form-data" id="GdocForm">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label for="Title">Title</label>
+                                <input id="GDTitle" type="text" class="form-control">
+                                <div id="error_div_GDTitle" style="display:none;">
+                                    <p style="color:red;">Please Enter Title</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-sm-12">
+                                <label for="Title">Choose Document</label>
+                                <div class="input-group">
+                                    <input id="GDocument" type="file" class="form-control">
+                                    <div id="error_div_GDocument" style="display:none;">
+                                        <p style="color:red;">Please Choose A File</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-sm-12">
+                                <div class="form-group col-sm-6">
+                                    <label for="GDRelateTo">Relate To</label>
+                                    <select id="GDRelateTo" class="form-control">
+                                        <option class="active" value="0">Choose a Categoory</option>
+                                        <option class="active" value="LEAD">Lead</option>
+                                        <option value="OPPORTUNITY">Opportunity</option>
+                                        <option value="CLIENT">Client</option>
+                                    </select>
+                                    <div id="error_div_GDRelateTo" style="display:none;">
+                                        <p style="color:red;">Please Choose A Related Category</p>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="GDRelateToName">Name</label>
+                                    <select id="GDRelateToName" class="form-control TRelateToName"></select>
+                                    <div id="error_div_GDRelateToName" style="display:none;">
+                                        <p style="color:red;">Please Choose A Related Entity</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        @*<div class="row" style="margin-top:10px;">
+                                <div class="col-sm-12">
+                                    <label for="Opportunity">Related Opportunity</label>
+                                    <input id="Opportunity" type="text" class="form-control">
+                                </div>
+                            </div>*@
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-raised btn-default" onclick="CancelGDoc();">Cancel</button>
+                    <button type="button" class="btn btn-raised btn-danger" onclick="GAddDoc();">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery/dist/jquery.min.js")"></script>
+    <!-- Bootstrap JavaScript-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/bootstrap/dist/js/bootstrap.min.js")"></script>
+    <!-- Malihu Scrollbar-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js")"></script>
+    <!-- Animo.js-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/animo.js/animo.min.js")"></script>
+    <!-- Bootstrap Progressbar-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/bootstrap-progressbar/bootstrap-progressbar.min.js")"></script>
+    <!-- jQuery Easy Pie Chart-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js")"></script>
+    <!-- jQuery BlockUI-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/blockUI/jquery.blockUI.js")"></script>
+    <!-- Flot Charts-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/flot/jquery.flot.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/flot/jquery.flot.resize.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/flot.tooltip/js/jquery.flot.tooltip.min.js")"></script>
+    <!-- Morris Chart-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/raphael/raphael-min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/morris.js/morris.min.js")"></script>
+    <!-- DataTables-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net/js/jquery.dataTables.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-bs/js/dataTables.bootstrap.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-buttons/js/dataTables.buttons.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-buttons-bs/js/buttons.bootstrap.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/jszip/dist/jszip.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/pdfmake/build/pdfmake.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/pdfmake/build/vfs_fonts.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-buttons/js/buttons.print.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-buttons/js/buttons.html5.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-colreorder/js/dataTables.colReorder.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-responsive/js/dataTables.responsive.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-responsive-bs/js/responsive.bootstrap.js")"></script>
+    <!-- Custom JS-->
+    <script type="text/javascript" src="@Url.Content("~/Content/build/js/fourth-layout/app.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/build/js/fourth-layout/demo.js")"></script>
+    @*<script type="text/javascript" src="@Url.Content("~/Content/build/js/page-content/dashboard/index-v2.js")"></script>*@
+    <script type="text/javascript" src="@Url.Content("~/Content/AppCustomScripts/GlobalCustomScripts.js")"></script>
+    
+    <script>
+        //*** (Opportunity Comparison)Float Chart
+        $(document).ready(function () {
+            var e;
+            var o;
+            var jsonObj1 = [];
+            var jsonObj2 = [];
+            $.ajax({
+                url: '/Home/GetOpportunityLostByMonth',
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({}),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data != '') {
+                        $.each(data, function (i, foo) {                          
+                            var temp = [parseInt(this.Text),parseInt(this.Value)];                         
+                            jsonObj1.push(temp);
+                        });                    
+                    }
+                    else {
+                    }
+                },
+                error: function (xhr) {
+                    $('#errorMessage').html("No connection");
+                }
+            });
+
+            $.ajax({
+                url: '/Home/GetOpportunityWinByMonth',
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({}),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data != '') {
+                        $.each(data, function (i, foo) {                         
+                            var temp1 = [parseInt(this.Text), parseInt(this.Value)];                        
+                            jsonObj2.push(temp1);
+                        });
+                        var e = jsonObj1,
+             o = jsonObj2,
+             t = [[0, "Jan"], [1, "Feb"], [2, "Mar"], [3, "Apr"], [4, "May"], [5, "Jun"], [6, "Jul"], [7, "Aug"], [8, "Sep"], [9, "Oct"], [10, "Nov"], [11, "Dec"]],
+             a = [
+                   { label: "Opportunity Won", data: e, color: "#0667D6" },
+                   { label: "Opportunity Lost", data: o, color: "#1F364F" }
+             ],
+            r = {
+                series: {
+                    lines: { show: !0, lineWidth: 4 },
+                    points: { show: !0, lineWidth: 4, radius: 6 },
+                    shadowSize: 0
+                },
+                grid: { borderWidth: 0, hoverable: !0, labelMargin: 15 },
+                xaxis: {
+                    ticks: t, tickLength: 0,
+                    font: { color: "#9a9a9a", size: 11 }
+                },
+                yaxis: {
+                    tickLength: 0, tickSize: 1e6, font: { color: "#9a9a9a", size: 11 },
+                    tickFormatter: function (e, o) { return e > 0 ? (e / 1e6).toFixed(o.tickDecimals) + " M" : (e / 1e6).toFixed(o.tickDecimals) }
+                },
+                tooltip: { show: !1 },
+                legend: { show: !0, position: "ne", noColumns: 4, labelBoxBorderColor: "#FFF", margin: 0 }
+            };
+                        $.plot($("#flot-order"), a, r),
+                        $("#flot-order").bind("plothover", function (e, o, t) {
+                            t ? $(".flotTip").text(t.series.label + ": $" + t.datapoint[1].toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")).css({ top: t.pageY + 15, left: t.pageX + 10 }).show() : $(".flotTip").hide()
+                        });
+                    }
+                    else {
+                    }
+                },
+                error: function (xhr) {
+                    $('#errorMessage').html("No connection");
+                }
+            });       
+           
+        });
+    </script>
+    
+    <script>
+        $(document).ready(function () {
+            var temp;
+            $.ajax({
+                url: '/Home/GetTopThreeSource',
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({}),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data != '') {                      
+                        temp = data.split(',');
+                        Morris.Donut({
+                            element: "morris-category",
+                            data: [{ label: temp[1], value: parseInt(temp[0]) }, { label: temp[3], value: parseInt(temp[2]) }, { label: temp[5], value: parseInt(temp[4]) }],
+                            resize: !0, colors: ["#1F364F", "#E5343D", "#E6E6E6"],
+                            formatter: function (e) { return e + "%" }
+                        })
+                    }
+                    else {
+                    }
+                },
+                error: function (xhr) {
+                    $('#errorMessage').html("No connection");
+                }
+            });           
+
+        });
+    </script>
+
+
+    <script>
+        $(document).ready(function () {
+            var jsonObj3 = [];
+        $.ajax({
+            url: '/Home/GetOpportunityWinByMonth',
+            dataType: "json",
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({}),
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                if (data != '') {
+                    $.each(data, function (i, foo) {
+                        var temp1 = [parseInt(this.Text), parseInt(this.Value)];
+                        jsonObj3.push(temp1);
+                       
+                    });
+         var l = jsonObj3,            
+         i = [{ label: "Revenue", data: l, color: "#0667D6" }],
+         n = [
+             [0, "Jan"],
+             [1, "Feb"],
+             [2, "Mar"],
+             [3, "Apr"],
+             [4, "May"],
+             [5, "Jun"],
+             [6, "Jul"],
+             [7, "Aug"],
+             [8, "Sep"],
+             [9, "Oct"],
+             [10, "Nov"],
+             [11, "Dec"]],
+         s = {
+             series: { bars: { show: !0, fill: .2, align: "center", barWidth: .5, lineWidth: 2 } },
+             grid: { borderWidth: 0, hoverable: !0, tickColor: "#fff", labelMargin: 15 },
+             xaxis: { font: { color: "#9a9a9a", size: 11 }, ticks: n },
+             yaxis: {
+                 font: { color: "#9a9a9a", size: 11 },
+                 tickFormatter: function (e, o) { return e.toString().replace(/\B(?=(?:\d{3})+(?!\d))/g, ",") }
+             }, tooltip: { show: !0, content: "%x: %y", defaultTheme: !1 }, legend: { show: !1 }
+         };
+                    $.plot($("#flot-sales"), i, s)
+                }
+                else {
+                }
+            },
+            error: function (xhr) {
+                $('#errorMessage').html("No connection");
+            }
+        });
+        });
+
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            var c = $("#order-table").DataTable({ lengthChange: !1, pageLength: 5, colReorder: !0, buttons: ["copy", "excel", "pdf", "print"], language: { search: "", searchPlaceholder: "Search records" }, columnDefs: [{ orderable: !1, targets: 6 }] }); c.buttons().container().appendTo("#order-table_wrapper .col-sm-6:eq(0)")
+        });
+    </script>
+    
+    <script>
+        $(document).ready(function () {
+            $('#tctForm').show();
+            $('#scsMsg').hide();
+        });
+
+        function openTicket() {
+            $.post('/Tickets/OpenTicket', { subject: $('#tctSubject').val(), body: $('#tctBody').val() }, function (data) {
+                if (data == "1") {
+                    $("#tctForm")[0].reset();
+                    $('#tctForm').hide();
+                    $('#scsMsg').show();
+                }
+                else {
+                    $("#error_msg_tbl").html("<p style=\"color:red;\">There is an error in processing your request. Please Try after some time.</p>");
+                    $("#error_msg_tbl").show();
+                }
+            });
+        }
+
+    </script>
+    <script>
+        function GSheduleTask() {
+
+            if (GvalidateTaskForm()) {
+                $(".se-pre-con").show();
+                var notificationFlag = '0';
+                if ($("#TNotification").is(':checked')) {
+                    notification_Flag = '1';
+                }
+                else {
+                    notification_Flag = '0';
+                }
+                alert($('#GTRelateToName').val());
+                $.ajax({
+                    url: '/Task/AjaxAddTask',
+                    dataType: "html",
+                    type: "POST",
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify({ Titele: $("#GTTitle").val(), RelateTo: $('#GTRelateToName').val(), Description: $("#GDescription").val(), notificationFlag: notification_Flag, AssignTo: $("#GAssignToSelect").val(), RelatedTable: $('#GTRelateTo').val() }),
+                    async: true,
+                    processData: false,
+                    cache: false,
+                    success: function (data) {
+                        if (data != '') {
+                            $("#GTask_Modal").modal('hide');
+                            $("#GtaskForm")[0].reset();
+                            $(".se-pre-con").fadeOut("slow");
+                        }
+                        else {
+                            $("#GTask_Modal").modal('hide');
+                            $("#taskForm")[0].reset();
+                            $(".se-pre-con").fadeOut("slow");
+                        }
+                    },
+                    error: function (xhr) {
+                        $('#errorMessage').html("No connection");
+                    }
+                });
+            }
+        }
+
+        function CancelToDo() {
+            $("#GDescription").val('');
+            $('#GTRelateTo').val("0");
+            $("#GTTitle").val('');
+            $("#GTRelateToName").val('');
+            $("#error_div_GTTitle").hide();
+            $("#error_div_GTRelateTo").hide();
+            $("#error_div_GTRelateToName").hide();
+            $("#error_div_Description").hide();
+
+        }
+    </script>
+
+</body>
+</html>

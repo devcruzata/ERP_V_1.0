@@ -1,0 +1,1885 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Clouderac</title>
+    <!-- PACE-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/PACE/themes/blue/pace-theme-flash.css")">
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/PACE/pace.min.js")"></script>
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/bootstrap/dist/css/bootstrap.min.css")">
+    <!-- Fonts-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/themify-icons/themify-icons.css")">
+    <!-- Malihu Scrollbar-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css")">
+    <!-- Animo.js-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/animo.js/animate-animo.min.css")">
+    <!-- Flag Icons-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/flag-icon-css/css/flag-icon.min.css")">
+    <!-- Bootstrap Progressbar-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css")">
+    <!-- Toastr-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/toastr/toastr.min.css")">
+    <!-- SpinKit-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/SpinKit/css/spinners/7-three-bounce.css")">
+    <!-- Jvector Map-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/jvectormap/jquery-jvectormap-2.0.3.css")">
+    <!-- Morris Chart-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/morris.js/morris.css")">
+    <!-- DataTables-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/datatables.net-bs/css/dataTables.bootstrap.min.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/datatables.net-buttons-bs/css/buttons.bootstrap.min.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/datatables.net-colreorder-bs/css/colReorder.bootstrap.min.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/datatables.net-responsive-bs/css/responsive.bootstrap.min.css")">
+    <!-- Weather Icons-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/weather-icons/css/weather-icons-wind.min.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/weather-icons/css/weather-icons.min.css")">
+    <!-- FullCalendar-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/fullcalendar/dist/fullcalendar.min.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/fullcalendar/dist/fullcalendar.print.css")" media="print">
+    <!-- jQuery MiniColors-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/jquery-minicolors/jquery.minicolors.css")">
+    <!-- Bootstrap Date Range Picker-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/bootstrap-daterangepicker/daterangepicker.css")">
+    <!-- Primary Style-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/build/css/third-layout.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/build/css/skins/red-skin.css")">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file://-->
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script type="text/javascript" src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style>
+        /* This only works with JavaScript,
+        if it's not present, don't show loader */
+        .no-js #loader {
+            display: none;
+        }
+
+        .js #loader {
+            display: block;
+            position: absolute;
+            left: 100px;
+            top: 0;
+        }
+
+        .se-pre-con {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url(../Content/img/Preloader_10.gif) center no-repeat #fff;
+        }
+    </style>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery/dist/jquery.min.js")"></script>
+    <script>
+        // Wait for window load
+        $(window).load(function () {
+            // Animate loader off screen
+            $(".se-pre-con").fadeOut("slow");;
+        });
+
+    </script>
+    
+
+</head>
+<body>
+    <div class="se-pre-con"></div>
+    <!-- Header start-->
+    <header>
+        <div class="search-bar closed">
+            <form>
+                <div class="input-group input-group-lg">
+                    <input type="text" placeholder="Search for..." class="form-control"><span class="input-group-btn">
+                        <button type="button" class="btn btn-default search-bar-toggle"><i class="ti-close"></i></button>
+                    </span>
+                </div>
+            </form>
+        </div><a href="#" class="brand pull-left"><img src="@Url.Content("~/Content/build/images/logo/logo-light.png")"   alt="" width="100" class="logo"><img src="@Url.Content("~/Content/img/Z-logo.png")" alt="" width="28" class="logo-iconic"></a><a href="javascript:;" role="button" class="hamburger-menu pull-left"><span></span></a>
+        <form class="mt-15 mb-15 pull-left hidden-xs">
+            <div class="form-group has-feedback mb-0">
+                <input type="text" aria-describedby="inputSearchFor" placeholder="Search for..." style="width: 200px" class="form-control rounded"><span aria-hidden="true" class="ti-search form-control-feedback"></span><span id="inputSearchFor" class="sr-only">(default)</span>
+            </div>
+        </form>
+        <ul class="notification-bar list-inline pull-right">
+            <li class="visible-xs"><a href="javascript:;" role="button" class="header-icon search-bar-toggle"><i class="ti-search"></i></a></li>
+            <li class="dropdown">
+                <a id="dropdownMenu1" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle bubble header-icon"><span class="btn btn-danger"><i class="ti-plus"></i></span></a>
+                <div aria-labelledby="dropdownMenu1" class="dropdown-menu dropdown-menu-right dm-medium fs-12 animated fadeInDown">
+                    <h5 class="dropdown-header">CREATE</h5>
+                    <ul data-mcs-theme="minimal-dark" class="media-list mCustomScrollbar">
+                        <li class="media">
+                            <a href="@Url.RouteUrl("ManageLeads", new { act = "add" })">
+                                <div class="media-left avatar"><span type="button" class="btn btn-success btn-sm add-btn-header"><i class="ti-user"></i></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading top-btn-label">Add Lead</h6>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="@Url.RouteUrl("ManageClient", new { act = "add" })">
+                                <div class="media-left avatar"><span type="button" class="btn btn-warning btn-sm add-btn-header"><i class="ti-id-badge"></i></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading top-btn-label">Add Client</h6>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="@Url.RouteUrl("ManageOpportunity", new { act = "add" })">
+                                <div class="media-left avatar"><span type="button" class="btn btn-primary btn-sm add-btn-header"><i class="ti-write"></i></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading top-btn-label">Add Opportunity</h6>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="#">
+                                <div class="media-left avatar"><span type="button" class="btn btn-danger btn-sm add-btn-header"><i class="ti-calendar"></i></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading top-btn-label">Add Event</h6>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="#" data-toggle="modal" data-target="#GTask_Modal" onclick="GetUserListing();">
+                                <div class="media-left avatar"><span type="button" class="btn btn-primary btn-sm add-btn-header"><i class="ti-list"></i></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading top-btn-label">Add Task</h6>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="#" data-toggle="modal" data-target="#GNotesModal">
+                                <div class="media-left avatar"><span type="button" class="btn btn-success btn-sm add-btn-header"><i class="ti-notepad"></i></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading top-btn-label">Add NOTES</h6>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="#" data-toggle="modal" data-target="#GDocModal">
+                                <div class="media-left avatar"><span type="button" class="btn btn-warning btn-sm add-btn-header"><i class="ti-dropbox"></i></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading top-btn-label">Add Document</h6>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </li>
+            <li class="dropdown">
+                <a id="dropdownMenu1" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle bubble header-icon"><i class="ti-world"></i><span class="badge bg-danger">6</span></a>
+                <div aria-labelledby="dropdownMenu1" class="dropdown-menu dropdown-menu-right dm-medium fs-12 animated fadeInDown">
+                    <h5 class="dropdown-header">You have 6 notifications</h5>
+                    <ul data-mcs-theme="minimal-dark" class="media-list mCustomScrollbar">
+                        <li class="media">
+                            <a href="javascript:;">
+                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/17.jpg")" alt="" class="media-object img-circle"><span class="status bg-warning"></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">William Carlson</h6>
+                                    <p class="text-muted mb-0">Commented on your post</p>
+                                </div>
+                                <div class="media-right text-nowrap">
+                                    <time datetime="2015-12-10T20:27:48+07:00" class="fs-11">5 mins</time>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="javascript:;">
+                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/19.jpg")" alt="" class="media-object img-circle"><span class="status bg-danger"></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Barbara Ortega</h6>
+                                    <p class="text-muted mb-0">Sent you a new email</p>
+                                </div>
+                                <div class="media-right text-nowrap">
+                                    <time datetime="2015-12-10T20:42:40+07:00" class="fs-11">8 mins</time>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="javascript:;">
+                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/02.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Mark Barnett</h6>
+                                    <p class="text-muted mb-0">Sent you a new message</p>
+                                </div>
+                                <div class="media-right text-nowrap">
+                                    <time datetime="2015-12-10T20:50:48+07:00" class="fs-11">9 mins</time>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="javascript:;">
+                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/11.jpg")" alt="" class="media-object img-circle"><span class="status bg-danger"></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Alexander Gilbert</h6>
+                                    <p class="text-muted mb-0">Sent you a new email</p>
+                                </div>
+                                <div class="media-right text-nowrap">
+                                    <time datetime="2015-12-10T20:42:40+07:00" class="fs-11">15 mins</time>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="javascript:;">
+                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/12.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Amanda Collins</h6>
+                                    <p class="text-muted mb-0">You have 8 unread messages</p>
+                                </div>
+                                <div class="media-right text-nowrap">
+                                    <time datetime="2015-12-10T20:35:35+07:00" class="fs-11">22 mins</time>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="javascript:;">
+                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/13.jpg")" alt="" class="media-object img-circle"><span class="status bg-warning"></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Christian Lane</h6>
+                                    <p class="text-muted mb-0">Commented on your post</p>
+                                </div>
+                                <div class="media-right text-nowrap">
+                                    <time datetime="2015-12-10T20:27:48+07:00" class="fs-11">30 mins</time>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="dropdown-footer text-center p-10"><a href="javascript:;" class="fw-500 text-muted">See all notifications</a></div>
+                </div>
+            </li>
+            <li class="dropdown hidden-xs">
+                <a id="dropdownMenu2" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle header-icon lh-1 pt-15 pb-15">
+                    <div class="media mt-0">
+                        <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/04.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                        <div class="media-right media-middle pl-0">
+                            <p class="fs-12 text-base mb-0">Hi, @HttpContext.Current.Session["User"].ToString()</p>
+                        </div>
+                    </div>
+                </a>
+                <ul aria-labelledby="dropdownMenu2" class="dropdown-menu fs-12 animated fadeInDown">
+                    <li><a href="#"><i class="ti-user mr-5"></i> My Profile</a></li>
+                    <li><a href="#"><i class="ti-settings mr-5"></i> Account Settings</a></li>
+                    <li><a href="/Authentication/LockScreen"><i class="ti-settings mr-5"></i> Lock</a></li>
+                    <li><a href="/Authentication/Logout"><i class="ti-power-off mr-5"></i> Logout</a></li>
+                </ul>
+            </li>
+            <li><a href="javascript:;" role="button" class="right-sidebar-toggle bubble header-icon"><i class="ti-layout-sidebar-right"></i><span class="dot bg-danger"></span></a></li>
+        </ul>
+    </header>
+    <!-- Header end-->
+    <div class="main-container">
+        <!-- Main Sidebar start-->
+        <aside class="main-sidebar">
+            <div class="user">
+                <div id="esp-user-profile" data-percent="65" style="height: 130px; width: 130px; line-height: 100px; padding: 15px;" class="easy-pie-chart"><img src="@Url.Content("~/Content/build/images/users/04.jpg")" alt="" class="avatar img-circle"><span class="status bg-success"></span></div>
+                <h4 class="fs-16 text-white mt-15 mb-5 fw-300">@HttpContext.Current.Session["User"].ToString()</h4>
+                <p class="mb-0 text-muted">Admin</p>
+            </div>
+            <ul class="list-unstyled navigation mb-0">
+                @if (@HttpContext.Current.Session["User_Type"].ToString() == "ADM")
+                {
+                    <li><a href="@Url.RouteUrl("AdminDashboard_V_2")" class="bubble"><i class="ti-home"></i><span class="sidebar-title">Dashboard</span></a></li>
+                }
+                else
+                {
+                    <li><a href="@Url.RouteUrl("CrmUserHome")" class="bubble"><i class="ti-home"></i><span class="sidebar-title"><b>Dashboard</b></span></a></li>
+                }
+                <li><a href="@Url.RouteUrl("LeadHome")" class="bubble"><i class="ti-user"></i><span class="sidebar-title">Leads</span></a></li>
+                <li><a href="@Url.RouteUrl("ClientHome")" class="bubble"><i class="ti-id-badge"></i><span class="sidebar-title">Clients</span></a></li>
+                <li><a href="@Url.RouteUrl("OpportunityHome")" class="bubble"><i class="ti-write"></i><span class="sidebar-title">Opportunities</span></a></li>
+                @*<li><a href="@Url.RouteUrl("Calender")" class="bubble"><i class="ti-id-badge"></i><span class="sidebar-title">Calender</span></a></li>*@
+                <li><a href="@Url.RouteUrl("Calender")" class="bubble"><i class="ti-id-badge"></i><span class="sidebar-title">Calender</span></a></li>
+
+
+
+                @*<li class="panel">
+                <a role="button" data-toggle="collapse" data-parent=".navigation" href="#collapse4" aria-expanded="false" aria-controls="collapse4" class="collapsed"><i class="ti-write"></i><span class="sidebar-title">Opportunities</span></a>
+                <ul id="collapse4" class="list-unstyled collapse">
+                    <li><a href="@Url.RouteUrl("OpportunityHome")">Manage Opportunity</a></li>
+                    <li><a href="@Url.RouteUrl("ManageOpportunity", new { act = "add" })">Add Opportunity</a></li>
+                </ul>
+            </li>*@
+                @*<li class="panel">
+                <a role="button" data-toggle="collapse" data-parent=".navigation" href="#collapse3" aria-expanded="false" aria-controls="collapse3" class="collapsed"><i class="ti-id-badge"></i><span class="sidebar-title">Clients</span></a>
+                <ul id="collapse3" class="list-unstyled collapse">
+                    <li><a href="@Url.RouteUrl("ClientHome")">Manage Clients</a></li>
+                    <li><a href="@Url.RouteUrl("ManageClient", new { act = "add" })">Add Client</a></li>
+                </ul>
+            </li>*@
+
+                <li><a href="@Url.RouteUrl("UserHome")" class="bubble"><i class="ti-user"></i><span class="sidebar-title">User Management</span></a></li>
+                <li><a href="@Url.RouteUrl("UserSetings")" class="bubble"><i class="ti-settings"></i><span class="sidebar-title">Setings</span></a></li>
+                <li><a href="@Url.RouteUrl("Subscriptions")" class="bubble"><i class="ti-credit-card"></i><span class="sidebar-title">Subscription</span></a></li>
+                <li><a href="@Url.RouteUrl("MarketingCampaign")" class="bubble"><i class="ti-bar-chart"></i><span class="sidebar-title">Campaign</span><span class="label label-outline label-danger">Coming-Soon</span></a></li>
+                <li><a href="#" class="bubble"><i class="ti-email"></i><span class="sidebar-title">E-Marketing</span><span class="label label-outline label-danger">Coming-Soon</span></a></li>
+                @*<li class="panel">
+                <a role="button" data-toggle="collapse" data-parent=".navigation" href="#collapse5" aria-expanded="false" aria-controls="collapse5" class="collapsed"><i class="ti-blackboard"></i><span class="sidebar-title">Projects</span></a>
+                <ul id="collapse5" class="list-unstyled collapse">
+                    <li><a href="@Url.RouteUrl("ProjectHome")">Manage Projects</a></li>
+                    <li><a href="@Url.RouteUrl("ManageProject", new { act = "add" })">Add Project</a></li>
+                </ul>
+            </li>*@
+                @*<li><a href="@Url.RouteUrl("TrackerHome")" class="bubble"><i class="ti-money"></i><span class="sidebar-title">Payment Tracker</span></a></li>
+            <li><a href="@Url.RouteUrl("MeetingHome")" class="bubble"><i class="ti-calendar"></i><span class="sidebar-title">Meetings</span></a></li>
+            <li><a href="@Url.RouteUrl("DocumentHome")" class="bubble"><i class="ti-file"></i><span class="sidebar-title">Document</span></a></li>*@
+            </ul>
+            <div class="sidebar-category">Server Status</div>
+            <div class="sidebar-widget">
+                <ul class="list-unstyled pl-25 pr-25">
+                    <li class="mb-20">
+                        <div class="block clearfix mb-10"><span class="pull-left fs-12 text-muted">CPU Used</span><span class="pull-right label label-outline label-warning">65%</span></div>
+                        <div class="progress progress-xs bg-light mb-0">
+                            <div role="progressbar" data-transitiongoal="65" class="progress-bar progress-bar-warning"></div>
+                        </div>
+                    </li>
+                    <li class="mb-20">
+                        <div class="block clearfix mb-10"><span class="pull-left fs-12 text-muted">Bandwidth</span><span class="pull-right label label-outline label-danger">80%</span></div>
+                        <div class="progress progress-xs bg-light mb-0">
+                            <div role="progressbar" data-transitiongoal="80" class="progress-bar progress-bar-danger"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+        <!-- Main Sidebar end-->
+        <div class="page-container">
+            <div class="page-header clearfix">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h4 class="mt-0 mb-5">Welcome to Cruzata CRM</h4>
+                        <p class="text-muted mb-0">Dashboard</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="btn-group mt-5">
+                            <button type="button" class="btn btn-default btn-outline"><i class="flag-icon flag-icon-us mr-5"></i> English</button>
+                            <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default btn-outline dropdown-toggle"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
+                            <ul class="dropdown-menu dropdown-menu-right animated fadeInDown">
+                                <li><a href="#"><i class="flag-icon flag-icon-de mr-5"></i> German</a></li>
+                                <li><a href="#"><i class="flag-icon flag-icon-fr mr-5"></i> French</a></li>
+                                <li><a href="#"><i class="flag-icon flag-icon-es mr-5"></i> Spanish</a></li>
+                                <li><a href="#"><i class="flag-icon flag-icon-it mr-5"></i> Italian</a></li>
+                                <li><a href="#"><i class="flag-icon flag-icon-jp mr-5"></i> Japanese</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-content container-fluid">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div id="world-map" style="height: 495px" class="mb-30"></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-4">
+                                <div class="mb-30">
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <h5 class="media-heading">New Orders <span class="text-success"><i class="ti-arrow-up fs-13"></i> 5.28%</span></h5>
+                                            <div class="fs-36 fw-600 counter">650</div>
+                                        </div>
+                                        <div class="media-right"><i class="fs-30 ti-receipt"></i></div>
+                                    </div>
+                                    <div id="flot-order" style="height: 74px"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-4">
+                                <div class="mb-30">
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <h5 class="media-heading">Total Revenue <span class="text-danger"><i class="ti-arrow-down fs-13"></i> 1.06%</span></h5>
+                                            <div class="fs-36 fw-600">$<span class="counter">20,320</span></div>
+                                        </div>
+                                        <div class="media-right"><i class="fs-30 ti-money"></i></div>
+                                    </div>
+                                    <div id="flot-revenue" style="height: 74px"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-4">
+                                <div class="mb-30">
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <h5 class="media-heading">Task Completed <span class="text-danger"><i class="ti-arrow-down fs-13"></i> 3.76%</span></h5>
+                                            <div class="fs-36 fw-600 counter">278</div>
+                                        </div>
+                                        <div class="media-right"><i class="fs-30 ti-check-box"></i></div>
+                                    </div>
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <div class="block clearfix mb-5"><span class="pull-left fs-12">Today</span><span class="pull-right label label-outline label-warning">65%</span></div>
+                                            <div class="progress progress-xs">
+                                                <div role="progressbar" data-transitiongoal="65" class="progress-bar progress-bar-warning"></div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="block clearfix mb-5"><span class="pull-left fs-12">Yesterday</span><span class="pull-right label label-outline label-danger">80%</span></div>
+                                            <div class="progress progress-xs">
+                                                <div role="progressbar" data-transitiongoal="80" class="progress-bar progress-bar-danger"></div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="widget clear">
+                            <div class="widget-heading clearfix">
+                                <h3 class="widget-title pull-left">Site Traffic</h3>
+                                <ul class="widget-tools pull-right list-inline">
+                                    <li><a href="javascript:;" class="widget-collapse"><i class="ti-angle-up"></i></a></li>
+                                    <li><a href="javascript:;" class="widget-reload"><i class="ti-reload"></i></a></li>
+                                    <li><a href="javascript:;" class="widget-remove"><i class="ti-close"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="widget-body">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="clearfix">
+                                            <div id="flot-visitor-legend" class="pull-left"></div>
+                                            <div class="pull-right">
+                                                <div class="btn-toolbar">
+                                                    <button id="daterangepicker" type="button" class="btn btn-raised btn-black"><i class="ti-calendar"> </i><span></span></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="flot-visitor" style="height: 300px"></div>
+                                        <div class="row row-0 mt-10 text-center">
+                                            <div class="col-xs-4">
+                                                <div class="fs-30 fw-600">45.87M</div>
+                                                <h5 class="m-0">Overall Visitors <span class="text-danger"><i class="ti-arrow-down fs-13"></i> 2.43%</span></h5>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <div class="fs-30 fw-600">15:32</div>
+                                                <h5 class="m-0">Avg. Visit Duration <span class="text-success"><i class="ti-arrow-up fs-13"></i> 12.54%</span></h5>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <div class="fs-30 fw-600">115.65</div>
+                                                <h5 class="m-0">Pages/Visit <span class="text-success"><i class="ti-arrow-up fs-13"></i> 5.62%</span></h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div id="morris-browser" style="height: 224px"></div>
+                                        <div class="table-responsive">
+                                            <table class="table table-hover mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width:10%">#</th>
+                                                        <th style="width:40%">Lead-Status</th>
+                                                        <th style="width:25%">No Of Leads</th>
+                                                        @*<th style="width:25%">Up/Down</th>*@
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>Working</td>
+                                                        <td id="working"></td>
+                                                        @*<td class="text-success">+3.26% </td>*@
+                                                    </tr>
+                                                    <tr>
+                                                        <td>2</td>
+                                                        <td>Pending</td>
+                                                        <td id="pending"></td>
+                                                        @*<td class="text-danger">-2.14% </td>*@
+                                                    </tr>
+                                                    <tr>
+                                                        <td>3</td>
+                                                        <td>Not-Interested</td>
+                                                        <td id="not-interested"></td>
+                                                        @*<td class="text-success">+2.92% </td>*@
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="widget text-center">
+                            <div class="widget-body">
+                                <div class="clearfix">
+                                    <div class="pull-left"><a href="javascript:;" class="widget-reload"><i class="ti-control-record text-muted"></i></a></div>
+                                    <div class="pull-right"><a href="javascript:;" class="widget-remove"><i class="ti-trash text-muted"></i></a></div>
+                                </div>
+                                <h5 class="mb-5">New Comments</h5>
+                                <div class="fs-36 fw-600 mb-20 counter">1,206</div>
+                                <div id="esp-comment" data-percent="75" style="height: 140px; width: 140px; line-height: 120px; padding: 10px;" class="easy-pie-chart fs-36"><i class="ti-comment-alt text-muted"></i></div>
+                                <div class="clearfix mt-20">
+                                    <div class="pull-left">
+                                        <div class="fs-12">Today</div>
+                                        <div class="text-success">+2.43%</div>
+                                    </div>
+                                    <div class="pull-right">
+                                        <div class="fs-12">Yesterday</div>
+                                        <div class="text-danger">-1.02%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="widget text-center">
+                            <div class="widget-body">
+                                <div class="clearfix">
+                                    <div class="pull-left"><a href="javascript:;" class="widget-reload"><i class="ti-control-record text-muted"></i></a></div>
+                                    <div class="pull-right"><a href="javascript:;" class="widget-remove"><i class="ti-trash text-muted"></i></a></div>
+                                </div>
+                                <h5 class="mb-5">New Photos</h5>
+                                <div class="fs-36 fw-600 mb-20 counter">350</div>
+                                <div id="esp-photo" data-percent="55" style="height: 140px; width: 140px; line-height: 120px; padding: 10px;" class="easy-pie-chart fs-36"><i class="ti-image text-muted"></i></div>
+                                <div class="clearfix mt-20">
+                                    <div class="pull-left">
+                                        <div class="fs-12">Today</div>
+                                        <div class="text-danger">-0.23%</div>
+                                    </div>
+                                    <div class="pull-right">
+                                        <div class="fs-12">Yesterday</div>
+                                        <div class="text-success">+1.02%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="widget text-center">
+                            <div class="widget-body">
+                                <div class="clearfix">
+                                    <div class="pull-left"><a href="javascript:;" class="widget-reload"><i class="ti-control-record text-muted"></i></a></div>
+                                    <div class="pull-right"><a href="javascript:;" class="widget-remove"><i class="ti-trash text-muted"></i></a></div>
+                                </div>
+                                <h5 class="mb-5">New Users</h5>
+                                <div class="fs-36 fw-600 mb-20 counter">890</div>
+                                <div id="esp-user" data-percent="30" style="height: 140px; width: 140px; line-height: 120px; padding: 10px;" class="easy-pie-chart fs-36"><i class="ti-user text-muted"></i></div>
+                                <div class="clearfix mt-20">
+                                    <div class="pull-left">
+                                        <div class="fs-12">Today</div>
+                                        <div class="text-success">+0.09%</div>
+                                    </div>
+                                    <div class="pull-right">
+                                        <div class="fs-12">Yesterday</div>
+                                        <div class="text-danger">-0.02%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="widget text-center">
+                            <div class="widget-body">
+                                <div class="clearfix">
+                                    <div class="pull-left"><a href="javascript:;" class="widget-reload"><i class="ti-control-record text-muted"></i></a></div>
+                                    <div class="pull-right"><a href="javascript:;" class="widget-remove"><i class="ti-trash text-muted"></i></a></div>
+                                </div>
+                                <h5 class="mb-5">New Feedbacks</h5>
+                                <div class="fs-36 fw-600 mb-20 counter">1,609</div>
+                                <div id="esp-feedback" data-percent="20" style="height: 140px; width: 140px; line-height: 120px; padding: 10px;" class="easy-pie-chart fs-36"><i class="ti-receipt text-muted"></i></div>
+                                <div class="clearfix mt-20">
+                                    <div class="pull-left">
+                                        <div class="fs-12">Today</div>
+                                        <div class="text-success">+3.29%</div>
+                                    </div>
+                                    <div class="pull-right">
+                                        <div class="fs-12">Yesterday</div>
+                                        <div class="text-success">+2.32%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="widget no-border">
+                            <table id="order-table" style="width: 100%" class="table table-hover dt-responsive nowrap">
+                                <thead>
+                                    <tr>
+                                        <th style="width:16%">Order ID</th>
+                                        <th style="width:37%">Customer</th>
+                                        <th style="width:20%">Date Added</th>
+                                        <th style="width:12%">Total</th>
+                                        <th style="width:15%">Completed</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>#6546</td>
+                                        <td>
+                                            <div class="media">
+                                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/10.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                                                <div class="media-body">
+                                                    <h5 class="media-heading">Philip Fernandez</h5>
+                                                    <p class="text-muted mb-0">489 Rhapsody Street</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>20 Feb 2016</td>
+                                        <td>$140.00</td>
+                                        <td class="text-center text-success"><i class="ti-check"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#6941</td>
+                                        <td>
+                                            <div class="media">
+                                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/20.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                                                <div class="media-body">
+                                                    <h5 class="media-heading">Mary Carr</h5>
+                                                    <p class="text-muted mb-0">3611 West Fork Drive</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>20 Feb 2016</td>
+                                        <td>$120.00</td>
+                                        <td class="text-center text-danger"><i class="ti-close"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#3202</td>
+                                        <td>
+                                            <div class="media">
+                                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/11.jpg")" alt="" class="media-object img-circle"><span class="status bg-danger"></span></div>
+                                                <div class="media-body">
+                                                    <h5 class="media-heading">Joseph Salazar</h5>
+                                                    <p class="text-muted mb-0">4489 Hart Ridge Road</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>20 Feb 2016</td>
+                                        <td>$590.00</td>
+                                        <td class="text-center text-success"><i class="ti-check"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#8302</td>
+                                        <td>
+                                            <div class="media">
+                                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/06.jpg")" alt="" class="media-object img-circle"><span class="status bg-warning"></span></div>
+                                                <div class="media-body">
+                                                    <h5 class="media-heading">John Cruz</h5>
+                                                    <p class="text-muted mb-0">3274 Lyndon Street</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>20 Feb 2016</td>
+                                        <td>$940.00</td>
+                                        <td class="text-center text-danger"><i class="ti-close"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#8943</td>
+                                        <td>
+                                            <div class="media">
+                                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/19.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                                                <div class="media-body">
+                                                    <h5 class="media-heading">Jacqueline Rios</h5>
+                                                    <p class="text-muted mb-0">559 Holly Street</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>20 Feb 2016</td>
+                                        <td>$490.00</td>
+                                        <td class="text-center text-success"><i class="ti-check"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#8943</td>
+                                        <td>
+                                            <div class="media">
+                                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/01.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                                                <div class="media-body">
+                                                    <h5 class="media-heading">Samuel Hayes</h5>
+                                                    <p class="text-muted mb-0">716 Riverwood Drive</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>20 Feb 2016</td>
+                                        <td>$230.00</td>
+                                        <td class="text-center text-success"><i class="ti-check"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#2357</td>
+                                        <td>
+                                            <div class="media">
+                                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/15.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                                                <div class="media-body">
+                                                    <h5 class="media-heading">Tyler Hamilton</h5>
+                                                    <p class="text-muted mb-0">1979 Monroe Street</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>20 Feb 2016</td>
+                                        <td>$319.00</td>
+                                        <td class="text-center text-success"><i class="ti-check"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#5784</td>
+                                        <td>
+                                            <div class="media">
+                                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/16.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                                                <div class="media-body">
+                                                    <h5 class="media-heading">Lawrence Castillo</h5>
+                                                    <p class="text-muted mb-0">1704 Saints Alley</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>20 Feb 2016</td>
+                                        <td>$860.00</td>
+                                        <td class="text-center text-success"><i class="ti-check"></i></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="widget clear">
+                            <div class="widget-heading clearfix">
+                                <h3 class="widget-title pull-left">Upcoming Events</h3>
+                                <ul class="widget-tools pull-right list-inline">
+                                    <li><a href="javascript:;" class="widget-collapse"><i class="ti-angle-up"></i></a></li>
+                                    <li><a href="javascript:;" class="widget-reload"><i class="ti-reload"></i></a></li>
+                                    <li><a href="javascript:;" class="widget-remove"><i class="ti-close"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="widget-body">
+                                <div class="row row-0 bg-danger">
+                                    @*<div class="col-md-3">
+                                        <div class="events-header"><i class="ti-move"></i> Draggable Events</div>
+                                        <div class="p-20">
+                                            <ul class="list-unstyled draggable">
+                                                <li>Start with design project</li>
+                                                <li>Lunch with family</li>
+                                                <li>Birthday party</li>
+                                                <li>Read a book</li>
+                                                <li>Drink with Jessica</li>
+                                                <li>Pay internet bills online</li>
+                                                <li>Search for a job</li>
+                                                <li>Meeting with dropbox</li>
+                                            </ul>
+                                            <div class="checkbox-custom">
+                                                <input id="drop-remove" type="checkbox" value="remove" checked="">
+                                                <label for="drop-remove">Remove after drop</label>
+                                            </div>
+                                        </div>
+                                    </div>*@
+                                    <div class="col-md-12">
+                                        <div id="fullcalendar"></div>
+                                    </div>
+                                </div>
+                                <div id="addNewEvent" tabindex="-1" role="dialog" aria-labelledby="ModalEventLabel" class="modal fade">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-black">
+                                                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                                                <h4 id="ModalEventLabel" class="modal-title">Add New Event</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="form-group">
+                                                        <input id="inputTitleEvent" type="text" placeholder="Event Name" class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input id="inputBackgroundEvent" type="text" value="#E5343D" class="form-control">
+                                                    </div>
+                                                    <input id="start" type="hidden">
+                                                    <input id="end" type="hidden">
+                                                    <input id="allDay" type="hidden">
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default">Cancel</button>
+                                                <button id="btnAddNewEvent" type="submit" class="btn btn-raised btn-black">Save</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+         <!-- Right Sidebar start-->
+        <aside class="right-sidebar closed">
+            <ul role="tablist" class="nav nav-tabs nav-justified nav-sidebar">
+                <li role="presentation" class="active"><a href="#chat" aria-controls="chat" role="tab" data-toggle="tab"><i class="ti-comment-alt"></i></a></li>
+                <li role="presentation"><a href="#announcement" aria-controls="announcement" role="tab" data-toggle="tab"><i class="ti-announcement"></i></a></li>
+                <li role="presentation"><a href="#ticket" aria-controls="ticket" role="tab" data-toggle="tab"><i class="ti-bookmark-alt"></i></a></li>
+                <li role="presentation"><a href="#setting" aria-controls="setting" role="tab" data-toggle="tab"><i class="ti-settings"></i></a></li>
+            </ul>
+            <div data-mcs-theme="minimal-dark" class="tab-content nav-sidebar-content mCustomScrollbar">
+                <div id="chat" role="tabpanel" class="tab-pane fade in active">
+                    <form>
+                        <div class="form-group has-feedback">
+                            <input type="text" aria-describedby="inputChatSearch" placeholder="Chat with..." class="form-control rounded"><span aria-hidden="true" class="ti-search form-control-feedback"></span><span id="inputChatSearch" class="sr-only">(default)</span>
+                        </div>
+                    </form>
+                    <ul class="chat-list mb-0 fs-12 media-list">
+                        <li class="media">
+                            <a href="javascript:;" class="conversation-toggle">
+                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/20.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Jane Curtis</h6>
+                                    <p class="text-muted mb-0">Where are you from?</p>
+                                </div>
+                                <div class="media-right"><span class="badge bg-danger">2</span></div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="javascript:;" class="conversation-toggle">
+                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/01.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Edward Garcia</h6>
+                                    <p class="text-muted mb-0">Nice to meet you.</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="javascript:;" class="conversation-toggle">
+                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/02.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Bruce Olson</h6>
+                                    <p class="text-muted mb-0">What do you want to do?</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="javascript:;" class="conversation-toggle">
+                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/03.jpg")" alt="" class="media-object img-circle"><span class="status bg-warning"></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Martha Rodriguez</h6>
+                                    <p class="text-muted mb-0">I'm hungry.</p>
+                                </div>
+                                <div class="media-right"><span class="badge bg-danger">1</span></div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="javascript:;" class="conversation-toggle">
+                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/05.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Hannah Williamson</h6>
+                                    <p class="text-muted mb-0">Do you know the address?</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="javascript:;" class="conversation-toggle">
+                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/06.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Anthony Mills</h6>
+                                    <p class="text-muted mb-0">No problem.</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="javascript:;" class="conversation-toggle">
+                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/07.jpg")" alt="" class="media-object img-circle"><span class="status bg-warning"></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Ethan Stanley</h6>
+                                    <p class="text-muted mb-0">Hello?</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="javascript:;" class="conversation-toggle">
+                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/08.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Jonathan Castro</h6>
+                                    <p class="text-muted mb-0">OK. Thanks.</p>
+                                </div>
+                                <div class="media-right"><span class="badge bg-danger">1</span></div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="javascript:;" class="conversation-toggle">
+                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/09.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Denise Rose</h6>
+                                    <p class="text-muted mb-0">Bye bye.</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="media">
+                            <a href="javascript:;" class="conversation-toggle">
+                                <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/10.jpg")" alt="" class="media-object img-circle"><span class="status bg-danger"></span></div>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Eugene Meyer</h6>
+                                    <p class="text-muted mb-0">How are you?</p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="announcement" role="tabpanel" class="tab-pane fade">
+                    <ul class="media-list mb-0 fs-12">
+                        <li class="media">
+                            <div class="media-left"><i class="ti-bar-chart-alt media-object mo-xs img-circle bg-primary text-center"></i></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">Market Trend Data</h6>
+                                <p class="text-muted mb-0">Mattis nam fringilla dui nostra, ad fames fusce venenatis massa.</p>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <div class="media-left"><i class="ti-package media-object mo-xs img-circle bg-success text-center"></i></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">Change Your Password!</h6>
+                                <p class="text-muted mb-0">Varius dolor condimentum hendrerit eleifend est urna neque fames faucibus?</p>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <div class="media-left"><i class="ti-gift media-object mo-xs img-circle bg-warning text-center"></i></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">We Apologize</h6>
+                                <p class="text-muted mb-0">Justo at mauris ridiculus conubia penatibus dis varius proin porttitor!</p>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <div class="media-left"><i class="ti-harddrives media-object mo-xs img-circle bg-info text-center"></i></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">Content Policy Update</h6>
+                                <p class="text-muted mb-0">Quis ante imperdiet a volutpat quam tellus condimentum blandit elementum.</p>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <div class="media-left"><i class="ti-mobile media-object mo-xs img-circle bg-purple text-center"></i></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">Mobile Apps</h6>
+                                <p class="text-muted mb-0">Ad iaculis at feugiat integer lobortis vivamus hac egestas venenatis.</p>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <div class="media-left"><i class="ti-alarm-clock media-object mo-xs img-circle bg-danger text-center"></i></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">New Features</h6>
+                                <p class="text-muted mb-0">Primis elementum facilisi tristique faucibus feugiat enim rutrum id himenaeos.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div id="ticket" role="tabpanel" class="tab-pane fade">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" placeholder="Username" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Subject" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <textarea rows="6" placeholder="Description" class="form-control"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-block btn-success">Create Ticket</button>
+                    </form>
+                </div>
+                <div id="setting" role="tabpanel" class="tab-pane fade">
+                    <form class="form-horizontal fs-12">
+                        <div class="clearfix">
+                            <h6 class="pull-left">Maintenance Mode</h6>
+                            <div class="switch pull-right">
+                                <input id="setting-1" type="checkbox" checked="">
+                                <label for="setting-1" class="switch-success"></label>
+                            </div>
+                        </div>
+                        <p class="text-muted">Ipsum non tempor non nullam nisi congue nisi amet enim.</p>
+                        <div class="clearfix">
+                            <h6 class="pull-left">Location Services</h6>
+                            <div class="switch pull-right">
+                                <input id="setting-2" type="checkbox" checked="">
+                                <label for="setting-2" class="switch-success"></label>
+                            </div>
+                        </div>
+                        <p class="text-muted">Eleifend suscipit erat cursus viverra commodo nostra sit commodo mollis.</p>
+                        <div class="clearfix">
+                            <h6 class="pull-left">Display Errors</h6>
+                            <div class="switch pull-right">
+                                <input id="setting-3" type="checkbox" checked="">
+                                <label for="setting-3" class="switch-success"></label>
+                            </div>
+                        </div>
+                        <p class="text-muted">Amet per tortor adipiscing risus dolor orci diam curabitur senectus.</p>
+                        <div class="clearfix">
+                            <h6 class="pull-left">Use SEO URLs</h6>
+                            <div class="switch pull-right">
+                                <input id="setting-4" type="checkbox" checked="">
+                                <label for="setting-4" class="switch-success"></label>
+                            </div>
+                        </div>
+                        <p class="text-muted">Ullamcorper dignissim facilisis fames proin a leo diam amet urna.</p>
+                        <div class="clearfix">
+                            <h6 class="pull-left">Enable History</h6>
+                            <div class="switch pull-right">
+                                <input id="setting-5" type="checkbox" checked="">
+                                <label for="setting-5" class="switch-success"></label>
+                            </div>
+                        </div>
+                        <p class="text-muted">Consectetur cubilia varius vulputate fermentum non dolor cubilia torquent risus.</p>
+                    </form>
+                </div>
+            </div>
+        </aside>
+        <aside class="conversation closed">
+            <h5 class="text-center m-0 p-20">Edward Garcia<a href="javascript:;" class="conversation-toggle pull-left"><i class="ti-arrow-left text-muted"></i></a><a href="javascript:;" class="pull-right"><i class="ti-pencil text-muted"></i></a></h5>
+            <ul data-mcs-theme="minimal-dark" class="media-list chat-content fs-12 pl-20 pr-20 mCustomScrollbar">
+                <li class="media">
+                    <div class="media-left avatar"><img src="../build/images/users/04.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                    <div class="media-body">
+                        <p>Hello.</p>
+                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted">09:45 PM <i class="ti-check text-success"></i></time>
+                    </div>
+                </li>
+                <li class="media other">
+                    <div class="media-body">
+                        <p>Hi.</p>
+                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted pull-right">09:46 PM <i class="ti-check text-success"></i></time>
+                    </div>
+                    <div class="media-right avatar"><img src="../build/images/users/18.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                </li>
+                <li class="media">
+                    <div class="media-left avatar"><img src="../build/images/users/04.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                    <div class="media-body">
+                        <p>How are you?</p>
+                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted">09:47 PM <i class="ti-check text-success"></i></time>
+                    </div>
+                </li>
+                <li class="media other">
+                    <div class="media-body">
+                        <p>I'm good. How are you?</p>
+                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted pull-right">09:50 PM <i class="ti-check text-success"></i></time>
+                    </div>
+                    <div class="media-right avatar"><img src="../build/images/users/18.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                </li>
+                <li class="media">
+                    <div class="media-left avatar"><img src="../build/images/users/04.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                    <div class="media-body">
+                        <p>Good. Do you speak English?</p>
+                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted">09:55 PM <i class="ti-check text-success"></i></time>
+                    </div>
+                </li>
+                <li class="media other">
+                    <div class="media-body">
+                        <p>A little. Are you American?</p>
+                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted pull-right">09:56 PM <i class="ti-check text-success"></i></time>
+                    </div>
+                    <div class="media-right avatar"><img src="../build/images/users/18.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                </li>
+                <li class="media">
+                    <div class="media-left avatar"><img src="../build/images/users/04.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                    <div class="media-body">
+                        <p>Yes.</p>
+                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted">10:00 PM <i class="ti-check text-success"></i></time>
+                    </div>
+                </li>
+                <li class="media other">
+                    <div class="media-body">
+                        <p>Where are you from?</p>
+                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted pull-right">10:01 PM <i class="ti-check text-success"></i></time>
+                    </div>
+                    <div class="media-right avatar"><img src="../build/images/users/18.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                </li>
+                <li class="media">
+                    <div class="media-left avatar"><img src="../build/images/users/04.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                    <div class="media-body">
+                        <p>I'm from California.</p>
+                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted">10:03 PM <i class="ti-check text-success"></i></time>
+                    </div>
+                </li>
+                <li class="media other">
+                    <div class="media-body">
+                        <p>Nice to meet you.</p>
+                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted pull-right">10:04 PM <i class="ti-check text-success"></i></time>
+                    </div>
+                    <div class="media-right avatar"><img src="../build/images/users/18.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                </li>
+                <li class="media">
+                    <div class="media-left avatar"><img src="../build/images/users/04.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                    <div class="media-body">
+                        <p>Nice to meet you too.</p>
+                        <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted">10:05 PM <i class="ti-check text-success"></i></time>
+                    </div>
+                </li>
+            </ul>
+            <form class="pl-20 pr-20">
+                <div class="form-group has-feedback mb-0">
+                    <input type="text" aria-describedby="inputSendMessage" placeholder="Sent a message" class="form-control rounded"><span aria-hidden="true" class="ti-pencil-alt form-control-feedback"></span><span id="inputSendMessage" class="sr-only">(default)</span>
+                </div>
+            </form>
+        </aside>
+        <!-- Right Sidebar end-->
+    </div>
+
+    @************Global Modals*************@
+
+    <div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="GTask_Modal">
+        <div role="document" class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                    <h4 id="myAnimationModalLabel" class="modal-title">Add A Task</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="GtaskForm">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group col-sm-12">
+                                    <label for="GTTitle">Title</label>
+                                    <input type="text" id="GTTitle" name="GTitle" class="form-control" />
+                                    <div id="error_div_GTTitle" style="display:none;">
+                                        <p style="color:red;">Please Enter Title For Task</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group col-sm-6">
+                                    <label for="GTRelateTo">Relate To</label>
+                                    <select id="GTRelateTo" class="form-control">
+                                        <option class="active" value="0">Choose a Categoory</option>
+                                        <option class="active" value="LEAD">Lead</option>
+                                        <option value="OPPORTUNITY">Opportunity</option>
+                                        <option value="CLIENT">Client</option>
+                                    </select>
+                                    <div id="error_div_GTRelateTo" style="display:none;">
+                                        <p style="color:red;">Please Choose A Related Category</p>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="GTRelateToName">Name</label>
+                                    <select id="GTRelateToName" class="form-control TRelateToName"></select>
+                                    <div id="error_div_GTRelateToName" style="display:none;">
+                                        <p style="color:red;">Please Choose A Related Entity</p>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-12">
+                                    <label for="Description">Description</label>
+                                    <textarea class="form-control" placeholder="Description.." id="GDescription"></textarea>
+                                    <div id="error_div_Description" style="display:none;">
+                                        <p style="color:red;">Please add Decription For Task</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @if (@HttpContext.Current.Session["User_Type"].ToString() == "ADM")
+                        {
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group col-sm-12">
+                                        <label for="AssignToSelect">Assign To</label>
+                                        <select id="GAssignToSelect" class="form-control" onchange="GSetAssignTo();"></select>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group col-sm-4">
+                                    <div class="checkbox-inline checkbox-custom pull-left">
+                                        <input id="TNotification" type="checkbox" onclick="SetTReminder();">
+                                        <label for="TNotification" class="checkbox-muted text-muted">&nbsp; Send Notification</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-raised btn-default" onclick="GCancelTask();" id="cancel">Cancel</button>
+                    <button type="button" class="btn btn-raised btn-danger" id="save" onclick="GSheduleTask();">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="GNotesModal">
+        <div role="document" class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                    <h4 id="myAnimationModalLabel" class="modal-title">Add A Note</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="GnotesForm">
+                        @*<div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group col-sm-12">
+                                        <label for="NTitle">Title</label>
+                                        <input type="text" id="NTitle" name="Title" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>*@
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group col-sm-6">
+                                    <label for="GNRelateTo">Relate To</label>
+                                    <select id="GNRelateTo" class="form-control">
+                                        <option class="active" value="0">Choose a Categoory</option>
+                                        <option class="active" value="LEAD">Lead</option>
+                                        <option value="OPPORTUNITY">Opportunity</option>
+                                        <option value="CLIENT">Client</option>
+                                    </select>
+                                    <div id="error_div_GNRelateTo" style="display:none;">
+                                        <p style="color:red;">Please Choose A Related Category</p>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="GNRelateToName">Name</label>
+                                    <select id="GNRelateToName" class="form-control TRelateToName"></select>
+                                    <div id="error_div_GNRelateToName" style="display:none;">
+                                        <p style="color:red;">Please Choose A Related Entity</p>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-12">
+                                    <label for="Note">Note</label>
+                                    <textarea class="form-control" placeholder="Note.." id="GNote"></textarea>
+                                    <div id="error_div_GNote" style="display:none;">
+                                        <p style="color:red;">Please add Note</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-raised btn-default" id="cancel" onclick="CancelNote()">Cancel</button>
+                    <button type="button" class="btn btn-raised btn-danger" id="save" onclick="GAddNote();">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="GDocModal">
+        <div role="document" class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                    <h4 id="myAnimationModalLabel" class="modal-title">New Document</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="/Doc/AddNewDoc" method="post" enctype="multipart/form-data" id="GdocForm">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label for="Title">Title</label>
+                                <input id="GDTitle" type="text" class="form-control">
+                                <div id="error_div_GDTitle" style="display:none;">
+                                    <p style="color:red;">Please Enter Title</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-sm-12">
+                                <label for="Title">Choose Document</label>
+                                <div class="input-group">
+                                    <input id="GDocument" type="file" class="form-control">
+                                    <div id="error_div_GDocument" style="display:none;">
+                                        <p style="color:red;">Please Choose A File</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-sm-12">
+                                <div class="form-group col-sm-6">
+                                    <label for="GDRelateTo">Relate To</label>
+                                    <select id="GDRelateTo" class="form-control">
+                                        <option class="active" value="0">Choose a Categoory</option>
+                                        <option class="active" value="LEAD">Lead</option>
+                                        <option value="OPPORTUNITY">Opportunity</option>
+                                        <option value="CLIENT">Client</option>
+                                    </select>
+                                    <div id="error_div_GDRelateTo" style="display:none;">
+                                        <p style="color:red;">Please Choose A Related Category</p>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="GDRelateToName">Name</label>
+                                    <select id="GDRelateToName" class="form-control TRelateToName"></select>
+                                    <div id="error_div_GDRelateToName" style="display:none;">
+                                        <p style="color:red;">Please Choose A Related Entity</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        @*<div class="row" style="margin-top:10px;">
+                                <div class="col-sm-12">
+                                    <label for="Opportunity">Related Opportunity</label>
+                                    <input id="Opportunity" type="text" class="form-control">
+                                </div>
+                            </div>*@
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-raised btn-default">Cancel</button>
+                    <button type="button" class="btn btn-raised btn-danger" onclick="GAddDoc();">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+    <!-- jQuery-->   
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery/dist/jquery.min.js")"></script>
+    <!-- Bootstrap JavaScript-->
+    @*<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>*@
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/bootstrap/dist/js/bootstrap.min.js")"></script>
+    <!-- Malihu Scrollbar-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js")"></script>
+    <!-- Animo.js-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/animo.js/animo.min.js")"></script>
+    <!-- Bootstrap Progressbar-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/bootstrap-progressbar/bootstrap-progressbar.min.js")"></script>
+    <!-- jQuery Easy Pie Chart-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js")"></script>
+    <!-- Toastr-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/toastr/toastr.min.js")"></script>
+    <!-- MomentJS-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/moment/min/moment.min.js")"></script>
+    <!-- jQuery BlockUI-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/blockUI/jquery.blockUI.js")"></script>
+    <!-- jQuery Counter Up-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery-waypoints/waypoints.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/Counter-Up/jquery.counterup.min.js")"></script>
+    <!-- Jvector Map-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/jvectormap/maps/jquery-jvectormap-world-mill.js")"></script>
+    <!-- Flot Charts-->
+    <!--[if lte IE 8]>
+    <script type="text/javascript" src="https://raw.githubusercontent.com/flot/flot/master/excanvas.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/flot/jquery.flot.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/flot/jquery.flot.resize.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/flot.curvedlines/curvedLines.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/flot.tooltip/js/jquery.flot.tooltip.min.js")"></script>
+    <!-- Morris Chart-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/raphael/raphael-min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/morris.js/morris.min.js")"></script>
+    <!-- DataTables-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net/js/jquery.dataTables.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-bs/js/dataTables.bootstrap.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-buttons/js/dataTables.buttons.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-buttons-bs/js/buttons.bootstrap.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/jszip/dist/jszip.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/pdfmabuild/pdfmake.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/pdfmabuild/vfs_fonts.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-buttons/js/buttons.print.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-buttons/js/buttons.html5.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-colreorder/js/dataTables.colReorder.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-responsive/js/dataTables.responsive.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-responsive-bs/js/responsive.bootstrap.js")"></script>
+    <!-- jQuery UI-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery-ui/jquery-ui.min.js")"></script>
+    <!-- FullCalendar-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/fullcalendar/dist/fullcalendar.min.js")"></script>
+    <!-- jQuery MiniColors-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery-minicolors/jquery.minicolors.min.js")"></script>
+    <!-- Bootstrap Date Range Picker-->
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/bootstrap-daterangepicker/daterangepicker.js")"></script>
+    <!-- Custom JS-->
+    <script type="text/javascript" src="@Url.Content("~/Content/build/js/third-layout/app.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/build/js/third-layout/demo.js")"></script>
+    @*<script type="text/javascript" src="@Url.Content("~/Content/build/js/page-content/skins/red-dashboard.js")"></script>*@
+    <script type="text/javascript" src="@Url.Content("~/Content/AppCustomScripts/GlobalCustomScripts.js")"></script>
+
+    <script>
+
+        //****** For Client World Map
+
+        $(document).ready(function () {
+            var jsonObj = [];
+            $.ajax({
+                url: '/Home/GetClientData',
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({}),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data != '') {
+                        $.each(data, function (i, foo) {                            
+                            jsonObj[this.Text] = parseInt(this.Value)                          
+                        });
+                    }
+                    else {                        
+                    }
+                },
+                error: function (xhr) {
+                    $('#errorMessage').html("No connection");
+                }
+            });
+            // var t = { AU: 12190, AR: 3510, BR: 2023, CA: 1563, CN: 5745, FR: 2555, DE: 3305, JP: 5390, RU: 2476, US: 14624 }
+            var t = jsonObj;
+            var a = [{ latLng: [41.9, 12.45], name: "Vatican City", earnings: "500" }, { latLng: [43.73, 7.41], name: "Monaco", earnings: "32" }, { latLng: [-.52, 166.93], name: "Nauru", earnings: "432" }, { latLng: [-8.51, 179.21], name: "Tuvalu", earnings: "321" }, { latLng: [43.93, 12.46], name: "San Marino", earnings: "510" }, { latLng: [47.14, 9.52], name: "Liechtenstein", earnings: "130" }, { latLng: [7.11, 171.06], name: "Marshall Islands", earnings: "234" }, { latLng: [17.3, -62.73], name: "Saint Kitts and Nevis", earnings: "329" }, { latLng: [3.2, 73.22], name: "Maldives", earnings: "120" }, { latLng: [35.88, 14.5], name: "Malta", earnings: "435" }, { latLng: [12.05, -61.75], name: "Grenada", earnings: "321" }, { latLng: [13.16, -61.23], name: "Saint Vincent and the Grenadines", earnings: "110" }, { latLng: [13.16, -59.55], name: "Barbados", earnings: "90" }, { latLng: [17.11, -61.85], name: "Antigua and Barbuda", earnings: "230" }, { latLng: [-4.61, 55.45], name: "Seychelles", earnings: "200" }, { latLng: [7.35, 134.46], name: "Palau", earnings: "320" }, { latLng: [42.5, 1.51], name: "Andorra", earnings: "123" }, { latLng: [14.01, -60.98], name: "Saint Lucia", earnings: "500" }, { latLng: [6.91, 158.18], name: "Federated States of Micronesia", earnings: "310" }, { latLng: [1.3, 103.8], name: "Singapore", earnings: "23" }, { latLng: [1.46, 173.03], name: "Kiribati", earnings: "58" }, { latLng: [-21.13, -175.2], name: "Tonga", earnings: "90" }, { latLng: [15.3, -61.38], name: "Dominica", earnings: "239" }, { latLng: [-20.2, 57.5], name: "Mauritius", earnings: "100" }, { latLng: [26.02, 50.55], name: "Bahrain", earnings: "225" }, { latLng: [.33, 6.73], name: "São Tomé and Príncipe", earnings: "150" }];
+           
+
+            $("#world-map").vectorMap({
+                map: "world_mill",
+                backgroundColor: "rgba(0,0,0,0)",
+                zoomOnScroll: !1,
+                regionStyle: {
+                    initial: { fill: "#1F364F" }
+                },
+               // markers: a,
+                markerStyle: {
+                    initial: {
+                        fill: "#E5343D", stroke: "#E5343D", "fill-opacity": 1, "stroke-width": 10, "stroke-opacity": .2, r: 5
+                    },
+                    hover: { stroke: "#1F364F", "stroke-width": 2, cursor: "pointer" }
+                },
+                onRegionTipShow: function (e, a, n) { t.hasOwnProperty(n) && a.html(a.html() + " (" + t[n] + ")") },
+                onMarkerTipShow: function (e, t, n) { t.html(t.html() + " (" + a[n].earnings + ")") }
+            });
+        });
+
+        //******* For Opportunity Plot Chart
+
+        $(document).ready(function () {
+            alert();
+            var jsonObj1 = [];
+            $.ajax({
+                url: '/Home/GetOpportunityGraphData',
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data != '') {
+                        $.each(data, function (i, foo) {                       
+                            var item = [];                           
+                                item.push(parseInt(this.Text));
+                                item.push(parseInt(this.Value));                     
+                            jsonObj1.push(item);                          
+                        });
+                        alert(jsonObj1);
+                    }
+                    else {
+                    }
+                },
+                error: function (xhr) {
+                    $('#errorMessage').html("No connection");
+                }
+            });
+
+             //var n = [[0, 57], [1, 58], [2, 93], [3, 11], [4, 40], [5, 93], [6, 29], [7, 19], [8, 87], [9, 14], [10, 130], [11, 91]],
+            var n = jsonObj1;
+              var o = [{ label: "Opportunity Won", data: n, color: "#FFB61E" }],
+                r = {
+                    series:
+                        {
+                            lines: { show: !0, lineWidth: 1 },
+                            points: { show: !0, lineWidth: 0, fill: !0, fillColor: "#FFB61E" },
+                            shadowSize: 0
+                        },
+                    grid: { hoverable: !0, borderWidth: 0 },
+                    xaxis: { ticks: 0 }, yaxis: { ticks: 0 },
+                    tooltip: { show: !0, content: "%s: %y", defaultTheme: !1 },
+                    legend: { show: !1 }
+                };
+
+              setTimeout(function () {
+                  $.plot($("#flot-order"), o, r);
+              }, 500);
+        });
+
+        //*** For Opportunity Revenue Plot Chart
+
+        $(document).ready(function () {
+            var jsonObj2 = [];
+            $.ajax({
+                url: '/Home/GetOpportunityRevenueGraphData',
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({}),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data != '') {
+                        $.each(data, function (i, foo) {
+                            var item = [];
+                            item.push(parseInt(this.Text));
+                            item.push(parseInt(this.Value));
+                            jsonObj2.push(item);
+                        });
+                        alert(jsonObj2);
+                        JSON.stringify(jsonObj2);
+                    }
+                    else {
+                    }
+                },
+                error: function (xhr) {
+                    $('#errorMessage').html("No connection");
+                }
+            });
+
+            
+            var i = jsonObj2;
+            //var i = [[0, 755], [1, 1133], [2, 1234], [3, 1448], [4, 1198], [5, 918], [6, 583], [7, 842], [8, 540], [9, 665], [10, 1195], [11, 742], [12, 1040], [13, 682], [14, 1190]],
+          var l = [{ label: "Revenue", data: i, color: "#E5343D" }],
+           s =
+           {
+               series: {
+                   lines: { show: !0, lineWidth: 1 },
+                   points: { show: !0, lineWidth: 0, fill: !0, fillColor: "#E5343D" },
+                   shadowSize: 0
+               },
+               grid: { hoverable: !0, borderWidth: 0 },
+               xaxis: { ticks: 0 }, yaxis: { ticks: 0 },
+               tooltip: { show: !0, content: "%s: $%y", defaultTheme: !1 },
+               legend: { show: !1 }
+           };            
+
+            setTimeout(function () {
+                $.plot($("#flot-revenue"), l, s);
+            }, 600);
+        });
+
+        //*** For Lead And Client Comparison Projection Graph
+
+        $(document).ready(function () {
+
+            var jsonObj3 = [];
+            var jsonObj4 = [];
+            $.ajax({
+                url: '/Home/GetLeadsByMonth',
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({}),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data != '') {
+                        $.each(data, function (i, foo) {
+                            var item = [];
+                            item.push(parseInt(this.Text));
+                            item.push(parseInt(this.Value));
+                            jsonObj3.push(item);
+                        });
+                        //alert(JSON.stringify(jsonObj3));
+                    }
+                    else {
+                    }
+                },
+                error: function (xhr) {
+                    $('#errorMessage').html("No connection");
+                }
+            });
+
+            $.ajax({
+                url: '/Home/GetClientByMonth',
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({}),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data != '') {
+                        $.each(data, function (i, foo) {
+                            var item = [];
+                            item.push(parseInt(this.Text));
+                            item.push(parseInt(this.Value));
+                            jsonObj4.push(item);
+                        });
+                        JSON.stringify(jsonObj4);
+                        //alert(JSON.stringify(jsonObj4));
+                    }
+                    else {
+                    }
+                },
+                error: function (xhr) {
+                    $('#errorMessage').html("No connection");
+                }
+            });
+
+
+           // var d = [[0, 150708], [1, 502507], [2, 220627], [3, 821182], [4, 233599], [5, 4087866], [6, 364625], [7, 3064625], [8, 236585], [9, 1040222], [10, 516876], [11, 292003]],
+
+            //    c = [[0, 650708], [1, 1102507], [2, 417012], [3, 495497], [4, 887603], [5, 564775], [6, 2580159], [7, 607998], [8, 1906411], [9, 346237], [10, 315699], [11, 202003]],
+            var d = jsonObj3;
+            var c = jsonObj4;
+           // alert(JSON.stringify(d));
+           // alert(JSON.stringify(c));
+             var   m = [[0, "Jan"], [1, "Feb"], [2, "Mar"], [3, "Apr"], [4, "May"], [5, "Jun"], [6, "Jul"], [7, "Aug"], [8, "Sep"], [9, "Oct"], [10, "Nov"], [11, "Dec"]],
+                h = [
+                    {
+                    label: "Leads",
+                    data: d,
+                    color: "#E5343D",
+                    lines: { show: !0, fill: .9, lineWidth: 0 },
+                    curvedLines: { apply: !0, monotonicFit: !0 }
+                    },
+                    {
+                        data: d,
+                        color: "#E5343D",
+                        lines: { show: !0, lineWidth: 0 }
+                    },
+                    {
+                        label: "Clients",
+                        data: c,
+                        color: "#1F364F",
+                        lines: { show: !0, fill: .9, lineWidth: 0 },
+                        curvedLines: { apply: !0, monotonicFit: !0 }
+                    },
+                    {
+                        data: c,
+                        color: "#1F364F",
+                        lines: { show: !0, lineWidth: 0 }
+                    }],
+                g = {
+                    series: { curvedLines: { active: !0 }, shadowSize: 0 },
+                    grid: { borderWidth: 0, hoverable: !0, labelMargin: 15 },
+                    xaxis: { ticks: m, tickLength: 0, font: { color: "#9a9a9a", size: 11 } },
+                    yaxis: {
+                        tickLength: 0,
+                        tickSize: 1e6,
+                        font: { color: "#9a9a9a", size: 11 },
+                        tickFormatter: function (e, t) { return e > 0 ? (e / 1e6).toFixed(t.tickDecimals) + " M" : (e / 1e6).toFixed(t.tickDecimals) }
+                    },
+                    tooltip: { show: !1 },
+                    legend: {
+                        show: !0, container: $("#flot-visitor-legend"),
+                        noColumns: 4,
+                        labelBoxBorderColor: "#FFF",
+                        margin: 0
+                    }
+                };
+
+
+             setTimeout(function () {
+                 $.plot($("#flot-visitor"), h, g),
+
+            $("#flot-visitor").bind("plothover", function (e, t, a) { a ? $(".flotTip").text(a.datapoint[1].toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " visitors").css({ top: a.pageY + 15, left: a.pageX + 10 }).show() : $(".flotTip").hide() }),
+
+            $("#daterangepicker").daterangepicker({ ranges: { Today: [moment(), moment()], Yesterday: [moment().subtract("days", 1), moment().subtract("days", 1)], "Last 7 Days": [moment().subtract("days", 6), moment()], "Last 30 Days": [moment().subtract("days", 29), moment()], "This Month": [moment().startOf("month"), moment().endOf("month")], "Last Month": [moment().subtract("month", 1).startOf("month"), moment().subtract("month", 1).endOf("month")] }, opens: "left", startDate: moment().subtract(29, "days"), endDate: moment(), applyClass: "btn-raised btn-black", cancelClass: "btn-raised btn-default" }, function (e, t, a) { $("#daterangepicker span").html(e.format("MMMM D, YYYY") + " - " + t.format("MMMM D, YYYY")) }),
+
+            $("#daterangepicker span").html(moment().subtract(29, "days").format("MMMM D, YYYY") + " - " + moment().format("MMMM D, YYYY"))
+             }, 2000);
+            
+
+             
+        });        
+
+        $(document).ready(function () {
+            var temp;
+            $.ajax({
+                url: '/Home/GetLeadsPercentByStatus',
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({}),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data != '') {                        
+                        temp = data.split(',');                        
+                    }
+                    else {
+                    }
+                },
+                error: function (xhr) {
+                    $('#errorMessage').html("No connection");
+                }
+            });
+
+            setTimeout(function () {
+                Morris.Donut({
+                    element: "morris-browser",
+                    data: [{ label: "Working Leads", value: parseInt(temp[0]) }, { label: "Pending Leads", value: parseInt(temp[1]) }, { label: "Not-Interested Leads", value: parseInt(temp[2]) }],
+                    resize: !0, colors: ["#1F364F", "#E5343D", "#E6E6E6"],
+                    formatter: function (e) { return e + "%" }
+                })
+            }, 800);
+           
+        });
+
+        //**** For Calender
+
+        $(document).ready(function () {
+            function e() {
+                $("#addNewEvent").modal("hide"),
+                $("#fullcalendar").fullCalendar("renderEvent",
+                    {                        
+                        title: $("#inputTitleEvent").val(),
+                        start: new Date($("#start").val()),
+                        end: new Date($("#end").val()),
+                        //color: $("#inputBackgroundEvent").val(),
+                        backgroundColor: '#fff',
+                        textColor: 'black',
+                        borderColor: $("#inputBackgroundEvent").val()
+                    }, !0)
+            }
+
+            $("#fullcalendar").fullCalendar({
+                header: {
+                    left: "prev,next",
+                    center: "title",
+                    right: "month,agendaWeek,agendaDay"
+                },
+                buttonIcons: {
+                    prev: " ti-angle-left",
+                    next: " ti-angle-right"
+                },
+                defaultDate: "2016-03-15",
+                editable: !0,
+                droppable: !0,
+                selectable: !0,
+                select: function (e, t, a) {
+                    $("#start").val(moment(e).format("YYYY/MM/DD")),
+                    $("#end").val(moment(t).format("YYYY/MM/DD")),
+                    $("#inputTitleEvent").val(""),
+                    $("#addNewEvent").modal("show")
+                },
+                eventColor: "#E5343D",
+                eventLimit: !0,
+                events: [{
+                    title: "All Day Event",
+                    start: "2016-03-18",
+                    color: "#8E23E0"
+                },
+                {
+                    title: "Long Event",
+                    start: "2016-03-07",
+                    end: "2016-03-10",
+                    color: "#E5343D"
+                },
+                {
+                    id: 999,
+                    title: "Repeating Event",
+                    start: "2016-03-28T16:00:00",
+                    color: "#FFB61E"
+                },
+                {
+                    id: 999,
+                    title: "Repeating Event",
+                    start: "2016-03-16T16:00:00",
+                    color: "#FFB61E"
+                },
+                { title: "Conference", start: "2016-03-11", end: "2016-03-13", color: "#17A88B" },
+                { title: "Meeting", start: "2016-03-12T10:30:00", end: "2016-03-12T12:30:00", color: "#0667D6" },
+                { title: "Lunch", start: "2016-03-12T12:00:00", color: "#1F364F" },
+                { title: "Meeting", start: "2016-03-12T14:30:00", color: "#E5343D" },
+                { title: "Happy Hour", start: "2016-03-12T17:30:00", color: "#888888" },
+                { title: "Dinner", start: "2016-03-12T20:00:00", color: "#0667D6" },
+                { title: "Birthday Party", start: "2016-03-13T07:00:00", color: "#8E23E0" },
+                { title: "Click for Google", url: "http://google.com/", start: "2016-03-28", color: "#0667D6" }],
+                drop: function () { $("#drop-remove").is(":checked") && $(this).remove() }
+            }),
+
+    $("#btnAddNewEvent").on("click", function (t) { t.preventDefault(), e() }),
+
+    $("#inputBackgroundEvent").minicolors({ theme: "bootstrap" });
+        });
+
+
+        //***** For Task Completion ProgressBar
+
+        $(document).ready(function () {
+
+
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            var $calendar = $("#fullcalendar").fullCalendar({
+                // Start of calendar options
+                header: {
+                    left: 'title',
+                    right: 'today,month,agendaDay,agendaWeek prev,next'
+                },
+                // Make possible to respond to clicks and selections
+                selectable: true,
+                // This is the callback that will be triggered when a selection is made.
+                // It gets start and end date/time as part of its arguments
+                select: function(start, end, jsEvent, view) {
+ 
+                    // Ask for a title. If empty it will default to "New event"
+                    var title = prompt("Enter a title for this event", "New event");
+ 
+                    // If did not pressed Cancel button
+                    if (title != null) {
+                        // Create event
+                        var event = {
+                            title: title.trim() != "" ? title : "New event",
+                            start: start,
+                            end: end
+                        };
+ 
+                        // Push event into fullCalendar's array of events
+                        // and displays it. The last argument is the
+                        // "stick" value. If set to true the event
+                        // will "stick" even after you move to other
+                        // year, month, day or week.
+ 
+                        $calendar.fullCalendar("renderEvent", event, true);
+                    };
+                    // Whatever happens, unselect selection
+                    $calendar.fullCalendar("unselect");
+
+                }, // End select callback
+
+                // Make events editable, globally
+                editable: true,
+
+                // Callback triggered when we click on an event
+
+                eventClick: function (event, jsEvent, view) {
+                    // Ask for a title. If empty it will default to "New event"
+                    var newTitle = prompt("Enter a new title for this event", event.title);
+
+                    // If did not pressed Cancel button
+                    if (newTitle != null) {
+                        // Update event
+                        event.title = newTitle.trim() != "" ? newTitle : event.title;
+
+                        // Call the "updateEvent" method
+                        $calendar.fullCalendar("updateEvent", event);
+
+                    }
+                } // End callback eventClick
+           // } 
+            });// End of calendar options
+        });
+    </script>
+
+
+   
+
+
+
+</body>
+</html>

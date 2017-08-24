@@ -1,0 +1,80 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageLogin.cshtml";
+}
+
+<div class="container page-container">
+    <div class="page-content">
+        <div class="logo"><img class="m-10" src="Content/build/images/logo/login-logo.png" alt="" width="190"></div>
+        <form method="post" action="/Authentication/Login" class="form-horizontal" onsubmit="return validateForm();">
+            <div class="form-group form-group-login">
+                <div class="col-xs-12">
+                    <input type="text" placeholder="Username" class="form-control" id="UserName" name="UserName">
+                    <div id="error_div_UserName" style="display:none;">
+                        <p style="color:red;">Please Enter UserName</p>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group form-group-login">
+                <div class="col-xs-12">
+                    <input type="password" placeholder="Password" class="form-control" id="Password" name="Password">
+                    <div id="error_div_Password1" style="display:none;">
+                        <p style="color:red;">Please Enter Password</p>
+                    </div>
+                    <div id="error_div_Password2" style="display:none;">
+                        <p style="color:red;">Password Should be minimum of 6 Character</p>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <div class="checkbox-inline checkbox-custom pull-left">
+                        <input id="exampleCheckboxRemember" type="checkbox" value="remember">
+                        <label for="exampleCheckboxRemember" class="checkbox-muted text-muted">Remember me</label>
+                    </div>
+                    <div class="pull-right"><a href="/Authentication/ForgotPassword" class="inline-block form-control-static">Forgot Your Passowrd?</a></div>
+                </div>
+            </div>
+            <button type="submit" class="btn-lg btn btn-primary btn-rounded btn-block">Sign in</button>
+            @if (ViewBag.Error_Msg != "")
+            {
+                <div>
+                    <p style="color:red;">@ViewBag.Error_Msg</p>
+                </div>
+            }
+            @if (TempData["Error_Msg"] != "")
+            {
+                <div>
+                  <p style="color:red;">@TempData["Error_Msg"]</p>
+                </div>
+            }
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function validateForm() {
+        if ($("#UserName").val().trim() == "") {           
+            $("#error_div_UserName").show();
+            return false;
+        }
+        else if ($("#Password").val().trim() == "") {
+            $("#error_div_Password1").show();
+            $("#error_div_UserName").hide();
+            return false;
+        }
+        else if ($("#Password").val().trim().length < 6) {
+            $("#error_div_Password2").show();
+            $("#error_div_Password1").hide();
+            $("#error_div_UserName").hide();
+            return false;
+        }
+        else {
+            $("#error_div_Password2").hide();
+            $("#error_div_Password1").hide();
+            $("#error_div_UserName").hide();
+            return true;
+        }
+    }
+
+</script>
+

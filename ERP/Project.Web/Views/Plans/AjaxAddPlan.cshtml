@@ -1,0 +1,20 @@
+﻿@{
+    Layout = null;
+}
+
+@{
+    foreach (var plan in Model.plans)
+    {
+
+        <tr>
+            <td class="text-center">@plan.Name</td>
+            <td class="text-center">@plan.Price</td>
+            <td class="text-center">@plan.Type</td>
+            <td class="text-center"><span class="label label-success">@plan.Status</span></td>
+            <td class="text-center">
+                <button type="button" class="btn btn-outline btn-danger" onclick="DeleteSubscription('@plan.Plan_ID');" title="Delete Plan"><i class="ti-trash"></i></button>
+            </td>
+        </tr>
+
+    }
+}

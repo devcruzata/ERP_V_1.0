@@ -1,0 +1,67 @@
+D:\ABHISHEK\Work Space\ERP\Project.Entity\bin\Release\Project.Entity.dll
+D:\ABHISHEK\Work Space\ERP\Project.Entity\bin\Release\Project.Entity.pdb
+D:\ABHISHEK\Work Space\ERP\Project.Entity\bin\Release\RestSharp.dll
+D:\ABHISHEK\Work Space\ERP\Project.Entity\bin\Release\RestSharp.xml
+D:\ABHISHEK\Work Space\ERP\Project.Entity\obj\Release\Project.Entity.csprojResolveAssemblyReference.cache
+D:\ABHISHEK\Work Space\ERP\Project.Entity\obj\Release\Project.Entity.dll
+D:\ABHISHEK\Work Space\ERP\Project.Entity\obj\Release\Project.Entity.pdb
+I:\CRM 25 april\ERP\Project.Entity\bin\Release\Project.Entity.dll
+I:\CRM 25 april\ERP\Project.Entity\bin\Release\Project.Entity.pdb
+I:\CRM 25 april\ERP\Project.Entity\bin\Release\RestSharp.dll
+I:\CRM 25 april\ERP\Project.Entity\bin\Release\RestSharp.xml
+I:\CRM 25 april\ERP\Project.Entity\obj\Release\Project.Entity.dll
+I:\CRM 25 april\ERP\Project.Entity\obj\Release\Project.Entity.pdb
+F:\Workspace\ERP\Project.Entity\bin\Release\Project.Entity.dll
+F:\Workspace\ERP\Project.Entity\bin\Release\Project.Entity.pdb
+F:\Workspace\ERP\Project.Entity\bin\Release\Project.ViewModel.dll
+F:\Workspace\ERP\Project.Entity\bin\Release\RestSharp.dll
+F:\Workspace\ERP\Project.Entity\bin\Release\Project.ViewModel.pdb
+F:\Workspace\ERP\Project.Entity\bin\Release\RestSharp.xml
+F:\Workspace\ERP\Project.Entity\obj\Release\Project.Entity.csprojResolveAssemblyReference.cache
+F:\Workspace\ERP\Project.Entity\obj\Release\Project.Entity.dll
+F:\Workspace\ERP\Project.Entity\obj\Release\Project.Entity.pdb
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Entity\bin\Release\Project.Entity.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Entity\bin\Release\Project.Entity.pdb
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Entity\bin\Release\Project.ViewModel.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Entity\bin\Release\RestSharp.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Entity\bin\Release\Project.ViewModel.pdb
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Entity\bin\Release\RestSharp.xml
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Entity\obj\Release\Project.Entity.csprojResolveAssemblyReference.cache
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Entity\obj\Release\Project.Entity.dll
+D:\ABHISHEK\Work Space\erp_07_july\ERP\Project.Entity\obj\Release\Project.Entity.pdb
+I:\erp21july\ERP\Project.Entity\bin\Release\Project.Entity.dll
+I:\erp21july\ERP\Project.Entity\bin\Release\Project.Entity.pdb
+I:\erp21july\ERP\Project.Entity\bin\Release\Project.ViewModel.dll
+I:\erp21july\ERP\Project.Entity\bin\Release\RestSharp.dll
+I:\erp21july\ERP\Project.Entity\bin\Release\Project.ViewModel.pdb
+I:\erp21july\ERP\Project.Entity\bin\Release\RestSharp.xml
+I:\erp21july\ERP\Project.Entity\obj\Release\Project.Entity.csprojResolveAssemblyReference.cache
+I:\erp21july\ERP\Project.Entity\obj\Release\Project.Entity.dll
+I:\erp21july\ERP\Project.Entity\obj\Release\Project.Entity.pdb
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Entity\bin\Release\Project.Entity.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Entity\bin\Release\Project.Entity.pdb
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Entity\bin\Release\Project.ViewModel.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Entity\bin\Release\RestSharp.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Entity\bin\Release\Project.ViewModel.pdb
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Entity\bin\Release\RestSharp.xml
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Entity\obj\Release\Project.Entity.csprojResolveAssemblyReference.cache
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Entity\obj\Release\Project.Entity.dll
+F:\Workspace\ERP_V_1.1\erp21july\ERP\Project.Entity\obj\Release\Project.Entity.pdb
+G:\ERP_AUG\ERP\Project.Entity\bin\Release\Project.Entity.dll
+G:\ERP_AUG\ERP\Project.Entity\bin\Release\Project.Entity.pdb
+G:\ERP_AUG\ERP\Project.Entity\bin\Release\Project.ViewModel.dll
+G:\ERP_AUG\ERP\Project.Entity\bin\Release\RestSharp.dll
+G:\ERP_AUG\ERP\Project.Entity\bin\Release\Project.ViewModel.pdb
+G:\ERP_AUG\ERP\Project.Entity\bin\Release\RestSharp.xml
+G:\ERP_AUG\ERP\Project.Entity\obj\Release\Project.Entity.csprojResolveAssemblyReference.cache
+G:\ERP_AUG\ERP\Project.Entity\obj\Release\Project.Entity.dll
+G:\ERP_AUG\ERP\Project.Entity\obj\Release\Project.Entity.pdb
+I:\ERP_AUG\ERP\Project.Entity\bin\Release\Project.Entity.dll
+I:\ERP_AUG\ERP\Project.Entity\bin\Release\Project.Entity.pdb
+I:\ERP_AUG\ERP\Project.Entity\bin\Release\Project.ViewModel.dll
+I:\ERP_AUG\ERP\Project.Entity\bin\Release\RestSharp.dll
+I:\ERP_AUG\ERP\Project.Entity\bin\Release\Project.ViewModel.pdb
+I:\ERP_AUG\ERP\Project.Entity\bin\Release\RestSharp.xml
+I:\ERP_AUG\ERP\Project.Entity\obj\Release\Project.Entity.csprojResolveAssemblyReference.cache
+I:\ERP_AUG\ERP\Project.Entity\obj\Release\Project.Entity.dll
+I:\ERP_AUG\ERP\Project.Entity\obj\Release\Project.Entity.pdb

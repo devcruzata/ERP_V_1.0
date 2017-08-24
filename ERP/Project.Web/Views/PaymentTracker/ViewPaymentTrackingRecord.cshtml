@@ -1,0 +1,125 @@
+﻿@model Project.Web.Models.PaymentTrackingModel
+@{
+    ViewBag.Title = "Add-Payment";
+}
+
+<!-- jQuery-->
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery/dist/jquery.min.js")"></script>
+
+
+
+
+<!-- Page Content -->
+<div class="page-container">
+    <div class="page-header clearfix">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4 class="mt-0 mb-5">Payment Record</h4>
+                <ol class="breadcrumb mb-0">
+                    <li><a href="@Url.RouteUrl("AdminHome")">Home</a></li>
+                    <li><a href="@Url.RouteUrl("TrackerHome")">Payment Tracker</a></li>
+                    <li class="active">Payment Records</li>
+                </ol>
+            </div>
+            <div class="col-sm-6">
+                <div class="btn-group mt-5">
+                    <button type="button" class="btn btn-default btn-outline"><i class="flag-icon flag-icon-us mr-5"></i> English</button>
+                    <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default btn-outline dropdown-toggle"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
+                    <ul class="dropdown-menu dropdown-menu-right animated fadeInDown">
+                        <li><a href="#"><i class="flag-icon flag-icon-de mr-5"></i> German</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-fr mr-5"></i> French</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-es mr-5"></i> Spanish</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-it mr-5"></i> Italian</a></li>
+                        <li><a href="#"><i class="flag-icon flag-icon-jp mr-5"></i> Japanese</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-content container-fluid">
+        <div class="widget">
+            <div class="widget-heading clearfix">
+                <h3 class="widget-title pull-left">Payment Records</h3>
+                @if (ViewBag.Error_Msg != "")
+                {
+                    <div style="margin-left:200px;">
+                        <p style="color:red;">@ViewBag.Error_Msg</p>
+                    </div>
+                }
+                <div class="pull-right">
+                    @*<button type="button" class="btn btn-primary" title="Add Payment" onclick="SubmitForm()"><i class="ti-save"></i></button>*@
+                    <button type="button" class="btn btn-default" title="Cancel" onclick="Cancel();"><i class="ti-share-alt"></i></button>
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="tab-content">
+                    <div id="general" role="tabpanel" class="tab-pane active">
+                        <div class="form-group ">
+                            <div class="col-sm-6" id="div_Title">
+                                <div class="col-sm-3">Title: </div>
+                                <div class="col-sm-6" id="Title">@Model.Project_Title</div>                                
+                            </div>                            
+                            <div class="col-sm-6" id="div_Date">
+                                <div class="col-sm-3">Client: </div>
+                                <div class="col-sm-6" id="Date">@Model.ClientName</div>                                
+                            </div>                            
+                        </div>
+                        <div class="form-group ">
+                            <div class="col-sm-6" id="div_Client">
+                                <div class="col-sm-3">Total Cost: </div>
+                                <div class="col-sm-6" id="Client">@Model.TotalCost</div>                                                                
+                            </div>
+                            <div class="col-sm-6" id="div_Client">
+                                <div class="col-sm-3">Amount Reamining: </div>
+                                <div class="col-sm-6" id="Client">@Model.AmountPaid</div>
+                            </div>                                        
+                        </div>                        
+                        <div class="clearfix"></div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="panel panel-info">
+                    <div class="panel-heading" style="background-color: #1f364f !important;">                   
+                            <h3 class="panel-title" style="color: white !important;">Payment Records </h3>                       
+                    </div>
+                    <div class="panel-body" id="readable_sow">
+
+                        <div class="col-sm-12" id="sow@i">
+                            <table class="table table-hover table-striped dt-responsive nowrap">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="color: #1f364f !important;">Date</th>
+                                        <th class="text-center" style="color: #1f364f !important;">Amount Paid<br />(IN $)</th>
+                                        <th class="text-center" style="color: #1f364f !important;">Conversion Rate</th>
+                                        <th class="text-center" style="color: #1f364f !important;">Amount Paid<br />(IN INR)</th>                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                   
+                                    @foreach (var payment in Model.payment_data)
+                                    {
+                                        decimal Amnt_INR = (payment.AmountPaid / payment.ConvRate);
+                                        Amnt_INR = decimal.Round(Amnt_INR, 2);
+                                        <tr>
+                                            <td class="text-center">@payment.Date</td>
+                                            <td class="text-center">@payment.AmountPaid</td>
+                                            <td class="text-center">@payment.ConvRate</td>
+                                            <td class="text-center">@Amnt_INR</td>                                           
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    function Cancel() {
+        window.location = '@Url.RouteUrl("TrackerHome")';
+    }
+</script>

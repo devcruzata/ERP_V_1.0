@@ -1,0 +1,609 @@
+﻿@model Project.Web.Models.DashboardModel
+@{
+    Layout = null;
+
+}
+
+@using Project.Web.Common
+@{
+    SessionHelper session = new SessionHelper();
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Umega App - Responsive web app kit</title>
+    <!-- PACE-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/PACE/themes/blue/pace-theme-flash.css")">
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/PACE/pace.min.js")"></script>
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/bootstrap/dist/css/bootstrap.min.css")">
+    <!-- Fonts-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/themify-icons/themify-icons.css")">
+    <!-- Malihu Scrollbar-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css")">
+    <!-- Animo.js-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/animo.js/animate-animo.min.css")">
+    <!-- Flag Icons-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/flag-icon-css/css/flag-icon.min.css")">
+    <!-- Bootstrap Progressbar-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css")">
+    <!-- SpinKit-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/SpinKit/css/spinners/7-three-bounce.css")">
+    <!-- Morris Chart-->
+    @*<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/morris.js/morris.css")">*@
+    <!-- DataTables-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/datatables.net-bs/css/dataTables.bootstrap.min.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/datatables.net-buttons-bs/css/buttons.bootstrap.min.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/datatables.net-colreorder-bs/css/colReorder.bootstrap.min.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/datatables.net-responsive-bs/css/responsive.bootstrap.min.css")">
+    <!-- Primary Style-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/build/css/fourth-layout.css")">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file://-->
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script type="text/javascript" src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style>
+        /* This only works with JavaScript,
+        if it's not present, don't show loader */
+        .no-js #loader {
+            display: none;
+        }
+
+        .js #loader {
+            display: block;
+            position: absolute;
+            left: 100px;
+            top: 0;
+        }
+
+        .se-pre-con {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url(../Content/img/Preloader_10.gif) center no-repeat #fff;
+        }
+    </style>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery/dist/jquery.min.js")"></script>
+
+
+
+
+
+    <script>
+        // Wait for window load
+        $(window).load(function () {
+            // Animate loader off screen
+            $(".se-pre-con").fadeOut("slow");;
+        });
+
+    </script>
+
+
+</head>
+<body>
+    <div class="se-pre-con"></div>
+    <!-- Header start-->
+    <header>
+        <div class="search-bar closed">           
+        </div><a href="index.html" class="brand pull-left"><img src="@Url.Content("~/Content/build/images/logo/logo-light.png")" alt="" width="100" class="logo"><img src="@Url.Content("~/Content/img/Z-logo.png")" alt="" width="28" class="logo-sm"></a><a href="javascript:;" role="button" class="hamburger-menu pull-left"><span></span></a>
+       
+    </header>
+    <!-- Header end-->
+    <div class="main-container">
+        <!-- Main Sidebar start-->
+        <aside class="main-sidebar">
+            <div class="user">
+                <div id="esp-user-profile" data-percent="65" style="height: 130px; width: 130px; line-height: 100px; padding: 15px;" class="easy-pie-chart"><img src="@Url.Content("~/Content/build/images/users/11.jpg")" alt="" class="avatar img-circle"><span class="status bg-success"></span></div>
+                <h4 class="fs-16 text-white mt-15 mb-5 fw-300">@session.UserSession.FullName</h4>
+                <p class="mb-0 text-muted">SuperAdmin</p>
+            </div>
+            <ul class="list-unstyled navigation mb-0">
+                <li><a href="@Url.RouteUrl("SuperAdmin")" class="bubble"><i class="ti-home"></i><span class="sidebar-title">Dashboard</span></a></li>
+                <li><a href="@Url.RouteUrl("Plans")" class="bubble"><i class="ti-credit-card"></i><span class="sidebar-title">Subscription</span></a></li>
+                <li><a href="@Url.RouteUrl("SubscriptionHolder")" class="bubble"><i class="ti-bar-chart"></i><span class="sidebar-title">Subscription Holder</span></a></li>                
+                <li><a href="@Url.RouteUrl("Tickets")" class="bubble"><i class="ti-ticket"></i><span class="sidebar-title">Tickets</span></a></li>
+            </ul>
+            <div class="sidebar-category">Server Status</div>
+            <div class="sidebar-widget">
+                <ul class="list-unstyled pl-25 pr-25">
+                    <li class="mb-20">
+                        <div class="block clearfix mb-10"><span class="pull-left fs-12 text-muted">CPU Used</span><span class="pull-right label label-outline label-warning">65%</span></div>
+                        <div class="progress progress-xs bg-light mb-0">
+                            <div role="progressbar" data-transitiongoal="65" class="progress-bar progress-bar-warning"></div>
+                        </div>
+                    </li>
+                    <li class="mb-20">
+                        <div class="block clearfix mb-10"><span class="pull-left fs-12 text-muted">Bandwidth</span><span class="pull-right label label-outline label-danger">80%</span></div>
+                        <div class="progress progress-xs bg-light mb-0">
+                            <div role="progressbar" data-transitiongoal="80" class="progress-bar progress-bar-danger"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+        <!-- Main Sidebar end-->
+        <div class="page-container">
+            <div class="page-header container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h4 class="mt-0 mb-5">Welcome to Clouderac</h4>
+                        <p class="text-muted mb-0">SuperAdmin Dashboard</p>
+                    </div>
+                    <div class="col-sm-6">
+                        @*<div class="btn-group mt-5">
+                                <button type="button" class="btn btn-default btn-outline"><i class="flag-icon flag-icon-us mr-5"></i> English</button>
+                                <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default btn-outline dropdown-toggle"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
+                                <ul class="dropdown-menu dropdown-menu-right animated fadeInDown">
+                                    <li><a href="#"><i class="flag-icon flag-icon-de mr-5"></i> German</a></li>
+                                    <li><a href="#"><i class="flag-icon flag-icon-fr mr-5"></i> French</a></li>
+                                    <li><a href="#"><i class="flag-icon flag-icon-es mr-5"></i> Spanish</a></li>
+                                    <li><a href="#"><i class="flag-icon flag-icon-it mr-5"></i> Italian</a></li>
+                                    <li><a href="#"><i class="flag-icon flag-icon-jp mr-5"></i> Japanese</a></li>
+                                </ul>
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+            <div class="page-content container-fluid">             
+        </div>
+        <div class="footer">2016 &copy;  <a href="http://clouderac.cruzata.com">Clouderac - A Compelete CRM</a> by <a href="http://www.cruzata.com" target="_blank">Cruzata.</a></div>
+    </div>
+
+    <!-- Right Sidebar start-->
+    <aside class="right-sidebar closed">
+        <ul role="tablist" class="nav nav-tabs nav-justified nav-sidebar">
+            <li role="presentation" class="active"><a href="#chat" aria-controls="chat" role="tab" data-toggle="tab"><i class="ti-comment-alt"></i></a></li>
+            <li role="presentation"><a href="#announcement" aria-controls="announcement" role="tab" data-toggle="tab"><i class="ti-announcement"></i></a></li>
+            <li role="presentation"><a href="#ticket" aria-controls="ticket" role="tab" data-toggle="tab"><i class="ti-bookmark-alt"></i></a></li>
+            <li role="presentation"><a href="#setting" aria-controls="setting" role="tab" data-toggle="tab"><i class="ti-settings"></i></a></li>
+        </ul>
+        <div data-mcs-theme="minimal-dark" class="tab-content nav-sidebar-content mCustomScrollbar">
+            <div id="chat" role="tabpanel" class="tab-pane fade in active">
+                <form>
+                    <div class="form-group has-feedback">
+                        <input type="text" aria-describedby="inputChatSearch" placeholder="Chat with..." class="form-control rounded"><span aria-hidden="true" class="ti-search form-control-feedback"></span><span id="inputChatSearch" class="sr-only">(default)</span>
+                    </div>
+                </form>
+                <ul class="chat-list mb-0 fs-12 media-list">
+                    <li class="media">
+                        <a href="javascript:;" class="conversation-toggle">
+                            <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/20.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">Jane Curtis</h6>
+                                <p class="text-muted mb-0">Where are you from?</p>
+                            </div>
+                            <div class="media-right"><span class="badge bg-danger">2</span></div>
+                        </a>
+                    </li>
+                    <li class="media">
+                        <a href="javascript:;" class="conversation-toggle">
+                            <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/01.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">Edward Garcia</h6>
+                                <p class="text-muted mb-0">Nice to meet you.</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="media">
+                        <a href="javascript:;" class="conversation-toggle">
+                            <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/02.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">Bruce Olson</h6>
+                                <p class="text-muted mb-0">What do you want to do?</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="media">
+                        <a href="javascript:;" class="conversation-toggle">
+                            <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/03.jpg")" alt="" class="media-object img-circle"><span class="status bg-warning"></span></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">Martha Rodriguez</h6>
+                                <p class="text-muted mb-0">I'm hungry.</p>
+                            </div>
+                            <div class="media-right"><span class="badge bg-danger">1</span></div>
+                        </a>
+                    </li>
+                    <li class="media">
+                        <a href="javascript:;" class="conversation-toggle">
+                            <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/05.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">Hannah Williamson</h6>
+                                <p class="text-muted mb-0">Do you know the address?</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="media">
+                        <a href="javascript:;" class="conversation-toggle">
+                            <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/06.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">Anthony Mills</h6>
+                                <p class="text-muted mb-0">No problem.</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="media">
+                        <a href="javascript:;" class="conversation-toggle">
+                            <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/07.jpg")" alt="" class="media-object img-circle"><span class="status bg-warning"></span></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">Ethan Stanley</h6>
+                                <p class="text-muted mb-0">Hello?</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="media">
+                        <a href="javascript:;" class="conversation-toggle">
+                            <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/08.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">Jonathan Castro</h6>
+                                <p class="text-muted mb-0">OK. Thanks.</p>
+                            </div>
+                            <div class="media-right"><span class="badge bg-danger">1</span></div>
+                        </a>
+                    </li>
+                    <li class="media">
+                        <a href="javascript:;" class="conversation-toggle">
+                            <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/09.jpg")" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">Denise Rose</h6>
+                                <p class="text-muted mb-0">Bye bye.</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="media">
+                        <a href="javascript:;" class="conversation-toggle">
+                            <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/10.jpg")" alt="" class="media-object img-circle"><span class="status bg-danger"></span></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">Eugene Meyer</h6>
+                                <p class="text-muted mb-0">How are you?</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>                        
+        </div>
+    </aside>
+    <aside class="conversation closed">
+        <h5 class="text-center m-0 p-20">Edward Garcia<a href="javascript:;" class="conversation-toggle pull-left"><i class="ti-arrow-left text-muted"></i></a><a href="javascript:;" class="pull-right"><i class="ti-pencil text-muted"></i></a></h5>
+        <ul data-mcs-theme="minimal-dark" class="media-list chat-content fs-12 pl-20 pr-20 mCustomScrollbar">
+            <li class="media">
+                <div class="media-left avatar"><img src="../build/images/users/04.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                <div class="media-body">
+                    <p>Hello.</p>
+                    <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted">09:45 PM <i class="ti-check text-success"></i></time>
+                </div>
+            </li>
+            <li class="media other">
+                <div class="media-body">
+                    <p>Hi.</p>
+                    <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted pull-right">09:46 PM <i class="ti-check text-success"></i></time>
+                </div>
+                <div class="media-right avatar"><img src="../build/images/users/18.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+            </li>
+            <li class="media">
+                <div class="media-left avatar"><img src="../build/images/users/04.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                <div class="media-body">
+                    <p>How are you?</p>
+                    <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted">09:47 PM <i class="ti-check text-success"></i></time>
+                </div>
+            </li>
+            <li class="media other">
+                <div class="media-body">
+                    <p>I'm good. How are you?</p>
+                    <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted pull-right">09:50 PM <i class="ti-check text-success"></i></time>
+                </div>
+                <div class="media-right avatar"><img src="../build/images/users/18.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+            </li>
+            <li class="media">
+                <div class="media-left avatar"><img src="../build/images/users/04.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                <div class="media-body">
+                    <p>Good. Do you speak English?</p>
+                    <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted">09:55 PM <i class="ti-check text-success"></i></time>
+                </div>
+            </li>
+            <li class="media other">
+                <div class="media-body">
+                    <p>A little. Are you American?</p>
+                    <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted pull-right">09:56 PM <i class="ti-check text-success"></i></time>
+                </div>
+                <div class="media-right avatar"><img src="../build/images/users/18.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+            </li>
+            <li class="media">
+                <div class="media-left avatar"><img src="../build/images/users/04.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                <div class="media-body">
+                    <p>Yes.</p>
+                    <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted">10:00 PM <i class="ti-check text-success"></i></time>
+                </div>
+            </li>
+            <li class="media other">
+                <div class="media-body">
+                    <p>Where are you from?</p>
+                    <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted pull-right">10:01 PM <i class="ti-check text-success"></i></time>
+                </div>
+                <div class="media-right avatar"><img src="../build/images/users/18.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+            </li>
+            <li class="media">
+                <div class="media-left avatar"><img src="../build/images/users/04.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                <div class="media-body">
+                    <p>I'm from California.</p>
+                    <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted">10:03 PM <i class="ti-check text-success"></i></time>
+                </div>
+            </li>
+            <li class="media other">
+                <div class="media-body">
+                    <p>Nice to meet you.</p>
+                    <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted pull-right">10:04 PM <i class="ti-check text-success"></i></time>
+                </div>
+                <div class="media-right avatar"><img src="../build/images/users/18.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+            </li>
+            <li class="media">
+                <div class="media-left avatar"><img src="../build/images/users/04.jpg" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+                <div class="media-body">
+                    <p>Nice to meet you too.</p>
+                    <time datetime="2015-12-10T20:50:48+07:00" class="fs-11 text-muted">10:05 PM <i class="ti-check text-success"></i></time>
+                </div>
+            </li>
+        </ul>
+        <form class="pl-20 pr-20">
+            <div class="form-group has-feedback mb-0">
+                <input type="text" aria-describedby="inputSendMessage" placeholder="Sent a message" class="form-control rounded"><span aria-hidden="true" class="ti-pencil-alt form-control-feedback"></span><span id="inputSendMessage" class="sr-only">(default)</span>
+            </div>
+        </form>
+    </aside>
+    <!-- Right Sidebar end-->
+</div>
+<!-- jQuery-->
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery/dist/jquery.min.js")"></script>
+<!-- Bootstrap JavaScript-->
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/bootstrap/dist/js/bootstrap.min.js")"></script>
+<!-- Malihu Scrollbar-->
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js")"></script>
+<!-- Animo.js-->
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/animo.js/animo.min.js")"></script>
+<!-- Bootstrap Progressbar-->
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/bootstrap-progressbar/bootstrap-progressbar.min.js")"></script>
+<!-- jQuery Easy Pie Chart-->
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js")"></script>
+<!-- jQuery BlockUI-->
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/blockUI/jquery.blockUI.js")"></script>
+<!-- Flot Charts-->
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/flot/jquery.flot.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/flot/jquery.flot.resize.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/flot.tooltip/js/jquery.flot.tooltip.min.js")"></script>
+<!-- Morris Chart-->
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/raphael/raphael-min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/morris.js/morris.min.js")"></script>
+<!-- DataTables-->
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net/js/jquery.dataTables.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-bs/js/dataTables.bootstrap.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-buttons/js/dataTables.buttons.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-buttons-bs/js/buttons.bootstrap.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/jszip/dist/jszip.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/pdfmake/build/pdfmake.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/pdfmake/build/vfs_fonts.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-buttons/js/buttons.print.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-buttons/js/buttons.html5.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-colreorder/js/dataTables.colReorder.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-responsive/js/dataTables.responsive.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/datatables.net-responsive-bs/js/responsive.bootstrap.js")"></script>
+<!-- Custom JS-->
+<script type="text/javascript" src="@Url.Content("~/Content/build/js/fourth-layout/app.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/build/js/fourth-layout/demo.js")"></script>
+@*<script type="text/javascript" src="@Url.Content("~/Content/build/js/page-content/dashboard/index-v2.js")"></script>*@
+
+<script>
+    //*** (Opportunity Comparison)Float Chart
+    //$(document).ready(function () {
+    //    var e;
+    //    var o;
+    //    var jsonObj1 = [];
+    //    var jsonObj2 = [];
+    //    $.ajax({
+    //        url: '/Home/GetOpportunityLostByMonth',
+    //        dataType: "json",
+    //        type: "POST",
+    //        contentType: 'application/json; charset=utf-8',
+    //        data: JSON.stringify({}),
+    //        async: true,
+    //        processData: false,
+    //        cache: false,
+    //        success: function (data) {
+    //            if (data != '') {
+    //                $.each(data, function (i, foo) {
+    //                    var temp = [parseInt(this.Text),parseInt(this.Value)];
+    //                    jsonObj1.push(temp);
+    //                });
+    //            }
+    //            else {
+    //            }
+    //        },
+    //        error: function (xhr) {
+    //            $('#errorMessage').html("No connection");
+    //        }
+    //    });
+
+    //    $.ajax({
+    //        url: '/Home/GetOpportunityWinByMonth',
+    //        dataType: "json",
+    //        type: "POST",
+    //        contentType: 'application/json; charset=utf-8',
+    //        data: JSON.stringify({}),
+    //        async: true,
+    //        processData: false,
+    //        cache: false,
+    //        success: function (data) {
+    //            if (data != '') {
+    //                $.each(data, function (i, foo) {
+    //                    var temp1 = [parseInt(this.Text), parseInt(this.Value)];
+    //                    jsonObj2.push(temp1);
+    //                });
+    //                var e = jsonObj1,
+    //     o = jsonObj2,
+    //     t = [[0, "Jan"], [1, "Feb"], [2, "Mar"], [3, "Apr"], [4, "May"], [5, "Jun"], [6, "Jul"], [7, "Aug"], [8, "Sep"], [9, "Oct"], [10, "Nov"], [11, "Dec"]],
+    //     a = [
+    //           { label: "Opportunity Won", data: e, color: "#0667D6" },
+    //           { label: "Opportunity Lost", data: o, color: "#1F364F" }
+    //     ],
+    //    r = {
+    //        series: {
+    //            lines: { show: !0, lineWidth: 4 },
+    //            points: { show: !0, lineWidth: 4, radius: 6 },
+    //            shadowSize: 0
+    //        },
+    //        grid: { borderWidth: 0, hoverable: !0, labelMargin: 15 },
+    //        xaxis: {
+    //            ticks: t, tickLength: 0,
+    //            font: { color: "#9a9a9a", size: 11 }
+    //        },
+    //        yaxis: {
+    //            tickLength: 0, tickSize: 1e6, font: { color: "#9a9a9a", size: 11 },
+    //            tickFormatter: function (e, o) { return e > 0 ? (e / 1e6).toFixed(o.tickDecimals) + " M" : (e / 1e6).toFixed(o.tickDecimals) }
+    //        },
+    //        tooltip: { show: !1 },
+    //        legend: { show: !0, position: "ne", noColumns: 4, labelBoxBorderColor: "#FFF", margin: 0 }
+    //    };
+    //                $.plot($("#flot-order"), a, r),
+    //                $("#flot-order").bind("plothover", function (e, o, t) {
+    //                    t ? $(".flotTip").text(t.series.label + ": $" + t.datapoint[1].toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")).css({ top: t.pageY + 15, left: t.pageX + 10 }).show() : $(".flotTip").hide()
+    //                });
+    //            }
+    //            else {
+    //            }
+    //        },
+    //        error: function (xhr) {
+    //            $('#errorMessage').html("No connection");
+    //        }
+    //    });
+
+    //});
+</script>
+
+<script>
+    //$(document).ready(function () {
+    //    var temp;
+    //    $.ajax({
+    //        url: '/Home/GetTopThreeSource',
+    //        dataType: "json",
+    //        type: "POST",
+    //        contentType: 'application/json; charset=utf-8',
+    //        data: JSON.stringify({}),
+    //        async: true,
+    //        processData: false,
+    //        cache: false,
+    //        success: function (data) {
+    //            if (data != '') {
+    //                temp = data.split(',');
+    //                Morris.Donut({
+    //                    element: "morris-category",
+    //                    data: [{ label: temp[1], value: parseInt(temp[0]) }, { label: temp[3], value: parseInt(temp[2]) }, { label: temp[5], value: parseInt(temp[4]) }],
+    //                    resize: !0, colors: ["#1F364F", "#E5343D", "#E6E6E6"],
+    //                    formatter: function (e) { return e + "%" }
+    //                })
+    //            }
+    //            else {
+    //            }
+    //        },
+    //        error: function (xhr) {
+    //            $('#errorMessage').html("No connection");
+    //        }
+    //    });
+
+    //});
+</script>
+
+
+<script>
+    //$(document).ready(function () {
+    //    var jsonObj3 = [];
+    //$.ajax({
+    //    url: '/Home/GetOpportunityWinByMonth',
+    //    dataType: "json",
+    //    type: "POST",
+    //    contentType: 'application/json; charset=utf-8',
+    //    data: JSON.stringify({}),
+    //    async: true,
+    //    processData: false,
+    //    cache: false,
+    //    success: function (data) {
+    //        if (data != '') {
+    //            $.each(data, function (i, foo) {
+    //                var temp1 = [parseInt(this.Text), parseInt(this.Value)];
+    //                jsonObj3.push(temp1);
+
+    //            });
+    // var l = jsonObj3,
+    // i = [{ label: "Revenue", data: l, color: "#0667D6" }],
+    // n = [
+    //     [0, "Jan"],
+    //     [1, "Feb"],
+    //     [2, "Mar"],
+    //     [3, "Apr"],
+    //     [4, "May"],
+    //     [5, "Jun"],
+    //     [6, "Jul"],
+    //     [7, "Aug"],
+    //     [8, "Sep"],
+    //     [9, "Oct"],
+    //     [10, "Nov"],
+    //     [11, "Dec"]],
+    // s = {
+    //     series: { bars: { show: !0, fill: .2, align: "center", barWidth: .5, lineWidth: 2 } },
+    //     grid: { borderWidth: 0, hoverable: !0, tickColor: "#fff", labelMargin: 15 },
+    //     xaxis: { font: { color: "#9a9a9a", size: 11 }, ticks: n },
+    //     yaxis: {
+    //         font: { color: "#9a9a9a", size: 11 },
+    //         tickFormatter: function (e, o) { return e.toString().replace(/\B(?=(?:\d{3})+(?!\d))/g, ",") }
+    //     }, tooltip: { show: !0, content: "%x: %y", defaultTheme: !1 }, legend: { show: !1 }
+    // };
+    //            $.plot($("#flot-sales"), i, s)
+    //        }
+    //        else {
+    //        }
+    //    },
+    //    error: function (xhr) {
+    //        $('#errorMessage').html("No connection");
+    //    }
+    //});
+    //});
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        var c = $("#order-table").DataTable({ lengthChange: !1, pageLength: 5, colReorder: !0, buttons: ["copy", "excel", "pdf", "print"], language: { search: "", searchPlaceholder: "Search records" }, columnDefs: [{ orderable: !1, targets: 6 }] }); c.buttons().container().appendTo("#order-table_wrapper .col-sm-6:eq(0)")
+    });
+</script>
+
+    
+    <script>
+        $(document).ready(function () {
+            $('#tctForm').show();
+            $('#scsMsg').hide();
+        });
+
+        function openTicket() {
+            $.post('/Tickets/OpenTicket', { subject: $('#tctSubject').val(), body: $('#tcBody').val() }, function (data) {
+                if (data == "1") {
+                    $("#tctForm")[0].reset();
+                    $('#tctForm').hide();
+                    $('#scsMsg').show();
+                }
+                else {
+                    $("#error_msg_tbl").html("<p style=\"color:red;\">There is an error in processing your request. Please Try after some time.</p>");
+                    $("#error_msg_tbl").show();
+                }
+            });
+        }
+       
+    </script>
+
+</body>
+</html>

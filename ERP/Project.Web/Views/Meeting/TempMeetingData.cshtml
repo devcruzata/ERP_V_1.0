@@ -1,0 +1,26 @@
+﻿@model Project.Web.Models.MeetingModel
+@{
+    Layout = null;
+}
+
+<div id="general" role="tabpanel" class="tab-pane active">
+    <div ng-controller="Ctrl">
+        @foreach (var meeting in Model.meetings)
+        {
+            <div class="form-group meeting-box">
+                <div class="media1">
+                    <div class="media-left avatar meeting-icon-avtar"><span class="meeting-icon"><i class="ti-ca"></i></span></div>
+                    <div class="media-body">
+                        <h5 class="media-heading meeting-user">@meeting.Title</h5>
+                        <div class="mb-0">
+                            <a href="#" id="meeting-link" class="meetingade-user">
+                                With @meeting.RelateToName
+                            </a>
+                            At <span class="text-muted">@meeting.Date</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

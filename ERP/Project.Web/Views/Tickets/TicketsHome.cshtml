@@ -1,0 +1,162 @@
+﻿@model Project.Web.Models.TicketModel
+
+@{
+    Layout = "~/Views/Shared/LayOut_SuperAdmin.cshtml";
+}
+
+<script type="text/javascript" src="@Url.Content("~/Content/plugins/jquery/dist/jquery.min.js")"></script>
+
+
+
+<div class="page-container">
+    <div class="page-header clearfix">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4 class="mt-0 mb-5">Manage Subscription</h4>
+                <ol class="breadcrumb mb-0">
+                    <li><a href="@Url.RouteUrl("SuperAdmin")">Home</a></li>
+                    <li><a href="@Url.RouteUrl("Plans")">Plans</a></li>
+                    <li class="active">Manage Plan</li>
+                </ol>
+            </div>
+            <div class="col-sm-6">               
+            </div>
+        </div>
+    </div>
+    <div class="page-content container-fluid">
+        <div class="widget">
+            <div class="widget-heading clearfix">
+                <h3 class="widget-title pull-left">Plans</h3>
+
+                <div class="pull-right">
+                    <button type="button" class="btn btn-outline btn-primary" data-toggle="modal" data-target=".bs-example-modal-animation" title="Add Subscription"><i class="ti-plus"></i></button>
+                </div>               
+            </div>
+            <div class="widget-body">
+                <table id="lead-list-1" style="width: 100%" class="table table-striped table-hover dt-responsive nowrap">
+                    <thead>
+                        <tr>
+                            <th width="10%" class="text-center">Ticket No</th>
+                            <th width="15%" class="text-center">Added On</th>
+                            <th width="12%" class="text-center">Subject</th>                           
+                            <th width="12%" class="text-center">Status</th>                            
+                            <th width="25%" class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tTable">
+                        @{
+                            foreach (var ticket in Model.ticket)
+                            {
+
+                                <tr>
+                                    <td class="text-center">@ticket.ticketNo</td>
+                                    <td class="text-center">@ticket.addedOn</td>
+                                    <td class="text-center">@ticket.subject</td>  
+                                    @if (ticket.Status == "Open")
+                                    {
+                                        <td class="text-center"><span class="label label-success" onclick="changeStatus('@ticket.ticketID')">@ticket.Status</span></td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center"><span class="label label-danger">@ticket.Status</span></td>
+                                    }
+                                    <td class="text-center">
+                                        <button type="button" class="btn btn-outline btn-danger" onclick="DeleteTicket('@ticket.ticketID');" title="Delete Ticket"><i class="ti-trash"></i></button>
+                                    </td>
+                                </tr>
+
+                            }
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Table Script*******
+
+    $(document).ready(function () {
+
+        var e1 = $("#lead-list-1").DataTable({ pageLength: 10, colReorder: !0, buttons: ["copy", "excel", "pdf", "print"], searching: !0, aLengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]], order: [[4, "desc"]], columnDefs: [{ orderable: !1, targets: [0, 4] }] });
+        $("#lead-list-1_wrapper .col-sm-6:eq(1)").addClass("text-right"), e1.buttons().container().appendTo("#lead-list-1_wrapper .col-sm-6:eq(1)")
+
+    });
+</script>
+<script>
+
+    function changeStatus(Ticket_ID) {
+        $(".se-pre-con").show();
+        var Tdata = Ticket_ID;
+
+        var url = "/Tickets/CloseTicket";
+        $.post(url, { ticketID: Tdata }, function (data) {
+            if (data != "") {
+                $('#tTable').html('');
+                $('#tTable').html(data);
+                $(".se-pre-con").hide();
+            }
+            else {
+                $("#error_msg_tbl").html("<p style=\"color:red;\">There is an error in processing your request. Please Try after some time.</p>");
+                $("#error_msg_tbl").show();
+            }
+        });
+    }
+
+    function DeleteTicket(Ticket_ID) {
+        swal({
+            title: "Are you sure?",
+            text: "Are you sure to delete this Ticket!",
+            type: "warning",
+            showCancelButton: !0,
+            cancelButtonClass: "btn-raised btn-default",
+            cancelButtonText: "Cancel!",
+            confirmButtonClass: "btn-raised btn-danger",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: !0
+        },
+        function () {
+            $(".se-pre-con").show();
+            var Tdata = Ticket_ID;
+
+            var url = "/Tickets/Deleteicket";
+            $.post(url, { ticketID: Tdata }, function (data) {
+                if (data != "") {
+                    $('#tTable').html('');
+                    $('#tTable').html(data);
+                    $(".se-pre-con").hide();
+                }
+                else {
+                    $("#error_msg_tbl").html("<p style=\"color:red;\">There is an error in processing your request. Please Try after some time.</p>");
+                    $("#error_msg_tbl").show();
+                }
+            });
+        })
+    }
+</script>
+
+
+<script>
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+
+    function zipCheck(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+
+</script>
