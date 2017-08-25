@@ -781,7 +781,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default" >Cancel</button>
+                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default" onclick="cleanUForm();">Cancel</button>
                 <button type="button" class="btn btn-raised btn-danger" id="save_btn" onclick="submitUPForm();">Save</button>
             </div>
         </div>
@@ -1172,6 +1172,7 @@
     function cleanUForm() {
         alert();
         $("#URoleName").val('');
+        $('#Uerror_div_RName').hide();
 
         $('#UAssociatedLeads').attr('checked', false);
         $('#USystemwideLeads').attr('checked', false);
@@ -1203,6 +1204,7 @@
     function cleanForm() {
        
         $("#RoleName").val('');
+        $('#error_div_RName').hide();
 
         $('#AssociatedLeads').attr('checked', false);
         $('#SystemwideLeads').attr('checked', false);

@@ -168,13 +168,13 @@
                         <div class="form-group">
                             <label for="CRelateTo">Relate To</label>
                             <select id="CRelateTo" class="form-control">
-                                <option class="active" value="0">Choose a Option</option>
+                                <option class="active" value="0">Choose an Option</option>
                                 <option class="active" value="LEAD">Lead</option>
                                 <option value="OPPORTUNITY">Opportunity</option>
                                 <option value="CLIENT">Client</option>
                             </select>
                             <div id="error_div_CRelateTo" style="display:none;">
-                                <p style="color:red;">Please Choose A Option</p>
+                                <p style="color:red;">Please Choose An Option</p>
                             </div>
                         </div>
                     </div>
@@ -210,7 +210,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default">Cancel</button>
+                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default" id="cancel" onclick="CancelEvent();>Cancel</button>
                 <button id="btnAddNewEvent" type="submit" class="btn btn-raised btn-black">Save</button>
             </div>
         </div>
@@ -436,7 +436,7 @@
             return false();
         }
         else if ($('#CRelateTo').val().trim() == '0') {
-            $("#error_div_RelateTo").show();
+            $("#error_div_CRelateTo").show();
             $("#error_div_endTime").hide();
             $("#error_div_startTime").hide();
             $("#error_div_inputTitleEvent").hide();
@@ -444,7 +444,7 @@
         }
         else if ($('#CRelateToName').val().trim() == '0') {
             $("#error_div_CRelateToName").show();
-            $("#error_div_RelateTo").hide();
+            $("#error_div_CRelateTo").hide();
             $("#error_div_endTime").hide();
             $("#error_div_startTime").hide();
             $("#error_div_inputTitleEvent").hide();
@@ -452,7 +452,7 @@
         }
         else {
             $("#error_div_CRelateToName").hide();
-            $("#error_div_RelateTo").hide();
+            $("#error_div_CRelateTo").hide();
             $("#error_div_endTime").hide();
             $("#error_div_startTime").hide();
             $("#error_div_inputTitleEvent").hide();
@@ -490,6 +490,19 @@
         }        
     }
 
+
+    function CancelEvent() {
+        $('#inputTitleEvent').val('');
+        $('#startTime').val('');
+        $('#endTime').val('');
+        $('#CRelateTo').val('0');
+        $('#CRelateToName').val('');
+        $("#error_div_CRelateToName").hide();
+        $("#error_div_CRelateTo").hide();
+        $("#error_div_endTime").hide();
+        $("#error_div_startTime").hide();
+        $("#error_div_inputTitleEvent").hide();
+    }
     function ViewEvent(Event_ID, title, sDate, eDate,ecolor) {
        // var day = moment(sDate);
       //  var sd = day.format("dddd, MMMM Do YYYY, h:mm")
