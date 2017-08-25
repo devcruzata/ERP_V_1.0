@@ -194,9 +194,9 @@ namespace Project.Web.Controllers.Client
 
                     model.Events = objEventManager.getEventsByRelateToID(Convert.ToInt64(session.UserSession.PIN), session.UserSession.UserId, Convert.ToInt64(Clientid), "CLIENT");
                     model.activities = UtilityManager.getActivityByRelateToID(Convert.ToInt64(session.UserSession.PIN), Convert.ToInt64(Clientid), "CLIENT");
-                    model.tasks = objTaskManager.getTasksByRelateToID(Convert.ToInt64(session.UserSession.PIN), Convert.ToInt64(Clientid), session.UserSession.UserId, "CLIENT");
+                    model.Task = objTaskManager.getTasksByRelateToID(Convert.ToInt64(session.UserSession.PIN), Convert.ToInt64(Clientid), session.UserSession.UserId, "CLIENT");
                     model.Doc = objDocManager.getDocsRelatedToID(Convert.ToInt64(session.UserSession.PIN), Convert.ToInt64(Clientid), "CLIENT", session.UserSession.UserId);
-                    model.notes = objNoteManager.getNotesByRelateToID(Convert.ToInt64(session.UserSession.PIN), Convert.ToInt64(Clientid), session.UserSession.UserId, "CLIENT");
+                    model.Notes = objNoteManager.getNotesByRelateToID(Convert.ToInt64(session.UserSession.PIN), Convert.ToInt64(Clientid), session.UserSession.UserId, "CLIENT");
 
                     ViewBag.Users = UserList;
                     return View(model);

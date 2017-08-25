@@ -312,11 +312,11 @@ namespace Project.Web.Controllers.Opportunity
                     objOpportunity.Opportunity_Owner = Convert.ToInt64(Response.ResponseData.Tables[0].Rows[0]["CreatedBy"]);
                     objOpportunity.Opportunity_Owner_Name = Response.ResponseData.Tables[0].Rows[0]["OwnerName"].ToString();
 
-                    objOpportunity.events = objEventManager.getEventsByRelateToID(Convert.ToInt64(session.UserSession.PIN), session.UserSession.UserId, Convert.ToInt64(Opportunityid), "OPPORTUNITY");
+                    objOpportunity.Events = objEventManager.getEventsByRelateToID(Convert.ToInt64(session.UserSession.PIN), session.UserSession.UserId, Convert.ToInt64(Opportunityid), "OPPORTUNITY");
                     objOpportunity.activities = UtilityManager.getActivityByRelateToID(Convert.ToInt64(session.UserSession.PIN), Convert.ToInt64(Opportunityid), "OPPORTUNITY");
-                    objOpportunity.tasks = objTaskManager.getTasksByRelateToID(Convert.ToInt64(session.UserSession.PIN), Convert.ToInt64(Opportunityid), session.UserSession.UserId, "OPPORTUNITY");
-                    objOpportunity.docs = objDocManager.getDocsRelatedToID(Convert.ToInt64(session.UserSession.PIN), Convert.ToInt64(Opportunityid), "OPPORTUNITY", session.UserSession.UserId);
-                    objOpportunity.notes = objNoteManager.getNotesByRelateToID(Convert.ToInt64(session.UserSession.PIN), Convert.ToInt64(Opportunityid), session.UserSession.UserId, "OPPORTUNITY");
+                    objOpportunity.Task = objTaskManager.getTasksByRelateToID(Convert.ToInt64(session.UserSession.PIN), Convert.ToInt64(Opportunityid), session.UserSession.UserId, "OPPORTUNITY");
+                    objOpportunity.Doc = objDocManager.getDocsRelatedToID(Convert.ToInt64(session.UserSession.PIN), Convert.ToInt64(Opportunityid), "OPPORTUNITY", session.UserSession.UserId);
+                    objOpportunity.Notes = objNoteManager.getNotesByRelateToID(Convert.ToInt64(session.UserSession.PIN), Convert.ToInt64(Opportunityid), session.UserSession.UserId, "OPPORTUNITY");
 
                     ViewBag.Users = UserList;
                     return View(objOpportunity);

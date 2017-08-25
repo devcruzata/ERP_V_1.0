@@ -46,19 +46,19 @@ namespace Project.Web.Models
 
         public string Status { get; set; }
 
-        public List<Meetings> meetings { get; set; }
+        //public List<Meetings> meetings { get; set; }
 
-        public List<Tasks> tasks { get; set; }
+        //public List<Tasks> tasks { get; set; }
 
         public List<Activity> activities { get; set; }
 
         public List<Opportunities> Opportunity { get; set; }
 
-        public List<Notes> notes { get; set; }
+        //public List<Notes> notes { get; set; }
 
-        public List<Docs> docs { get; set; }
+        //public List<Docs> docs { get; set; }
 
-        public List<Event> events { get; set; }
+        //public List<Event> events { get; set; }
 
         public List<Notes> Notes { get; set; }
 

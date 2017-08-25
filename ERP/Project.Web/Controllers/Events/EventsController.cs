@@ -46,7 +46,7 @@ namespace Project.Web.Controllers.Events
                     else if (RelatedTable == "OPPORTUNITY")
                     {
                         OpportunityModel objOppoModel = new OpportunityModel();
-                        objOppoModel.events = objEventManager.getEventsByRelateToID(Convert.ToInt64(session.UserSession.PIN), session.UserSession.UserId, Convert.ToInt64(RelateToID), RelatedTable);
+                        objOppoModel.Events = objEventManager.getEventsByRelateToID(Convert.ToInt64(session.UserSession.PIN), session.UserSession.UserId, Convert.ToInt64(RelateToID), RelatedTable);
                         return View("AjaxEvents", objOppoModel);
                     }
                     else
