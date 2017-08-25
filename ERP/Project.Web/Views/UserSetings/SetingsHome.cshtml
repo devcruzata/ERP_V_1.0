@@ -1012,7 +1012,9 @@
 
     function submitPForm() {
         if (ValidatepForm()) {
+            
             AddRole();
+            cleanForm();
         }
     }
     function CancelRole() {
@@ -1042,13 +1044,15 @@
     }
 
     function AddRole() {
-        $(".se-pre-con").show();
+        //$(".se-pre-con").show();
+        
         $.ajax({
             type: "POST",
             url: "/UserSetings/AjaxManageRoles",
             data: $("#pForm").serialize(),
             datatype: "html",
             success: function (data) {
+                
                 if (data != "" && data != "Role Already Exists") {
                     $("#RolesModal").modal('hide');
                     $('#rTable').html('');
@@ -1246,6 +1250,7 @@
 
     function submitUPForm() {
         if (ValidateUpForm()) {
+            
             UpdateRole();
         }
     }
