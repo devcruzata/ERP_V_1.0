@@ -23,6 +23,11 @@ namespace Project.Web.Controllers.Authentication
             return View();
         }
 
+        public ActionResult tttt()
+        {
+            return View();
+        }
+
         //[HttpPost]
         //public ActionResult Login(LoginModel model)
         //{
