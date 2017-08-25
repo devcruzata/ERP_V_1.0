@@ -11663,6 +11663,7 @@
     <None Include="Properties\PublishProfiles\erp_15_Mar.pubxml" />
     <None Include="Properties\PublishProfiles\erp_16_Aug.pubxml" />
     <None Include="Properties\PublishProfiles\erp_18july.pubxml" />
+    <None Include="Properties\PublishProfiles\erp_25.pubxml" />
     <None Include="Properties\PublishProfiles\erp_25_oct.pubxml" />
     <None Include="Properties\PublishProfiles\erp_26_july.pubxml" />
     <None Include="Properties\PublishProfiles\ERP_28_Sept.pubxml" />
