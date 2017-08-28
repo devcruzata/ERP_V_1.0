@@ -305,8 +305,8 @@ namespace Project.Web.Controllers.UserSetings
                     objUserRoles.Notes = Response.ResponseData.Tables[0].Rows[0]["Notes"].ToString();
                     objUserRoles.Documents = Response.ResponseData.Tables[0].Rows[0]["Documents"].ToString();                    
                     objUserRoles.UserManagement = Response.ResponseData.Tables[0].Rows[0]["UserManagement"].ToString();
-                    objUserRoles.SiteManagement = Response.ResponseData.Tables[0].Rows[0]["SiteManagement"].ToString();                   
-
+                    objUserRoles.SiteManagement = Response.ResponseData.Tables[0].Rows[0]["SiteManagement"].ToString();
+                    objUserRoles.LeadDistribution = Convert.ToString(Response.ResponseData.Tables[0].Rows[0]["LeadDistribution"]);
                     return Json(objUserRoles, JsonRequestBehavior.AllowGet);
                 }
                 else

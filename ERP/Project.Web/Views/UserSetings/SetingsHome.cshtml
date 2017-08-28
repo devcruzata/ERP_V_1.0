@@ -1101,10 +1101,11 @@
                         $('#UAssociatedOpportunity').attr('checked', false);
                     }
                     if (data.SystemwideOpportunity == "on") {
+                        alert(data.SystemwideOpportunity)
                         $('#USystemwideOpportunity').attr('checked', true);
                     }
                     else {
-                        $('#USystemwideClients').attr('checked', false);
+                        $('#USystemwideOpportunity').attr('checked', false);
                     }
                     if (data.AssociatedClients == "on") {
                         $('#UAssociatedClients').attr('checked', true);
@@ -1124,13 +1125,13 @@
                     else {
                         $('#UCalendar').attr('checked', false);
                     }
-                    if (data.EditTask == "on") {
+                    if (data.Task == "on") {
                         $('#UTask').attr('checked', true);
                     }
                     else {
                         $('#UTask').attr('checked', false);
                     }
-                    if (data.LeadNotes == "on") {
+                    if (data.Notes == "on") {
                         $('#UNotes').attr('checked', true);
                     }
                     else {
@@ -1143,9 +1144,11 @@
                         $('#UDocuments').attr('checked', false);
                     }                    
                     if (data.LeadDistribution == "on") {
+                        
                         $('#ULeadDistribution').attr('checked', true);
                     }
                     else {
+                        
                         $('#ULeadDistribution').attr('checked', false);
                     }
                     if (data.UserManagement == "on") {

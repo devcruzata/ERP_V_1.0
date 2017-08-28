@@ -15,6 +15,7 @@
         public string UserType { get; set; }
         public string Subscription_ID { get; set; }
         public string PIN { get; set; }
+
         
 
     }
@@ -76,5 +77,39 @@
         public string inboundMailUsername { get; set; }
 
         public string inboundMailPassword { get; set; }
+    }
+
+    public class UserPermission
+    {
+        public string systemWideLeads { get; set; }
+
+        public string systemWideOpportunities { get; set; }
+
+        public string systemWideClients { get; set; }
+
+        public string associatedLeads { get; set; }
+
+        public string associatedClients { get; set; }
+
+        public string associatedOpportunities { get; set; }
+
+        public string calendar { get; set; }
+
+        public string task { get; set; }
+
+        public string notes { get; set; }
+
+        public string docs { get; set; }
+
+        public string userManagement { get; set; }
+
+        public string siteManagement { get; set; }
+
+        public string helpDeskTicket { get; set; }
+
+        public string leadDistribution { get; set; }
+
+
+
     }
 }

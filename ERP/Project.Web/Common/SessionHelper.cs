@@ -99,5 +99,21 @@ namespace Project.Web.Common
                 HttpContext.Current.Session["UserSetingSession"] = value;
             }
         }
+
+        public UserPermission UserPermissionSession
+        {
+            get
+            {
+                if (HttpContext.Current.Session["UserPermissionSession"] == null)
+                {
+                    return null;
+                }
+                return (UserPermission)HttpContext.Current.Session["UserPermissionSession"];
+            }
+            set
+            {
+                HttpContext.Current.Session["UserPermissionSession"] = value;
+            }
+        }
     }
 }

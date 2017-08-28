@@ -343,14 +343,25 @@ if it's not present, don't show loader */
                 {
                     <li><a href="@Url.RouteUrl("CrmUserHome")" class="bubble"><i class="ti-home"></i><span class="sidebar-title"><b>Dashboard</b></span></a></li>
                 }
-                <li><a href="@Url.RouteUrl("LeadHome")" class="bubble"><i class="ti-user"></i><span class="sidebar-title">Leads</span></a></li>
-                <li><a href="@Url.RouteUrl("ClientHome")" class="bubble"><i class="ti-id-badge"></i><span class="sidebar-title">Clients</span></a></li>
-                <li><a href="@Url.RouteUrl("OpportunityHome")" class="bubble"><i class="ti-write"></i><span class="sidebar-title">Opportunities</span></a></li>
+
+                @if (@session.UserPermissionSession.associatedLeads == "on" || @session.UserPermissionSession.systemWideLeads == "on")
+                {
+                   <li><a href="@Url.RouteUrl("LeadHome")" class="bubble"><i class="ti-user"></i><span class="sidebar-title">Leads</span></a></li>
+                }
+                @if (@session.UserPermissionSession.associatedClients == "on" || @session.UserPermissionSession.systemWideClients == "on")
+                { 
+                   <li><a href="@Url.RouteUrl("ClientHome")" class="bubble"><i class="ti-id-badge"></i><span class="sidebar-title">Clients</span></a></li>
+                }
+                @if (@session.UserPermissionSession.associatedOpportunities == "on" || @session.UserPermissionSession.systemWideClients == "on")
+                {
+                     <li><a href="@Url.RouteUrl("OpportunityHome")" class="bubble"><i class="ti-write"></i><span class="sidebar-title">Opportunities</span></a></li>
+                }
                 @*<li><a href="@Url.RouteUrl("Calender")" class="bubble"><i class="ti-id-badge"></i><span class="sidebar-title">Calender</span></a></li>*@
-                <li><a href="@Url.RouteUrl("Calender")" class="bubble"><i class="ti-id-badge"></i><span class="sidebar-title">Calendar</span></a></li>
-
-
-
+                @if (@session.UserPermissionSession.calendar == "on")
+                {
+                    <li><a href="@Url.RouteUrl("Calender")" class="bubble"><i class="ti-id-badge"></i><span class="sidebar-title">Calendar</span></a></li>
+                }
+                
                 @*<li class="panel">
                     <a role="button" data-toggle="collapse" data-parent=".navigation" href="#collapse4" aria-expanded="false" aria-controls="collapse4" class="collapsed"><i class="ti-write"></i><span class="sidebar-title">Opportunities</span></a>
                     <ul id="collapse4" class="list-unstyled collapse">
@@ -365,9 +376,14 @@ if it's not present, don't show loader */
                         <li><a href="@Url.RouteUrl("ManageClient", new { act = "add" })">Add Client</a></li>
                     </ul>
                 </li>*@
-
-                <li><a href="@Url.RouteUrl("UserHome")" class="bubble"><i class="ti-user"></i><span class="sidebar-title">User Management</span></a></li>
-                <li><a href="@Url.RouteUrl("UserSetings")" class="bubble"><i class="ti-settings"></i><span class="sidebar-title">Setings</span></a></li>
+                @if (@session.UserPermissionSession.userManagement == "on")
+                {                   
+                  <li><a href="@Url.RouteUrl("UserHome")" class="bubble"><i class="ti-user"></i><span class="sidebar-title">User Management</span></a></li>
+                }
+                @if (@session.UserPermissionSession.siteManagement == "on")
+                { 
+                   <li><a href="@Url.RouteUrl("UserSetings")" class="bubble"><i class="ti-settings"></i><span class="sidebar-title">Setings</span></a></li>
+                }
                 <li><a href="@Url.RouteUrl("Subscriptions")" class="bubble"><i class="ti-credit-card"></i><span class="sidebar-title">Subscription</span></a></li>
                 <li><a href="@Url.RouteUrl("MarketingCampaign")" class="bubble"><i class="ti-bar-chart"></i><span class="sidebar-title">Campaign</span><span class="label label-outline label-danger">Coming-Soon</span></a></li>
                 <li><a href="#" class="bubble"><i class="ti-email"></i><span class="sidebar-title">E-Marketing</span><span class="label label-outline label-danger">Coming-Soon</span></a></li>
