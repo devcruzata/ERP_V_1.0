@@ -11668,6 +11668,7 @@
     <None Include="Properties\PublishProfiles\erp_26_july.pubxml" />
     <None Include="Properties\PublishProfiles\ERP_28_Sept.pubxml" />
     <None Include="Properties\PublishProfiles\erp_29_july.pubxml" />
+    <None Include="Properties\PublishProfiles\erp_30_AUG.pubxml" />
     <None Include="Properties\PublishProfiles\erp_30_may.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
