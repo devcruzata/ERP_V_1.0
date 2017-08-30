@@ -623,13 +623,13 @@
                                             <input type="checkbox" id="SiteManagement" name="SiteManagement" />
                                         </td>
                                     </tr>
-                                    <tr>
+                                    @*<tr>
                                         <td>Help Desk Tickets</td>
                                         <td>
                                             <label></label>
                                             <input type="checkbox" id="HelpDeskTickets" name="HelpDeskTickets" />
                                         </td>
-                                    </tr>
+                                    </tr>*@
                                     <tr>
                                         <td>Lead distribution</td>
                                         <td>
@@ -732,14 +732,14 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Edit Task/appointments</td>
+                                        <td>Tasks</td>
                                         <td>
                                             <label></label>
                                             <input type="checkbox" id="UTask" name="Task" />
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Lead Notes</td>
+                                        <td>Notes</td>
                                         <td>
                                             <label></label>
                                             <input type="checkbox" id="UNotes" name="Notes" />
@@ -1017,10 +1017,7 @@
             cleanForm();
         }
     }
-    function CancelRole() {
-        $('#RoleName').val('');
-        $('#error_div_RName').hide();
-    }
+    
 
     function GetRole() {
         $(".se-pre-con").show();
@@ -1215,29 +1212,19 @@
 
         $('#AssociatedLeads').attr('checked', false);
         $('#SystemwideLeads').attr('checked', false);
+        $('#AssociatedOpportunity').attr('checked', false);
+        $('#SystemwideOpportunity').attr('checked', false);
+        $('#AssociatedClients').attr('checked', false);
+        $('#SystemwideClients').attr('checked', false);
+        $('#Task').attr('checked', false);
         $('#Calendar').attr('checked', false);
-        $('#EditTask').attr('checked', false);
-        $('#LeadNotes').attr('checked', false);
+        $('#Notes').attr('checked', false);
         $('#Documents').attr('checked', false);
-        $('#ManageDocuments').attr('checked', false);
+        $('#UserManagement').attr('checked', false);        
+        $('#SiteManagement').attr('checked', false);
         $('#HelpDeskTickets').attr('checked', false);
         $('#LeadDistribution').attr('checked', false);
-        $('#ResidualsAccess').attr('checked', false);
-        $('#ResidualManagerView').attr('checked', false);
-        $('#MerchantinfoAssociatedLead').attr('checked', false);
-        $('#MerchantinfoSystemwideLeads').attr('checked', false);
-        $('#ManageMerchant').attr('checked', false);
-        $('#Statements').attr('checked', false);
-        $('#TriggerStatementDownload').attr('checked', false);
-        $('#PortfolioActivityAssociatedleads').attr('checked', false);
-        $('#PortfolioActivitySystemwideleads').attr('checked', false);
-        $('#ProposalGenerator').attr('checked', false);
-        $('#UnderwritngApplicationSubmissions').attr('checked', false);
-        $('#Agenttracker').attr('checked', false);
-        $('#MessagingSystem').attr('checked', false);
-        $('#MerchantApplication').attr('checked', false);
-        $('#UserManagement').attr('checked', false);
-        $('#SiteManagement').attr('checked', false);
+       
     }
 
     function ValidateUpForm() {

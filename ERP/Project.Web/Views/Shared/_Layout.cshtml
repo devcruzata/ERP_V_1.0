@@ -829,11 +829,28 @@ if it's not present, don't show loader */
             $("#Gecolor").minicolors({ theme: "bootstrap" });
            
         });
+        function GCancel() {
+            alert('yes')
+            $('#GinputTitleEvent').val('');
+            $('#GstartDate').val('');
+            $('#GstartTime').val('');
+            $('#GendDate').val('');
+            $('#GendTime').val('');
+            $('#GERelateTo').val('0');
+            $('#GERelateToName').val('');
+            $('#error_div_GendTime').hide();
+            $('#error_div_GendDate').hide();
+            $('#error_div_GstartTime').hide();
+            $('#error_div_GstartDate').hide();
+            $('#error_div_GinputTitleEvent').hide();
+            $('#error_div_GERelateToName').hide();
+            $('#error_div_GERelateTo').hide();
+        }
     </script>
     <div id="GEventModal" tabindex="-1" role="dialog" aria-labelledby="ModalEventLabel" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header bg-black">
+                <div class="modal-header bg-white">
                     <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                     <h4 id="ModalEventLabel" class="modal-title">Add New Event</h4>
                 </div>
@@ -889,7 +906,7 @@ if it's not present, don't show loader */
                                     <option value="CLIENT">Client</option>
                                 </select>
                                 <div id="error_div_GERelateTo" style="display:none;">
-                                    <p style="color:red;">Please Choose A Option</p>
+                                    <p style="color:red;">Please Choose An Option</p>
                                 </div>
                             </div>
                         </div>
@@ -925,8 +942,8 @@ if it's not present, don't show loader */
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btn-raised btn-default" >Cancel</button>
-                    <button id="btnAddNewEvent" type="submit" class="btn btn-raised btn-black" onclick="GAddEvents();">Save</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-raised btn-default" onclick="GCancel();">Cancel</button>
+                    <button id="btnAddNewEvent" type="submit" class="btn btn-raised btn-danger" onclick="GAddEvents();">Save</button>
                 </div>
             </div>
         </div>

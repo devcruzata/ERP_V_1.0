@@ -359,12 +359,32 @@ $('#GTRelateTo').change(function () {
          $('#error_div_GinputTitleEvent').hide();
          return false;
      }
+     else if ($("#GERelateTo").val() == '0') {
+
+         $('#error_div_GERelateTo').show();
+         $('#error_div_GendTime').hide();
+         $('#error_div_GendDate').hide();
+         $('#error_div_GstartTime').hide();
+         $('#error_div_GstartDate').hide();
+         $('#error_div_GinputTitleEvent').hide();
+     }
+     else if ($("#GERelateToName").val() == '0') {
+         $('error_div_GERelateToName').show();
+         $('#error_div_GERelateTo').hide();
+         $('#error_div_GendTime').hide();
+         $('#error_div_GendDate').hide();
+         $('#error_div_GstartTime').hide();
+         $('#error_div_GstartDate').hide();
+         $('#error_div_GinputTitleEvent').hide();
+     }
      else {
          $('#error_div_GendTime').hide();
          $('#error_div_GendDate').hide();
          $('#error_div_GstartTime').hide();
          $('#error_div_GstartDate').hide();
          $('#error_div_GinputTitleEvent').hide();
+         $('error_div_GERelateToName').hide();
+         $('#error_div_GERelateTo').hide();
          return true;
      }
  }
@@ -419,7 +439,28 @@ $('#GTRelateTo').change(function () {
          });
      }
  }
-
+ function GCancel() {
+     alert('yes')
+     $('#GinputTitleEvent').val('');
+     $('#GstartDate').val('');
+     $('#GstartTime').val('');
+     $('#GendDate').val('');
+     $('#GendTime').val('');
+     $('#GERelateTo').val('0');
+     $('#GERelateToName').val('');
+     $('#error_div_GendTime').hide();
+     $('#error_div_GendDate').hide();
+     $('#error_div_GstartTime').hide();
+     $('#error_div_GstartDate').hide();
+     $('#error_div_GinputTitleEvent').hide();
+     $('#error_div_GERelateToName').hide();
+     $('#error_div_GERelateTo').hide();
+ }
+ function GCancelEvent()
+ {
+     alert('no')
+     $("#GeForm")[0].reset();
+ }
 
 
 
