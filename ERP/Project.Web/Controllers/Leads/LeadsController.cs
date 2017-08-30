@@ -494,6 +494,7 @@ namespace Project.Web.Controllers.Leads
             {
                 list.Add(new SelectListItem { Value = cat.Value, Text = cat.Text });
             }
+            string route = "/Leads/ViewLead?sessionid=" + Guid.NewGuid().ToString() + "&Leadid=" + objLeadmodel.Lead_ID;
 
             try
             {
@@ -521,16 +522,18 @@ namespace Project.Web.Controllers.Leads
                 {
                     ViewBag.Source_List = list;
                    // return RedirectToRoute("LeadHome");
-                    return RedirectToRoute("ViewLead"); 
-                    //return View(objLeadmodel);               
+                    //return RedirectToRoute("ViewLead"); 
+                    //return View(objLeadmodel);     
+                    return Redirect(route);
                 }
                 else
                 {
                     ViewBag.Error_Msg = Response.ErrorMessage;
                     ViewBag.Source_List = list;
                    // return RedirectToRoute("LeadHome");
-                    return RedirectToRoute("ViewLead");  
-                    //return View(objLeadmodel);
+                    //return RedirectToRoute("ViewLead");  
+                    return View(objLeadmodel);
+
                 }
             }
             catch (Exception ex)
@@ -539,8 +542,8 @@ namespace Project.Web.Controllers.Leads
                 ViewBag.Source_List = list;
                 BAL.Common.LogManager.LogError("UpdateLead Post Method", 1, Convert.ToString(ex.Source), Convert.ToString(ex.Message), Convert.ToString(ex.StackTrace));
                // return RedirectToRoute("LeadHome");
-                return RedirectToRoute("ViewLead");  
-               // return View(objLeadmodel);
+                //return RedirectToRoute("ViewLead");  
+                return View(objLeadmodel);
             }
         }
 

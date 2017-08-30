@@ -421,6 +421,7 @@ namespace Project.Web.Controllers.Client
                 list.Add(new SelectListItem { Value = cat.Value, Text = cat.Text });
             }
             ViewBag.Source_List = list;
+            string route = "/Clients/ViewClient?sessionid=" + Guid.NewGuid().ToString() + "&Clientid=" + objClientModel.Client_ID;
             try
             {
                 //objClient.Date = BAL.Helper.Helper.ConvertToDateNullable(objClientModel.Date, "dd/MM/yyyy");                
@@ -448,7 +449,8 @@ namespace Project.Web.Controllers.Client
                 {
                     //ViewBag.Source_list = list;
                     //return View(objClientModel);
-                    return RedirectToRoute("ClientHome");
+                    //return RedirectToRoute("ClientHome");
+                    return Redirect(route);
 
                 }
                 else
@@ -456,16 +458,16 @@ namespace Project.Web.Controllers.Client
                     ViewBag.Error_msg = Response.ErrorMessage;
 
                     //ViewBag.Source_List = List;
-                    //return View(objClientModel);
-                    return RedirectToRoute("ClientHome");
+                    return View(objClientModel);
+                    //return RedirectToRoute("ClientHome");
                 }
             }
             catch (Exception ex)
             {
                 ViewBag.Error_msg = Response.ErrorMessage;
                 BAL.Common.LogManager.LogError("UpdateClient Post method", 1, Convert.ToString(ex.Source), Convert.ToString(ex.Message), Convert.ToString(ex.StackTrace));
-                //return View(objClientModel);
-                return RedirectToRoute("ClientHome");
+                return View(objClientModel);
+               // return RedirectToRoute("ClientHome");
 
 
             }

@@ -788,7 +788,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default" id="cancel" onclick="CancelToDo();">Cancel</button>
+                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default" id="cancel" onclick="CancelToDoOPP();">Cancel</button>
                 <button type="button" class="btn btn-raised btn-danger" id="save" onclick="SheduleTask();">Save</button>
             </div>
         </div>
@@ -1356,7 +1356,8 @@
     function CancelTask() {
         $("#taskForm")[0].reset();
     }
-    function CancelToDo() {
+    function CancelToDoOPP() {
+        alert('cancel')
         $("#TTitle").val('');
         $("#Description").val('');
         $('#error_div_TTitle').hide();

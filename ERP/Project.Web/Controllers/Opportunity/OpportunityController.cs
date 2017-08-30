@@ -627,6 +627,7 @@ namespace Project.Web.Controllers.Opportunity
             UserManager objUserManager = new UserManager();
             List<Users> UserList = new List<Users>();
             UserList = objUserManager.GetUsers(session.UserSession.PIN);
+            string route = "/Opportunity/ViewOpportunity?sessionid=" + Guid.NewGuid().ToString() + "&Opportunityid=" + objModel.Opportunity_ID;
 
             try
             {
@@ -660,8 +661,8 @@ namespace Project.Web.Controllers.Opportunity
 
                 if (Response.ErrorCode == 0)
                 {
-                    return RedirectToRoute("OpportunityHome");
-                    
+                   // return RedirectToRoute("OpportunityHome");
+                    return Redirect(route); 
                 }
                 else
                 {
