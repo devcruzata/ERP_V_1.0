@@ -106,12 +106,12 @@
                                                                  </td>
                                                             }                                                                                                                
                                                             <td class="text-center" onclick="UpdateLeads('@lead.Lead_ID_Auto_PK')">@lead.Name</td>
-                                                        <td class="text-center">@lead.Email</td>
-                                                        <td class="text-center">@lead.SkypeNo</td>                                                        
-                                                        <td class="text-center">@lead.Date.ToString("d MMM yyyy")</td>                                                        
-                                                        <td class="text-center"><span class="label label-success">@lead.Status</span></td>
-                                                        <td class="text-center">@lead.AssignToName</td>
-                                                        <td class="text-center">
+                                                            <td class="text-center" ><a href="#" class="text-333" data-toggle="modal" data-target="#Mail_Modal" onclick="setMailModalData('@lead.Email')">@lead.Email</a></td>
+                                                            <td class="text-center">@lead.SkypeNo</td>                                                        
+                                                            <td class="text-center">@lead.Date.ToString("d MMM yyyy")</td>                                                        
+                                                            <td class="text-center"><span class="label label-success">@lead.Status</span></td>
+                                                            <td class="text-center">@lead.AssignToName</td>
+                                                            <td class="text-center">
                                                            
                                                                
                                                                 <button type="button" class="btn btn-outline btn-primary" onclick="ViewLeads('@lead.Lead_ID_Auto_PK');" title="View Lead"><i class="ti-eye"></i></button>
@@ -167,7 +167,7 @@
                                                    {
                                                         <tr>
                                                             <td class="text-center" onclick="UpdateLeads('@lead.Lead_ID_Auto_PK')">@lead.Name</td>
-                                                                <td class="text-center">@lead.Email</td>
+                                                                <td class="text-center"><a href="#" class="text-333" data-toggle="modal" data-target="#Mail_Modal" onclick="setMailModalData('@lead.Email')">@lead.Email</a></td>
                                                                 <td class="text-center">@lead.SkypeNo</td>
                                                                 <td class="text-center">@lead.FollowUpDate.ToString("d MMM yyyy")</td>
                                                                 @if (lead.Status == "Working")
@@ -236,7 +236,7 @@
                                                   {
                                                        <tr>
                                                            <td class="text-center" onclick="UpdateLeads('@leads.Lead_ID_Auto_PK')">@leads.Name</td>
-                                                    <td class="text-center">@leads.Email</td>
+                                                    <td class="text-center"><a href="#" class="text-333" data-toggle="modal" data-target="#Mail_Modal" onclick="setMailModalData('@leads.Email')">@leads.Email</a></td>
                                                     <td class="text-center">@leads.SkypeNo</td>
                                                     <td class="text-center">@leads.FollowUpDate.ToString("d MMM yyyy")</td>
                                                     <td class="text-center"><span class="label label-danger">@leads.Status</span></td>
@@ -367,13 +367,192 @@
 <input type="hidden" id="Leads" />
 <input  type="hidden" id="UserType" value="@session.UserSession.UserType"/>
 
+<div tabindex="-1" role="dialog" aria-labelledby="myAnimationModalLabel" class="modal animated fadeInLeft bs-example-modal-animation" id="Mail_Modal">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 id="myAnimationModalLabel" class="modal-title">Compose Mail</h4>
+            </div>
+            <div class="modal-body">
+                <form action="/Mails/SendMail" method="post" enctype="multipart/form-data" id="EmailForm">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group col-sm-12">
+                                <label for="ToEmail">To</label>
+                                <input type="text" name="RelateTo_Name" id="ToAddress" class="form-control" value="@Model.Email" readonly>
+                                <div id="error_div_ToAddress" style="display:none;">
+                                    <p style="color:red;">Please Enter atleast one Reciepent.</p>
+                                </div>
+                                @*<input  name="ToAddress" type="hidden" class="form-control" value="@Model.Email" readonly>*@
+                                <a href="#" id="cc" onclick="showCCdiv();">Add Cc</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-12" id="cc_div" style="display:none">
+                            <div class="form-group col-sm-12">
+                                <label for="cc">Cc</label>
+                                <input id="CcAddress" name="CcAddress" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group col-sm-12">
+                                <label for="BCC">BCC</label>
+                                @*<input type="text" name="MailBy_Name" class="form-control" value="@HttpContext.Current.Session["User"].ToString()" readonly>
+                                    <input id="BccAddress" name="BccAddress" type="hidden" class="form-control" value="@HttpContext.Current.Session["UserName"].ToString()" readonly>*@
+                                <input type="text" name="MailBy_Name" class="form-control" value="@session.UserSession.FullName" readonly>
+                                <input id="BccAddress" name="BccAddress" type="hidden" class="form-control" value="@session.UserSession.Username" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group col-sm-12">
+                                <label for="Subject">Subject</label>
+                                <input id="Subject" name="Subject" type="text" class="form-control">
+                                <div id="error_div_Subject" style="display:none;">
+                                    <p style="color:red;">Please Enter Subject</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Attachments</label>
+                                <div class="col-sm-10">
+                                    <input type="file" id="Attechments" name="Attechments" multiple />
+                                    <div id="error_div_Attechments" style="display:none;">
+                                        <p style="color:red;">File size must be less than 5 MB</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:20px;">
+                        <div class="col-sm-12">
+                            <textarea name="MailBody" id="MailBody" data-provide="markdown" rows="10" width="100%"></textarea>
+                        </div>
+                    </div>
+                    <input type="hidden" name="RelateTo_ID" value="@Model.Lead_ID" />
+                    <input type="hidden" name="MailBy_ID" value="@session.UserSession.UserId" />
+                    <input type="hidden" name="FromAddress" value="@session.UserSession.Username" />
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-raised btn-default" id="cancel">Cancel</button>
+                <button type="button" class="btn btn-raised btn-danger" id="save" onclick="SendMail();">Send</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @*<script type="text/javascript">
     $(document).ready(function () {
         $('.select2').select2();
     });    
 </script>*@
 
+@* Mailsection scripts******************************* *@
 
+<script>
+
+    function setMailModalData(toAdd) {
+        $('#ToAddress').val(toAdd);
+    }
+
+    function showCCdiv() {
+        $("#cc").hide();
+        $("#cc_div").show();
+    }
+</script>
+<script>
+    function ValidateEmailForm() {
+        if ($('#ToAddress').val().trim() == '') {
+            $('#error_div_ToAddress').show();
+            return false;
+        }
+        else if ($('#ToAddress').val().trim() == '') {
+            $('#error_div_Subject').show();
+            $('#error_div_ToAddress').hide();
+            return false;
+        }
+            //else if ($("#Attechments").files[0].size > 5000) {
+            //    $("#error_div_Attechments").show();
+            //    $('#error_div_Subject').hide();
+            //    $('#error_div_ToAddress').hide();
+            //    return false;
+            //}
+        else {
+            $("#error_div_Attechments").hide();
+            $('#error_div_Subject').hide();
+            $('#error_div_ToAddress').hide();
+            return true;
+        }
+    }
+    function SendMail() {
+        if (ValidateEmailForm()) {
+            $(".se-pre-con").show();
+            Send();
+        }
+    }
+
+    function Send() {
+
+        var formMail = $('#EmailForm');
+
+        if (window.FormData !== undefined) {
+            var AttacementFileUpload = $("#Attechments").get(0);
+
+            var attachedfiles = AttacementFileUpload.files;
+            // Create FormData object
+            var EmailFormData = new FormData();
+
+            // Looping over all files and add it to FormData object
+            for (var i = 0; i < attachedfiles.length; i++) {
+                EmailFormData.append(attachedfiles[i].name, attachedfiles[i]);
+            }
+
+            // Adding one more key to FormData object
+            EmailFormData.append('ToAddress', $('#ToAddress').val());
+            EmailFormData.append('ccAddress', $('#CcAddress').val());
+            EmailFormData.append('bccAddress', $('#BccAddress').val());
+            EmailFormData.append('Subject', $('#Subject').val());
+            EmailFormData.append('body', $('#MailBody').val());
+
+            $.ajax({
+                url: '/Mails/SendMail',
+                type: "POST",
+                contentType: false,
+                data: EmailFormData,
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data != 'success') {
+                        // location.reload();
+                        $(".se-pre-con").hide();
+                        $('#Mail_Modal').modal('hide');
+                        $("#EmailForm")[0].reset();
+
+                    }
+                    else {
+                        // location.reload();
+                        $(".se-pre-con").hide();
+                        $('#Mail_Modal').modal('hide');
+                        $("#EmailForm")[0].reset();
+                    }
+                },
+                error: function (xhr) {
+                    $(".se-pre-con").hide();
+                    $('#errorMessage').html("No connection");
+                }
+            });
+        } else {
+            alert("FormData is not supported.");
+        }
+    }
+</script>
 
     
  
@@ -732,4 +911,6 @@
     //    });
     //}
 </script>
+
+
 
