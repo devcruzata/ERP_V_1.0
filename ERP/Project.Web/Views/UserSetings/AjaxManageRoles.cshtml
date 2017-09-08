@@ -13,7 +13,9 @@
             <td>@role.RoleName</td>
             <td>
                 <button type="button" class="btn btn-outline btn-primary" onclick="GetUserRoleForUpdate(@role.Role_ID);" title="Edit User Role"><i class="ti-pencil"></i></button>
+                <button type="button" class="btn btn-outline btn-danger" onclick="DeleteUserRole(@role.Role_ID);" title="Delete User Role"><i class="ti-trash"></i></button>
             </td>
+
         </tr>
     }
 </table>

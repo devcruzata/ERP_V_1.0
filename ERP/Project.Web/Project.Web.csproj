@@ -5433,7 +5433,9 @@
     <Content Include="Content\plugins\flag-icon-css\flags\1x1\nr.svg" />
     <Content Include="Content\plugins\flag-icon-css\flags\1x1\nu.svg" />
     <Content Include="Content\plugins\flag-icon-css\flags\1x1\nz.svg" />
-    <Content Include="Content\plugins\flag-icon-css\flags\1x1\om.svg" />
+    <Content Include="Content\plugins\flag-icon-css\flags\1x1\om.svg">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content\plugins\flag-icon-css\flags\1x1\pa.svg" />
     <Content Include="Content\plugins\flag-icon-css\flags\1x1\pe.svg" />
     <Content Include="Content\plugins\flag-icon-css\flags\1x1\pf.svg" />
@@ -11660,6 +11662,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\PublishProfiles\ERP_05AUG.pubxml" />
+    <None Include="Properties\PublishProfiles\erp_05_sep.pubxml" />
     <None Include="Properties\PublishProfiles\erp_15_Mar.pubxml" />
     <None Include="Properties\PublishProfiles\erp_16_Aug.pubxml" />
     <None Include="Properties\PublishProfiles\erp_18july.pubxml" />
@@ -11670,6 +11673,7 @@
     <None Include="Properties\PublishProfiles\erp_29_july.pubxml" />
     <None Include="Properties\PublishProfiles\erp_30_AUG.pubxml" />
     <None Include="Properties\PublishProfiles\erp_30_may.pubxml" />
+    <None Include="Properties\PublishProfiles\erp_31_AUG.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />

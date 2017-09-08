@@ -17,10 +17,10 @@
     <div class="page-header clearfix">
         <div class="row">
             <div class="col-sm-6">
-                <h4 class="mt-0 mb-5">Manage Settings</h4>
+                <h4 class="mt-0 mb-5">Account Settings</h4>
                 <ol class="breadcrumb mb-0">
                     <li><a href="@Url.RouteUrl("AdminDashboard_V_2")">Home</a></li>
-                    <li><a href="@Url.RouteUrl("UserSetings")">User Settings</a></li>
+                    <li><a href="@Url.RouteUrl("UserSetings")">Settings</a></li>
                     <li class="active">Account Settings</li>
                 </ol>
             </div>
@@ -46,7 +46,7 @@
                    
                 
                 <ul role="tablist" class="nav nav-tabs mb-15 viewlead-tabs">
-                    <li role="presentation" class="active"><a href="#GenralSeting" aria-controls="GenralSeting" role="tab" data-toggle="tab">Account Settings</a></li>
+                    <li role="presentation" class="active"><a href="#GenralSeting" aria-controls="GenralSeting" role="tab" data-toggle="tab">General Settings</a></li>
                     <li role="presentation"><a href="#MailSetings" aria-controls="MailSetings" role="tab" data-toggle="tab" onclick="GetMailSetings();">Mail Settings</a></li>
                     <li role="presentation"><a href="#UserRoles" aria-controls="UserRoles" role="tab" data-toggle="tab" onclick="GetRole();">User Roles</a></li>
                     <li role="presentation"><a href="#LSource" aria-controls="LSource" role="tab" data-toggle="tab">Dropdown list Settings</a></li>
@@ -1268,6 +1268,48 @@
             $(".se-pre-con").hide();
         }
         });
+    }
+
+    function DeleteUserRole(Role_ID) {
+
+        swal({
+            title: "Are you sure?",
+            text: "Are you sure to delete this Role!",
+            type: "warning",
+            showCancelButton: !0,
+            cancelButtonClass: "btn-raised btn-default",
+            cancelButtonText: "Cancel!",
+            confirmButtonClass: "btn-raised btn-danger",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: !0
+        },
+        function () {
+            $(".se-pre-con").show();
+            $.ajax({
+                url: '/UserSetings/AjaxDeleteRole',
+                // dataType: "html",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ Role_ID: Role_ID }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    if (data != "") {
+                        $("#rTable").html('');
+                        $("#rTable").html(data);
+                        $(".se-pre-con").hide();
+                    }
+                    else {
+                        $(".se-pre-con").hide();
+                    }
+                },
+                error: function (xhr) {
+                    $(".se-pre-con").hide();
+                    $('#errorMessage').html("No connection");
+                }
+            });
+        })
     }
 </script>
 

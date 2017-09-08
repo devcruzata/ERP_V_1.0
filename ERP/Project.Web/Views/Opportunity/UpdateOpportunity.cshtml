@@ -86,75 +86,72 @@
         </div>
     </div>
     <div class="page-content container-fluid">
-        <div class="widget">
-            <div class="widget-heading clearfix">
-                <h3 class="widget-title pull-left">Edit Opportunity</h3>
-                @if (ViewBag.Error_Msg != "")
-                {
-                    <div style="margin-left:200px;">
-                        <p style="color:red;">@ViewBag.Error_Msg</p>
+        <div class="col-sm-8">
+            <div class="widget">
+                <div class="widget-heading clearfix">
+                    <h3 class="widget-title pull-left">Edit Opportunity</h3>
+                    @if (ViewBag.Error_Msg != "")
+                    {
+                        <div style="margin-left:200px;">
+                            <p style="color:red;">@ViewBag.Error_Msg</p>
+                        </div>
+                    }
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-primary" title="Add Opportunity" onclick="SubmitForm()"><i class="ti-save"></i></button>
+                        <button type="button" class="btn btn-default" title="Cancel" onclick="Cancel();"><i class="ti-share-alt"></i></button>
                     </div>
-                }
-                <div class="pull-right">
-                    <button type="button" class="btn btn-primary" title="Add Opportunity" onclick="SubmitForm()"><i class="ti-save"></i></button>
-                    <button type="button" class="btn btn-default" title="Cancel" onclick="Cancel();"><i class="ti-share-alt"></i></button>
                 </div>
-            </div>
-            <div class="widget-body">
-                <form class="form-horizontal" method="post" action="/Opportunity/UpdateOpportunity" enctype="multipart/form-data" id="mainForm">
-
-                    <div class="tab-content">
-                        <div id="general" role="tabpanel" class="tab-pane active">
-                            <div class="form-group">
-                                <div class="col-sm-6">
-                                    <label for="Name">Name</label>
-                                    <input class="form-control form-cutom" name="Name" id="Name" value="@Model.Name"/>
-                                    <div id="error_Div_Name" style="display:none;color:red;">
-                                        <p style="color:red;">Please Enter Name.</p>
+                <div class="widget-body">
+                    <form class="form-horizontal" method="post" action="/Opportunity/UpdateOpportunity" enctype="multipart/form-data" id="mainForm">
+                        <div class="tab-content">
+                            <div id="general" role="tabpanel" class="tab-pane active">
+                                <div class="form-group">
+                                    <div class="col-sm-6">
+                                        <label for="Name">Name</label>
+                                        <input class="form-control form-cutom" name="Name" id="Name" value="@Model.Name" />
+                                        <div id="error_Div_Name" style="display:none;color:red;">
+                                            <p style="color:red;">Please Enter Name.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="Amount">Amount</label>
+                                        <input class="form-control form-cutom" name="Amount" id="Amount" value="@Model.Amount">
+                                        <div id="error_Div_Amount" style="display:none;color:red;">
+                                            <p style="color:red;">Please Enter Amount</p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
-                                    <label for="Amount">Amount</label>
-                                    <input class="form-control form-cutom" name="Amount" id="Amount" value="@Model.Amount">
-                                    <div id="error_Div_Amount" style="display:none;color:red;">
-                                        <p style="color:red;">Please Enter Amount</p>
+                                <div class="form-group">
+                                    <div class="col-sm-6">
+                                        <label for="RealateTo_ID">Client</label>
+                                        @*<div class="input-group">*@
+                                        @*<input id="RealateTo_ID" name="RealateTo_ID" type="text" class="form-control"><span class="input-group-addon"><span class="ti-search"></span></span>*@
+                                        @Html.DropDownListFor(m => m.RealateTo_ID, (List<SelectListItem>)ViewBag.Client, new { @class = "form-control select2" })@*<span class="input-group-addon"><span class="ti-search"></span></span>*@
+                                        @*</div>*@
+                                        <div id="error_Div_RealateTo_ID" style="display:none;color:red;">
+                                            <p style="color:red;">Please Choose A Client</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="Opportunity_Owner">Opportunity Owner</label>
+                                        <input type="text" class="form-control" id="Opportunity_Owner" value="@session.UserSession.FullName" readonly>
+                                        <input type="hidden" class="form-control" name="Opportunity_Owner" value="@session.UserSession.UserId" id="Opportunity_Owner_ID">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-
-                                <div class="col-sm-6">
-                                    <label for="RealateTo_ID">Client</label>
-                                    @*<div class="input-group">*@
-                                    @*<input id="RealateTo_ID" name="RealateTo_ID" type="text" class="form-control"><span class="input-group-addon"><span class="ti-search"></span></span>*@
-
-                                    @Html.DropDownListFor(m => m.RealateTo_ID, (List<SelectListItem>)ViewBag.Client, new { @class = "form-control select2" })@*<span class="input-group-addon"><span class="ti-search"></span></span>*@
-                                    @*</div>*@
-                                    <div id="error_Div_RealateTo_ID" style="display:none;color:red;">
-                                        <p style="color:red;">Please Choose A Client</p>
+                                <div class="form-group">
+                                    <div class="col-sm-6">
+                                        <label for="ExpectedCloseDate">Expected Close Date</label>
+                                        <div class="input-group">
+                                            <input id="ExpectedCloseDate" name="ExpectedCloseDate" type="text" class="form-control date-added" value="@Model.ExpectedCloseDate"><span class="input-group-addon"><span class="ti-calendar"></span></span>
+                                        </div>
+                                        <div id="error_Div_ExpectedCloseDate" style="display:none;color:red;">
+                                            <p style="color:red;">Please Choose A Date</p>
+                                        </div>
                                     </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <label for="Opportunity_Owner">Opportunity Owner</label>
-                                    <input type="text" class="form-control" id="Opportunity_Owner" value="@session.UserSession.FullName" readonly>
-                                    <input type="hidden" class="form-control" name="Opportunity_Owner" value="@session.UserSession.UserId" id="Opportunity_Owner_ID">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-6">
-                                    <label for="ExpectedCloseDate">Expected Close Date</label>
-                                    <div class="input-group">
-                                        <input id="ExpectedCloseDate" name="ExpectedCloseDate" type="text" class="form-control date-added" value="@Model.ExpectedCloseDate"><span class="input-group-addon"><span class="ti-calendar"></span></span>
-                                    </div>
-                                    <div id="error_Div_ExpectedCloseDate" style="display:none;color:red;">
-                                        <p style="color:red;">Please Choose A Date</p>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <label for="Stage">Stage</label>
-                                    @Html.DropDownListFor(m => m.Stage, (List<SelectListItem>)ViewBag.Stage_List, new { @class = "form-control form-cutom" })
-                                    @*<select id="Stage" name="Stage" class="form-control">
+                                    <div class="col-sm-6">
+                                        <label for="Stage">Stage</label>
+                                        @Html.DropDownListFor(m => m.Stage, (List<SelectListItem>)ViewBag.Stage_List, new { @class = "form-control form-cutom" })
+                                        @*<select id="Stage" name="Stage" class="form-control">
                                         <option value="0">Please Choose A Stage</option>
                                         <option value="In-Process">In Process</option>
                                         <option value="Working">Working</option>
@@ -163,45 +160,45 @@
                                         <option value="On-Wait">On Wait</option>
                                         <option value="Closed-Lost">Closed Lost</option>
                                     </select>*@
-                                    <input type="hidden" id="st" value="@Model.Stage"/>
-                                    <div id="error_Div_Stage" style="display:none;color:red;">
-                                        <p style="color:red;">Please Choose A Stage</p>
+                                        <input type="hidden" id="st" value="@Model.Stage" />
+                                        <div id="error_Div_Stage" style="display:none;color:red;">
+                                            <p style="color:red;">Please Choose A Stage</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-6">
-                                    <label for="Type">Type</label>
-                                    <select id="Type" name="Type" class="form-control">
-                                        <option value="0">Please Choose Type</option>
-                                        <option value="Existing-Business">Existing-Business</option>
-                                        <option value="New-Business">New Business</option>
-                                    </select>
-                                    <input type="hidden" id="tp" value="@Model.Type" />
-                                    <div id="error_Div_Type" style="display:none;color:red;">
-                                        <p style="color:red;">Please Choose A Type</p>
+                                <div class="form-group">
+                                    <div class="col-sm-6">
+                                        <label for="Type">Type</label>
+                                        <select id="Type" name="Type" class="form-control">
+                                            <option value="0">Please Choose Type</option>
+                                            <option value="Existing-Business">Existing-Business</option>
+                                            <option value="New-Business">New Business</option>
+                                        </select>
+                                        <input type="hidden" id="tp" value="@Model.Type" />
+                                        <div id="error_Div_Type" style="display:none;color:red;">
+                                            <p style="color:red;">Please Choose A Type</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="Source">Source</label>
+                                        @Html.DropDownListFor(m => m.Source, (List<SelectListItem>)ViewBag.Source_List, new { @class = "form-control form-cutom" })
+                                        <div id="error_Div_Source" style="display:none;color:red;">
+                                            <p style="color:red;">Please Enter Source.</p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
-                                    <label for="Source">Source</label>
-                                    @Html.DropDownListFor(m => m.Source, (List<SelectListItem>)ViewBag.Source_List, new { @class = "form-control form-cutom" })
-                                    <div id="error_Div_Source" style="display:none;color:red;">
-                                        <p style="color:red;">Please Enter Source.</p>
+                                <div class="form-group">
+                                    <div class="col-sm-6">
+                                        <label for="Probability">Probability</label>
+                                        <input id="Probability" type="text" class="form-control" name="Probability" onkeypress="return isNumberKey(event)" maxlength="13" value="@Model.Probability">
+                                        <div id="error_Div_Probability" style="display:none;color:red;">
+                                            <p style="color:red;">Please Enter Probability</p>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-6">
-                                    <label for="Probability">Probability</label>
-                                    <input id="Probability" type="text" class="form-control" name="Probability" onkeypress="return isNumberKey(event)" maxlength="13" value="@Model.Probability">
-                                    <div id="error_Div_Probability" style="display:none;color:red;">
-                                        <p style="color:red;">Please Enter Probability</p>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <label for="LostReason">Reason Of Lost</label>
-                                    @Html.DropDownListFor(m => m.LostReason, (List<SelectListItem>)ViewBag.Reason_List, new { @class = "form-control form-cutom" })
-                                    @*<select id="LostReason" name="LostReason" class="form-control">
+                                    <div class="col-sm-6">
+                                        <label for="LostReason">Reason Of Lost</label>
+                                        @Html.DropDownListFor(m => m.LostReason, (List<SelectListItem>)ViewBag.Reason_List, new { @class = "form-control form-cutom" })
+                                        @*<select id="LostReason" name="LostReason" class="form-control">
                                         <option value="0">Please Choose A Lost Reason</option>
                                         <option value="Lost To Competiter">Lost To Competiter</option>
                                         <option value="No Budget/ Lost Funding">No Budget/ Lost Funding</option>
@@ -212,44 +209,50 @@
                                         <option value="Usability">Usability</option>
                                         <option value="Others">Others</option>
                                     </select>*@
-                                    <input type="hidden" id="lr" value="@Model.LostReason"/>
-                                    <div id="error_Div_Stage" style="display:none;color:red;">
-                                        <p style="color:red;">Please Choose A Reason</p>
+                                        <input type="hidden" id="lr" value="@Model.LostReason" />
+                                        <div id="error_Div_Stage" style="display:none;color:red;">
+                                            <p style="color:red;">Please Choose A Reason</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            @if (@session.UserSession.UserType == "ADM")
-                            {
+                                @if (@session.UserSession.UserType == "ADM")
+                                {
+                                    <div class="form-group">
+                                        <div class="col-sm-6">
+                                            <label for="AssignTO_ID">Assign To</label>
+                                            <select id="AssignTO_ID" class="form-control" name="AssignTO_ID">
+                                                <option value="0">Please Choose A User</option>
+                                                @foreach (var user in ViewBag.Users)
+                                                {
+                                                    <option value="@user.User_ID_PK">@user.FullName</option>
+                                                }
+                                            </select>
+                                            <input type="hidden" id="at" value="@Model.AssignTO_ID" />
+                                        </div>
+                                    </div>
+                                }
+                                <input type="hidden" name="Opportunity_ID" value="@Model.Opportunity_ID" />
                                 <div class="form-group">
-                                    <div class="col-sm-6">
-                                        <label for="AssignTO_ID">Assign To</label>
-                                        <select id="AssignTO_ID" class="form-control" name="AssignTO_ID">
-                                            <option value="0">Please Choose A User</option>
-                                            @foreach (var user in ViewBag.Users)
-                                            {
-                                                <option value="@user.User_ID_PK">@user.FullName</option>
-                                            }
-                                        </select>
-                                        <input type="hidden" id="at" value="@Model.AssignTO_ID"/>
-                                    </div>
-                                </div>
-                            }
-                            <input type="hidden" name="Opportunity_ID" value="@Model.Opportunity_ID" />
-                            <div class="form-group">
-                                <div class="col-sm-12">
-                                    <textarea class="form-control" placeholder="Description" name="Description" id="Description"></textarea>
-                                    <input type="hidden" id="des" value="@Model.Description"/>
-                                    <div id="error_Div_Requirement" style="display:none;color:red;">
-                                        <p style="color:red;">Please Enter Requiremnts</p>
+                                    <div class="col-sm-12">
+                                        <textarea class="form-control" placeholder="Description" name="Description" id="Description"></textarea>
+                                        <input type="hidden" id="des" value="@Model.Description" />
+                                        <div id="error_Div_Requirement" style="display:none;color:red;">
+                                            <p style="color:red;">Please Enter Requiremnts</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
+
         </div>
+
+        <div class="col-sm-4">
+
+        </div>
+       
     </div>
 </div>
 

@@ -44,7 +44,7 @@ namespace BAL.Events
                         Event objEvent = new Event();
 
                         objEvent.title = dr["Title"].ToString();
-                        objEvent.createdDate = dr["StartDate"].ToString();
+                        objEvent.createdDate = Convert.ToDateTime(dr["StartDate"]).ToString("d MMM yyyy hh:mm ");
                         objEvent.id = Convert.ToInt64(dr["Event_ID_Auto_PK"]);
 
                         events.Add(objEvent);

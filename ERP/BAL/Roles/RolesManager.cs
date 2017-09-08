@@ -228,5 +228,37 @@ namespace BAL.Roles
            }
            return Response;
        }
+
+       public objResponse DeleteUserRole(Int64 Role_ID)
+       {
+           objResponse response = new objResponse();
+           try
+           {
+               SqlParameter[] sqlParameter = new SqlParameter[1];
+
+               sqlParameter[0] = new SqlParameter("@Role_ID", SqlDbType.BigInt, 0);
+               sqlParameter[0].Value = Role_ID;
+
+               DATA_ACCESS_LAYER.Fill(response.ResponseData, "usp_DeleteUserRole", sqlParameter, DB_CONSTANTS.ConnectionString_ERP_CRUZATA);
+
+               if (response.ResponseData.Tables[0].Rows.Count > 0)
+               {
+                   response.ErrorCode = 0;
+                   response.ErrorMessage = response.ResponseData.Tables[0].Rows[0][0].ToString();
+               }
+               else
+               {
+                   response.ErrorCode = 2001;
+                   response.ErrorMessage = "There is an Error. Please Try After some time.";
+               }
+           }
+           catch(Exception ex)
+           {
+               response.ErrorMessage = ex.Message.ToString();
+               BAL.Common.LogManager.LogError("GetAllRoles", 1, Convert.ToString(ex.Source), Convert.ToString(ex.Message), Convert.ToString(ex.StackTrace));
+
+           }
+           return response;
+       }
     }
 }

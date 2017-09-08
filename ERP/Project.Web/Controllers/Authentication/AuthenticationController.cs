@@ -152,26 +152,30 @@ namespace Project.Web.Controllers.Authentication
                             lastNotificationAt = Response.ResponseData.Tables[0].Rows[0]["LogoutAt"].ToString(),
                             lastNotificationViewedAt = Response.ResponseData.Tables[0].Rows[0]["LogoutAt"].ToString()
                         };
-                        UserPermission objPermision = new UserPermission()
+                        if (Response.ResponseData.Tables[0].Rows[0]["User_Type"].ToString() != "SUP")
                         {
-                            systemWideLeads = Convert.ToString(Response.ResponseData.Tables[2].Rows[0]["SystemwideLeads"]),
-                            systemWideClients = Convert.ToString(Response.ResponseData.Tables[2].Rows[0]["SystemwideClients"]),
+                            UserPermission objPermision = new UserPermission()
+                            {
+                                systemWideLeads = Convert.ToString(Response.ResponseData.Tables[2].Rows[0]["SystemwideLeads"]),
+                                systemWideClients = Convert.ToString(Response.ResponseData.Tables[2].Rows[0]["SystemwideClients"]),
 
-                            systemWideOpportunities = Convert.ToString(Response.ResponseData.Tables[2].Rows[0]["SystemwideOpportunity"]),
-                            associatedLeads = Convert.ToString(Response.ResponseData.Tables[2].Rows[0]["AssociatedLeads"]),
-                            associatedClients = Convert.ToString(Response.ResponseData.Tables[2].Rows[0]["AssociatedClients"]),
-                            associatedOpportunities = Convert.ToString(Response.ResponseData.Tables[2].Rows[0]["AssociatedOpportunity"]),
-                            userManagement = Convert.ToString(Response.ResponseData.Tables[2].Rows[0]["UserManagement"]),
-                            siteManagement = Convert.ToString(Response.ResponseData.Tables[2].Rows[0]["SiteManagement"]),
-                            task = Convert.ToString(Response.ResponseData.Tables[2].Rows[0]["Task"]),
-                            docs = Convert.ToString(Response.ResponseData.Tables[2].Rows[0]["Documents"]),
-                            notes = Convert.ToString(Response.ResponseData.Tables[2].Rows[0]["Notes"]),
-                            //helpDeskTicket = Convert.ToString(Response.ResponseData.Tables[2].Rows[0][""]),
-                            calendar = Convert.ToString(Response.ResponseData.Tables[2].Rows[0]["Calendar"]),
-                            leadDistribution = Convert.ToString(Response.ResponseData.Tables[2].Rows[0]["LeadDistribution"])
+                                systemWideOpportunities = Convert.ToString(Response.ResponseData.Tables[2].Rows[0]["SystemwideOpportunity"]),
+                                associatedLeads = Convert.ToString(Response.ResponseData.Tables[2].Rows[0]["AssociatedLeads"]),
+                                associatedClients = Convert.ToString(Response.ResponseData.Tables[2].Rows[0]["AssociatedClients"]),
+                                associatedOpportunities = Convert.ToString(Response.ResponseData.Tables[2].Rows[0]["AssociatedOpportunity"]),
+                                userManagement = Convert.ToString(Response.ResponseData.Tables[2].Rows[0]["UserManagement"]),
+                                siteManagement = Convert.ToString(Response.ResponseData.Tables[2].Rows[0]["SiteManagement"]),
+                                task = Convert.ToString(Response.ResponseData.Tables[2].Rows[0]["Task"]),
+                                docs = Convert.ToString(Response.ResponseData.Tables[2].Rows[0]["Documents"]),
+                                notes = Convert.ToString(Response.ResponseData.Tables[2].Rows[0]["Notes"]),
+                                //helpDeskTicket = Convert.ToString(Response.ResponseData.Tables[2].Rows[0][""]),
+                                calendar = Convert.ToString(Response.ResponseData.Tables[2].Rows[0]["Calendar"]),
+                                leadDistribution = Convert.ToString(Response.ResponseData.Tables[2].Rows[0]["LeadDistribution"])
 
-                        };
-                        session.UserPermissionSession = objPermision;
+                            };
+                            session.UserPermissionSession = objPermision;
+                        }
+                        
                         foreach (DataRow dr in Response.ResponseData.Tables[1].Rows)
                         {
                             if (dr["SetingType"].ToString() == "OUTBOUND")

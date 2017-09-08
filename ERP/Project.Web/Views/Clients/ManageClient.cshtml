@@ -36,133 +36,134 @@
         </div>
     </div>
     <div class="page-content container-fluid">
-        <div class="widget">
-            <div class="widget-heading clearfix">
-                <h3 class="widget-title pull-left">Add Client</h3>
-                @if (ViewBag.Error_Msg != "")
-                {
-                    <div style="margin-left:200px;">
-                        <p style="color:red;">@ViewBag.Error_Msg</p>
+        <div class="col-sm-8">
+            <div class="widget">
+                <div class="widget-heading clearfix">
+                    <h3 class="widget-title pull-left">Add Client</h3>
+                    @if (ViewBag.Error_Msg != "")
+                    {
+                        <div style="margin-left:200px;">
+                            <p style="color:red;">@ViewBag.Error_Msg</p>
+                        </div>
+                    }
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-primary" title="Add Client" onclick="SubmitForm()"><i class="ti-save"></i></button>
+                        <button type="button" class="btn btn-default" title="Cancel" onclick="Cancel();"><i class="ti-share-alt"></i></button>
                     </div>
-                }
-                <div class="pull-right">
-                    <button type="button" class="btn btn-primary" title="Add Client" onclick="SubmitForm()"><i class="ti-save"></i></button>
-                    <button type="button" class="btn btn-default" title="Cancel" onclick="Cancel();"><i class="ti-share-alt"></i></button>
+                </div>
+                <div class="widget-body">
+                    <form class="form-horizontal" method="post" action="/Clients/ManageClient" enctype="multipart/form-data" id="mainForm">
+                        <div class="tab-content">
+                            <div id="general" role="tabpanel" class="tab-pane active">
+
+                                <div class="form-group">
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" placeholder="Name" name="Name" id="Name">
+                                        <div id="error_Div_Name" style="display:none;color:red;">
+                                            <p style="color:red;">Please Enter Name</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" placeholder="Company Name" name="CompanyName" id="CompanyName">
+                                        <div id="error_Div_CompanyName" style="display:none;color:red;">
+                                            <p style="color:red;">Please Enter Company Name</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-6">
+                                        <input id="Email" type="email" class="form-control" placeholder="Email" name="Email">
+                                        <div id="error_Div_Email1" style="display:none;color:red;">
+                                            <p style="color:red;">Please Enter Valid Email</p>
+                                        </div>
+                                        <div id="error_Div_Email2" style="display:none;color:red;">
+                                            <p style="color:red;">Please Enter Valid Email</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input id="Alternate_Email" type="email" class="form-control" placeholder="Alternate Email" name="Alternate_Email">
+                                        <div id="error_Div_Alternate_Email" style="display:none;color:red;">
+                                            <p style="color:red;">Please Enter Valid Email</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-6">
+                                        <input id="ContactNo" type="text" class="form-control" placeholder="Contact" name="ContactNo" onkeypress="return isNumberKey(event)" maxlength="13">
+                                        <div id="error_Div_ContactNo1" style="display:none;color:red;">
+                                            <p style="color:red;">Please Enter Your Contact No</p>
+                                        </div>
+                                        <div id="error_Div_ContactNo2" style="display:none;color:red;">
+                                            <p style="color:red;">Contact No Should be minimum 10 Characters</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input id="SkypeNo" type="text" class="form-control" placeholder="Skype" name="SkypeNo" maxlength="20">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-6">
+                                        <input id="AddressLine1" type="text" class="form-control" placeholder="AddressLine1" name="AddressLine1">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input id="AddressLine2" type="text" class="form-control" placeholder="AddressLine2" name="AddressLine2">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-6">
+                                        <input id="City" type="text" class="form-control" placeholder="City" name="City">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input id="State" type="text" class="form-control" placeholder="State" name="State">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-6">
+                                        <select class="input-medium bfh-countries form-control form-cutom" data-country="US" id="Country" name="Country"></select>
+                                        <div id="error_Div_Country" style="display:none;color:red;">
+                                            <p style="color:red;">Please Enter Your Contact No</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input id="ZipCode" type="text" class="form-control" placeholder="ZipCode" name="ZipCode" onkeypress="return isNumberKey(event)" maxlength="6">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-6">
+                                        <input id="JobDescription" type="text" class="form-control" placeholder="Work Description" name="JobDescription">
+                                        <div id="error_Div_JobDescription" style="display:none;color:red;">
+                                            <p style="color:red;">Please Enter Job Description</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        @Html.DropDownListFor(m => m.Source, (List<SelectListItem>)ViewBag.Source_List, new { @class = "form-control form-cutom" })
+                                        <div id="error_Div_Source" style="display:none;color:red;">
+                                            <p style="color:red;">Please Enter Source</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @*<div class="form-group">
+
+                                <div class="col-sm-12">
+                                    <textarea class="form-control" placeholder="Requirement" name="Requirement" id="Requirement"></textarea>
+                                    <div id="error_Div_Requirement" style="display:none;color:red;">
+                                        <p style="color:red;">Please Enter Requiremnts</p>
+                                    </div>
+                                </div>
+
+                            </div>*@
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <div class="widget-body">
-                <form class="form-horizontal" method="post" action="/Clients/ManageClient" enctype="multipart/form-data" id="mainForm">
 
-                    <div class="tab-content">
-                        <div id="general" role="tabpanel" class="tab-pane active">
-                          
-                            <div class="form-group">
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" placeholder="Name" name="Name" id="Name">
-                                    <div id="error_Div_Name" style="display:none;color:red;">
-                                        <p style="color:red;">Please Enter Name</p>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" placeholder="Company Name" name="CompanyName" id="CompanyName">
-                                    <div id="error_Div_CompanyName" style="display:none;color:red;">
-                                        <p style="color:red;">Please Enter Company Name</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-6">
-                                    <input id="Email" type="email" class="form-control" placeholder="Email" name="Email">
-                                    <div id="error_Div_Email1" style="display:none;color:red;">
-                                        <p style="color:red;">Please Enter Valid Email</p>
-                                    </div>
-                                    <div id="error_Div_Email2" style="display:none;color:red;">
-                                        <p style="color:red;">Please Enter Valid Email</p>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <input id="Alternate_Email" type="email" class="form-control" placeholder="Alternate Email" name="Alternate_Email">
-                                    <div id="error_Div_Alternate_Email" style="display:none;color:red;">
-                                        <p style="color:red;">Please Enter Valid Email</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-
-                                <div class="col-sm-6">
-                                    <input id="ContactNo" type="text" class="form-control" placeholder="Contact" name="ContactNo" onkeypress="return isNumberKey(event)" maxlength="13">
-                                    <div id="error_Div_ContactNo1" style="display:none;color:red;">
-                                        <p style="color:red;">Please Enter Your Contact No</p>
-                                    </div>
-                                    <div id="error_Div_ContactNo2" style="display:none;color:red;">
-                                        <p style="color:red;">Contact No Should be minimum 10 Characters</p>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <input id="SkypeNo" type="text" class="form-control" placeholder="Skype" name="SkypeNo" maxlength="20">
-                                </div>
-                            </div>
-                            <div class="form-group">
-
-                                <div class="col-sm-6">
-                                    <input id="AddressLine1" type="text" class="form-control" placeholder="AddressLine1" name="AddressLine1">
-                                </div>
-                                <div class="col-sm-6">
-                                    <input id="AddressLine2" type="text" class="form-control" placeholder="AddressLine2" name="AddressLine2">
-                                </div>
-                            </div>
-                            <div class="form-group">
-
-                                <div class="col-sm-6">
-                                    <input id="City" type="text" class="form-control" placeholder="City" name="City">
-                                </div>
-                                <div class="col-sm-6">
-                                    <input id="State" type="text" class="form-control" placeholder="State" name="State">
-                                </div>
-                            </div>
-                            <div class="form-group">
-
-                                <div class="col-sm-6">
-                                    <select class="input-medium bfh-countries form-control form-cutom" data-country="US" id="Country" name="Country"></select>
-                                    <div id="error_Div_Country" style="display:none;color:red;">
-                                        <p style="color:red;">Please Enter Your Contact No</p>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <input id="ZipCode" type="text" class="form-control" placeholder="ZipCode" name="ZipCode" onkeypress="return isNumberKey(event)" maxlength="6">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-6">
-                                    <input id="JobDescription" type="text" class="form-control" placeholder="Work Description" name="JobDescription">
-                                    <div id="error_Div_JobDescription" style="display:none;color:red;">
-                                        <p style="color:red;">Please Enter Job Description</p>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    @Html.DropDownListFor(m => m.Source, (List<SelectListItem>)ViewBag.Source_List, new { @class = "form-control form-cutom" })
-                                    <div id="error_Div_Source" style="display:none;color:red;">
-                                        <p style="color:red;">Please Enter Source</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            @*<div class="form-group">
-
-                        <div class="col-sm-12">
-                            <textarea class="form-control" placeholder="Requirement" name="Requirement" id="Requirement"></textarea>
-                            <div id="error_Div_Requirement" style="display:none;color:red;">
-                                <p style="color:red;">Please Enter Requiremnts</p>
-                            </div>
-                        </div>
-
-                    </div>*@
-                        </div>
-
-                    </div>
-                </form>
-            </div>
         </div>
+
+        <div class="col-sm-4">
+        </div>
+       
     </div>
 </div>
 @{

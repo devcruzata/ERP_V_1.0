@@ -9,7 +9,8 @@
             <div class="media">
                 <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/Docs.png")" alt="" class="media-object img-circle"></div>
                 <div class="media-body">
-                    <h5 class="media-heading" onclick="downloadDoc('@docs.FileName','@docs.FileID')">@docs.FileName</h5>
+                    <h5 class="media-heading">@docs.Title</h5>
+                    <p class="media-heading" onclick="downloadDoc('@docs.FileName','@docs.FileID')">@docs.FileName</p>
                     <p class="text-muted mb-0">Added By: @docs.DocOwner_Name</p>
                 </div>
             </div>

@@ -353,6 +353,27 @@ namespace Project.Web.Controllers.UserSetings
 
         [Authorize]
         [HttpPost]
+        public ActionResult AjaxDeleteRole(string Role_ID)
+        {
+
+            objResponse response = new objResponse();
+            RolesModel objRolesModel = new RolesModel();
+            try
+            {
+                response = objRoleManager.DeleteUserRole(Convert.ToInt64(Role_ID));
+                objRolesModel.roles = objRoleManager.GetAllRoles();
+                return View("AjaxManageRoles", objRolesModel);
+               // return Json(response.ErrorMessage, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                BAL.Common.LogManager.LogError("DeleteRole Post Method", 1, Convert.ToString(ex.Source), Convert.ToString(ex.Message), Convert.ToString(ex.StackTrace));
+                return Json("", JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [Authorize]
+        [HttpPost]
         public void GetContactPermission()
         {
             try

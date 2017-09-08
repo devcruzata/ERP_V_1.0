@@ -15,11 +15,11 @@
                     <h5 class="media-heading">@notes.Description</h5>
                     @if (notes.Note_Owner_ID.ToString() == @session.UserSession.UserId.ToString())
                     {
-                        <p class="text-muted mb-0">Added By you at @notes.DateTaken</p>
+                        <p class="text-muted mb-0">Added by you at @notes.DateTaken</p>
                     }
                     else
                     {
-                        <p class="text-muted mb-0">Added By @notes.Note_Owner_Name at @notes.DateTaken</p>
+                        <p class="text-muted mb-0">Added by @notes.Note_Owner_Name at @notes.DateTaken</p>
                     }
                 </div>
             </div>

@@ -223,7 +223,7 @@
                 <h4 class="mt-0 mb-5 ">View Leads</h4>
                 <ol class="breadcrumb mb-0">
                     <li><a href="@Url.RouteUrl("AdminDashboard_V_2")">Home</a></li>
-                    <li><a href="@Url.RouteUrl("LeadHome")">Lead</a></li>
+                    <li><a href="@Url.RouteUrl("LeadHome")">Leads</a></li>
                     <li class="active">View Leads</li>
                 </ol>
             </div>
@@ -331,7 +331,7 @@
                                                         <time datetime="2015-12-10T20:50:48+07:00" class="fs-15 fw-500">@act.CreatedDate</time>
                                                     </div>
                                                     <div class="media-body timlinemedia-body">
-                                                        <h5 class="media-heading">New Task Added</h5>
+                                                        <h5 class="media-heading">New task added</h5>
                                                         <p class="text-muted">@act.Title</p>
                                                         <h6 class="text-right timeline-time"><i class="ti-time"></i> @act.CreatedTime</h6>
                                                     </div>
@@ -347,7 +347,7 @@
                                                         <time datetime="2015-12-10T20:50:48+07:00" class="fs-15 fw-500">@act.CreatedDate</time>
                                                     </div>
                                                     <div class="media-body timlinemedia-body">
-                                                        <h5 class="media-heading">New Meeting Added</h5>
+                                                        <h5 class="media-heading">New meeting added</h5>
                                                         <p class="text-muted">@act.Title</p>
                                                         <h6 class="text-right timeline-time"><i class="ti-time"></i> @act.CreatedTime</h6>
                                                     </div>
@@ -363,7 +363,7 @@
                                                         <time datetime="2015-12-10T20:50:48+07:00" class="fs-15 fw-500">@act.CreatedDate</time>
                                                     </div>
                                                     <div class="media-body timlinemedia-body">
-                                                        <h5 class="media-heading">New Notes Added</h5>
+                                                        <h5 class="media-heading">New notes added</h5>
                                                         <p class="text-muted">@act.Title</p>
                                                         <h6 class="text-right timeline-time"><i class="ti-time"></i> @act.CreatedTime</h6>
                                                     </div>
@@ -395,7 +395,7 @@
                                                         <time datetime="2015-12-10T20:50:48+07:00" class="fs-15 fw-500">@act.CreatedDate</time>
                                                     </div>
                                                     <div class="media-body timlinemedia-body">
-                                                        <h5 class="media-heading">New Event Added</h5>
+                                                        <h5 class="media-heading">New event added</h5>
                                                         <p class="text-muted">@act.Title</p>
                                                         <h6 class="text-right timeline-time"><i class="ti-time"></i> @act.CreatedTime</h6>
                                                     </div>
@@ -428,7 +428,7 @@
                                                         <time datetime="2015-12-10T20:50:48+07:00" class="fs-15 fw-500">@act.CreatedDate</time>
                                                     </div>
                                                     <div class="media-body timlinemedia-body">
-                                                        <h5 class="media-heading">A New Document Added</h5>
+                                                        <h5 class="media-heading">A new document added</h5>
                                                         @if (act.CreatedBy.ToString() == session.UserSession.UserId.ToString())
                                                         {
                                                             <p class="text-muted">Added by you</p>
@@ -437,7 +437,7 @@
                                                         {                                                            
                                                             <p class="text-muted">Added by @act.CreatedByName</p>
                                                         }                                                       
-                                                        <h6 class="text-right timeline-time"><i class="ti-time"></i> @act.CreatedTime</h6>
+                                                        <h6 class="text-right timeline-time"><i class="ti-time"></i> at @act.CreatedTime</h6>
                                                     </div>
                                                 </div>
                                             </li>
@@ -451,7 +451,7 @@
                                                         <time datetime="2015-12-10T20:50:48+07:00" class="fs-15 fw-500">@act.CreatedDate</time>
                                                     </div>
                                                     <div class="media-body timlinemedia-body">
-                                                        <h5 class="media-heading">Lead Created</h5>
+                                                        <h5 class="media-heading">Lead created</h5>
                                                         <p class="text-muted">@act.Title</p>
                                                         <h6 class="text-right timeline-time"><i class="ti-time"></i> @act.CreatedTime</h6>
                                                     </div>
@@ -467,7 +467,7 @@
                                                         <time datetime="2015-12-10T20:50:48+07:00" class="fs-15 fw-500">@act.CreatedDate</time>
                                                     </div>
                                                     <div class="media-body timlinemedia-body">
-                                                        <h5 class="media-heading">Lead Updated</h5>
+                                                        <h5 class="media-heading">Lead updated</h5>
                                                         <p class="text-muted">@act.Title</p>
                                                         <h6 class="text-right timeline-time"><i class="ti-time"></i> @act.CreatedTime</h6>
                                                     </div>
@@ -483,7 +483,7 @@
                                                         <time datetime="2015-12-10T20:50:48+07:00" class="fs-15 fw-500">@act.CreatedDate</time>
                                                     </div>
                                                     <div class="media-body timlinemedia-body">
-                                                        <h5 class="media-heading">Lead Updated</h5>
+                                                        <h5 class="media-heading">Lead updated</h5>
                                                         <p class="text-muted">@act.Title</p>
                                                         <h6 class="text-right timeline-time"><i class="ti-time"></i> @act.CreatedTime</h6>
                                                     </div>
@@ -540,6 +540,7 @@
                                                             <div class="media-body">
                                                                 <h5 class="media-heading">@task.Title</h5>
                                                                 <p class="text-muted mb-0">@task.Description</p>
+                                                                <p class="text-muted mb-0">Added by @task.CreatedByName at @task.CreatedDate </p> 
                                                             </div>
                                                         </div>
                                                     </td>
@@ -598,11 +599,11 @@
                                                             @*@if (notes.Note_Owner_ID.ToString() == HttpContext.Current.Session["UserID"].ToString())*@
                                                             @if(notes.Note_Owner_Name.ToString() == session.UserSession.UserId.ToString())
                                                             {
-                                                                <p class="text-muted mb-0">Added By you at @notes.DateTaken</p>
+                                                                <p class="text-muted mb-0">Added by you at @notes.DateTaken</p>
                                                             }
                                                             else
                                                             {
-                                                                <p class="text-muted mb-0">Added By @notes.Note_Owner_Name at @notes.DateTaken</p>
+                                                                <p class="text-muted mb-0">Added by @notes.Note_Owner_Name at @notes.DateTaken</p>
                                                             }
                                                         </div>
                                                     </div>
@@ -686,8 +687,9 @@
                                                         <div class="media">
                                                             <div class="media-left avatar"><img src="@Url.Content("~/Content/build/images/users/Docs.png")" alt="" class="media-object img-circle"></div>
                                                             <div class="media-body">
-                                                                <h5 class="media-heading" onclick="downloadDoc('@docs.FileName','@docs.FileID')">@docs.FileName</h5>
-                                                                <p class="text-muted mb-0">Added By: @docs.DocOwner_Name</p>
+                                                                <h5 class="media-heading">@docs.Title</h5> 
+                                                                <p class="media-heading" onclick="downloadDoc('@docs.FileName','@docs.FileID')">@docs.FileName</p>
+                                                                <p class="text-muted mb-0">Added by: @docs.DocOwner_Name at @docs.UploadedDate</p>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -840,7 +842,7 @@
                                 <label for="Subject">Subject</label>
                                 <input id="Subject" name="Subject" type="text" class="form-control">
                                 <div id="error_div_Subject" style="display:none;">
-                                    <p style="color:red;">Please Enter Subject.</p>
+                                    <p style="color:red;">Please Enter Subject</p>
                                 </div>
                             </div>
                         </div>
@@ -852,7 +854,7 @@
                                 <div class="col-sm-10">
                                     <input type="file" id="Attechments" name="Attechments" multiple />
                                     <div id="error_div_Attechments" style="display:none;">
-                                        <p style="color:red;">File size must be less than 5 MB.</p>
+                                        <p style="color:red;">File size must be less than 5 MB</p>
                                     </div>
                                 </div>
                             </div>
